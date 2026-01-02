@@ -67,6 +67,7 @@
             justify-content: center; 
             cursor: pointer; 
             touch-action: manipulation;
+            position: relative;
         }
         .module-btn:hover { 
             transform: translateY(-6px); 
@@ -79,6 +80,22 @@
         .module-advanced:hover { 
             border-color: #ff9900 !important; 
         }
+        .score-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #00ff88;
+            color: #000;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,255,136,0.8);
+            min-width: 50px;
+            text-align: center;
+        }
+        .passed { background: #00ff88; }
+        .failed { background: #ff0066; }
         #content { 
             flex: 1; 
             background: rgba(0,0,0,0.85); 
@@ -196,6 +213,41 @@
             opacity: 0.6; 
             cursor: not-allowed; 
         }
+        .progress-bar {
+            height: 20px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ddff, #00ffcc);
+            width: 0%;
+            transition: width 0.8s ease;
+        }
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: rgba(10,25,50,0.9);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #00ddff;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00ffcc;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #aaa;
+        }
 
         @media (min-width: 768px) {
             #main { 
@@ -246,29 +298,16 @@
             <small>Advanced Underground Safety Training</small>
         </div>
 
-        <div class="module-grid">
-            <div class="module-btn" data-module="handover">Shift Handover</div>
-            <div class="module-btn" data-module="lhd">LHD Tramming</div>
-            <div class="module-btn" data-module="drill">Face Drilling</div>
-            <div class="module-btn" data-module="support">Support Install</div>
-            <div class="module-btn" data-module="vent">Vent Failure</div>
-            <div class="module-btn" data-module="rockfall">Rock Fall</div>
-            <div class="module-btn" data-module="traffic">Traffic Conflict</div>
-            <div class="module-btn" data-module="reentry">Unsafe Re-Entry</div>
-            <div class="module-btn" data-module="shaft_sinking">Shaft Sinking</div>
-            <div class="module-btn" data-module="raise_drill">Raise Drilling</div>
-            <div class="module-btn module-advanced" data-module="seismicity">Seismicity</div>
-            <div class="module-btn module-advanced" data-module="blasting">Blasting</div>
-            <div class="module-btn module-advanced" data-module="evacuation">Evacuation</div>
-            <div class="module-btn module-advanced" data-module="fire">Fire</div>
-            <div class="module-btn module-advanced" data-module="tmm">TMM</div>
-            <div class="module-btn module-advanced" data-module="winders">WINDERS & HOISTING</div>
+        <div class="module-grid" id="moduleGrid">
+            <!-- Modules will be injected with badges here -->
         </div>
 
         <div class="info-box">
             <strong>Current Level:</strong> 2,850m below surface<br>
             <strong>Reef:</strong> UG2 / Ventersdorp / Carbon Leader<br>
-            <strong>Temp:</strong> 42°C | <strong>Humidity:</strong> 92%
+            <strong>Temp:</strong> 42°C | <strong>Humidity:</strong> 92%<br><br>
+            <strong>Completed Modules:</strong> <span id="completedCount">0</span>/16<br>
+            <strong>Overall Pass Rate:</strong> <span id="overallPass">0%</span>
             <div id="eventLog"><strong>EVENT:</strong> Ready — Select a module</div>
         </div>
     </div>
@@ -305,16 +344,45 @@
             <button id="nextQ" class="btn btn-success mt-4 w-100" style="display:none; padding:18px; font-size:20px;" onclick="nextQ()">Next Question</button>
         </div>
 
-        <div id="result" class="text-center p-5 rounded d-none" style="background:rgba(0,0,0,0.9); max-width:800px; margin:40px auto;">
-            <h2 id="resultText"></h2>
-            <p id="resultScore" style="font-size:28px; margin:20px 0;"></p>
-            <button class="btn btn-primary mt-3" onclick="backToModules()">Back to Modules</button>
+        <div id="result" class="text-center p-5 rounded d-none" style="background:rgba(0,0,0,0.9); max-width:900px; margin:40px auto;">
+            <h2 id="resultText" style="font-size:36px; margin-bottom:20px;"></h2>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="resultScore" style="font-size:32px; margin:20px 0;"></p>
+
+            <div class="summary-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="timeTaken">0:00</div>
+                    <div class="stat-label">Time Taken</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="questionsTotal">0</div>
+                    <div class="stat-label">Total Questions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="correctAnswers">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="accuracy">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+            </div>
+
+            <p id="passMessage" style="font-size:20px; margin:30px 0;"></p>
+            
+            <button class="btn btn-primary mt-3 me-2" onclick="backToModules()">Back to Modules</button>
+            <button class="btn btn-outline-light mt-3" onclick="retakeTest()" id="retakeBtn">Retake Test</button>
         </div>
     </div>
 </div>
 
 <script>
-// Video URLs (unchanged)
+// Video URLs, moduleNames, baseQuiz remain unchanged (same as previous version)
+
+
 const videos = {
     handover: "https://www.youtube.com/embed/uqbDOIaEyHs?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     lhd: "https://www.youtube.com/embed/HjnCR0pBlQs?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
@@ -333,6 +401,8 @@ const videos = {
     tmm: "https://www.youtube.com/embed/BYzg3G8gQYY?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     winders: "https://www.youtube.com/embed/HkE7m1cdvBU?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3"
 };
+
+
 
 const moduleNames = {
     handover: "Shift Handover & Pre-Shift Checks",
@@ -353,10 +423,9 @@ const moduleNames = {
     winders: "WINDERS & HOISTING SYSTEMS"
 };
 
-let current = '';
-let qi = 0;
-let correct = 0;
-let currentQuiz = null; // Will hold the shuffled quiz for the current module
+
+
+
 
 const baseQuiz = {
     handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
@@ -793,7 +862,53 @@ const baseQuiz = {
     ]}
 };
 
-// Function to create a shuffled copy of a module's quiz
+// Persistent scores stored in localStorage
+let scores = JSON.parse(localStorage.getItem('miningSafetyScores') || '{}');
+let quizStartTime = 0;
+
+const moduleKeys = [
+    "handover","lhd","drill","support","vent","rockfall","traffic","reentry",
+    "shaft_sinking","raise_drill","seismicity","blasting","evacuation","fire","tmm","winders"
+];
+
+function renderModuleGrid() {
+    const grid = document.getElementById('moduleGrid');
+    grid.innerHTML = '';
+    moduleKeys.forEach(key => {
+        const btn = document.createElement('div');
+        btn.className = 'module-btn' + (['seismicity','blasting','evacuation','fire','tmm','winders'].includes(key) ? ' module-advanced' : '');
+        btn.setAttribute('data-module', key);
+        btn.textContent = key === 'shaft_sinking' ? 'Shaft Sinking' :
+                         key === 'raise_drill' ? 'Raise Drilling' :
+                         key === 'winders' ? 'WINDERS & HOISTING' :
+                         key.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        
+        // Add score badge if completed
+        if (scores[key]) {
+            const badge = document.createElement('div');
+            badge.className = 'score-badge ' + (scores[key].passed ? 'passed' : 'failed');
+            badge.textContent = scores[key].percentage + '%';
+            btn.appendChild(badge);
+        }
+        
+        grid.appendChild(btn);
+    });
+    
+    updateSidebarSummary();
+}
+
+function updateSidebarSummary() {
+    const completed = Object.keys(scores).length;
+    const passedCount = Object.values(scores).filter(s => s.passed).length;
+    document.getElementById('completedCount').textContent = completed;
+    document.getElementById('overallPass').textContent = completed > 0 ? Math.round((passedCount / completed) * 100) + '%' : '0%';
+}
+
+let current = '';
+let qi = 0;
+let correct = 0;
+let currentQuiz = null;
+
 function getShuffledQuiz(moduleKey) {
     const base = baseQuiz[moduleKey];
     if (!base) return {q: []};
@@ -801,9 +916,8 @@ function getShuffledQuiz(moduleKey) {
     const shuffled = {name: base.name, q: []};
     
     base.q.forEach(origQ => {
-        const options = [...origQ.o]; // copy array
+        const options = [...origQ.o];
         const correctAnswer = options[origQ.c];
-        // Shuffle options
         for (let i = options.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [options[i], options[j]] = [options[j], options[i]];
@@ -815,8 +929,7 @@ function getShuffledQuiz(moduleKey) {
     return shuffled;
 }
 
-// Sidebar click handler
-document.querySelector('.module-grid').addEventListener('click', function(e) {
+document.getElementById('moduleGrid').addEventListener('click', function(e) {
     const btn = e.target.closest('.module-btn');
     if (btn) {
         const module = btn.getAttribute('data-module');
@@ -825,7 +938,6 @@ document.querySelector('.module-grid').addEventListener('click', function(e) {
 });
 
 function selectModule(module) {
-    // Immediate reset
     document.getElementById('welcome').style.display = 'none';
     document.getElementById('moduleView').style.display = 'none';
     document.getElementById('videoArea').style.display = 'none';
@@ -849,11 +961,11 @@ function startTest() {
     document.getElementById('moduleView').style.display = 'none';
     document.getElementById('videoArea').style.display = 'none';
     
-    // Create fresh shuffled quiz for this session
     currentQuiz = getShuffledQuiz(current);
-    
     qi = 0; 
     correct = 0;
+    quizStartTime = Date.now();
+    
     startQuiz();
 }
 
@@ -898,27 +1010,67 @@ function nextQ() {
     if(qi < currentQuiz.q.length) {
         showQuestion();
     } else {
-        const pass = correct >= Math.ceil(currentQuiz.q.length * 0.8);
-        document.getElementById('resultText').innerHTML = pass ?
-            '<span style="color:#00ff00">COMPETENT — CLEARED FOR WORK</span>' :
-            '<span style="color:#ff0066">RE-TRAINING REQUIRED</span>';
-        document.getElementById('resultScore').textContent = `Score: ${correct}/${currentQuiz.q.length} (${Math.round(correct/currentQuiz.q.length*100)}%)`;
-        document.getElementById('result').classList.remove('d-none');
-        document.getElementById('quizPanel').style.display = 'none';
+        showFinalResult();
     }
+}
+
+function showFinalResult() {
+    const total = currentQuiz.q.length;
+    const percentage = Math.round((correct / total) * 100);
+    const passed = correct >= Math.ceil(total * 0.8);
+    const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
+    const mins = Math.floor(timeTaken / 60).toString().padStart(2, '0');
+    const secs = (timeTaken % 60).toString().padStart(2, '0');
+
+    // Save score
+    scores[current] = {
+        score: correct,
+        total: total,
+        percentage: percentage,
+        passed: passed,
+        timestamp: new Date().toISOString(),
+        timeTaken: timeTaken
+    };
+    localStorage.setItem('miningSafetyScores', JSON.stringify(scores));
+
+    // Update result screen
+    document.getElementById('resultText').innerHTML = passed ?
+        '<span style="color:#00ff00">COMPETENT — CLEARED FOR WORK</span>' :
+        '<span style="color:#ff0066">RE-TRAINING REQUIRED</span>';
+    
+    document.getElementById('resultScore').textContent = `${correct}/${total} (${percentage}%)`;
+    document.getElementById('progressFill').style.width = percentage + '%';
+    document.getElementById('timeTaken').textContent = `${mins}:${secs}`;
+    document.getElementById('questionsTotal').textContent = total;
+    document.getElementById('correctAnswers').textContent = correct;
+    document.getElementById('accuracy').textContent = percentage + '%';
+    document.getElementById('passMessage').textContent = passed ?
+        'Excellent work! You have demonstrated competency in this critical safety module.' :
+        'You need at least 80% to pass. Please review the training video and try again.';
+
+    document.getElementById('quizPanel').style.display = 'none';
+    document.getElementById('result').classList.remove('d-none');
+
+    // Update module grid and sidebar
+    renderModuleGrid();
+}
+
+function retakeTest() {
+    document.getElementById('result').classList.add('d-none');
+    startTest(); // Fresh shuffle and timer
 }
 
 function backToModules() {
     document.getElementById('result').classList.add('d-none');
     document.getElementById('welcome').style.display = 'block';
     current = '';
-    qi = 0;
-    correct = 0;
-    currentQuiz = null;
     document.getElementById('videoPlayer').src = '';
 }
 
-// YouTube API
+// Initialize grid on load
+renderModuleGrid();
+
+// YouTube API remains the same
 let player;
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
