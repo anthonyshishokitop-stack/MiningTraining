@@ -1,39 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Mining Safety Training</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    body { background:#000 url('https://images.unsplash.com/photo-1581092580489-8e36c4f6d857?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed; color:#e0e0e0; margin:0; overflow:hidden; font-family:'Segoe UI',sans-serif; }
-    #main { display:flex; height:100vh; }
-    #sidebar { width:420px; background:linear-gradient(180deg,#0a1a2f 0%,#000 100%); padding:30px; overflow-y:auto; box-shadow:8px 0 30px #000; border-right:3px solid #00ddff; display:flex; flex-direction:column; }
-    #logo h1 { color:#00ddff; text-shadow:0 0 20px #00ddff; font-size:32px; margin:0; text-align:center; }
-    #logo small { color:#00ffcc; font-size:16px; display:block; margin-top:8px; text-align:center; }
-    .module-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; flex:1; margin:20px 0; }
-    .module-btn { background:linear-gradient(145deg,#0f1a2e,#1e293b); border:2px solid #00ddff; color:#00ffcc; padding:20px 10px; border-radius:16px; font-weight:bold; font-size:15px; text-align:center; box-shadow:0 6px 20px rgba(0,255,200,0.2); transition:all 0.3s; min-height:100px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
-    .module-btn:hover { transform:translateY(-6px); box-shadow:0 15px 40px rgba(0,255,200,0.5); border-color:#00ffff; }
-    .module-advanced { border-color:#ff6600 !important; }
-    .module-advanced:hover { border-color:#ff9900 !important; }
-    #content { flex:1; background:rgba(0,0,0,0.85); display:flex; flex-direction:column; padding:40px; overflow-y:auto; }
-    #moduleTitle { color:#00ffcc; font-size:32px; font-weight:bold; text-align:center; margin-bottom:30px; text-shadow:0 0 15px #00ffcc; }
-    .action-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1000px; margin:0 auto 40px; }
-    .action-card { background:linear-gradient(135deg,#1a1a2e,#16213e); border:3px solid #00ddff; border-radius:20px; padding:50px 30px; text-align:center; box-shadow:0 10px 40px rgba(0,255,200,0.3); transition:all 0.4s; cursor:pointer; }
-    .action-card:hover { transform:scale(1.08); box-shadow:0 20px 60px rgba(0,255,200,0.6); border-color:#00ffff; }
-    .action-card h3 { color:#00ffcc; margin:20px 0; font-size:26px; }
-    .action-card .icon { font-size:90px; margin-bottom:20px; }
-    #videoArea { width:100%; height:100%; background:#000; display:none; align-items:center; justify-content:center; }
-    #videoPlayer { width:95%; height:95%; border:4px solid #00ddff; border-radius:16px; }
-    .info-box { background:rgba(10,25,50,0.95); padding:20px; border-radius:14px; border:2px solid #00ddff; margin-top:auto; text-align:center; font-size:15px; }
-    #eventLog { font-weight:bold; margin-top:10px; color:#00ffcc; }
-    .quiz-panel { background:rgba(20,30,50,0.98); padding:40px; border-radius:20px; border:3px solid #ffd700; max-width:1000px; margin:40px auto; display:none; }
-    .quiz-question { font-size:24px; margin-bottom:30px; color:#fff; text-align:center; }
-    .quiz-options { display:grid; gap:18px; }
-    .quiz-btn { background:#1e293b; border:2px solid #00ddff; padding:20px; border-radius:14px; font-size:20px; transition:all 0.3s; text-align:center; cursor:pointer; }
-    .quiz-btn:hover { background:#00ddff; color:#000; transform:scale(1.03); }
-    .quiz-btn:disabled { opacity:0.6; cursor:not-allowed; }
-</style>
+    <meta charset="UTF-8">
+    <title>Mining Safety Training</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background: #000 url('https://images.unsplash.com/photo-1581092580489-8e36c4f6d857?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed; 
+            color: #e0e0e0; 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        #main { 
+            display: flex; 
+            flex-direction: column; /* Stack sidebar and content on mobile */
+            height: 100vh; 
+        }
+        #sidebar { 
+            width: 100%; /* Full width on mobile */
+            max-width: 420px; /* Max width for larger screens */
+            background: linear-gradient(180deg, #0a1a2f 0%, #000 100%); 
+            padding: 20px; /* Reduced padding for mobile */
+            overflow-y: auto; 
+            box-shadow: 0 8px 30px #000; /* Adjusted shadow */
+            border-bottom: 3px solid #00ddff; /* Border bottom for mobile stack */
+            display: flex; 
+            flex-direction: column; 
+        }
+        #logo h1 { 
+            color: #00ddff; 
+            text-shadow: 0 0 20px #00ddff; 
+            font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
+            margin: 0; 
+            text-align: center; 
+        }
+        #logo small { 
+            color: #00ffcc; 
+            font-size: clamp(12px, 3vw, 16px); /* Responsive */
+            display: block; 
+            margin-top: 8px; 
+            text-align: center; 
+        }
+        .module-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid: 1 or 2 columns */
+            gap: 16px; 
+            flex: 1; 
+            margin: 20px 0; 
+        }
+        .module-btn { 
+            background: linear-gradient(145deg, #0f1a2e, #1e293b); 
+            border: 2px solid #00ddff; 
+            color: #00ffcc; 
+            padding: 15px 10px; /* Adjusted for touch */
+            border-radius: 16px; 
+            font-weight: bold; 
+            font-size: clamp(14px, 3vw, 15px); /* Responsive text */
+            text-align: center; 
+            box-shadow: 0 6px 20px rgba(0,255,200,0.2); 
+            transition: all 0.3s; 
+            min-height: 80px; /* Smaller for mobile */
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            touch-action: manipulation; /* Better touch response */
+        }
+        .module-btn:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 15px 40px rgba(0,255,200,0.5); 
+            border-color: #00ffff; 
+        }
+        .module-advanced { 
+            border-color: #ff6600 !important; 
+        }
+        .module-advanced:hover { 
+            border-color: #ff9900 !important; 
+        }
+        #content { 
+            flex: 1; 
+            background: rgba(0,0,0,0.85); 
+            display: flex; 
+            flex-direction: column; 
+            padding: 20px; /* Reduced for mobile */
+            overflow-y: auto; 
+        }
+        #moduleTitle { 
+            color: #00ffcc; 
+            font-size: clamp(24px, 6vw, 32px); /* Responsive */
+            font-weight: bold; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            text-shadow: 0 0 15px #00ffcc; 
+        }
+        .action-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive: 1 or 2 columns */
+            gap: 20px; /* Reduced gap */
+            max-width: 1000px; 
+            margin: 0 auto 40px; 
+        }
+        .action-card { 
+            background: linear-gradient(135deg, #1a1a2e, #16213e); 
+            border: 3px solid #00ddff; 
+            border-radius: 20px; 
+            padding: 30px 20px; /* Adjusted */
+            text-align: center; 
+            box-shadow: 0 10px 40px rgba(0,255,200,0.3); 
+            transition: all 0.4s; 
+            cursor: pointer; 
+            min-height: 150px; /* Ensure touchable */
+        }
+        .action-card:hover { 
+            transform: scale(1.08); 
+            box-shadow: 0 20px 60px rgba(0,255,200,0.6); 
+            border-color: #00ffff; 
+        }
+        .action-card h3 { 
+            color: #00ffcc; 
+            margin: 20px 0; 
+            font-size: clamp(20px, 4vw, 26px); /* Responsive */
+        }
+        .action-card .icon { 
+            font-size: clamp(60px, 15vw, 90px); /* Responsive icon */
+            margin-bottom: 20px; 
+        }
+        #videoArea { 
+            width: 100%; 
+            height: 100%; 
+            background: #000; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        #videoPlayer { 
+            width: 100%; /* Full width on mobile */
+            max-width: 95%; 
+            height: auto; /* Aspect ratio maintained */
+            aspect-ratio: 16/9; /* Maintain video ratio */
+            border: 4px solid #00ddff; 
+            border-radius: 16px; 
+        }
+        .info-box { 
+            background: rgba(10,25,50,0.95); 
+            padding: 15px; /* Adjusted */
+            border-radius: 14px; 
+            border: 2px solid #00ddff; 
+            margin-top: auto; 
+            text-align: center; 
+            font-size: clamp(12px, 3vw, 15px); /* Responsive */
+        }
+        #eventLog { 
+            font-weight: bold; 
+            margin-top: 10px; 
+            color: #00ffcc; 
+        }
+        .quiz-panel { 
+            background: rgba(20,30,50,0.98); 
+            padding: 20px; /* Adjusted */
+            border-radius: 20px; 
+            border: 3px solid #ffd700; 
+            max-width: 1000px; 
+            margin: 20px auto; /* Adjusted margin */
+            display: none; 
+        }
+        .quiz-question { 
+            font-size: clamp(18px, 5vw, 24px); /* Responsive */
+            margin-bottom: 20px; /* Adjusted */
+            color: #fff; 
+            text-align: center; 
+        }
+        .quiz-options { 
+            display: grid; 
+            gap: 12px; /* Adjusted */
+        }
+        .quiz-btn { 
+            background: #1e293b; 
+            border: 2px solid #00ddff; 
+            padding: 15px; /* Adjusted for touch */
+            border-radius: 14px; 
+            font-size: clamp(16px, 4vw, 20px); /* Responsive */
+            transition: all 0.3s; 
+            text-align: center; 
+            cursor: pointer; 
+            min-height: 60px; /* Touchable */
+        }
+        .quiz-btn:hover { 
+            background: #00ddff; 
+            color: #000; 
+            transform: scale(1.03); 
+        }
+        .quiz-btn:disabled { 
+            opacity: 0.6; 
+            cursor: not-allowed; 
+        }
+
+        /* Media Queries for Larger Screens */
+        @media (min-width: 768px) {
+            #main { 
+                flex-direction: row; /* Side by side on larger screens */
+            }
+            #sidebar { 
+                width: 420px; /* Fixed width on desktop */
+                height: 100vh; /* Full height */
+                border-right: 3px solid #00ddff; /* Restore side border */
+                border-bottom: none; 
+                padding: 30px; /* Original padding */
+            }
+            #content { 
+                padding: 40px; /* Original */
+            }
+            .action-grid { 
+                gap: 40px; /* Original */
+            }
+            .action-card { 
+                padding: 50px 30px; /* Original */
+            }
+            .info-box { 
+                padding: 20px; /* Original */
+                font-size: 15px; 
+            }
+            .quiz-panel { 
+                padding: 40px; /* Original */
+                margin: 40px auto; 
+            }
+            .quiz-question { 
+                margin-bottom: 30px; /* Original */
+            }
+            .quiz-options { 
+                gap: 18px; /* Original */
+            }
+            .quiz-btn { 
+                padding: 20px; /* Original */
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -74,8 +277,8 @@
     <div id="content">
         <div id="welcome" style="text-align:center; margin-top:80px;">
             <img src="https://internationalbanker.com/wp-content/uploads/2023/08/Mining.png" alt="Gold & Platinum Mining Operations" style="max-width:90%; height:auto; margin-bottom:30px; border-radius:15px; box-shadow:0 0 30px rgba(0,255,200,0.4);">
-            <h1 style="font-size:50px; color:#00ffcc; text-shadow:0 0 30px #00ffcc;">UNDERGROUND SAFETY TRAINING</h1>
-            <p style="font-size:26px; margin-top:30px;">16 Critical Modules • Gold & Platinum Mines</p>
+            <h1 style="font-size: clamp(30px, 8vw, 50px); color:#00ffcc; text-shadow:0 0 30px #00ffcc;">UNDERGROUND SAFETY TRAINING</h1>
+            <p style="font-size: clamp(18px, 5vw, 26px); margin-top:30px;">16 Critical Modules • Gold & Platinum Mines</p>
         </div>
 
         <div id="moduleView" style="display:none;">
@@ -333,7 +536,7 @@ const realQuiz = {
         {q:"Can you walk in haulage way?", o:["Yes","Only in refuge"], c:1},
         {q:"What is a 'level'?", o:["Floor","Underground horizon"], c:1},
         {q:"Who approves traffic plan?", o:["Shift boss","Mine Manager"], c:1},
-        {q:"What is a 'tramming'?", o:["Loading","Driving"], c:1},
+        {q:"What is 'tramming'?", o:["Loading","Driving"], c:1},
         {q:"Can you park in travelway?", o:["Yes","Only in designated area"], c:1},
         {q:"What is a 'derail'?", o:["Accident","Vehicle off track"], c:1},
         {q:"Who reports traffic incidents?", o:["Anyone","Operator"], c:1},
@@ -601,12 +804,17 @@ document.querySelector('.module-grid').addEventListener('click', function(e) {
 });
 
 function selectModule(module) {
-    current = module;
+    // Immediate close of current views
     document.getElementById('welcome').style.display = 'none';
-    document.getElementById('moduleView').style.display = 'block';
+    document.getElementById('moduleView').style.display = 'none';
     document.getElementById('videoArea').style.display = 'none';
     document.getElementById('quizPanel').style.display = 'none';
     document.getElementById('result').classList.add('d-none');
+    document.getElementById('videoPlayer').src = ''; // Stop video immediately
+
+    // Start new module fast
+    current = module;
+    document.getElementById('moduleView').style.display = 'block';
     document.getElementById('moduleTitle').textContent = moduleNames[module];
     document.getElementById('eventLog').innerHTML = `<strong>EVENT:</strong> ${moduleNames[module]} selected`;
 }
@@ -699,5 +907,3 @@ function onYouTubeIframeAPIReady() {
 </script>
 </body>
 </html>
-
-
