@@ -11,41 +11,41 @@
             color: #e0e0e0; 
             margin: 0; 
             font-family: 'Segoe UI', sans-serif; 
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
         #main { 
             display: flex; 
-            flex-direction: column; /* Stack sidebar and content on mobile */
+            flex-direction: column;
             height: 100vh; 
         }
         #sidebar { 
-            width: 100%; /* Full width on mobile */
-            max-width: 420px; /* Max width for larger screens */
+            width: 100%;
+            max-width: 420px;
             background: linear-gradient(180deg, #0a1a2f 0%, #000 100%); 
-            padding: 20px; /* Reduced padding for mobile */
+            padding: 20px;
             overflow-y: auto; 
-            box-shadow: 0 8px 30px #000; /* Adjusted shadow */
-            border-bottom: 3px solid #00ddff; /* Border bottom for mobile stack */
+            box-shadow: 0 8px 30px #000;
+            border-bottom: 3px solid #00ddff;
             display: flex; 
             flex-direction: column; 
         }
         #logo h1 { 
             color: #00ddff; 
             text-shadow: 0 0 20px #00ddff; 
-            font-size: clamp(24px, 5vw, 32px); /* Responsive font size */
+            font-size: clamp(24px, 5vw, 32px);
             margin: 0; 
             text-align: center; 
         }
         #logo small { 
             color: #00ffcc; 
-            font-size: clamp(12px, 3vw, 16px); /* Responsive */
+            font-size: clamp(12px, 3vw, 16px);
             display: block; 
             margin-top: 8px; 
             text-align: center; 
         }
         .module-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid: 1 or 2 columns */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 16px; 
             flex: 1; 
             margin: 20px 0; 
@@ -54,19 +54,19 @@
             background: linear-gradient(145deg, #0f1a2e, #1e293b); 
             border: 2px solid #00ddff; 
             color: #00ffcc; 
-            padding: 15px 10px; /* Adjusted for touch */
+            padding: 15px 10px;
             border-radius: 16px; 
             font-weight: bold; 
-            font-size: clamp(14px, 3vw, 15px); /* Responsive text */
+            font-size: clamp(14px, 3vw, 15px);
             text-align: center; 
             box-shadow: 0 6px 20px rgba(0,255,200,0.2); 
             transition: all 0.3s; 
-            min-height: 80px; /* Smaller for mobile */
+            min-height: 80px;
             display: flex; 
             align-items: center; 
             justify-content: center; 
             cursor: pointer; 
-            touch-action: manipulation; /* Better touch response */
+            touch-action: manipulation;
         }
         .module-btn:hover { 
             transform: translateY(-6px); 
@@ -84,12 +84,12 @@
             background: rgba(0,0,0,0.85); 
             display: flex; 
             flex-direction: column; 
-            padding: 20px; /* Reduced for mobile */
+            padding: 20px;
             overflow-y: auto; 
         }
         #moduleTitle { 
             color: #00ffcc; 
-            font-size: clamp(24px, 6vw, 32px); /* Responsive */
+            font-size: clamp(24px, 6vw, 32px);
             font-weight: bold; 
             text-align: center; 
             margin-bottom: 30px; 
@@ -97,8 +97,8 @@
         }
         .action-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive: 1 or 2 columns */
-            gap: 20px; /* Reduced gap */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             max-width: 1000px; 
             margin: 0 auto 40px; 
         }
@@ -106,12 +106,12 @@
             background: linear-gradient(135deg, #1a1a2e, #16213e); 
             border: 3px solid #00ddff; 
             border-radius: 20px; 
-            padding: 30px 20px; /* Adjusted */
+            padding: 30px 20px;
             text-align: center; 
             box-shadow: 0 10px 40px rgba(0,255,200,0.3); 
             transition: all 0.4s; 
             cursor: pointer; 
-            min-height: 150px; /* Ensure touchable */
+            min-height: 150px;
         }
         .action-card:hover { 
             transform: scale(1.08); 
@@ -121,10 +121,10 @@
         .action-card h3 { 
             color: #00ffcc; 
             margin: 20px 0; 
-            font-size: clamp(20px, 4vw, 26px); /* Responsive */
+            font-size: clamp(20px, 4vw, 26px);
         }
         .action-card .icon { 
-            font-size: clamp(60px, 15vw, 90px); /* Responsive icon */
+            font-size: clamp(60px, 15vw, 90px);
             margin-bottom: 20px; 
         }
         #videoArea { 
@@ -136,21 +136,21 @@
             justify-content: center; 
         }
         #videoPlayer { 
-            width: 100%; /* Full width on mobile */
+            width: 100%;
             max-width: 95%; 
-            height: auto; /* Aspect ratio maintained */
-            aspect-ratio: 16/9; /* Maintain video ratio */
+            height: auto;
+            aspect-ratio: 16/9;
             border: 4px solid #00ddff; 
             border-radius: 16px; 
         }
         .info-box { 
             background: rgba(10,25,50,0.95); 
-            padding: 15px; /* Adjusted */
+            padding: 15px;
             border-radius: 14px; 
             border: 2px solid #00ddff; 
             margin-top: auto; 
             text-align: center; 
-            font-size: clamp(12px, 3vw, 15px); /* Responsive */
+            font-size: clamp(12px, 3vw, 15px);
         }
         #eventLog { 
             font-weight: bold; 
@@ -159,33 +159,33 @@
         }
         .quiz-panel { 
             background: rgba(20,30,50,0.98); 
-            padding: 20px; /* Adjusted */
+            padding: 20px;
             border-radius: 20px; 
             border: 3px solid #ffd700; 
             max-width: 1000px; 
-            margin: 20px auto; /* Adjusted margin */
+            margin: 20px auto;
             display: none; 
         }
         .quiz-question { 
-            font-size: clamp(18px, 5vw, 24px); /* Responsive */
-            margin-bottom: 20px; /* Adjusted */
+            font-size: clamp(18px, 5vw, 24px);
+            margin-bottom: 20px;
             color: #fff; 
             text-align: center; 
         }
         .quiz-options { 
             display: grid; 
-            gap: 12px; /* Adjusted */
+            gap: 12px;
         }
         .quiz-btn { 
             background: #1e293b; 
             border: 2px solid #00ddff; 
-            padding: 15px; /* Adjusted for touch */
+            padding: 15px;
             border-radius: 14px; 
-            font-size: clamp(16px, 4vw, 20px); /* Responsive */
+            font-size: clamp(16px, 4vw, 20px);
             transition: all 0.3s; 
             text-align: center; 
             cursor: pointer; 
-            min-height: 60px; /* Touchable */
+            min-height: 60px;
         }
         .quiz-btn:hover { 
             background: #00ddff; 
@@ -197,43 +197,42 @@
             cursor: not-allowed; 
         }
 
-        /* Media Queries for Larger Screens */
         @media (min-width: 768px) {
             #main { 
-                flex-direction: row; /* Side by side on larger screens */
+                flex-direction: row;
             }
             #sidebar { 
-                width: 420px; /* Fixed width on desktop */
-                height: 100vh; /* Full height */
-                border-right: 3px solid #00ddff; /* Restore side border */
+                width: 420px;
+                height: 100vh;
+                border-right: 3px solid #00ddff;
                 border-bottom: none; 
-                padding: 30px; /* Original padding */
+                padding: 30px;
             }
             #content { 
-                padding: 40px; /* Original */
+                padding: 40px;
             }
             .action-grid { 
-                gap: 40px; /* Original */
+                gap: 40px;
             }
             .action-card { 
-                padding: 50px 30px; /* Original */
+                padding: 50px 30px;
             }
             .info-box { 
-                padding: 20px; /* Original */
+                padding: 20px;
                 font-size: 15px; 
             }
             .quiz-panel { 
-                padding: 40px; /* Original */
+                padding: 40px;
                 margin: 40px auto; 
             }
             .quiz-question { 
-                margin-bottom: 30px; /* Original */
+                margin-bottom: 30px;
             }
             .quiz-options { 
-                gap: 18px; /* Original */
+                gap: 18px;
             }
             .quiz-btn { 
-                padding: 20px; /* Original */
+                padding: 20px;
             }
         }
     </style>
@@ -315,7 +314,7 @@
 </div>
 
 <script>
-// Video URLs
+// Video URLs (unchanged)
 const videos = {
     handover: "https://www.youtube.com/embed/uqbDOIaEyHs?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     lhd: "https://www.youtube.com/embed/HjnCR0pBlQs?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
@@ -357,8 +356,9 @@ const moduleNames = {
 let current = '';
 let qi = 0;
 let correct = 0;
+let currentQuiz = null; // Will hold the shuffled quiz for the current module
 
-const realQuiz = {
+const baseQuiz = {
     handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
         {q:"Who must attend shift handover?", o:["Only shift boss","All incoming and outgoing crew"], c:1},
         {q:"What must be signed before work starts?", o:["Nothing","Section 23 declaration"], c:1},
@@ -793,6 +793,27 @@ const realQuiz = {
     ]}
 };
 
+// Function to create a shuffled copy of a module's quiz
+function getShuffledQuiz(moduleKey) {
+    const base = baseQuiz[moduleKey];
+    if (!base) return {q: []};
+    
+    const shuffled = {name: base.name, q: []};
+    
+    base.q.forEach(origQ => {
+        const options = [...origQ.o]; // copy array
+        const correctAnswer = options[origQ.c];
+        // Shuffle options
+        for (let i = options.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [options[i], options[j]] = [options[j], options[i]];
+        }
+        const newC = options.indexOf(correctAnswer);
+        shuffled.q.push({q: origQ.q, o: options, c: newC});
+    });
+    
+    return shuffled;
+}
 
 // Sidebar click handler
 document.querySelector('.module-grid').addEventListener('click', function(e) {
@@ -804,15 +825,14 @@ document.querySelector('.module-grid').addEventListener('click', function(e) {
 });
 
 function selectModule(module) {
-    // Immediate close of current views
+    // Immediate reset
     document.getElementById('welcome').style.display = 'none';
     document.getElementById('moduleView').style.display = 'none';
     document.getElementById('videoArea').style.display = 'none';
     document.getElementById('quizPanel').style.display = 'none';
     document.getElementById('result').classList.add('d-none');
-    document.getElementById('videoPlayer').src = ''; // Stop video immediately
+    document.getElementById('videoPlayer').src = '';
 
-    // Start new module fast
     current = module;
     document.getElementById('moduleView').style.display = 'block';
     document.getElementById('moduleTitle').textContent = moduleNames[module];
@@ -828,30 +848,36 @@ function playVideo() {
 function startTest() {
     document.getElementById('moduleView').style.display = 'none';
     document.getElementById('videoArea').style.display = 'none';
+    
+    // Create fresh shuffled quiz for this session
+    currentQuiz = getShuffledQuiz(current);
+    
+    qi = 0; 
+    correct = 0;
     startQuiz();
 }
 
 function startQuiz() {
     document.getElementById('quizPanel').style.display = 'block';
-    const quiz = realQuiz[current] || {q: []};
-    qi = 0; correct = 0;
-    if (quiz.q.length === 0) {
+    
+    if (currentQuiz.q.length === 0) {
         alert('Quiz not available for this module yet.');
         backToModules();
         return;
     }
-    showQuestion(quiz);
+    showQuestion();
 }
 
-function showQuestion(quiz) {
-    document.getElementById('qtext').textContent = quiz.q[qi].q;
+function showQuestion() {
+    const question = currentQuiz.q[qi];
+    document.getElementById('qtext').textContent = question.q;
     const opts = document.getElementById('opts');
     opts.innerHTML = '';
-    quiz.q[qi].o.forEach((opt, i) => {
+    question.o.forEach((opt, i) => {
         const btn = document.createElement('button');
         btn.className = 'quiz-btn';
         btn.textContent = opt;
-        btn.onclick = () => checkAns(i === quiz.q[qi].c);
+        btn.onclick = () => checkAns(i === question.c);
         opts.appendChild(btn);
     });
     document.getElementById('fb').innerHTML = '';
@@ -869,15 +895,14 @@ function checkAns(isCorrect) {
 
 function nextQ() {
     qi++;
-    const quiz = realQuiz[current];
-    if(qi < quiz.q.length) {
-        showQuestion(quiz);
+    if(qi < currentQuiz.q.length) {
+        showQuestion();
     } else {
-        const pass = correct >= Math.ceil(quiz.q.length * 0.8);
+        const pass = correct >= Math.ceil(currentQuiz.q.length * 0.8);
         document.getElementById('resultText').innerHTML = pass ?
             '<span style="color:#00ff00">COMPETENT — CLEARED FOR WORK</span>' :
             '<span style="color:#ff0066">RE-TRAINING REQUIRED</span>';
-        document.getElementById('resultScore').textContent = `Score: ${correct}/${quiz.q.length} (${Math.round(correct/quiz.q.length*100)}%)`;
+        document.getElementById('resultScore').textContent = `Score: ${correct}/${currentQuiz.q.length} (${Math.round(correct/currentQuiz.q.length*100)}%)`;
         document.getElementById('result').classList.remove('d-none');
         document.getElementById('quizPanel').style.display = 'none';
     }
@@ -889,10 +914,11 @@ function backToModules() {
     current = '';
     qi = 0;
     correct = 0;
+    currentQuiz = null;
     document.getElementById('videoPlayer').src = '';
 }
 
-// YouTube API for auto-start quiz after video
+// YouTube API
 let player;
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
