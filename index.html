@@ -303,9 +303,7 @@
         </div>
 
         <div class="info-box">
-            <strong>Current Level:</strong> 2,850m below surface<br>
-            <strong>Reef:</strong> UG2 / Ventersdorp / Carbon Leader<br>
-            <strong>Temp:</strong> 42°C | <strong>Humidity:</strong> 92%<br><br>
+
             <strong>Completed Modules:</strong> <span id="completedCount">0</span>/16<br>
             <strong>Overall Pass Rate:</strong> <span id="overallPass">0%</span>
             <div id="eventLog"><strong>EVENT:</strong> Ready — Select a module</div>
@@ -399,7 +397,10 @@ const videos = {
     evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     fire: "https://www.youtube.com/embed/x414lRd1aak?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     tmm: "https://www.youtube.com/embed/BYzg3G8gQYY?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
-    winders: "https://www.youtube.com/embed/HkE7m1cdvBU?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3"
+    winders: "https://www.youtube.com/embed/HkE7m1cdvBU?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
+    electrical: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
+    mhsa: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3" 
+    
 };
 
 const moduleNames = {
@@ -418,7 +419,9 @@ const moduleNames = {
     evacuation: "Emergency Evacuation",
     fire: "Fire Underground",
     tmm: "Trackless Mobile Machinery",
-    winders: "WINDERS & HOISTING SYSTEMS"
+    winders: "WINDERS & HOISTING SYSTEMS",
+    electrical: "Underground Electrical Systems Safety",
+    mhsa: "MHSA 1996 Regulations"
 };
 
 
@@ -857,7 +860,114 @@ const baseQuiz = {
         {q:"What is a 'drum brake'?", o:["Main brake","Emergency brake"], c:1},
         {q:"Who calibrates depth indicator?", o:["Anyone","Only specialist"], c:1},
         {q:"What is a 'man-winding'?", o:["Material only","Personnel transport"], c:1}
+    ]},
+
+electrical: {name:"UNDERGROUND ELECTRICAL SAFETY", q: [
+        {q:"Who may perform work on electrical apparatus?", o:["Any miner","Only competent authorized person"], c:1},
+        {q:"What is the main hazard of trailing cables?", o:["Tripping","Damage leading to shock or fire"], c:1},
+        {q:"Can you work on live electrical equipment?", o:["Yes, if quick","Never, must be isolated"], c:1},
+        {q:"What must be done before working on electrical machinery?", o:["Nothing","Lockout and tagout"], c:1},
+        {q:"Flameproof equipment is required underground to prevent?", o:["Dust","Ignition of methane"], c:1},
+        {q:"What is an arc flash?", o:["Short circuit","Uncontrolled electrical discharge"], c:1},
+        {q:"Helmet light assemblies must comply with?", o:["Any standard","SANS 1438"], c:1},
+        {q:"Who approves electrical reticulation design?", o:["Shift boss","Competent professional engineer"], c:1},
+        {q:"Trailing cables must be protected from?", o:["Dust only","Mechanical damage"], c:1},
+        {q:"What gas is produced when charging batteries?", o:["Oxygen","Hydrogen"], c:1},
+        {q:"Battery charging stations must have?", o:["Nothing special","Ventilation and no smoking"], c:1},
+        {q:"Can water be used on electrical fires?", o:["Always","No, use dry extinguisher"], c:1},
+        {q:"What is required for portable electrical tools underground?", o:["Normal plugs","Flameproof and earth leakage"], c:1},
+        {q:"Earth leakage protection is mandatory on?", o:["High voltage only","All electrical apparatus"], c:1},
+        {q:"Who tests electrical installations?", o:["Anyone","Competent person"], c:1},
+        {q:"Overhead power lines underground must have?", o:["No protection","Guards or barriers"], c:1},
+        {q:"What is a 'competent person' for electrical work?", o:["Trained miner","Registered and experienced"], c:1},
+        {q:"Can flexible cables be repaired with tape?", o:["Yes","Only with proper vulcanizing"], c:1},
+        {q:"What causes most electrical accidents underground?", o:["Water","Improper isolation"], c:1},
+        {q:"Substations underground must be?", o:["Open","Enclosed and locked"], c:1},
+        {q:"What is the purpose of earthing?", o:["Grounding current","Prevent shock"], c:1},
+        {q:"Can you overload electrical circuits?", o:["Yes","Never"], c:1},
+        {q:"Portable transformers must be?", o:["Any type","Flameproof"], c:1},
+        {q:"What is required after electrical maintenance?", o:["Nothing","Testing and certification"], c:1},
+        {q:"Electrical tools must be inspected?", o:["Monthly","Before each use"], c:1},
+        {q:"What is a 'dead' circuit?", o:["Switched off","Tested and proven no voltage"], c:1},
+        {q:"Who issues permit to work on electrical?", o:["Supervisor","Authorized person"], c:1},
+        {q:"Cable joints underground must be?", o:["Taped","Flameproof"], c:1},
+        {q:"What is the risk of damaged insulation?", o:["Minor","Electric shock"], c:1},
+        {q:"Lightning arrestors are required on?", o:["Surface only","Surface power lines"], c:1},
+        {q:"Can non-flameproof equipment be used underground?", o:["Yes","Never"], c:1},
+        {q:"What must be displayed on electrical panels?", o:["Nothing","Warnings and ratings"], c:1},
+        {q:"Electrical records must be kept for?", o:["1 year","As required by COP"], c:1},
+        {q:"Who reports electrical defects?", o:["Only electrician","All employees"], c:1},
+        {q:"What is 'intrinsically safe' equipment?", o:["Low power","Cannot cause ignition"], c:1},
+        {q:"Power must be isolated during?", o:["Blasting","Blasting nearby"], c:1},
+        {q:"What is a 'switch handle lock' for?", o:["Security","Lockout"], c:1},
+        {q:"Can you touch exposed wires?", o:["If insulated","Never"], c:1},
+        {q:"Electrical safety is part of?", o:["Optional training","Mandatory induction"], c:1},
+        {q:"What is the voltage limit for handheld tools?", o:["220V","110V or less"], c:1},
+        {q:"Cables must not lie in?", o:["Dry areas","Water"], c:1},
+        {q:"Who approves electrical COP?", o:["Manager","Inspector"], c:1},
+        {q:"Electrical fires produce?", o:["Smoke only","Toxic fumes"], c:1},
+        {q:"What is 'double insulation'?", o:["Extra protection","No earth needed"], c:1},
+        {q:"Can you use damaged plugs?", o:["Yes","Never"], c:1},
+        {q:"Electrical apparatus must be examined?", o:["Annually","Regularly as per plan"], c:1},
+        {q:"What is a 'ground fault'?", o:["Normal","Leakage to earth"], c:1},
+        {q:"All electrical work requires?", o:["Nothing","Risk assessment"], c:1},
+        {q:"Who trains electrical workers?", o:["Anyone","Accredited"], c:1},
+        {q:"Electrical safety rules are in?", o:["MHSA only","Chapter 3 regulations"], c:1}
+    ]},
+
+    mhsa: {name:"MHSA 1996 REGULATIONS", q: [
+        {q:"What is the main purpose of MHSA 1996?", o:["Production","Health and safety of miners"], c:1},
+        {q:"Who must ensure safety at the mine?", o:["Employees","Employer"], c:1},
+        {q:"Can employees refuse dangerous work?", o:["No","Yes, right to leave"], c:1},
+        {q:"Who appoints the mine manager?", o:["Inspector","Employer"], c:1},
+        {q:"What must employer provide for training?", o:["Nothing","Health and safety training"], c:1},
+        {q:"Employees must report?", o:["Production","Unsafe conditions"], c:1},
+        {q:"What is a health and safety representative?", o:["Supervisor","Elected employee"], c:1},
+        {q:"Can employer charge for PPE?", o:["Yes","No"], c:1},
+        {q:"What is the role of MHSC?", o:["Production","Advise on health and safety"], c:1},
+        {q:"Employer must prepare?", o:["Nothing","Code of Practice"], c:1},
+        {q:"Who conducts inquiries into accidents?", o:["Employer only","Inspector"], c:1},
+        {q:"What is tripartite structure?", o:["One party","Government, employer, unions"], c:1},
+        {q:"Juveniles underground prohibited under?", o:["18","Specific age"], c:1},
+        {q:"Employer must conduct?", o:["Risk assessments","Risk assessments"], c:1},
+        {q:"What is mandatory COP for?", o:["All hazards","Significant risks"], c:1},
+        {q:"Employees must cooperate with?", o:["Production","Safety duties"], c:1},
+        {q:"What is the right to withdraw?", o:["For pay","Dangerous place"], c:1},
+        {q:"Who pays health and safety reps?", o:["Union","Employer"], c:1},
+        {q:"Medical surveillance is?", o:["Optional","Mandatory"], c:1},
+        {q:"What is the inspectorate for?", o:["Enforcement","Enforcement"], c:1},
+        {q:"Offences under MHSA can lead to?", o:["Warning","Fines or imprisonment"], c:1},
+        {q:"Employer must supply?", o:["Tools only","PPE free"], c:1},
+        {q:"What is occupational hygiene?", o:["Cleaning","Measuring hazards"], c:1},
+        {q:"Who establishes MQA?", o:["MHSA","MHSA"], c:1},
+        {q:"Employees must take care of?", o:["Production","Own and others safety"], c:1},
+        {q:"What is a serious injury?", o:["Minor","Reportable"], c:1},
+        {q:"Employer must investigate?", o:["All incidents","Accidents"], c:1},
+        {q:"What is the annual report for?", o:["Production","Health and safety"], c:1},
+        {q:"No discrimination for?", o:["Reporting hazards","Reporting hazards"], c:1},
+        {q:"What is a refuge bay?", o:["Rest area","Emergency shelter"], c:1},
+        {q:"Ventilation is regulated under?", o:["MHSA","MHSA"], c:1},
+        {q:"Who approves plans?", o:["Manager","Inspector"], c:1},
+        {q:"What is lead exposure limit?", o:["None","Regulated"], c:1},
+        {q:"Noise limits are?", o:["100 dB","Regulated"], c:1},
+        {q:"What is the duty of CEO?", o:["None","Overall responsibility"], c:1},
+        {q:"Health and safety committees are?", o:["Optional","Mandatory"], c:1},
+        {q:"What is exit from mine?", o:["One way","Multiple"], c:1},
+        {q:"Emergency procedures must be?", o:["Written","Practiced"], c:1},
+        {q:"Who can stop operations?", o:["Only manager","Inspector"], c:1},
+        {q:"What is hazardous substance?", o:["All chemicals","Defined"], c:1},
+        {q:"Training records must be kept?", o:["No","Yes"], c:1},
+        {q:"What is the role of unions?", o:["Production","Safety input"], c:1},
+        {q:"MHSA applies to?", o:["Surface only","All mines"], c:1},
+        {q:"What is risk management?", o:["Optional","Mandatory"], c:1},
+        {q:"Employees must use?", o:["Tools","PPE correctly"], c:1},
+        {q:"What is investigation report?", o:["Internal","Submitted to inspector"], c:1},
+        {q:"Penalties for non-compliance?", o:["Minor","Severe"], c:1},
+        {q:"What is continuous risk assessment?", o:["Once","Ongoing"], c:1},
+        {q:"Employer must monitor?", o:["Production","Health"], c:1},
+        {q:"What is the MHSA objective?", o:["Profit","Zero harm"], c:1}
     ]}
+    
 };
 
 // Persistent scores stored in localStorage
@@ -866,7 +976,7 @@ let quizStartTime = 0;
 
 const moduleKeys = [
     "handover","lhd","drill","support","vent","rockfall","traffic","reentry",
-    "shaft_sinking","raise_drill","seismicity","blasting","evacuation","fire","tmm","winders"
+    "shaft_sinking","raise_drill","seismicity","blasting","evacuation","fire","tmm","winders","electrical","mhsa"
 ];
 
 function renderModuleGrid() {
@@ -1083,4 +1193,5 @@ function onYouTubeIframeAPIReady() {
 </script>
 </body>
 </html>
+
 
