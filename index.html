@@ -418,27 +418,6 @@ const videos = {
     winders: "https://www.youtube.com/embed/HkE7m1cdvBU?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3"
 };
 
-const moduleNames = {
-    handover: "Shift Handover & Pre-Shift Checks",
-    lhd: "LHD Tramming in Decline",
-    drill: "Face Drilling (Jumbo)",
-    support: "Install Mesh & Bolts",
-    vent: "Main Ventilation Failure",
-    rockfall: "Major Rock Fall Event",
-    traffic: "Traffic Conflict in Single Lane",
-    reentry: "Unsafe Re-Entry Attempt",
-    shaft_sinking: "Shaft Sinking (Vertical Shaft)",
-    raise_drill: "Raise Drilling (Raise Boring)",
-    electrical: "Underground Electrical Systems Safety",
-    mhsa: "MHSA 1996 Regulations",
-    seismicity: "Seismicity & Rockbursts",
-    blasting: "Blasting & Explosives",
-    evacuation: "Emergency Evacuation",
-    fire: "Fire Underground",
-    tmm: "Trackless Mobile Machinery",
-    winders: "WINDERS & HOISTING SYSTEMS"
-};
-
 const baseQuiz = {
     handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
         {q:"Who must attend shift handover?", o:["Only shift boss","All incoming and outgoing crew"], c:1, e:"All incoming and outgoing crew must attend to ensure full transfer of critical information about hazards, equipment status, and workplace conditions."},
@@ -1025,7 +1004,7 @@ function renderModuleGrid() {
         const btn = document.createElement('div');
         btn.className = 'module-btn' + (['seismicity','blasting','evacuation','fire','tmm','winders'].includes(key) ? ' module-advanced' : '');
         btn.setAttribute('data-module', key);
-        let title = moduleNames[key];
+        let title = moduleNames[key] || key.replace(/_/g, ' ').toUpperCase();
         btn.textContent = title;
         
         if (scores[key]) {
@@ -1067,4 +1046,178 @@ function getShuffledQuiz(moduleKey) {
             [options[i], options[j]] = [options[j], options[i]];
         }
         const newC = options.indexOf(correctAnswer);
-        shuffled.q.push({q: origQ.q, o: options, c:
+        shuffled.q.push({q: origQ.q, o: options, c: newC, e: origQ.e || ''});
+    });
+    
+    return shuffled;
+}
+
+document.getElementById('moduleGrid').addEventListener('click', function(e) {
+    const btn = e.target.closest('.module-btn');
+    if (btn) {
+        const module = btn.getAttribute('data-module');
+        selectModule(module);
+    }
+});
+
+function selectModule(module) {
+    document.getElementById('welcome').style.display = 'none';
+    document.getElementById('moduleView').style.display = 'none';
+    document.getElementById('videoArea').style.display = 'none';
+    document.getElementById('quizPanel').style.display = 'none';
+    document.getElementById('result').classList.add('d-none');
+    document.getElementById('videoPlayer').src = '';
+
+    current = module;
+    document.getElementById('moduleView').style.display = 'block';
+    document.getElementById('moduleTitle').textContent = moduleNames[module];
+    document.getElementById('eventLog').innerHTML = `<strong>EVENT:</strong> ${moduleNames[module]} selected`;
+}
+
+function playVideo() {
+    document.getElementById('moduleView').style.display = 'none';
+    document.getElementById('videoArea').style.display = 'flex';
+    document.getElementById('videoPlayer').src = videos[current] + "&enablejsapi=1";
+}
+
+function startTest() {
+    document.getElementById('moduleView').style.display = 'none';
+    document.getElementById('videoArea').style.display = 'none';
+    
+    currentQuiz = getShuffledQuiz(current);
+    qi = 0; 
+    correct = 0;
+    quizStartTime = Date.now();
+    
+    startQuiz();
+}
+
+function startQuiz() {
+    document.getElementById('quizPanel').style.display = 'block';
+    
+    if (currentQuiz.q.length === 0) {
+        alert('Quiz not available for this module yet.');
+        backToModules();
+        return;
+    }
+    showQuestion();
+}
+
+function showQuestion() {
+    const question = currentQuiz.q[qi];
+    document.getElementById('qtext').textContent = question.q;
+    const opts = document.getElementById('opts');
+    opts.innerHTML = '';
+    opts.classList.remove('d-flex');
+    if (question.o.length === 2) opts.classList.add('d-flex');
+    
+    question.o.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-btn';
+        btn.textContent = opt;
+        btn.onclick = () => checkAns(i === question.c, btn);
+        opts.appendChild(btn);
+    });
+    document.getElementById('fb').style.display = 'none';
+    document.getElementById('nextQ').style.display = 'none';
+}
+
+function checkAns(isCorrect, selectedBtn) {
+    if (isCorrect) correct++;
+    const question = currentQuiz.q[qi];
+    const opts = document.getElementById('opts');
+    Array.from(opts.children).forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === question.o[question.c]) {
+            btn.classList.add('correct');
+        }
+    });
+    if (!isCorrect) {
+        selectedBtn.classList.add('incorrect');
+    }
+    
+    const fb = document.getElementById('fb');
+    if (isCorrect) {
+        fb.innerHTML = '<div class="alert alert-success d-flex align-items-center"><i class="bi bi-check-circle-fill me-2"></i>Correct!</div>';
+    } else {
+        fb.innerHTML = `<div class="alert alert-danger d-flex align-items-center"><i class="bi bi-x-circle-fill me-2"></i>Incorrect! ${question.e}</div>`;
+    }
+    fb.style.display = 'block';
+    document.getElementById('nextQ').style.display = 'block';
+}
+
+function nextQ() {
+    qi++;
+    if (qi < currentQuiz.q.length) {
+        showQuestion();
+    } else {
+        showFinalResult();
+    }
+}
+
+function showFinalResult() {
+    const total = currentQuiz.q.length;
+    const percentage = Math.round((correct / total) * 100);
+    const passed = percentage >= 80;
+    const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
+    const mins = String(Math.floor(timeTaken / 60)).padStart(2, '0');
+    const secs = String(timeTaken % 60).padStart(2, '0');
+
+    scores[current] = {
+        score: correct,
+        total: total,
+        percentage: percentage,
+        passed: passed,
+        timestamp: new Date().toISOString(),
+        timeTaken: timeTaken
+    };
+    localStorage.setItem('miningSafetyScores', JSON.stringify(scores));
+
+    document.getElementById('resultText').innerHTML = passed 
+        ? '<span style="color:#28a745">COMPETENT — CLEARED FOR WORK</span>' 
+        : '<span style="color:#dc3545">RE-TRAINING REQUIRED</span>';
+    
+    document.getElementById('resultScore').textContent = `${correct}/${total} (${percentage}%)`;
+    document.getElementById('progressFill').style.width = percentage + '%';
+    document.getElementById('timeTaken').textContent = `${mins}:${secs}`;
+    document.getElementById('questionsTotal').textContent = total;
+    document.getElementById('correctAnswers').textContent = correct;
+    document.getElementById('accuracy').textContent = percentage + '%';
+    document.getElementById('passMessage').textContent = passed 
+        ? 'Excellent work! You have demonstrated competency in this critical safety module.' 
+        : 'You need at least 80% to pass. Please review the training video and try again.';
+
+    document.getElementById('quizPanel').style.display = 'none';
+    document.getElementById('result').classList.remove('d-none');
+
+    renderModuleGrid();
+}
+
+function retakeTest() {
+    document.getElementById('result').classList.add('d-none');
+    startTest();
+}
+
+function backToModules() {
+    document.getElementById('result').classList.add('d-none');
+    document.getElementById('welcome').style.display = 'block';
+    current = '';
+    document.getElementById('videoPlayer').src = '';
+}
+
+renderModuleGrid();
+
+let player;
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScript = document.getElementsByTagName('script')[0];
+firstScript.parentNode.insertBefore(tag, firstScript);
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('videoPlayer', {
+        events: { 'onStateChange': e => { if (e.data === 0) startTest(); } }
+    });
+}
+</script>
+</body>
+</html>
