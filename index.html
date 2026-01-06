@@ -465,7 +465,12 @@ const baseQuiz = {
         {q:"What is a 'travelway inspection'?", o:["Daily walk","Only monthly"], c:1, e:"Daily travelway inspections are required to identify ground falls, services damage, or obstructions."},
         {q:"Who checks fire extinguishers?", o:["Anyone","Only safety officer"], c:1, e:"Only appointed competent persons may inspect and certify fire extinguishers."},
         {q:"What is a 'code of practice'?", o:["Suggestion","Legal requirement"], c:1, e:"Codes of Practice are mandatory standards approved under MHSA."},
-        {q:"Can you ignore a red tag?", o:["Yes","Never"], c:1, e:"Ignoring a red tag defeats the lockout system and is a serious safety violation."}
+        {q:"Can you ignore a red tag?", o:["Yes","Never"], c:1, e:"Ignoring a red tag defeats the lockout system and is a serious safety violation."},
+        {q:"What is the purpose of shift handover?", o:["Social chat","Transfer of critical safety information"], c:1, e:"To ensure continuity of safe operations by transferring all relevant information between shifts."},
+        {q:"Who is responsible for workplace examination?", o:["Any miner","Shift boss"], c:1, e:"The appointed shift boss has statutory responsibility for early examination."},
+        {q:"Can defective equipment be used temporarily?", o:["Yes, slowly","Never"], c:1, e:"Defective safety-critical equipment must be locked out immediately."},
+        {q:"What is recorded in the logbook?", o:["Production only","Safety inspections and declarations"], c:1, e:"All statutory examinations, declarations, and defects must be recorded."},
+        {q:"Who conducts risk assessment before work?", o:["Anyone","Shift boss and team"], c:1, e:"A formal take-5 or similar risk assessment is required before starting tasks."}
     ]},
     lhd: {name:"LHD OPERATIONS", q: [
         {q:"Minimum clearance from moving LHD?", o:["1 metre","2 metres from any part"], c:1, e:"A minimum 2-metre exclusion zone from any part of a moving LHD protects pedestrians from swing and rollover risks."},
@@ -492,7 +497,13 @@ const baseQuiz = {
         {q:"Can you overtake another LHD?", o:["Yes","Only in designated areas"], c:1, e:"Overtaking is only permitted in wide, clearly marked passing bays."},
         {q:"What is a 'derailment'?", o:["Track issue","LHD off road"], c:1, e:"Derailment means the LHD has left the intended roadway, often causing damage."},
         {q:"LHD must stop at?", o:["Crossings","All intersections"], c:1, e:"Full stop and right-of-way check is required at all intersections."},
-        {q:"What is 'articulation lock'?", o:["Optional","Must be engaged when lifting"], c:1, e:"Articulation lock bar must be fitted when raising the rear frame for maintenance."}
+        {q:"What is 'articulation lock'?", o:["Optional","Must be engaged when lifting"], c:1, e:"Articulation lock bar must be fitted when raising the rear frame for maintenance."},
+        {q:"What is the purpose of fire suppression on LHD?", o:["Optional extra","Mandatory safety system"], c:1, e:"Automatic fire suppression is mandatory on all diesel LHDs underground."},
+        {q:"Can you tram with raised bucket?", o:["Yes","Never when loaded"], c:1, e:"Raised bucket reduces visibility and stability."},
+        {q:"Who performs daily LHD inspection?", o:["Maintenance","Operator"], c:1, e:"The operator is responsible for pre-shift inspection and reporting defects."},
+        {q:"What is 'berms' requirement?", o:["Optional","Mandatory on declines"], c:1, e:"Berms or bund walls must prevent runaway vehicles."},
+        {q:"LHD braking distance increases with?", o:["Speed only","Load and gradient"], c:1, e:"Heavier loads and steeper gradients dramatically increase stopping distance."},
+        {q:"What is 'rollback prevention'?", o:["Normal brake","Anti-rollback device"], c:1, e:"Automatic systems prevent reverse movement on inclines."}
     ]},
     drill: {name:"JUMBO DRILLING", q: [
         {q:"Who may operate jumbo?", o:["Any miner","Only competent operator"], c:1, e:"Only operators with a valid jumbo competency certificate may operate the machine."},
@@ -514,7 +525,16 @@ const baseQuiz = {
         {q:"What is 'burden'?", o:["Hole depth","Distance to free face"], c:1, e:"Burden is the distance from the hole to the nearest free face."},
         {q:"Can you drill into misfire?", o:["Yes","Never"], c:1, e:"Drilling into misfired holes risks detonation."},
         {q:"Water flush must be?", o:["Optional","Continuous"], c:1, e:"Continuous water flush is required for dust control and bit cooling."},
-        {q:"Who approves jumbo modifications?", o:["Operator","Engineering"], c:1, e:"All modifications require engineering approval and risk assessment."}
+        {q:"Who approves jumbo modifications?", o:["Operator","Engineering"], c:1, e:"All modifications require engineering approval and risk assessment."},
+        {q:"Drill bit sharpening frequency?", o:["Never","As per usage standard"], c:1, e:"Bits must be sharpened or replaced when gauge wear exceeds limits."},
+        {q:"What is 'toe' in drilling?", o:["Bottom hole","Distance from floor"], c:1, e:"Toe spacing ensures proper floor break."},
+        {q:"Can you leave jumbo unattended with pressure?", o:["Yes","Never"], c:1, e:"Hydraulic pressure must be released before leaving machine."},
+        {q:"Who records drilling progress?", o:["Operator","Section supervisor"], c:1, e:"Accurate records of metres drilled and support installed are required."},
+        {q:"Dust sampling during drilling?", o:["Optional","Mandatory"], c:1, e:"Regular personal and area dust sampling is required."},
+        {q:"Jumbo fire suppression?", o:["Optional","Mandatory"], c:1, e:"Automatic fire suppression systems are mandatory on electro-hydraulic jumbos."},
+        {q:"What is 'lookout holes'?", o:["Extra holes","First holes for visibility"], c:1, e:"Lookout holes provide breakthrough visibility for alignment."},
+        {q:"What is 'spacing' in pattern?", o:["Any","Distance between holes"], c:1, e:"Spacing controls fragmentation and throw."},
+        {q:"Who calibrates jumbo alignment?", o:["Operator","Surveyor"], c:1, e:"Laser alignment checked by surveyor."}
     ]},
     support: {name:"INSTALL MESH & BOLTS", q: [
         {q:"Who may install permanent support?", o:["Any miner","Only competent rock engineer crew"], c:1, e:"Only trained and competent support installation crews may install permanent ground support."},
@@ -531,7 +551,20 @@ const baseQuiz = {
         {q:"What is 'pull test'?", o:["Visual check","Load test on bolts"], c:1, e:"Pull testing verifies anchorage capacity of installed tendons."},
         {q:"Support installation sequence?", o:["Any order","From stable to unstable ground"], c:1, e:"Support must progress from supported to unsupported areas."},
         {q:"Lacing wire spacing for mesh?", o:["Any","Maximum 300 mm"], c:1, e:"Mesh must be laced with wire at maximum 300 mm centres."},
-        {q:"Who records support installation?", o:["Anyone","Support crew leader"], c:1, e:"Installation details must be recorded in the support logbook."}
+        {q:"Who records support installation?", o:["Anyone","Support crew leader"], c:1, e:"Installation details must be recorded in the support logbook."},
+        {q:"What is 'tendons'?", o:["Cables","Rock bolts and anchors"], c:1, e:"Tendons are the reinforcing elements (bolts, cables) transferring load to stable rock."},
+        {q:"Can you reuse resin cartridges?", o:["Yes","Never"], c:1, e:"Partially used or old resin must be discarded."},
+        {q:"Plate washer purpose?", o:["Decoration","Load distribution"], c:1, e:"Washers distribute load and prevent rock spalling around bolt head."},
+        {q:"Support standard review frequency?", o:["Never","After incidents or changes"], c:1, e:"Standards must be reviewed after rock-related incidents or geological changes."},
+        {q:"What is 'yieldable support'?", o:["Rigid","Energy absorbing"], c:1, e:"Yieldable bolts allow controlled deformation during rockburst."},
+        {q:"Who trains support crews?", o:["Anyone","Accredited provider"], c:1, e:"Training must be by MQA-accredited providers."},
+        {q:"Support defect reporting?", o:["Optional","Mandatory immediate"], c:1, e:"Any defective support must be reported and barricaded immediately."},
+        {q:"What is 'pre-tensioning'?", o:["Optional","Required for mechanical bolts"], c:1, e:"Initial tension improves immediate support effectiveness."},
+        {q:"Can support be installed wet?", o:["No","Only dry resin allowed"], c:1, e:"Water contamination affects resin curing."},
+        {q:"Who signs support logbook?", o:["Installer","Supervisor"], c:1, e:"Shift supervisor verifies and signs off completed support."},
+        {q:"Support density in development ends?", o:["Standard","Increased"], c:1, e:"Closer spacing required in advancing faces."},
+        {q:"What is 'dynamic support'?", o:["Standard","Rockburst resistant"], c:1, e:"Support designed to absorb seismic energy."},
+        {q:"What is 'cone bolt'?", o:["Standard bolt","Yielding rockburst bolt"], c:1, e:"Cone bolts allow controlled sliding under high load."}
     ]},
     vent: {name:"MAIN VENTILATION FAILURE", q: [
         {q:"First action on ventilation failure?", o:["Continue work","Evacuate to refuge or surface"], c:1, e:"Immediate evacuation using SCSRs to the nearest refuge bay or surface."},
@@ -543,7 +576,24 @@ const baseQuiz = {
         {q:"Backup ventilation system?", o:["Optional","Mandatory auxiliary fans"], c:1, e:"Critical areas must have backup ventilation systems."},
         {q:"Stench gas used for?", o:["Odour control","Emergency warning"], c:1, e:"Stench gas release triggers immediate evacuation."},
         {q:"Minimum air velocity?", o:["0.5 m/s","As per COP"], c:1, e:"Air velocity requirements are specified in the ventilation COP."},
-        {q:"Who maintains vent doors?", o:["Operator","Ventilation crew"], c:1, e:"Specialised ventilation crews maintain doors and regulators."}
+        {q:"Who maintains vent doors?", o:["Operator","Ventilation crew"], c:1, e:"Specialised ventilation crews maintain doors and regulators."},
+        {q:"What is 'recirculation'?", o:["Normal","Dangerous condition"], c:1, e:"Recirculation of contaminated air must be prevented."},
+        {q:"Auxiliary fan placement?", o:["Any location","Minimum 10 m from face"], c:1, e:"To prevent recirculation and ensure fresh air delivery."},
+        {q:"Who records fan stoppages?", o:["Operator","Ventilation officer"], c:1, e:"All stoppages must be logged and reported."},
+        {q:"Methane layering detection?", o:["Visual","Gas monitoring"], c:1, e:"Regular monitoring at roof level for layering."},
+        {q:"Ventilation plan approval?", o:["Manager","Principal Inspector"], c:1, e:"Major changes require DMRE approval."},
+        {q:"Who examines ventilation districts?", o:["Anyone","Ventilation officer"], c:1, e:"Statutory monthly examinations required."},
+        {q:"Air quantity measurement?", o:["Optional","Mandatory regular"], c:1, e:"Velocity and volume measured at key points."},
+        {q:"What is 'booster fan'?", o:["Main fan","Secondary fan"], c:1, e:"Booster fans increase pressure in remote districts."},
+        {q:"Ventilation door interlocks?", o:["Optional","Required on main doors"], c:1, e:"To prevent simultaneous opening and short-circuiting."},
+        {q:"Who trains in SCSR use?", o:["Anyone","Competent person"], c:1, e:"Annual refresher training mandatory."},
+        {q:"Refuge bay air supply?", o:["None","Compressed air or chemical"], c:1, e:"Independent air supply for extended occupation."},
+        {q:"What is 'scrubber'?", o:["Cleaning device","CO2 removal"], c:1, e:"Chemical scrubbers in refuge chambers remove CO2."},
+        {q:"Ventilation survey frequency?", o:["Annual","As per COP"], c:1, e:"Comprehensive surveys at defined intervals."},
+        {q:"Who approves auxiliary ventilation?", o:["Supervisor","Ventilation officer"], c:1, e:"All auxiliary systems require approval."},
+        {q:"What is 'pressure differential'?", o:["Not important","Critical for control"], c:1, e:"Pressure differences drive airflow through the mine."},
+        {q:"Can you block ventilation?", o:["Yes","Never"], c:1, e:"Blocking airways is a serious offence."},
+        {q:"What is 'ventilation on demand'?", o:["Always full","Controlled by need"], c:1, e:"Systems adjust airflow based on occupancy and activity."}
     ]},
     rockfall: {name:"MAJOR ROCK FALL EVENT", q: [
         {q:"First priority after major fall?", o:["Clear rock","Ensure all personnel accounted for"], c:1, e:"Life safety and headcount take absolute priority over rock clearance."},
@@ -555,7 +605,23 @@ const baseQuiz = {
         {q:"What is 'barricading'?", o:["Temporary fence","Restricted access control"], c:1, e:"Physical barriers and signs to prevent unauthorised entry."},
         {q:"Who approves re-entry?", o:["Shift boss","Rock engineer"], c:1, e:"Only the rock engineer may approve safe re-entry after rehabilitation."},
         {q:"Rock fall reporting time?", o:["24 hours","Immediately"], c:1, e:"Immediate reporting to supervisor and formal report within shift."},
-        {q:"TARP trigger for rock fall?", o:["Noise","Ground movement"], c:1, e:"Seismic events or visible ground deterioration trigger response plans."}
+        {q:"TARP trigger for rock fall?", o:["Noise","Ground movement"], c:1, e:"Seismic events or visible ground deterioration trigger response plans."},
+        {q:"What is 'scaling' after fall?", o:["Cleaning","Removing loose material"], c:1, e:"Mechanical removal of loose rock post-fall."},
+        {q:"Who reviews support design?", o:["Manager","Rock engineer"], c:1, e:"Mandatory review after significant fall."},
+        {q:"Can temporary support be used post-fall?", o:["No","Only as immediate measure"], c:1, e:"Temporary support for safe access only."},
+        {q:"Rock fall training frequency?", o:["Once","Annual refresher"], c:1, e:"All underground personnel require regular rock fall awareness training."},
+        {q:"What is 'fall of ground' statistics?", o:["Minor","Leading cause of fatalities"], c:1, e:"Fall of ground remains a major cause of serious injuries and fatalities."},
+        {q:"Who monitors ground conditions?", o:["Anyone","All personnel"], c:1, e:"Every person has duty to report adverse ground conditions."},
+        {q:"Support installation after fall?", o:["Standard","Increased density"], c:1, e:"Higher support density required in affected area."},
+        {q:"What is 'remote scaling'?", o:["Manual","Mechanical from safe distance"], c:1, e:"Use of long tools or machines to avoid exposure."},
+        {q:"Who signs off rehabilitation?", o:["Supervisor","Rock engineer"], c:1, e:"Formal sign-off required before resumption of work."},
+        {q:"Fall of ground COP required?", o:["Optional","Mandatory"], c:1, e:"Specific code of practice for ground control mandatory."},
+        {q:"What is 'beam building'?", o:["Support type","Preventing roof sag"], c:1, e:"Interconnected support to control large spans."},
+        {q:"Who conducts pull tests post-fall?", o:["Support crew","Independent inspector"], c:1, e:"Increased testing after incidents."},
+        {q:"Rock fall warning signs?", o:["None","Cracking, drumming"], c:1, e:"Audible and visual indicators of stress."},
+        {q:"What is 'pre-conditioning'?", o:["Blasting","Controlled stress release"], c:1, e:"Techniques to reduce stored energy."},
+        {q:"Who updates hazard map after fall?", o:["Geologist","Rock engineer"], c:1, e:"Geotechnical hazard plan updated with new data."},
+        {q:"Can production continue near fall?", o:["Yes","Never until cleared"], c:1, e:"All work stopped until area declared safe."}
     ]},
     traffic: {name:"TRAFFIC CONFLICT IN SINGLE LANE", q: [
         {q:"Right of way in single lane decline?", o:["Upgoing vehicle","Loaded vehicle"], c:1, e:"Loaded vehicles have priority to maintain momentum and reduce spillage."},
@@ -567,7 +633,23 @@ const baseQuiz = {
         {q:"Can light vehicles overtake TMM?", o:["Yes","Never"], c:1, e:"Light vehicles must never overtake trackless mobile machinery."},
         {q:"Signage requirement?", o:["Optional","Mandatory at all changes"], c:1, e:"Clear signage for speed, priority, and hazards is mandatory."},
         {q:"Who updates traffic plan?", o:["Operator","Engineering"], c:1, e:"The traffic management plan is reviewed by engineering department."},
-        {q:"Collision reporting?", o:["Next shift","Immediately"], c:1, e:"All collisions or near-misses must be reported immediately."}
+        {q:"Collision reporting?", o:["Next shift","Immediately"], c:1, e:"All collisions or near-misses must be reported immediately."},
+        {q:"What is 'separation distance'?", o:["Any","Minimum 50 m"], c:1, e:"Safe following distance between vehicles."},
+        {q:"Who trains drivers in traffic rules?", o:["Anyone","Accredited"], c:1, e:"Formal training and assessment required."},
+        {q:"Light vehicle speed limit?", o:["40 km/h","As per plan"], c:1, e:"Typically lower than TMM."},
+        {q:"What is 'passing bay'?", o:["Parking","Wide section for overtaking"], c:1, e:"Designated areas for safe passing."},
+        {q:"Radio protocol for conflict?", o:["Optional","Mandatory call and response"], c:1, e:"Clear communication to resolve priority."},
+        {q:"Who monitors traffic compliance?", o:["Supervisor","All levels"], c:1, e:"Supervisors enforce rules daily."},
+        {q:"Traffic incident investigation?", o:["Minor","Formal for all"], c:1, e:"All incidents investigated to prevent recurrence."},
+        {q:"What is 'proximity detection'?", o:["Optional","Mandatory on TMM"], c:1, e:"Systems warn of personnel near vehicles."},
+        {q:"Parking on inclines?", o:["Any","With chocks"], c:1, e:"Wheels chocked and brake applied."},
+        {q:"Who approves traffic changes?", o:["Manager","Engineering"], c:1, e:"All layout changes require formal approval."},
+        {q:"Traffic COP required?", o:["No","Yes"], c:1, e:"Mandatory traffic management code of practice."},
+        {q:"What is 'right of way' sign?", o:["Suggestion","Mandatory obedience"], c:1, e:"Signs dictate priority at intersections."},
+        {q:"Can pedestrians walk in haulage ways?", o:["Yes","Only in emergencies"], c:1, e:"Pedestrians must use separate walkways."},
+        {q:"Who records traffic incidents?", o:["Driver","Safety department"], c:1, e:"All incidents logged and analysed."},
+        {q:"Traffic plan review frequency?", o:["Never","Annual or after incident"], c:1, e:"Regular review and update required."},
+        {q:"What is 'collision avoidance'?", o:["Driver skill","Technology + procedures"], c:1, e:"Combination of systems and rules."}
     ]},
     reentry: {name:"UNSAFE RE-ENTRY ATTEMPT", q: [
         {q:"Minimum re-entry time after blasting?", o:["15 minutes","30 minutes"], c:1, e:"Minimum 30 minutes for ventilation to clear fumes and dust."},
@@ -579,7 +661,23 @@ const baseQuiz = {
         {q:"Re-entry log required?", o:["No","Yes, signed by shift boss"], c:1, e:"Re-entry must be recorded in the logbook."},
         {q:"What is 'blow-over'?", o:["Ventilation term","Fume clearance time"], c:1, e:"Additional time allowed for complete fume dilution."},
         {q:"Early re-entry penalty?", o:["Warning","Serious offence"], c:1, e:"Premature re-entry is a serious violation with disciplinary action."},
-        {q:"Who monitors re-entry compliance?", o:["Safety rep","All supervisors"], c:1, e:"Supervisors enforce re-entry procedures at all levels."}
+        {q:"Who monitors re-entry compliance?", o:["Safety rep","All supervisors"], c:1, e:"Supervisors enforce re-entry procedures at all levels."},
+        {q:"What is 'sentinel'?", o:["Guard","Person controlling access"], c:1, e:"Appointed person prevents unauthorised entry."},
+        {q:"Re-entry after secondary blast?", o:["Same time","Extended"], c:1, e:"Additional clearance time required."},
+        {q:"Who declares face safe?", o:["Blaster","Shift boss"], c:1, e:"Shift boss after examination and testing."},
+        {q:"Can re-entry time be reduced?", o:["Yes","Never"], c:1, e:"Fixed minimum times for safety."},
+        {q:"Gas testing instruments?", o:["Any","Calibrated detectors"], c:1, e:"Only approved and calibrated instruments."},
+        {q:"Who records re-entry time?", o:["Anyone","Shift boss"], c:1, e:"Accurate time recorded in logbook."},
+        {q:"What is 'fume class'?", o:["Blasting term","Toxicity rating"], c:1, e:"Determines required clearance time."},
+        {q:"Re-entry training?", o:["Optional","Mandatory"], c:1, e:"All personnel trained in procedures."},
+        {q:"Who investigates early re-entry?", o:["Safety","Formal inquiry"], c:1, e:"Serious incidents require formal investigation."},
+        {q:"Barricading during clearance?", o:["Optional","Mandatory"], c:1, e:"Physical barriers prevent access."},
+        {q:"What is 'wash down' after re-entry?", o:["Cleaning","Remove dust"], c:1, e:"Face and sides washed to prevent dust inhalation."},
+        {q:"Who supervises first team in?", o:["Blaster","Shift boss"], c:1, e:"Direct supervision required."},
+        {q:"Re-entry after gassing?", o:["Normal","Extended"], c:1, e:"Additional time for gas dissipation."},
+        {q:"What is 'all clear' signal?", o:["Radio","Formal declaration"], c:1, e:"Shift boss announces safe re-entry."},
+        {q:"Consequence of misfire not found?", o:["Minor","Serious explosion risk"], c:1, e:"Thorough search mandatory."},
+        {q:"Re-entry COP required?", o:["No","Yes"], c:1, e:"Specific code of practice mandatory."}
     ]},
     shaft_sinking: {name:"SHAFT SINKING (VERTICAL SHAFT)", q: [
         {q:"Who controls shaft sinking operations?", o:["Shift boss","Appointed shaft engineer"], c:1, e:"The shaft sinking contractor's engineer (16.1 appointment) controls all sinking activities."},
@@ -591,7 +689,23 @@ const baseQuiz = {
         {q:"Who approves shaft design?", o:["Manager","Principal Inspector"], c:1, e:"Shaft sinking plans require DMR approval."},
         {q:"Emergency escape from stage?", o:["Ladder","Climbing device"], c:1, e:"Dedicated climbing systems for emergency egress."},
         {q:"Shaft cover during blasting?", o:["Optional","Mandatory"], c:1, e:"Blast protection covers prevent flyrock entering shaft."},
-        {q:"Who records shaft advance?", o:["Surveyor","Shaft engineer"], c:1, e:"Daily advance measurements by competent surveyor."}
+        {q:"Who records shaft advance?", o:["Surveyor","Shaft engineer"], c:1, e:"Daily advance measurements by competent surveyor."},
+        {q:"What is 'curb ring'?", o:["Support","Concrete foundation"], c:1, e:"Permanent concrete ring for lining support."},
+        {q:"Who signals kibble movement?", o:["Banksman","Dedicated signaller"], c:1, e:"Clear bell or radio signals only."},
+        {q:"Shaft bottom water management?", o:["Any","Pumps and sumps"], c:1, e:"Continuous dewatering required."},
+        {q:"Who examines shaft walls?", o:["Anyone","Shaft examiner"], c:1, e:"Daily examination for loose material."},
+        {q:"Blast fume clearance time?", o:["30 min","Extended"], c:1, e:"Longer clearance due to vertical ventilation."},
+        {q:"What is 'stage'?", o:["Platform","Working platform"], c:1, e:"Multi-deck suspended platform for simultaneous operations."},
+        {q:"Who approves blasting pattern?", o:["Blaster","Shaft engineer"], c:1, e:"Controlled blasting to maintain shaft circularity."},
+        {q:"Guide ropes purpose?", o:["Alignment","Conveyance guidance"], c:1, e:"Keep kibble centred during hoisting."},
+        {q:"Shaft sinking COP required?", o:["No","Yes"], c:1, e:"Specific code of practice mandatory."},
+        {q:"Who trains stage crew?", o:["Anyone","Accredited"], c:1, e:"Specialised shaft sinking training."},
+        {q:"Lining forms removal time?", o:["Immediate","After concrete cure"], c:1, e:"Minimum curing period required."},
+        {q:"What is 'muck bay'?", o:["Storage","Surface skip discharge"], c:1, e:"Controlled tipping area."},
+        {q:"Who monitors shaft plumb?", o:["Operator","Surveyor"], c:1, e:"Regular laser plumb checks."},
+        {q:"Emergency winding during sinking?", o:["Normal","Dedicated system"], c:1, e:"Separate emergency hoisting arrangement."},
+        {q:"Who records concrete quality?", o:["Contractor","Quality control"], c:1, e:"Cube tests and records mandatory."},
+        {q:"Shaft sinking risk assessment?", o:["Once","Daily"], c:1, e:"Daily review of changing conditions."}
     ]},
     raise_drill: {name:"RAISE DRILLING (RAISE BORING)", q: [
         {q:"Primary hazard in raise boring?", o:["Noise","Ground collapse during reaming"], c:1, e:"Uncontrolled collapse of the raise during reaming is the primary risk."},
@@ -603,7 +717,23 @@ const baseQuiz = {
         {q:"Support in raise?", o:["None","As per standard"], c:1, e:"Raises may require mesh, bolts or shotcrete based on stability."},
         {q:"Communication during reaming?", o:["Optional","Continuous radio"], c:1, e:"Constant communication between levels is mandatory."},
         {q:"Raise diameter tolerance?", o:["+/- 100 mm","As per design"], c:1, e:"Final diameter must meet engineering specifications."},
-        {q:"Who approves raise location?", o:["Geologist","Rock engineer"], c:1, e:"Raise positions are approved based on geotechnical data."}
+        {q:"Who approves raise location?", o:["Geologist","Rock engineer"], c:1, e:"Raise positions are approved based on geotechnical data."},
+        {q:"What is 'reamer'?", o:["Drill bit","Large cutting head"], c:1, e:"Cutting head that enlarges pilot hole."},
+        {q:"Pilot drilling direction?", o:["Bottom to top","Top to bottom"], c:1, e:"Pilot drilled from upper to lower level."},
+        {q:"Who monitors thrust and torque?", o:["Anyone","Operator"], c:1, e:"Continuous monitoring to prevent stalling."},
+        {q:"Raise boring advantage?", o:["Speed","Stability"], c:1, e:"Safer than conventional raise climbing."},
+        {q:"What is 'back reaming'?", o:["Alternative","Not used"], c:1, e:"Standard is bottom-up reaming."},
+        {q:"Who surveys pilot hole?", o:["Operator","Surveyor"], c:1, e:"Accurate surveying for alignment."},
+        {q:"Raise ventilation during reaming?", o:["Natural","Forced"], c:1, e:"Auxiliary ventilation required."},
+        {q:"Who records raise advance?", o:["Operator","Supervisor"], c:1, e:"Daily progress recorded."},
+        {q:"Raise boring COP required?", o:["No","Yes"], c:1, e:"Specific procedures mandatory."},
+        {q:"What is 'stabiliser'?", o:["Support","Drilling component"], c:1, e:"Centralisers in drill string."},
+        {q:"Who approves reamer change?", o:["Operator","Engineering"], c:1, e:"Planned maintenance procedure."},
+        {q:"Raise inspection frequency?", o:["Once","Regular"], c:1, e:"Ongoing ground condition monitoring."},
+        {q:"What is 'breakthrough'?", o:["Completion","Pilot reaching lower level"], c:1, e:"Critical alignment phase."},
+        {q:"Who clears raise after reaming?", o:["Anyone","Dedicated crew"], c:1, e:"Safe mucking procedure."},
+        {q:"Raise ladder installation?", o:["Optional","Mandatory for access"], c:1, e:"Safe access system required."},
+        {q:"Raise boring risk assessment?", o:["Once","Before each raise"], c:1, e:"Site-specific assessment required."}
     ]},
     electrical: {name:"UNDERGROUND ELECTRICAL SAFETY", q: [
         {q:"Who may perform work on electrical apparatus?", o:["Any miner","Only competent authorized person"], c:1, e:"Only persons registered and authorised under the regulations may work on electrical apparatus."},
@@ -707,7 +837,8 @@ const baseQuiz = {
         {q:"Penalties for non-compliance?", o:["Minor","Severe"], c:1, e:"Contraventions can result in fines up to R1 million or imprisonment."},
         {q:"What is continuous risk assessment?", o:["Once","Ongoing"], c:1, e:"Risk assessment is a dynamic process that must be repeated regularly."},
         {q:"Employer must monitor?", o:["Production","Health"], c:1, e:"Occupational health monitoring for noise, dust, etc. is mandatory."},
-        {q:"What is the MHSA objective?", o:["Profit","Zero harm"], c:1, e:"The ultimate goal is the elimination of fatalities and harm."}
+        {q:"What is the MHSA objective?", o:["Profit","Zero harm"], c:1, e:"The ultimate goal is the elimination of fatalities and harm."},
+        {q:"Who chairs health and safety committee?", o:["Manager","Elected chairperson"], c:1, e:"Alternating employer and employee representatives."}
     ]},
     tmm: {name:"TRACKLESS MOBILE MACHINERY", q: [
         {q:"What is TMM?", o:["Any vehicle","Trackless Mobile Machinery"], c:1, e:"TMM refers to all self-propelled mobile machines without tracks used underground."},
@@ -734,7 +865,9 @@ const baseQuiz = {
         {q:"Who reports TMM incidents?", o:["Anyone","Operator"], c:1, e:"All persons witnessing an incident must report it immediately."},
         {q:"What is a 'service brake'?", o:["Main brake","Emergency brake"], c:1, e:"The service brake is the primary foot brake for normal stopping."},
         {q:"Can you modify TMM?", o:["Yes","Only with approval"], c:1, e:"Modifications require engineering approval and risk assessment."},
-        {q:"What is a 'TMM code of practice'?", o:["Guideline","Legal document"], c:1, e:"The TMM COP is a mandatory standard under MHSA Chapter 8."}
+        {q:"What is a 'TMM code of practice'?", o:["Guideline","Legal document"], c:1, e:"The TMM COP is a mandatory standard under MHSA Chapter 8."},
+        {q:"What is 'level 9 intervention'?", o:["Warning","Automatic stop"], c:1, e:"Highest level PDS intervention stops machine."},
+        {q:"TMM maintenance by?", o:["Operator","Qualified mechanics"], c:1, e:"Only competent persons may perform maintenance."}
     ]},
     winders: {name:"WINDERS & HOISTING SYSTEMS", q: [
         {q:"Who may operate a mine winder?", o:["Any driver","Only competent winder driver"], c:1, e:"Only persons holding a valid winder driver certificate of competency may operate."},
@@ -761,7 +894,9 @@ const baseQuiz = {
         {q:"Can you leave winder unattended?", o:["Yes","Never"], c:1, e:"The winder must never be left unattended while energised."},
         {q:"What is a 'drum brake'?", o:["Main brake","Emergency brake"], c:1, e:"Mechanical brakes applied directly to the drum."},
         {q:"Who calibrates depth indicator?", o:["Anyone","Only specialist"], c:1, e:"Calibration is done by competent instrumentation personnel."},
-        {q:"What is a 'man-winding'?", o:["Material only","Personnel transport"], c:1, e:"Winding of persons requires higher safety factors and controls."}
+        {q:"What is a 'man-winding'?", o:["Material only","Personnel transport"], c:1, e:"Winding of persons requires higher safety factors and controls."},
+        {q:"What is 'overwind prevention'?", o:["Speed limit","Safety devices"], c:1, e:"Multiple layers of protection including lily controller."},
+        {q:"Winder driver medicals?", o:["Annual","Every 6 months"], c:1, e:"Frequent medical examinations required."}
     ]},
     seismicity: {name:"SEISMICITY & ROCKBURSTS", q: [
         {q:"Primary control for rockbursts?", o:["Mining rate","Support systems and sequencing"], c:1, e:"Engineered support and controlled mining sequences are primary controls."},
@@ -773,7 +908,24 @@ const baseQuiz = {
         {q:"Netting for rockburst protection?", o:["Optional","Mandatory in high-risk"], c:1, e:"Dynamic support with energy-absorbing nets and bolts."},
         {q:"Seismic data recording?", o:["Voluntary","Mandatory"], c:1, e:"Continuous seismic monitoring and data retention required."},
         {q:"Who declares area safe post-event?", o:["Supervisor","Rock engineer"], c:1, e:"Only rock engineer may declare area safe after inspection."},
-        {q:"Rockburst COP required?", o:["No","Yes, mandatory"], c:1, e:"Specific code of practice for seismic risk management."}
+        {q:"Rockburst COP required?", o:["No","Yes, mandatory"], c:1, e:"Specific code of practice for seismic risk management."},
+        {q:"What is 'preconditioning'?", o:["Blasting","Stress reduction"], c:1, e:"Controlled blasting to reduce stored energy."},
+        {q:"Seismic hazard assessment?", o:["Once","Continuous"], c:1, e:"Ongoing monitoring and modelling."},
+        {q:"What is 'energy release rate'?", o:["Production","Seismic risk indicator"], c:1, e:"Measures potential seismic energy per tonne mined."},
+        {q:"Who interprets seismic data?", o:["Anyone","Seismologist"], c:1, e:"Qualified personnel only."},
+        {q:"Support for seismic areas?", o:["Standard","Dynamic capable"], c:1, e:"Tendons and mesh that can absorb energy."},
+        {q:"What is 'backfill' role?", o:["Waste","Seismic control"], c:1, e:"Filled stopes reduce seismic risk."},
+        {q:"Seismic training for workers?", o:["Optional","Mandatory"], c:1, e:"All personnel trained in response procedures."},
+        {q:"Who updates seismic plan?", o:["Manager","Rock engineer"], c:1, e:"Regular review based on new data."},
+        {q:"What is 'time-dependent behaviour'?", o:["Immediate","Delayed rock failure"], c:1, e:"Rock can fail hours or days after stress change."},
+        {q:"Seismic monitoring network?", o:["Few sensors","Dense array"], c:1, e:"Comprehensive coverage required."},
+        {q:"What is 'local magnitude'?", o:["Global","Mine-specific scale"], c:1, e:"Calibrated for local conditions."},
+        {q:"Who responds to seismic alert?", o:["Anyone","Designated team"], c:1, e:"Coordinated response per TARP."},
+        {q:"Seismic risk in pillar extraction?", o:["Low","High"], c:1, e:"Highest risk during final pillar recovery."},
+        {q:"What is 'stope closure'?", o:["Normal","Seismic indicator"], c:1, e:"Measured convergence indicates stress."},
+        {q:"Who approves mining sequence?", o:["Manager","Rock engineer"], c:1, e:"Seismically safe sequence mandatory."},
+        {q:"Seismic event reporting?", o:["Next day","Immediate"], c:1, e:"All events above threshold reported immediately."},
+        {q:"What is 'yield pillar'?", o:["Solid","Designed to crush"], c:1, e:"Controlled failure to absorb energy."}
     ]},
     blasting: {name:"BLASTING & EXPLOSIVES", q: [
         {q:"Who may handle explosives?", o:["Any miner","Only competent blaster"], c:1, e:"Only persons holding a valid blasting certificate may handle explosives."},
@@ -785,7 +937,23 @@ const baseQuiz = {
         {q:"Initiation system?", o:["Fuse","Electronic or shock tube"], c:1, e:"Safety fuse prohibited underground; non-electronic preferred."},
         {q:"Blast clearance radius?", o:["100 m","500 m minimum"], c:1, e:"Minimum 500 m clearance for underground blasts."},
         {q:"Who records blast details?", o:["Operator","Blasting officer"], c:1, e:"Full details in statutory blast log."},
-        {q:"Secondary breaking method?", o:["Any","Controlled with explosives"], c:1, e:"Secondary breaking requires specific procedures."}
+        {q:"Secondary breaking method?", o:["Any","Controlled with explosives"], c:1, e:"Secondary breaking requires specific procedures."},
+        {q:"What is 'priming'?", o:["Charging","Inserting detonator"], c:1, e:"Placing initiator in cartridge."},
+        {q:"Who issues blasting permit?", o:["Blaster","Shift boss"], c:1, e:"Formal permit system required."},
+        {q:"Explosives storage?", o:["Any","Approved magazine"], c:1, e:"Secure, ventilated magazines only."},
+        {q:"What is 'sleeping charges'?", o:["Normal","Prohibited"], c:1, e:"Leaving charged holes overnight forbidden."},
+        {q:"Who examines face post-blast?", o:["Anyone","Competent person"], c:1, e:"Thorough examination for misfires and sockets."},
+        {q:"Blast fume monitoring?", o:["Optional","Mandatory"], c:1, e:"Gas testing before re-entry."},
+        {q:"What is 'stemming'?", o:["Packing","Material in hole"], c:1, e:"Material to confine explosion."},
+        {q:"Who trains blasters?", o:["Anyone","Accredited"], c:1, e:"MQA-accredited training."},
+        {q:"Blasting during shift change?", o:["Allowed","Prohibited"], c:1, e:"To avoid personnel movement."},
+        {q:"What is 'cut-off'?", o:["Design","Unintended early detonation"], c:1, e:"Prevention critical."},
+        {q:"Who accounts for explosives?", o:["Blaster","Magazine master"], c:1, e:"Strict stock control."},
+        {q:"Blast warning signal?", o:["Any","Standard siren"], c:1, e:"Clear audible warning."},
+        {q:"What is 'shock tube'?", o:["Electric","Non-electric initiation"], c:1, e:"Safer in stray current areas."},
+        {q:"Who investigates misfires?", o:["Blaster","Senior blaster"], c:1, e:"Formal procedure."},
+        {q:"Blasting COP required?", o:["No","Yes"], c:1, e:"Mandatory code of practice."},
+        {q:"What is 'flyrock control'?", o:["Optional","Critical"], c:1, e:"Stemming and guarding essential."}
     ]},
     evacuation: {name:"EMERGENCY EVACUATION", q: [
         {q:"Primary evacuation signal?", o:["Siren","Stench gas"], c:1, e:"Stench gas release is the primary underground evacuation trigger."},
@@ -797,7 +965,23 @@ const baseQuiz = {
         {q:"Self-escape philosophy?", o:["Wait for rescue","Immediate self-escape"], c:1, e:"Personnel trained to self-escape using SCSRs."},
         {q:"Refuge chamber duration?", o:["24 hours","36 hours minimum"], c:1, e:"Refuge chambers designed for 36-hour occupation."},
         {q:"Who updates evacuation plan?", o:["Safety officer","Emergency team"], c:1, e:"Plan reviewed after incidents or layout changes."},
-        {q:"Communication during evacuation?", o:["Radio","Tagging system"], c:1, e:"Pedestrian tagging and radio check-in protocols."}
+        {q:"Communication during evacuation?", o:["Radio","Tagging system"], c:1, e:"Pedestrian tagging and radio check-in protocols."},
+        {q:"What is 'secondary escape route'?", o:["Optional","Mandatory"], c:1, e:"Alternative route in case primary blocked."},
+        {q:"Who trains in evacuation?", o:["Anyone","Competent person"], c:1, e:"Regular training for all personnel."},
+        {q:"Assembly point marking?", o:["Optional","Clear signage"], c:1, e:"Designated surface muster points."},
+        {q:"What is 'PPE for evacuation'?", o:["Normal","SCSR mandatory"], c:1, e:"Self-contained self-rescuer carried at all times."},
+        {q:"Who declares all clear?", o:["Supervisor","Incident commander"], c:1, e:"Formal all-clear after headcount."},
+        {q:"Evacuation during shift change?", o:["Normal","Special procedure"], c:1, e:"Coordinated to avoid confusion."},
+        {q:"What is 'refuge chamber entry'?", o:["Last resort","When escape impossible"], c:1, e:"Used when surface escape not possible."},
+        {q:"Who maintains refuge chambers?", o:["Anyone","Dedicated team"], c:1, e:"Regular checks and servicing."},
+        {q:"Evacuation plan review?", o:["Annual","After incidents"], c:1, e:"Updated based on lessons learned."},
+        {q:"What is 'stench gas system'?", o:["Optional","Mandatory"], c:1, e:"Primary warning system."},
+        {q:"Who coordinates rescue?", o:["Manager","Proto team"], c:1, e:"Professional rescue brigade."},
+        {q:"Evacuation signage illumination?", o:["Optional","Self-luminous"], c:1, e:"Visible in smoke and power failure."},
+        {q:"What is 'tagging system'?", o:["Optional","Mandatory"], c:1, e:"Personnel accountability system."},
+        {q:"Who drills evacuation?", o:["Safety","All sections"], c:1, e:"Section-specific and full mine drills."},
+        {q:"Emergency evacuation COP?", o:["No","Yes"], c:1, e:"Mandatory detailed plan."},
+        {q:"What is 'safe haven'?", o:["Refuge","Alternative term"], c:1, e:"Same as refuge chamber."}
     ]},
     fire: {name:"FIRE UNDERGROUND", q: [
         {q:"First action on discovering fire?", o:["Fight fire","Report and evacuate"], c:1, e:"Immediate reporting via radio and activation of evacuation if required."},
@@ -809,7 +993,23 @@ const baseQuiz = {
         {q:"Refuge chamber fire rating?", o:["1 hour","4 hours"], c:1, e:"Chambers must withstand external fire for minimum 4 hours."},
         {q:"Fire extinguisher inspection?", o:["Monthly","By competent person"], c:1, e:"Monthly checks recorded in fire equipment register."},
         {q:"Hydraulic fluid requirement?", o:["Water-based","Fire-resistant"], c:1, e:"Only fire-resistant fluids permitted underground."},
-        {q:"Post-fire re-entry?", o:["Immediately","After air quality clearance"], c:1, e:"Re-entry only after full atmospheric testing and structural assessment."}
+        {q:"Post-fire re-entry?", o:["Immediately","After air quality clearance"], c:1, e:"Re-entry only after full atmospheric testing and structural assessment."},
+        {q:"What is primary fire risk underground?", o:["Electrical","Diesel equipment"], c:1, e:"Diesel-powered machinery is the leading cause of underground fires."},
+        {q:"Smoking underground?", o:["Allowed in areas","Strictly prohibited"], c:1, e:"No smoking or open flames permitted underground."},
+        {q:"Fire door purpose?", o:["Privacy","Contain fire and smoke"], c:1, e:"Fire doors prevent spread of fire and toxic gases."},
+        {q:"Who trains fire fighting?", o:["Anyone","Proto team"], c:1, e:"Specialised training for rescue brigade."},
+        {q:"What is 'fire break'?", o:["Gap","Sealed area"], c:1, e:"Bulkhead to isolate fire."},
+        {q:"Can you use foam on oil fire?", o:["Yes","Only Class B"], c:1, e:"Specific foam for hydrocarbon fires."},
+        {q:"What is 'fire load'?", o:["Heat","Fuel amount"], c:1, e:"Quantity of combustible material."},
+        {q:"Who records fire incidents?", o:["Anyone","Safety department"], c:1, e:"Formal investigation required."},
+        {q:"What is 'fire drill'?", o:["Practice","Mandatory monthly"], c:1, e:"Regular fire response exercises."},
+        {q:"Fire detection systems?", o:["Optional","Mandatory in key areas"], c:1, e:"Early warning critical."},
+        {q:"What is 'hot work permit'?", o:["Any work","For welding/cutting"], c:1, e:"Risk assessment and fire watch required."},
+        {q:"Who approves fire equipment?", o:["Manager","Safety officer"], c:1, e:"Compliance with standards."},
+        {q:"Fire refuge sealing?", o:["Manual","Automatic"], c:1, e:"Positive pressure and sealing."},
+        {q:"What is 'smoke tube test'?", o:["Ventilation","Fire indicator"], c:1, e:"Early detection method."},
+        {q:"Who maintains fire pumps?", o:["Anyone","Engineering"], c:1, e:"Regular testing required."},
+        {q:"Fire COP required?", o:["No","Yes"], c:1, e:"Mandatory fire risk management plan."}
     ]}
 };
 
@@ -825,7 +1025,7 @@ function renderModuleGrid() {
         const btn = document.createElement('div');
         btn.className = 'module-btn' + (['seismicity','blasting','evacuation','fire','tmm','winders'].includes(key) ? ' module-advanced' : '');
         btn.setAttribute('data-module', key);
-        let title = moduleNames[key] || key.replace(/_/g, ' ').toUpperCase();
+        let title = moduleNames[key];
         btn.textContent = title;
         
         if (scores[key]) {
@@ -867,178 +1067,4 @@ function getShuffledQuiz(moduleKey) {
             [options[i], options[j]] = [options[j], options[i]];
         }
         const newC = options.indexOf(correctAnswer);
-        shuffled.q.push({q: origQ.q, o: options, c: newC, e: origQ.e || ''});
-    });
-    
-    return shuffled;
-}
-
-document.getElementById('moduleGrid').addEventListener('click', function(e) {
-    const btn = e.target.closest('.module-btn');
-    if (btn) {
-        const module = btn.getAttribute('data-module');
-        selectModule(module);
-    }
-});
-
-function selectModule(module) {
-    document.getElementById('welcome').style.display = 'none';
-    document.getElementById('moduleView').style.display = 'none';
-    document.getElementById('videoArea').style.display = 'none';
-    document.getElementById('quizPanel').style.display = 'none';
-    document.getElementById('result').classList.add('d-none');
-    document.getElementById('videoPlayer').src = '';
-
-    current = module;
-    document.getElementById('moduleView').style.display = 'block';
-    document.getElementById('moduleTitle').textContent = moduleNames[module];
-    document.getElementById('eventLog').innerHTML = `<strong>EVENT:</strong> ${moduleNames[module]} selected`;
-}
-
-function playVideo() {
-    document.getElementById('moduleView').style.display = 'none';
-    document.getElementById('videoArea').style.display = 'flex';
-    document.getElementById('videoPlayer').src = videos[current] + "&enablejsapi=1";
-}
-
-function startTest() {
-    document.getElementById('moduleView').style.display = 'none';
-    document.getElementById('videoArea').style.display = 'none';
-    
-    currentQuiz = getShuffledQuiz(current);
-    qi = 0; 
-    correct = 0;
-    quizStartTime = Date.now();
-    
-    startQuiz();
-}
-
-function startQuiz() {
-    document.getElementById('quizPanel').style.display = 'block';
-    
-    if (currentQuiz.q.length === 0) {
-        alert('Quiz not available for this module yet.');
-        backToModules();
-        return;
-    }
-    showQuestion();
-}
-
-function showQuestion() {
-    const question = currentQuiz.q[qi];
-    document.getElementById('qtext').textContent = question.q;
-    const opts = document.getElementById('opts');
-    opts.innerHTML = '';
-    opts.classList.remove('d-flex');
-    if (question.o.length === 2) opts.classList.add('d-flex');
-    
-    question.o.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'quiz-btn';
-        btn.textContent = opt;
-        btn.onclick = () => checkAns(i === question.c, btn);
-        opts.appendChild(btn);
-    });
-    document.getElementById('fb').style.display = 'none';
-    document.getElementById('nextQ').style.display = 'none';
-}
-
-function checkAns(isCorrect, selectedBtn) {
-    if (isCorrect) correct++;
-    const question = currentQuiz.q[qi];
-    const opts = document.getElementById('opts');
-    Array.from(opts.children).forEach(btn => {
-        btn.disabled = true;
-        if (btn.textContent === question.o[question.c]) {
-            btn.classList.add('correct');
-        }
-    });
-    if (!isCorrect) {
-        selectedBtn.classList.add('incorrect');
-    }
-    
-    const fb = document.getElementById('fb');
-    if (isCorrect) {
-        fb.innerHTML = '<div class="alert alert-success d-flex align-items-center"><i class="bi bi-check-circle-fill me-2"></i>Correct!</div>';
-    } else {
-        fb.innerHTML = `<div class="alert alert-danger d-flex align-items-center"><i class="bi bi-x-circle-fill me-2"></i>Incorrect! ${question.e}</div>`;
-    }
-    fb.style.display = 'block';
-    document.getElementById('nextQ').style.display = 'block';
-}
-
-function nextQ() {
-    qi++;
-    if (qi < currentQuiz.q.length) {
-        showQuestion();
-    } else {
-        showFinalResult();
-    }
-}
-
-function showFinalResult() {
-    const total = currentQuiz.q.length;
-    const percentage = Math.round((correct / total) * 100);
-    const passed = percentage >= 80;
-    const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-    const mins = String(Math.floor(timeTaken / 60)).padStart(2, '0');
-    const secs = String(timeTaken % 60).padStart(2, '0');
-
-    scores[current] = {
-        score: correct,
-        total: total,
-        percentage: percentage,
-        passed: passed,
-        timestamp: new Date().toISOString(),
-        timeTaken: timeTaken
-    };
-    localStorage.setItem('miningSafetyScores', JSON.stringify(scores));
-
-    document.getElementById('resultText').innerHTML = passed 
-        ? '<span style="color:#28a745">COMPETENT — CLEARED FOR WORK</span>' 
-        : '<span style="color:#dc3545">RE-TRAINING REQUIRED</span>';
-    
-    document.getElementById('resultScore').textContent = `${correct}/${total} (${percentage}%)`;
-    document.getElementById('progressFill').style.width = percentage + '%';
-    document.getElementById('timeTaken').textContent = `${mins}:${secs}`;
-    document.getElementById('questionsTotal').textContent = total;
-    document.getElementById('correctAnswers').textContent = correct;
-    document.getElementById('accuracy').textContent = percentage + '%';
-    document.getElementById('passMessage').textContent = passed 
-        ? 'Excellent work! You have demonstrated competency in this critical safety module.' 
-        : 'You need at least 80% to pass. Please review the training video and try again.';
-
-    document.getElementById('quizPanel').style.display = 'none';
-    document.getElementById('result').classList.remove('d-none');
-
-    renderModuleGrid();
-}
-
-function retakeTest() {
-    document.getElementById('result').classList.add('d-none');
-    startTest();
-}
-
-function backToModules() {
-    document.getElementById('result').classList.add('d-none');
-    document.getElementById('welcome').style.display = 'block';
-    current = '';
-    document.getElementById('videoPlayer').src = '';
-}
-
-renderModuleGrid();
-
-let player;
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScript = document.getElementsByTagName('script')[0];
-firstScript.parentNode.insertBefore(tag, firstScript);
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('videoPlayer', {
-        events: { 'onStateChange': e => { if (e.data === 0) startTest(); } }
-    });
-}
-</script>
-</body>
-</html>
+        shuffled.q.push({q: origQ.q, o: options, c:
