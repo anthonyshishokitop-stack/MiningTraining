@@ -5,10 +5,11 @@
     <title>Mining Safety Training</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body { 
-            background: #000 url('https://images.unsplash.com/photo-1581092580489-8e36c4f6d857?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed; 
-            color: #e0e0e0; 
+            background: #f8f9fa url('https://images.unsplash.com/photo-1581092580489-8e36c4f6d857?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed; 
+            color: #333; 
             margin: 0; 
             font-family: 'Segoe UI', sans-serif; 
             overflow-x: hidden;
@@ -21,23 +22,22 @@
         #sidebar { 
             width: 100%;
             max-width: 420px;
-            background: linear-gradient(180deg, #0a1a2f 0%, #000 100%); 
+            background: #fff; 
             padding: 20px;
             overflow-y: auto; 
-            box-shadow: 0 8px 30px #000;
-            border-bottom: 3px solid #00ddff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #dee2e6;
             display: flex; 
             flex-direction: column; 
         }
         #logo h1 { 
-            color: #00ddff; 
-            text-shadow: 0 0 20px #00ddff; 
+            color: #007bff; 
             font-size: clamp(24px, 5vw, 32px);
             margin: 0; 
             text-align: center; 
         }
         #logo small { 
-            color: #00ffcc; 
+            color: #6c757d; 
             font-size: clamp(12px, 3vw, 16px);
             display: block; 
             margin-top: 8px; 
@@ -51,66 +51,67 @@
             margin: 20px 0; 
         }
         .module-btn { 
-            background: linear-gradient(145deg, #0f1a2e, #1e293b); 
-            border: 2px solid #00ddff; 
-            color: #00ffcc; 
+            background: #f8f9fa; 
+            border: 1px solid #007bff; 
+            color: #007bff; 
             padding: 15px 10px;
-            border-radius: 16px; 
+            border-radius: 8px; 
             font-weight: bold; 
             font-size: clamp(14px, 3vw, 15px);
             text-align: center; 
-            box-shadow: 0 6px 20px rgba(0,255,200,0.2); 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
             transition: all 0.3s; 
             min-height: 80px;
             display: flex; 
             align-items: center; 
             justify-content: center; 
             cursor: pointer; 
-            touch-action: manipulation;
             position: relative;
         }
         .module-btn:hover { 
-            transform: translateY(-6px); 
-            box-shadow: 0 15px 40px rgba(0,255,200,0.5); 
-            border-color: #00ffff; 
+            transform: translateY(-3px); 
+            box-shadow: 0 5px 15px rgba(0,123,255,0.2); 
+            background: #007bff; 
+            color: #fff; 
         }
         .module-advanced { 
             border-color: #ff6600 !important; 
         }
         .module-advanced:hover { 
             border-color: #ff9900 !important; 
+            background: #ff6600; 
+            color: #fff !important; 
         }
         .score-badge {
             position: absolute;
             top: -8px;
             right: -8px;
-            background: #00ff88;
-            color: #000;
+            background: #28a745;
+            color: #fff;
             font-size: 12px;
             font-weight: bold;
             padding: 4px 8px;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,255,136,0.8);
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
             min-width: 50px;
             text-align: center;
         }
-        .passed { background: #00ff88; }
-        .failed { background: #ff0066; }
+        .passed { background: #28a745; }
+        .failed { background: #dc3545; }
         #content { 
             flex: 1; 
-            background: rgba(0,0,0,0.85); 
+            background: rgba(255,255,255,0.85); 
             display: flex; 
             flex-direction: column; 
             padding: 20px;
             overflow-y: auto; 
         }
         #moduleTitle { 
-            color: #00ffcc; 
+            color: #007bff; 
             font-size: clamp(24px, 6vw, 32px);
             font-weight: bold; 
             text-align: center; 
             margin-bottom: 30px; 
-            text-shadow: 0 0 15px #00ffcc; 
         }
         .action-grid { 
             display: grid; 
@@ -120,23 +121,23 @@
             margin: 0 auto 40px; 
         }
         .action-card { 
-            background: linear-gradient(135deg, #1a1a2e, #16213e); 
-            border: 3px solid #00ddff; 
-            border-radius: 20px; 
+            background: #fff; 
+            border: 1px solid #dee2e6; 
+            border-radius: 8px; 
             padding: 30px 20px;
             text-align: center; 
-            box-shadow: 0 10px 40px rgba(0,255,200,0.3); 
-            transition: all 0.4s; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            transition: all 0.3s; 
             cursor: pointer; 
             min-height: 150px;
         }
         .action-card:hover { 
-            transform: scale(1.08); 
-            box-shadow: 0 20px 60px rgba(0,255,200,0.6); 
-            border-color: #00ffff; 
+            transform: scale(1.05); 
+            box-shadow: 0 5px 15px rgba(0,123,255,0.2); 
+            border-color: #007bff; 
         }
         .action-card h3 { 
-            color: #00ffcc; 
+            color: #007bff; 
             margin: 20px 0; 
             font-size: clamp(20px, 4vw, 26px);
         }
@@ -147,7 +148,7 @@
         #videoArea { 
             width: 100%; 
             height: 100%; 
-            background: #000; 
+            background: #fff; 
             display: none; 
             align-items: center; 
             justify-content: center; 
@@ -157,14 +158,14 @@
             max-width: 95%; 
             height: auto;
             aspect-ratio: 16/9;
-            border: 4px solid #00ddff; 
-            border-radius: 16px; 
+            border: 1px solid #dee2e6; 
+            border-radius: 8px; 
         }
         .info-box { 
-            background: rgba(10,25,50,0.95); 
+            background: #f8f9fa; 
             padding: 15px;
-            border-radius: 14px; 
-            border: 2px solid #00ddff; 
+            border-radius: 8px; 
+            border: 1px solid #dee2e6; 
             margin-top: auto; 
             text-align: center; 
             font-size: clamp(12px, 3vw, 15px);
@@ -172,32 +173,41 @@
         #eventLog { 
             font-weight: bold; 
             margin-top: 10px; 
-            color: #00ffcc; 
+            color: #007bff; 
         }
         .quiz-panel { 
-            background: rgba(20,30,50,0.98); 
+            background: #fff; 
             padding: 20px;
-            border-radius: 20px; 
-            border: 3px solid #ffd700; 
+            border-radius: 8px; 
+            border: 1px solid #dee2e6; 
             max-width: 1000px; 
             margin: 20px auto;
             display: none; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .quiz-question { 
             font-size: clamp(18px, 5vw, 24px);
             margin-bottom: 20px;
-            color: #fff; 
+            color: #333; 
             text-align: center; 
         }
         .quiz-options { 
             display: grid; 
             gap: 12px;
         }
+        .quiz-options.d-flex {
+            display: flex;
+            flex-direction: row;
+        }
+        .quiz-options.d-flex .quiz-btn {
+            flex: 1;
+            margin: 0 6px;
+        }
         .quiz-btn { 
-            background: #1e293b; 
-            border: 2px solid #00ddff; 
+            background: #f8f9fa; 
+            border: 1px solid #dee2e6; 
             padding: 15px;
-            border-radius: 14px; 
+            border-radius: 8px; 
             font-size: clamp(16px, 4vw, 20px);
             transition: all 0.3s; 
             text-align: center; 
@@ -205,24 +215,34 @@
             min-height: 60px;
         }
         .quiz-btn:hover { 
-            background: #00ddff; 
-            color: #000; 
-            transform: scale(1.03); 
+            background: #007bff; 
+            color: #fff; 
+            transform: scale(1.02); 
         }
         .quiz-btn:disabled { 
             opacity: 0.6; 
             cursor: not-allowed; 
         }
+        .correct {
+            background: #d4edda !important;
+            color: #155724 !important;
+            border-color: #c3e6cb !important;
+        }
+        .incorrect {
+            background: #f8d7da !important;
+            color: #721c24 !important;
+            border-color: #f5c6cb !important;
+        }
         .progress-bar {
             height: 20px;
-            background: #1e293b;
-            border-radius: 10px;
+            background: #e9ecef;
+            border-radius: 8px;
             overflow: hidden;
             margin: 20px 0;
         }
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #00ddff, #00ffcc);
+            background: linear-gradient(90deg, #007bff, #00b4d8);
             width: 0%;
             transition: width 0.8s ease;
         }
@@ -233,20 +253,20 @@
             margin: 30px 0;
         }
         .stat-card {
-            background: rgba(10,25,50,0.9);
+            background: #f8f9fa;
             padding: 15px;
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
-            border: 2px solid #00ddff;
+            border: 1px solid #dee2e6;
         }
         .stat-value {
             font-size: 32px;
             font-weight: bold;
-            color: #00ffcc;
+            color: #007bff;
         }
         .stat-label {
             font-size: 14px;
-            color: #aaa;
+            color: #6c757d;
         }
 
         @media (min-width: 768px) {
@@ -256,7 +276,7 @@
             #sidebar { 
                 width: 420px;
                 height: 100vh;
-                border-right: 3px solid #00ddff;
+                border-right: 1px solid #dee2e6;
                 border-bottom: none; 
                 padding: 30px;
             }
@@ -299,11 +319,10 @@
         </div>
 
         <div class="module-grid" id="moduleGrid">
-            <!-- Modules will be injected with badges here -->
+            <!-- Modules injected by JS -->
         </div>
 
         <div class="info-box">
-
             <strong>Completed Modules:</strong> <span id="completedCount">0</span>/18<br>
             <strong>Overall Pass Rate:</strong> <span id="overallPass">0%</span>
             <div id="eventLog"><strong>EVENT:</strong> Ready — Select a module</div>
@@ -312,8 +331,8 @@
 
     <div id="content">
         <div id="welcome" style="text-align:center; margin-top:80px;">
-            <img src="https://internationalbanker.com/wp-content/uploads/2023/08/Mining.png" alt="Gold & Platinum Mining Operations" style="max-width:90%; height:auto; margin-bottom:30px; border-radius:15px; box-shadow:0 0 30px rgba(0,255,200,0.4);">
-            <h1 style="font-size: clamp(30px, 8vw, 50px); color:#00ffcc; text-shadow:0 0 30px #00ffcc;">MINING SAFETY TRAINING</h1>
+            <img src="https://internationalbanker.com/wp-content/uploads/2023/08/Mining.png" alt="Gold & Platinum Mining Operations" style="max-width:90%; height:auto; margin-bottom:30px; border-radius:15px; box-shadow:0 0 30px rgba(0,0,0,0.1);">
+            <h1 style="font-size: clamp(30px, 8vw, 50px); color:#007bff;">MINING SAFETY TRAINING</h1>
             <p style="font-size: clamp(18px, 5vw, 26px); margin-top:30px;">18 Critical Modules • Induction</p>
         </div>
 
@@ -338,11 +357,11 @@
         <div id="quizPanel" class="quiz-panel">
             <div class="quiz-question" id="qtext"></div>
             <div class="quiz-options" id="opts"></div>
-            <div id="fb" class="mt-4 fs-5 fw-bold text-center"></div>
-            <button id="nextQ" class="btn btn-success mt-4 w-100" style="display:none; padding:18px; font-size:20px;" onclick="nextQ()">Next Question</button>
+            <div id="fb" class="mt-4 fs-5 fw-bold text-center" style="display: none;"></div>
+            <button id="nextQ" class="btn btn-primary mt-4 w-100" style="display:none; padding:18px; font-size:20px;" onclick="nextQ()">Next Question</button>
         </div>
 
-        <div id="result" class="text-center p-5 rounded d-none" style="background:rgba(0,0,0,0.9); max-width:900px; margin:40px auto;">
+        <div id="result" class="text-center p-5 rounded d-none" style="background:#fff; max-width:900px; margin:40px auto; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
             <h2 id="resultText" style="font-size:36px; margin-bottom:20px;"></h2>
             
             <div class="progress-bar">
@@ -372,15 +391,12 @@
             <p id="passMessage" style="font-size:20px; margin:30px 0;"></p>
             
             <button class="btn btn-primary mt-3 me-2" onclick="backToModules()">Back to Modules</button>
-            <button class="btn btn-outline-light mt-3" onclick="retakeTest()" id="retakeBtn">Retake Test</button>
+            <button class="btn btn-outline-primary mt-3" onclick="retakeTest()" id="retakeBtn">Retake Test</button>
         </div>
     </div>
 </div>
 
 <script>
-// Video URLs, moduleNames, baseQuiz remain unchanged (same as previous version)
-
-
 const videos = {
     handover: "https://www.youtube.com/embed/uqbDOIaEyHs?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     lhd: "https://www.youtube.com/embed/HjnCR0pBlQs?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
@@ -400,10 +416,6 @@ const videos = {
     fire: "https://www.youtube.com/embed/x414lRd1aak?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     tmm: "https://www.youtube.com/embed/BYzg3G8gQYY?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3",
     winders: "https://www.youtube.com/embed/HkE7m1cdvBU?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3"
-
-
-
-    
 };
 
 const moduleNames = {
@@ -425,563 +437,386 @@ const moduleNames = {
     fire: "Fire Underground",
     tmm: "Trackless Mobile Machinery",
     winders: "WINDERS & HOISTING SYSTEMS"
-
 };
-
-
-
-
 
 const baseQuiz = {
     handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
-        {q:"Who must attend shift handover?", o:["Only shift boss","All incoming and outgoing crew"], c:1},
-        {q:"What must be signed before work starts?", o:["Nothing","Section 23 declaration"], c:1},
-        {q:"Red tag on equipment means?", o:["Minor fault","Do not operate — locked out"], c:1},
-        {q:"What gas is checked with methanometer?", o:["Oxygen","Methane"], c:1},
-        {q:"Who signs Early Warning Device log?", o:["Anyone","Only shift boss"], c:1},
-        {q:"Can you work without cap lamp?", o:["Yes","Never"], c:1},
-        {q:"Refuge bay must contain?", o:["Water only","SCSRs, water, first aid, phone"], c:1},
-        {q:"Who declares workplace safe?", o:["Any miner","Shift boss after inspection"], c:1},
-        {q:"What is checked on LHD before use?", o:["Fuel only","Brakes, lights, horn, fire suppression"], c:1},
-        {q:"What is a 'hot seat' changeover?", o:["Quick break","Driver change without stopping"], c:1},
-        {q:"Who checks water dams?", o:["Anyone","Only designated person"], c:1},
-        {q:"What is a TARP?", o:["Tool","Trigger Action Response Plan"], c:1},
-        {q:"Can you start work with unsigned logbook?", o:["Yes","Never"], c:1},
-        {q:"Who checks ventilation doors?", o:["Operator","Only ventilation officer"], c:1},
-        {q:"What is a 'blind spot' check?", o:["Mirror","Physical walk-around"], c:1},
-        {q:"Who must carry a gas monitor?", o:["Only supervisor","All underground personnel"], c:1},
-        {q:"What is a 'lockout tagout'?", o:["Safety procedure","Equipment fault"], c:1},
-        {q:"Can you work alone underground?", o:["Yes","Never"], c:1},
-        {q:"What is a 'pre-use inspection'?", o:["Optional","Mandatory before operating equipment"], c:1},
-        {q:"Who signs the refuge bay register?", o:["Anyone","Only shift boss"], c:1},
-        {q:"What is a 'stop block'?", o:["Traffic control","Emergency brake"], c:1},
-        {q:"What is a 'travelway inspection'?", o:["Daily walk","Only monthly"], c:1},
-        {q:"Who checks fire extinguishers?", o:["Anyone","Only safety officer"], c:1},
-        {q:"What is a 'code of practice'?", o:["Suggestion","Legal requirement"], c:1},
-        {q:"Can you ignore a red tag?", o:["Yes","Never"], c:1}
+        {q:"Who must attend shift handover?", o:["Only shift boss","All incoming and outgoing crew"], c:1, e:"All incoming and outgoing crew must attend to ensure full transfer of critical information about hazards, equipment status, and workplace conditions."},
+        {q:"What must be signed before work starts?", o:["Nothing","Section 23 declaration"], c:1, e:"The Section 23 declaration confirms that workers are fit for duty and understand the risks; it is a legal requirement under MHSA."},
+        {q:"Red tag on equipment means?", o:["Minor fault","Do not operate — locked out"], c:1, e:"A red tag indicates the equipment has been locked out for safety reasons and must not be operated until cleared by an authorised person."},
+        {q:"What gas is checked with methanometer?", o:["Oxygen","Methane"], c:1, e:"A methanometer is specifically designed to detect methane (CH₄), the primary explosive gas in underground coal and hard-rock mines."},
+        {q:"Who signs Early Warning Device log?", o:["Anyone","Only shift boss"], c:1, e:"Only the shift boss has the authority to verify and sign the Early Examination Warning Device log after inspection."},
+        {q:"Can you work without cap lamp?", o:["Yes","Never"], c:1, e:"A cap lamp is mandatory primary lighting and a legal requirement; working without one is prohibited."},
+        {q:"Refuge bay must contain?", o:["Water only","SCSRs, water, first aid, phone"], c:1, e:"Refuge bays are emergency shelters and must be stocked with self-contained self-rescuers (SCSRs), drinking water, first aid supplies, and communication."},
+        {q:"Who declares workplace safe?", o:["Any miner","Shift boss after inspection"], c:1, e:"The shift boss is legally responsible for inspecting the workplace and declaring it safe before work commences."},
+        {q:"What is checked on LHD before use?", o:["Fuel only","Brakes, lights, horn, fire suppression"], c:1, e:"A comprehensive pre-use inspection must include critical safety systems: brakes, lights, horn, and fire suppression."},
+        {q:"What is a 'hot seat' changeover?", o:["Quick break","Driver change without stopping"], c:1, e:"Hot seat changeover allows continuous production by swapping operators without shutting down the machine."},
+        {q:"Who checks water dams?", o:["Anyone","Only designated person"], c:1, e:"Only a competent designated person may inspect and sign off water dams due to flood risk."},
+        {q:"What is a TARP?", o:["Tool","Trigger Action Response Plan"], c:1, e:"TARP (Trigger Action Response Plan) defines measurable triggers and required actions for escalating risks."},
+        {q:"Can you start work with unsigned logbook?", o:["Yes","Never"], c:1, e:"An unsigned logbook means statutory inspections or declarations are incomplete; work may not commence."},
+        {q:"Who checks ventilation doors?", o:["Operator","Only ventilation officer"], c:1, e:"Ventilation doors are critical controls and must be inspected by the appointed ventilation officer."},
+        {q:"What is a 'blind spot' check?", o:["Mirror","Physical walk-around"], c:1, e:"A physical walk-around is required to confirm no personnel are in blind spots before moving equipment."},
+        {q:"Who must carry a gas monitor?", o:["Only supervisor","All underground personnel"], c:1, e:"Every person underground must carry a personal gas detector for immediate warning of hazardous atmospheres."},
+        {q:"What is a 'lockout tagout'?", o:["Safety procedure","Equipment fault"], c:1, e:"Lockout-tagout is a formal safety procedure to isolate energy sources before maintenance."},
+        {q:"Can you work alone underground?", o:["Yes","Never"], c:1, e:"The buddy system is mandatory underground; no person may work alone."},
+        {q:"What is a 'pre-use inspection'?", o:["Optional","Mandatory before operating equipment"], c:1, e:"Pre-use inspection is a legal requirement to identify defects before operating any machinery."},
+        {q:"Who signs the refuge bay register?", o:["Anyone","Only shift boss"], c:1, e:"The shift boss verifies refuge bay readiness and signs the register."},
+        {q:"What is a 'stop block'?", o:["Traffic control","Emergency brake"], c:1, e:"Stop blocks are physical barriers used to control vehicle movement at critical points."},
+        {q:"What is a 'travelway inspection'?", o:["Daily walk","Only monthly"], c:1, e:"Daily travelway inspections are required to identify ground falls, services damage, or obstructions."},
+        {q:"Who checks fire extinguishers?", o:["Anyone","Only safety officer"], c:1, e:"Only appointed competent persons may inspect and certify fire extinguishers."},
+        {q:"What is a 'code of practice'?", o:["Suggestion","Legal requirement"], c:1, e:"Codes of Practice are mandatory standards approved under MHSA."},
+        {q:"Can you ignore a red tag?", o:["Yes","Never"], c:1, e:"Ignoring a red tag defeats the lockout system and is a serious safety violation."}
     ]},
     lhd: {name:"LHD OPERATIONS", q: [
-        {q:"Minimum clearance from moving LHD?", o:["1 metre","2 metres from any part"], c:1},
-        {q:"Maximum speed in decline?", o:["25 km/h","15 km/h"], c:1},
-        {q:"Bucket height when loaded?", o:["On ground","Max 400mm off ground"], c:1},
-        {q:"Before reversing you must?", o:["Just look","Horn 3 times + check mirrors"], c:1},
-        {q:"Can you ride in LHD bucket?", o:["Yes","Never"], c:1},
-        {q:"Who may operate LHD?", o:["Anyone trained","Only competent certificate holder"], c:1},
-        {q:"Seatbelt in LHD cab?", o:["Optional","Mandatory at all times"], c:1},
-        {q:"Pedestrian near LHD must be?", o:["Within 1m","In refuge bay"], c:1},
-        {q:"Fire on LHD — first action?", o:["Drive out","Activate suppression system"], c:1},
-        {q:"What is a 'refuge bay'?", o:["Rest area","Safe waiting place"], c:1},
-        {q:"Can you park LHD on incline?", o:["Yes","Only with brakes and chocks"], c:1},
-        {q:"What is 'tramming'?", o:["Loading","Driving between points"], c:1},
-        {q:"LHD lights must be?", o:["Optional","Working at all times"], c:1},
-        {q:"Can you carry passengers in cab?", o:["Yes","Only with extra seat"], c:1},
-        {q:"What is a 'tip'?", o:["Dumping point","Loading point"], c:1},
-        {q:"LHD horn must be used?", o:["Never","When reversing and approaching"], c:1},
-        {q:"What is a 'rollback'?", o:["Normal","Emergency brake failure"], c:1},
-        {q:"Can you leave LHD running unattended?", o:["Yes","Never"], c:1},
-        {q:"What is a 'load factor'?", o:["Speed","Weight capacity"], c:1},
-        {q:"LHD must have?", o:["Radio","Two-way communication"], c:1},
-        {q:"What is a 'haulage way'?", o:["Any road","Designated vehicle route"], c:1},
-        {q:"Can you overtake another LHD?", o:["Yes","Only in designated areas"], c:1},
-        {q:"What is a 'derailment'?", o:["Track issue","LHD off road"], c:1},
-        {q:"LHD must stop at?", o:["Crossings","All intersections"], c:1},
-        {q:"What is 'articulation lock'?", o:["Optional","Must be engaged when lifting"], c:1}
+        {q:"Minimum clearance from moving LHD?", o:["1 metre","2 metres from any part"], c:1, e:"A minimum 2-metre exclusion zone from any part of a moving LHD protects pedestrians from swing and rollover risks."},
+        {q:"Maximum speed in decline?", o:["25 km/h","15 km/h"], c:1, e:"Speed is limited to 15 km/h in declines to maintain braking control and prevent runaway incidents."},
+        {q:"Bucket height when loaded?", o:["On ground","Max 400mm off ground"], c:1, e:"Loaded bucket must be carried low (max 400 mm) to maintain stability and low centre of gravity."},
+        {q:"Before reversing you must?", o:["Just look","Horn 3 times + check mirrors"], c:1, e:"Three distinct horn blasts warn personnel, followed by mirror and camera checks before reversing."},
+        {q:"Can you ride in LHD bucket?", o:["Yes","Never"], c:1, e:"Riding in the bucket is prohibited; it exposes persons to crushing and fall hazards."},
+        {q:"Who may operate LHD?", o:["Anyone trained","Only competent certificate holder"], c:1, e:"Only persons holding a valid competency certificate may operate an LHD."},
+        {q:"Seatbelt in LHD cab?", o:["Optional","Mandatory at all times"], c:1, e:"Seatbelts are mandatory to prevent ejection during rollover or collision."},
+        {q:"Pedestrian near LHD must be?", o:["Within 1m","In refuge bay"], c:1, e:"Pedestrians must remain in designated refuge bays when LHDs are operating nearby."},
+        {q:"Fire on LHD — first action?", o:["Drive out","Activate suppression system"], c:1, e:"Immediate activation of the onboard fire suppression system is the primary response."},
+        {q:"What is a 'refuge bay'?", o:["Rest area","Safe waiting place"], c:1, e:"Refuge bays are engineered safe zones for pedestrians during vehicle movement."},
+        {q:"Can you park LHD on incline?", o:["Yes","Only with brakes and chocks"], c:1, e:"Parking on inclines requires parking brake engaged and wheels chocked."},
+        {q:"What is 'tramming'?", o:["Loading","Driving between points"], c:1, e:"Tramming refers to transporting ore or waste between loading and tipping points."},
+        {q:"LHD lights must be?", o:["Optional","Working at all times"], c:1, e:"All lights must be functional to ensure visibility and warning to others."},
+        {q:"Can you carry passengers in cab?", o:["Yes","Only with extra seat"], c:1, e:"Passengers are only allowed if a certified second seat with seatbelt is fitted."},
+        {q:"What is a 'tip'?", o:["Dumping point","Loading point"], c:1, e:"The tip is the designated ore pass or stockpile dumping location."},
+        {q:"LHD horn must be used?", o:["Never","When reversing and approaching"], c:1, e:"Horn must sound before reversing and when approaching intersections or personnel."},
+        {q:"What is a 'rollback'?", o:["Normal","Emergency brake failure"], c:1, e:"Rollback occurs when brake failure allows uncontrolled movement down incline."},
+        {q:"Can you leave LHD running unattended?", o:["Yes","Never"], c:1, e:"Equipment must never be left running and unattended to prevent unauthorised use."},
+        {q:"What is a 'load factor'?", o:["Speed","Weight capacity"], c:1, e:"Load factor refers to the maximum safe payload relative to machine rating."},
+        {q:"LHD must have?", o:["Radio","Two-way communication"], c:1, e:"Effective two-way communication is required for coordination and emergency response."},
+        {q:"What is a 'haulage way'?", o:["Any road","Designated vehicle route"], c:1, e:"Haulage ways are engineered roadways specifically for mobile machinery."},
+        {q:"Can you overtake another LHD?", o:["Yes","Only in designated areas"], c:1, e:"Overtaking is only permitted in wide, clearly marked passing bays."},
+        {q:"What is a 'derailment'?", o:["Track issue","LHD off road"], c:1, e:"Derailment means the LHD has left the intended roadway, often causing damage."},
+        {q:"LHD must stop at?", o:["Crossings","All intersections"], c:1, e:"Full stop and right-of-way check is required at all intersections."},
+        {q:"What is 'articulation lock'?", o:["Optional","Must be engaged when lifting"], c:1, e:"Articulation lock bar must be fitted when raising the rear frame for maintenance."}
     ]},
     drill: {name:"JUMBO DRILLING", q: [
-        {q:"Who may operate jumbo?", o:["Any miner","Only competent operator"], c:1},
-        {q:"Mandatory PPE while drilling?", o:["Hard hat only","Ear plugs, dust mask, glasses"], c:1},
-        {q:"Minimum distance from face while drilling?", o:["2m","5m behind operator"], c:1},
-        {q:"Before charging holes you must?", o:["Just charge","Examine face + wash down"], c:1},
-        {q:"Most common drilling accident?", o:["Noise","Flying rocks"], c:1},
-        {q:"Water pressure for dust suppression?", o:["Any","Minimum 7 bar"], c:1},
-        {q:"Can you drill with broken support?", o:["Yes","Never"], c:1},
-        {q:"What is a 'boomer'?", o:["Drill type","Jumbo arm"], c:1},
-        {q:"Who checks drill steels?", o:["Anyone","Only competent person"], c:1},
-        {q:"What is a 'drifter'?", o:["Drill motor","Operator"], c:1},
-        {q:"Can you drill without water?", o:["Yes","Never"], c:1},
-        {q:"What is a 'face examination'?", o:["Visual check","Mandatory before drilling"], c:1},
-        {q:"Who installs temporary support?", o:["Anyone","Only support team"], c:1},
-        {q:"What is a 'muck pile'?", o:["Ore heap","Broken rock"], c:1},
-        {q:"Can you leave jumbo running unattended?", o:["Yes","Never"], c:1},
-        {q:"What is a 'stope'?", o:["Office","Mining face"], c:1},
-        {q:"Who checks ventilation during drilling?", o:["Operator","Ventilation officer"], c:1},
-        {q:"What is a 'round'?", o:["Shift","Set of holes"], c:1},
-        {q:"Can you drill with loose rock?", o:["Yes","Never"], c:1},
-        {q:"What is a 'burn cut'?", o:["Blasting pattern","Drilling pattern"], c:1},
-        {q:"Who approves drilling plan?", o:["Shift boss","Rock Engineer"], c:1},
-        {q:"What is a 'lifters'?", o:["Bottom holes","Top holes"], c:1},
-        {q:"Can you drill without ear protection?", o:["Yes","Never"], c:1},
-        {q:"What is a 'collar'?", o:["Hole start","Hole end"], c:1},
-        {q:"Who marks holes?", o:["Anyone","Only surveyor"], c:1}
+        {q:"Who may operate jumbo?", o:["Any miner","Only competent operator"], c:1, e:"Only operators with a valid jumbo competency certificate may operate the machine."},
+        {q:"Mandatory PPE while drilling?", o:["Hard hat only","Ear plugs, dust mask, glasses"], c:1, e:"Drilling produces high noise and silica dust; hearing protection, dust mask, and eye protection are mandatory."},
+        {q:"Minimum distance from face while drilling?", o:["2m","5m behind operator"], c:1, e:"Personnel must stay at least 5 m behind the operator to avoid flying rock and hose whip."},
+        {q:"Before charging holes you must?", o:["Just charge","Examine face + wash down"], c:1, e:"Face must be examined for misfires and sockets, then washed down to remove dust and improve visibility."},
+        {q:"Most common drilling accident?", o:["Noise","Flying rocks"], c:1, e:"Flying rock fragments from collaring or break-through cause the majority of injuries."},
+        {q:"Water pressure for dust suppression?", o:["Any","Minimum 7 bar"], c:1, e:"Adequate water flow (minimum 7 bar pressure) is required for effective dust suppression."},
+        {q:"Can you drill with broken support?", o:["Yes","Never"], c:1, e:"Drilling may not proceed if temporary support is inadequate or damaged."},
+        {q:"What is a 'boomer'?", o:["Drill type","Jumbo arm"], c:1, e:"A boomer is the hydraulic drill feed/arm on an electro-hydraulic jumbo."},
+        {q:"Who checks drill steels?", o:["Anyone","Only competent person"], c:1, e:"Only competent persons may inspect and approve drill steels for shank wear and cracks."},
+        {q:"What is a 'drifter'?", o:["Drill motor","Operator"], c:1, e:"The drifter is the hydraulic rock drill motor that provides percussion and rotation."},
+        {q:"Can you drill without water?", o:["Yes","Never"], c:1, e:"Dry drilling is prohibited due to extreme silica dust hazard."},
+        {q:"What is a 'face examination'?", o:["Visual check","Mandatory before drilling"], c:1, e:"A thorough face examination for loose rock, misfires, and support condition is mandatory before drilling."},
+        {q:"Who installs temporary support?", o:["Anyone","Only support team"], c:1, e:"Temporary support (mesh, bolts) may only be installed by competent support crews."},
+        {q:"What is a 'muck pile'?", o:["Ore heap","Broken rock"], c:1, e:"The muck pile is the broken rock heap remaining after blasting."},
+        {q:"Collaring speed should be?", o:["High","Low to prevent deviation"], c:1, e:"Low rotation and thrust during collaring prevents hole deviation."},
+        {q:"Who marks drill pattern?", o:["Operator","Geologist or surveyor"], c:1, e:"Drill patterns are marked by technical personnel to ensure correct hole placement."},
+        {q:"What is 'burden'?", o:["Hole depth","Distance to free face"], c:1, e:"Burden is the distance from the hole to the nearest free face."},
+        {q:"Can you drill into misfire?", o:["Yes","Never"], c:1, e:"Drilling into misfired holes risks detonation."},
+        {q:"Water flush must be?", o:["Optional","Continuous"], c:1, e:"Continuous water flush is required for dust control and bit cooling."},
+        {q:"Who approves jumbo modifications?", o:["Operator","Engineering"], c:1, e:"All modifications require engineering approval and risk assessment."}
     ]},
-    support: {name:"GROUND SUPPORT", q: [
-        {q:"Can anyone enter unsupported ground?", o:["If quick","Never"], c:1},
-        {q:"Minimum resin bolt length in UG2?", o:["1.8m","2.4m"], c:1},
-        {q:"Mesh overlap between sheets?", o:["150mm","300mm"], c:1},
-        {q:"Who installs tendon support?", o:["Any miner","Only certified team"], c:1},
-        {q:"Maximum distance between bolts?", o:["2m","1.5m centres"], c:1},
-        {q:"What is hangingwall rider?", o:["Ore type","Loose rock above support"], c:1},
-        {q:"Temporary support before bolting?", o:["Optional","Mandatory"], c:1},
-        {q:"What is a 'pack'?", o:["Waste rock wall","Support structure"], c:1},
-        {q:"Who checks support installation?", o:["Anyone","Only rock engineer"], c:1},
-        {q:"What is a 'tendon'?", o:["Long cable bolt","Short bolt"], c:1},
-        {q:"Can you remove temporary support?", o:["Yes","Only after permanent installed"], c:1},
-        {q:"What is a 'mat pack'?", o:["Timber pack","Waste rock pack"], c:1},
-        {q:"Who approves support standard?", o:["Shift boss","Rock Engineer"], c:1},
-        {q:"What is a 'yield zone'?", o:["Safe area","Area that moves"], c:1},
-        {q:"Can you work under unsupported roof?", o:["Yes","Never"], c:1},
-        {q:"What is a 'prop'?", o:["Hydraulic support","Timber pole"], c:1},
-        {q:"Who installs mesh?", o:["Anyone","Only support team"], c:1},
-        {q:"What is a 'strike'?", o:["Protest","Horizontal"], c:1},
-        {q:"Can you use damaged bolts?", o:["Yes","Never"], c:1},
-        {q:"What is a 'dip'?", o:["Angle down","Angle up"], c:1},
-        {q:"Who checks bolt tension?", o:["Anyone","Only competent person"], c:1},
-        {q:"What is a 'fault'?", o:["Rock break","Ore body"], c:1},
-        {q:"Can you install support alone?", o:["Yes","Never"], c:1},
-        {q:"What is a 'gully'?", o:["Drain","Mining cut"], c:1},
-        {q:"Who records support installation?", o:["Anyone","Only shift boss"], c:1}
+    support: {name:"INSTALL MESH & BOLTS", q: [
+        {q:"Who may install permanent support?", o:["Any miner","Only competent rock engineer crew"], c:1, e:"Only trained and competent support installation crews may install permanent ground support."},
+        {q:"Minimum tendon length in poor ground?", o:["1.2 m","As per support standard"], c:1, e:"Support standards specify minimum lengths based on rock mass rating and span."},
+        {q:"What must be done before scaling?", o:["Nothing","Examine face and bar down loose"], c:1, e:"Face examination and mechanical scaling to remove loose rock is mandatory."},
+        {q:"Can you stand under unsupported ground?", o:["Yes","Never"], c:1, e:"Never position yourself under unsupported ground during support installation."},
+        {q:"What is a 'split set'?", o:["Bolt type","Friction rock stabiliser"], c:1, e:"Split sets are friction anchors driven into slightly smaller drill holes."},
+        {q:"Torque requirement for resin bolts?", o:["None","As specified in standard"], c:1, e:"Resin bolts require specific torque to ensure full column encapsulation."},
+        {q:"Who approves support standards?", o:["Shift boss","Appointed rock engineer"], c:1, e:"Support standards are designed and approved by the mine's rock engineer (2.14.1 appointment)."},
+        {q:"Mesh must overlap by?", o:["100 mm","300 mm minimum"], c:1, e:"Mesh sheets must overlap by at least 300 mm and be secured at intervals."},
+        {q:"What is 'factor of safety' for support?", o:["1.0","Minimum 1.5"], c:1, e:"Permanent support systems must have a factor of safety of at least 1.5."},
+        {q:"Can temporary support be left permanent?", o:["Yes","Never"], c:1, e:"Temporary support must be replaced by permanent support within specified time."},
+        {q:"Who inspects installed support?", o:["Operator","Support inspector"], c:1, e:"Dedicated support inspectors verify installation quality and pull tests."},
+        {q:"What is 'pull test'?", o:["Visual check","Load test on bolts"], c:1, e:"Pull testing verifies anchorage capacity of installed tendons."},
+        {q:"Support installation sequence?", o:["Any order","From stable to unstable ground"], c:1, e:"Support must progress from supported to unsupported areas."},
+        {q:"Lacing wire spacing for mesh?", o:["Any","Maximum 300 mm"], c:1, e:"Mesh must be laced with wire at maximum 300 mm centres."},
+        {q:"Who records support installation?", o:["Anyone","Support crew leader"], c:1, e:"Installation details must be recorded in the support logbook."}
     ]},
-    vent: {name:"VENTILATION FAILURE", q: [
-        {q:"First action on main vent failure?", o:["Keep working","Stop → Refuge → Don SCSR"], c:1},
-        {q:"Minimum SCSR duration?", o:["15 minutes","30 minutes"], c:1},
-        {q:"Most dangerous gas in UG2?", o:["CO2","Methane"], c:1},
-        {q:"Refuge bay must have?", o:["Water only","SCSRs, sealed door, phone"], c:1},
-        {q:"How often are refuge bays inspected?", o:["Monthly","Weekly"], c:1},
-        {q:"Can you remove SCSR mouthpiece?", o:["Yes","Never underground"], c:1},
-        {q:"What is a 'booster fan'?", o:["Main fan","Auxiliary fan"], c:1},
-        {q:"Who checks ventilation doors?", o:["Anyone","Only vent officer"], c:1},
-        {q:"What is a 'regulator'?", o:["Door","Air control device"], c:1},
-        {q:"Can you block ventilation?", o:["Yes","Never"], c:1},
-        {q:"What is a 'scrubber'?", o:["Cleaner","Air cleaning device"], c:1},
-        {q:"Who approves vent changes?", o:["Shift boss","Ventilation Engineer"], c:1},
-        {q:"What is a 'column'?", o:["Air shaft","Support pillar"], c:1},
-        {q:"Can you work without air?", o:["Yes","Never"], c:1},
-        {q:"What is a 'bulkhead'?", o:["Wall","Air seal"], c:1},
-        {q:"Who monitors air quality?", o:["Anyone","Ventilation officer"], c:1},
-        {q:"What is a 'return airway'?", o:["Fresh air","Used air"], c:1},
-        {q:"Can you open sealed doors?", o:["Yes","Only authorized"], c:1},
-        {q:"What is a 'vent bag'?", o:["Ducting","Air duct"], c:1},
-        {q:"Who checks fan operation?", o:["Anyone","Only electrician"], c:1},
-        {q:"What is a 'short circuit'?", o:["Electrical fault","Air bypass"], c:1},
-        {q:"Can you smoke underground?", o:["Yes","Never"], c:1},
-        {q:"What is a 'laminar flow'?", o:["Smooth air","Turbulent air"], c:1},
-        {q:"Who records air readings?", o:["Anyone","Only vent officer"], c:1},
-        {q:"What is a 'ventilation plan'?", o:["Map","Legal requirement"], c:1}
+    vent: {name:"MAIN VENTILATION FAILURE", q: [
+        {q:"First action on ventilation failure?", o:["Continue work","Evacuate to refuge or surface"], c:1, e:"Immediate evacuation using SCSRs to the nearest refuge bay or surface."},
+        {q:"Who declares ventilation failure?", o:["Anyone","Ventilation officer or manager"], c:1, e:"Only the appointed ventilation officer or mine manager may declare the emergency."},
+        {q:"Can you re-enter after fan restart?", o:["Yes","Only after gas tests clear"], c:1, e:"Re-entry only after full atmosphere testing and clearance by ventilation officer."},
+        {q:"Primary cause of ventilation failure?", o:["Power cut","Fan mechanical failure"], c:1, e:"Both are common, but procedures cover all causes including power loss."},
+        {q:"SCSR duration underground?", o:["10 min","Minimum 30 min"], c:1, e:"Self-contained self-rescuers provide at least 30 minutes of oxygen."},
+        {q:"Who monitors return air?", o:["Anyone","Ventilation department"], c:1, e:"Continuous monitoring of return airways for methane and contaminants."},
+        {q:"Backup ventilation system?", o:["Optional","Mandatory auxiliary fans"], c:1, e:"Critical areas must have backup ventilation systems."},
+        {q:"Stench gas used for?", o:["Odour control","Emergency warning"], c:1, e:"Stench gas release triggers immediate evacuation."},
+        {q:"Minimum air velocity?", o:["0.5 m/s","As per COP"], c:1, e:"Air velocity requirements are specified in the ventilation COP."},
+        {q:"Who maintains vent doors?", o:["Operator","Ventilation crew"], c:1, e:"Specialised ventilation crews maintain doors and regulators."}
     ]},
-    rockfall: {name:"ROCKFALL EMERGENCY", q: [
-        {q:"First action when rocks fall?", o:["Run","Stop → Drop → Cover head → Wait"], c:1},
-        {q:"Who declares area safe after rockfall?", o:["Shift boss","Only Rock Engineer"], c:1},
-        {q:"TARP Level 4 means?", o:["Minor spalling","Major rockburst/fall of ground"], c:1},
-        {q:"Where do you go during rockfall?", o:["Under mesh","Nearest solid support/refuge"], c:1},
-        {q:"Minimum wait before re-entry?", o:["10 minutes","Until declared safe"], c:1},
-        {q:"Most common cause of fatalities?", o:["Blasting","Rockfalls"], c:1},
-        {q:"What is a 'seismic event'?", o:["Earthquake","Rock stress release"], c:1},
-        {q:"Who monitors seismicity?", o:["Anyone","Rock Engineer"], c:1},
-        {q:"What is a 'pillar'?", o:["Support column","Ore block"], c:1},
-        {q:"Can you work during seismic warning?", o:["Yes","Never"], c:1},
-        {q:"What is a 'barney'?", o:["Scaling tool","Support check"], c:1},
-        {q:"Who does scaling?", o:["Anyone","Only competent person"], c:1},
-        {q:"What is a 'brow'?", o:["Face edge","Hangingwall"], c:1},
-        {q:"Can you leave loose rock?", o:["Yes","Never"], c:1},
-        {q:"What is a 'slip'?", o:["Fall","Joint plane"], c:1},
-        {q:"Who checks ground conditions?", o:["Anyone","Only shift boss"], c:1},
-        {q:"What is a 'wedge'?", o:["Support","Unstable block"], c:1},
-        {q:"Can you drill under loose rock?", o:["Yes","Never"], c:1},
-        {q:"What is a 'fault'?", o:["Ore body","Rock break"], c:1},
-        {q:"Who approves re-entry after rockfall?", o:["Shift boss","Rock Engineer"], c:1},
-        {q:"What is a 'closure'?", o:["Mine closing","Ground movement"], c:1},
-        {q:"Can you ignore TARP?", o:["Yes","Never"], c:1},
-        {q:"What is a 'seismograph'?", o:["Earthquake recorder","Rock movement monitor"], c:1},
-        {q:"Who installs seismic sensors?", o:["Anyone","Only specialist"], c:1},
-        {q:"What is a 'rockburst'?", o:["Explosion","Sudden rock failure"], c:1}
+    rockfall: {name:"MAJOR ROCK FALL EVENT", q: [
+        {q:"First priority after major fall?", o:["Clear rock","Ensure all personnel accounted for"], c:1, e:"Life safety and headcount take absolute priority over rock clearance."},
+        {q:"Who leads rock fall recovery?", o:["Shift boss","Appointed rock engineer"], c:1, e:"The rock engineer directs technical recovery and support reinstatement."},
+        {q:"Can you enter fall area immediately?", o:["Yes","Only after stability assessment"], c:1, e:"Area must be barricaded and assessed by competent person before entry."},
+        {q:"Primary cause of rockfalls?", o:["Blasting","Poor support or geology"], c:1, e:"Inadequate support relative to geological conditions is the root cause."},
+        {q:"Who investigates rock fall?", o:["Safety rep","Formal inquiry team"], c:1, e:"All serious rock falls require formal investigation per MHSA Section 11."},
+        {q:"Support after rock fall?", o:["Same as before","Enhanced standard"], c:1, e:"Support standards are reviewed and upgraded based on failure analysis."},
+        {q:"What is 'barricading'?", o:["Temporary fence","Restricted access control"], c:1, e:"Physical barriers and signs to prevent unauthorised entry."},
+        {q:"Who approves re-entry?", o:["Shift boss","Rock engineer"], c:1, e:"Only the rock engineer may approve safe re-entry after rehabilitation."},
+        {q:"Rock fall reporting time?", o:["24 hours","Immediately"], c:1, e:"Immediate reporting to supervisor and formal report within shift."},
+        {q:"TARP trigger for rock fall?", o:["Noise","Ground movement"], c:1, e:"Seismic events or visible ground deterioration trigger response plans."}
     ]},
-    traffic: {name:"TRAFFIC MANAGEMENT", q: [
-        {q:"Two vehicles in single lane?", o:["Race","Stop, call, establish right of way"], c:1},
-        {q:"Who has right of way downhill?", o:["Loaded vehicle","Downhill vehicle"], c:1},
-        {q:"Maximum vehicles in single lane?", o:["Two","One at a time"], c:1},
-        {q:"Radio call sign for LHD?", o:["Any name","LHD + number"], c:1},
-        {q:"Speed limit in crosscut?", o:["20 km/h","10 km/h"], c:1},
-        {q:"Who controls traffic?", o:["Anyone","Traffic controller"], c:1},
-        {q:"What is a 'stop block'?", o:["Traffic control","Emergency brake"], c:1},
-        {q:"Can you overtake in decline?", o:["Yes","Never"], c:1},
-        {q:"What is a 'refuge bay'?", o:["Rest area","Safe waiting place"], c:1},
-        {q:"Who checks traffic signs?", o:["Anyone","Only safety officer"], c:1},
-        {q:"What is a 'haulage'?", o:["Transport","Ore movement"], c:1},
-        {q:"Can you walk in haulage way?", o:["Yes","Only in refuge"], c:1},
-        {q:"What is a 'level'?", o:["Floor","Underground horizon"], c:1},
-        {q:"Who approves traffic plan?", o:["Shift boss","Mine Manager"], c:1},
-        {q:"What is 'tramming'?", o:["Loading","Driving"], c:1},
-        {q:"Can you park in travelway?", o:["Yes","Only in designated area"], c:1},
-        {q:"What is a 'derail'?", o:["Accident","Vehicle off track"], c:1},
-        {q:"Who reports traffic incidents?", o:["Anyone","Operator"], c:1},
-        {q:"What is a 'one-way'?", o:["Single direction","Traffic rule"], c:1},
-        {q:"Can you use phone while driving?", o:["Yes","Never"], c:1},
-        {q:"What is a 'traffic light'?", o:["Signal","Control device"], c:1},
-        {q:"Who maintains traffic signs?", o:["Anyone","Only maintenance"], c:1},
-        {q:"What is a 'clearance'?", o:["Space","Safe distance"], c:1},
-        {q:"Can you reverse without guide?", o:["Yes","Never"], c:1},
-        {q:"What is a 'haul road'?", o:["Any road","Designated route"], c:1}
+    traffic: {name:"TRAFFIC CONFLICT IN SINGLE LANE", q: [
+        {q:"Right of way in single lane decline?", o:["Upgoing vehicle","Loaded vehicle"], c:1, e:"Loaded vehicles have priority to maintain momentum and reduce spillage."},
+        {q:"Communication method in single lane?", o:["Horn only","Two-way radio protocol"], c:1, e:"Mandatory radio call-up before entering single lane sections."},
+        {q:"Speed limit in traffic conflict areas?", o:["20 km/h","As per traffic plan"], c:1, e:"Reduced speed limits apply in high-conflict zones."},
+        {q:"Who controls traffic?", o:["Anyone","Appointed traffic controller"], c:1, e:"Designated controllers manage complex intersections."},
+        {q:"Refuge bay spacing?", o:["50 m","Maximum 30 m"], c:1, e:"Refuge bays must be provided at maximum 30 m intervals in travel ways."},
+        {q:"What is 'call-up point'?", o:["Sign","Radio check-in location"], c:1, e:"Designated points where vehicles must radio position before proceeding."},
+        {q:"Can light vehicles overtake TMM?", o:["Yes","Never"], c:1, e:"Light vehicles must never overtake trackless mobile machinery."},
+        {q:"Signage requirement?", o:["Optional","Mandatory at all changes"], c:1, e:"Clear signage for speed, priority, and hazards is mandatory."},
+        {q:"Who updates traffic plan?", o:["Operator","Engineering"], c:1, e:"The traffic management plan is reviewed by engineering department."},
+        {q:"Collision reporting?", o:["Next shift","Immediately"], c:1, e:"All collisions or near-misses must be reported immediately."}
     ]},
-    reentry: {name:"RE-ENTRY AFTER BLAST", q: [
-        {q:"Minimum wait after blast?", o:["15 minutes","30 minutes"], c:1},
-        {q:"Who declares re-entry safe?", o:["Any miner","Blasting certificate holder + vent officer"], c:1},
-        {q:"What must be checked before re-entry?", o:["Fumes only","Fumes, misfires, ground condition"], c:1},
-        {q:"Can you remove barricade tape?", o:["Yes","Only authorized person"], c:1},
-        {q:"Most common re-entry hazard?", o:["Dust","Misfires and NOx fumes"], c:1},
-        {q:"What is a 'misfire'?", o:["Failed explosive","Unexploded charge"], c:1},
-        {q:"Who checks for misfires?", o:["Anyone","Only blaster"], c:1},
-        {q:"What is 'fume classification'?", o:["Smell test","Scientific measurement"], c:1},
-        {q:"Can you enter with gas monitor?", o:["Optional","Mandatory"], c:1},
-        {q:"What is a 'stemming'?", o:["Plug","Hole filler"], c:1},
-        {q:"Who records blast details?", o:["Anyone","Only blaster"], c:1},
-        {q:"What is a 'charging'?", o:["Loading holes","Firing"], c:1},
-        {q:"Can you re-enter alone?", o:["Yes","Never"], c:1},
-        {q:"What is a 'guard'?", o:["Security","Person at barricade"], c:1},
-        {q:"Who approves re-entry time?", o:["Shift boss","Ventilation officer"], c:1},
-        {q:"What is a 'blast clearance'?", o:["Permission","Safe to enter"], c:1},
-        {q:"Can you smoke after blast?", o:["Yes","Never"], c:1},
-        {q:"What is a 'primer'?", o:["Main explosive","Initiator"], c:1},
-        {q:"Who checks ventilation after blast?", o:["Anyone","Vent officer"], c:1},
-        {q:"What is a 'delay'?", o:["Time gap","Explosive type"], c:1},
-        {q:"Can you remove misfire?", o:["Yes","Only blaster"], c:1},
-        {q:"What is a 'firing line'?", o:["Cable","Blast circuit"], c:1},
-        {q:"Who keeps blast register?", o:["Anyone","Only blaster"], c:1},
-        {q:"What is a 'barricade'?", o:["Tape","Physical barrier"], c:1},
-        {q:"Can you re-enter before clearance?", o:["Yes","Never"], c:1}
+    reentry: {name:"UNSAFE RE-ENTRY ATTEMPT", q: [
+        {q:"Minimum re-entry time after blasting?", o:["15 minutes","30 minutes"], c:1, e:"Minimum 30 minutes for ventilation to clear fumes and dust."},
+        {q:"Who authorises re-entry?", o:["Blaster","Shift boss after examination"], c:1, e:"Only the shift boss may authorise re-entry after face examination."},
+        {q:"What must be checked before re-entry?", o:["Nothing","Misfires, ventilation, support"], c:1, e:"Comprehensive check for misfires, gas levels, and ground conditions."},
+        {q:"Can you re-enter alone?", o:["Yes","Never"], c:1, e:"Re-entry must be in teams with communication."},
+        {q:"Fume clearance measured by?", o:["Smell","Gas monitoring"], c:1, e:"Portable gas detectors confirm safe atmosphere."},
+        {q:"Who examines for misfires?", o:["Anyone","Competent blaster"], c:1, e:"Only competent persons may search for and handle misfires."},
+        {q:"Re-entry log required?", o:["No","Yes, signed by shift boss"], c:1, e:"Re-entry must be recorded in the logbook."},
+        {q:"What is 'blow-over'?", o:["Ventilation term","Fume clearance time"], c:1, e:"Additional time allowed for complete fume dilution."},
+        {q:"Early re-entry penalty?", o:["Warning","Serious offence"], c:1, e:"Premature re-entry is a serious violation with disciplinary action."},
+        {q:"Who monitors re-entry compliance?", o:["Safety rep","All supervisors"], c:1, e:"Supervisors enforce re-entry procedures at all levels."}
     ]},
-    shaft_sinking: {name:"SHAFT SINKING SAFETY", q: [
-        {q:"Who may ride the sinking stage?", o:["Any miner","Only certified shaft sinkers"], c:1},
-        {q:"What is a 'kibble'?", o:["Tool box","Shaft bucket for men & material"], c:1},
-        {q:"Shaft stage must have how many escape routes?", o:["One","Two independent ladders"], c:1},
-        {q:"Maximum wind speed allowed during sinking?", o:["10 m/s","6 m/s"], c:1},
-        {q:"Emergency bell signal in shaft?", o:["3 rings","7 rings repeated"], c:1},
-        {q:"Most common fatality cause in shaft sinking?", o:["Blasting","Falling objects"], c:1},
-        {q:"Shaft headgear must have?", o:["One winder","Two independent winders"], c:1},
-        {q:"Who examines shaft before descent?", o:["Shift boss","Competent shaft examiner"], c:1},
-        {q:"Concrete lining follows how far behind face?", o:["50m","Max 30m"], c:1},
-        {q:"Shaft sinking is classified as?", o:["Normal work","Highest risk activity"], c:1},
-        {q:"What is a 'stage'?", o:["Platform","Work level"], c:1},
-        {q:"Who operates the winder?", o:["Anyone","Only competent winder driver"], c:1},
-        {q:"What is a 'headgear'?", o:["Helmet","Shaft top structure"], c:1},
-        {q:"Can you overload kibble?", o:["Yes","Never"], c:1},
-        {q:"What is a 'bank'?", o:["Surface level","Shaft top"], c:1},
-        {q:"Who checks shaft guides?", o:["Anyone","Only rigger"], c:1},
-        {q:"What is a 'bunton'?", o:["Beam","Shaft divider"], c:1},
-        {q:"Can you descend during blasting?", o:["Yes","Never"], c:1},
-        {q:"What is a 'sinking cut'?", o:["Blast pattern","Excavation"], c:1},
-        {q:"Who approves shaft plan?", o:["Shift boss","Mine Manager"], c:1},
-        {q:"What is a 'shaft barrel'?", o:["Cylinder","Shaft lining"], c:1},
-        {q:"Can you work without harness?", o:["Yes","Never"], c:1},
-        {q:"What is a 'collar'?", o:["Top","Shaft entrance"], c:1},
-        {q:"Who records shaft depth?", o:["Anyone","Only surveyor"], c:1},
-        {q:"What is a 'sump'?", o:["Bottom","Water collection"], c:1}
+    shaft_sinking: {name:"SHAFT SINKING (VERTICAL SHAFT)", q: [
+        {q:"Who controls shaft sinking operations?", o:["Shift boss","Appointed shaft engineer"], c:1, e:"The shaft sinking contractor's engineer (16.1 appointment) controls all sinking activities."},
+        {q:"Minimum shaft lining thickness?", o:["200 mm","As per design"], c:1, e:"Concrete lining thickness is specified in the shaft design."},
+        {q:"Who inspects shaft bottom daily?", o:["Anyone","Shaft examiner"], c:1, e:"Dedicated shaft examiners inspect bottom conditions before each blast."},
+        {q:"Kibble loading procedure?", o:["Any method","Controlled filling with signals"], c:1, e:"Strict signalling and loading procedures prevent spills."},
+        {q:"What is 'lashing'?", o:["Cleaning","Mucking shaft bottom"], c:1, e:"Lashing is the process of clearing blasted rock from the shaft bottom."},
+        {q:"Stage winding speed?", o:["Full speed","Reduced during sinking"], c:1, e:"Winding speeds are reduced during sinking operations."},
+        {q:"Who approves shaft design?", o:["Manager","Principal Inspector"], c:1, e:"Shaft sinking plans require DMR approval."},
+        {q:"Emergency escape from stage?", o:["Ladder","Climbing device"], c:1, e:"Dedicated climbing systems for emergency egress."},
+        {q:"Shaft cover during blasting?", o:["Optional","Mandatory"], c:1, e:"Blast protection covers prevent flyrock entering shaft."},
+        {q:"Who records shaft advance?", o:["Surveyor","Shaft engineer"], c:1, e:"Daily advance measurements by competent surveyor."}
     ]},
-    raise_drill: {name:"RAISE DRILLING SAFETY", q: [
-        {q:"Can personnel be underground during reaming?", o:["Yes, if far away","Never — full evacuation"], c:1},
-        {q:"Biggest risk in raise drilling?", o:["Noise","Reamer breakout into occupied area"], c:1},
-        {q:"Pilot hole deviation limit?", o:["1 in 50","1 in 100"], c:1},
-        {q:"Before reaming, what must be installed?", o:["Nothing","Blast-proof bulkhead + sirens"], c:1},
-        {q:"Minimum distance from active stope?", o:["100m","200m horizontal"], c:1},
-        {q:"Who approves raise drilling plan?", o:["Shift boss","Rock Engineer + Mine Manager"], c:1},
-        {q:"Raise bore hole when not in use must be?", o:["Open","Covered with steel plate"], c:1},
-        {q:"What is 'back reaming'?", o:["Drilling down","Drilling upward from bottom"], c:1},
-        {q:"Raise bore ventilation requirement?", o:["0.3 m/s","0.06 m³/s per kW"], c:1},
-        {q:"Raise drilling requires?", o:["Normal permit","Special high-risk permit"], c:1},
-        {q:"What is a 'reamer'?", o:["Drill bit","Large cutter"], c:1},
-        {q:"Who operates raise drill?", o:["Anyone","Only competent operator"], c:1},
-        {q:"What is a 'pilot hole'?", o:["Small hole","Guide hole"], c:1},
-        {q:"Can you stand under raise bore?", o:["Yes","Never"], c:1},
-        {q:"What is a 'breakout'?", o:["Success","Reamer exit"], c:1},
-        {q:"Who checks reamer path?", o:["Anyone","Only surveyor"], c:1},
-        {q:"What is a 'raise'?", o:["Vertical hole","Ore pass"], c:1},
-        {q:"Can you drill without survey?", o:["Yes","Never"], c:1},
-        {q:"What is a 'collar pipe'?", o:["Top casing","Protection"], c:1},
-        {q:"Who installs bulkhead?", o:["Anyone","Only specialist"], c:1},
-        {q:"What is a 'raise borer'?", o:["Machine","Drill rig"], c:1},
-        {q:"Can you work during reaming?", o:["Yes","Never"], c:1},
-        {q:"What is a 'vent shaft'?", o:["Airway","Raise bore"], c:1},
-        {q:"Who monitors progress?", o:["Anyone","Only engineer"], c:1},
-        {q:"What is a 'deviation'?", o:["Error","Hole drift"], c:1}
+    raise_drill: {name:"RAISE DRILLING (RAISE BORING)", q: [
+        {q:"Primary hazard in raise boring?", o:["Noise","Ground collapse during reaming"], c:1, e:"Uncontrolled collapse of the raise during reaming is the primary risk."},
+        {q:"Who operates raise borer?", o:["Any driller","Only certified operator"], c:1, e:"Only operators with raise boring competency may operate the machine."},
+        {q:"Pilot hole deviation limit?", o:["5%","As per specification"], c:1, e:"Maximum deviation specified to ensure reamer alignment."},
+        {q:"Reaming direction?", o:["Top to bottom","Bottom to top"], c:1, e:"Reaming is always from bottom to top for stability."},
+        {q:"What is 'stab-in'?", o:["Connection","Pilot hole breakthrough"], c:1, e:"Precise alignment when pilot bit breaks through."},
+        {q:"Who inspects raise after completion?", o:["Operator","Rock engineer"], c:1, e:"Final inspection by rock engineer before use."},
+        {q:"Support in raise?", o:["None","As per standard"], c:1, e:"Raises may require mesh, bolts or shotcrete based on stability."},
+        {q:"Communication during reaming?", o:["Optional","Continuous radio"], c:1, e:"Constant communication between levels is mandatory."},
+        {q:"Raise diameter tolerance?", o:["+/- 100 mm","As per design"], c:1, e:"Final diameter must meet engineering specifications."},
+        {q:"Who approves raise location?", o:["Geologist","Rock engineer"], c:1, e:"Raise positions are approved based on geotechnical data."}
     ]},
-    seismicity: {name:"SEISMICITY & ROCKBURSTS", q: [
-        {q:"What causes a rockburst?", o:["Blasting","Sudden release of stored energy"], c:1},
-        {q:"Who monitors seismic activity?", o:["Anyone","Rock Engineering department"], c:1},
-        {q:"What is a 'TARP Level 5'?", o:["Minor event","Catastrophic rockburst"], c:1},
-        {q:"Can you work during seismic warning?", o:["Yes","Never"], c:1},
-        {q:"What is a 'seismic net'?", o:["Internet","Support mesh"], c:1},
-        {q:"Who approves re-entry after seismic event?", o:["Shift boss","Rock Engineer"], c:1},
-        {q:"What is a 'closure meter'?", o:["Time device","Ground movement monitor"], c:1},
-        {q:"Can you ignore seismic alarm?", o:["Yes","Never"], c:1},
-        {q:"What is a 'yield pillar'?", o:["Strong pillar","Designed to crush"], c:1},
-        {q:"Who installs seismic sensors?", o:["Anyone","Only specialist"], c:1},
-        {q:"What is a 'microseismic event'?", o:["Small quake","Less than 0.1 magnitude"], c:1},
-        {q:"Can you drill during high seismicity?", o:["Yes","Only with approval"], c:1},
-        {q:"What is a 'destress blast'?", o:["Normal blast","Reduce stress"], c:1},
-        {q:"Who declares seismic risk level?", o:["Shift boss","Rock Engineer"], c:1},
-        {q:"What is a 'bracket pillar'?", o:["Support","Left for stability"], c:1},
-        {q:"Can you work in high-risk zone?", o:["Yes","Only with permit"], c:1},
-        {q:"What is a 'seismic hazard map'?", o:["Mine map","Risk zones"], c:1},
-        {q:"Who checks seismic data daily?", o:["Anyone","Rock Engineer"], c:1},
-        {q:"What is a 'rock noise'?", o:["Sound","Stress indicator"], c:1},
-        {q:"Can you ignore rock noise?", o:["Yes","Never"], c:1},
-        {q:"What is a 'seismic station'?", o:["Office","Monitoring point"], c:1},
-        {q:"Who calibrates seismic system?", o:["Anyone","Only specialist"], c:1},
-        {q:"What is a 'trigger level'?", o:["Alarm point","Set magnitude"], c:1},
-        {q:"Can you enter after rockburst?", o:["Yes","Only after examination"], c:1},
-        {q:"What is a 'seismic code'?", o:["Secret","Emergency procedure"], c:1}
+    electrical: {name:"UNDERGROUND ELECTRICAL SAFETY", q: [
+        {q:"Who may perform work on electrical apparatus?", o:["Any miner","Only competent authorized person"], c:1, e:"Only persons registered and authorised under the regulations may work on electrical apparatus."},
+        {q:"What is the main hazard of trailing cables?", o:["Tripping","Damage leading to shock or fire"], c:1, e:"Mechanical damage to insulation can expose live conductors, causing shock or methane ignition."},
+        {q:"Can you work on live electrical equipment?", o:["Yes, if quick","Never, must be isolated"], c:1, e:"All work on electrical apparatus must be done dead; live work is strictly prohibited underground."},
+        {q:"What must be done before working on electrical machinery?", o:["Nothing","Lockout and tagout"], c:1, e:"Isolation, lockout, tagout, and testing for dead are mandatory steps."},
+        {q:"Flameproof equipment is required underground to prevent?", o:["Dust","Ignition of methane"], c:1, e:"Flameproof enclosures contain internal explosions without igniting surrounding methane."},
+        {q:"What is an arc flash?", o:["Short circuit","Uncontrolled electrical discharge"], c:1, e:"Arc flash is a violent release of energy from an electrical fault, causing severe burns and blast."},
+        {q:"Helmet light assemblies must comply with?", o:["Any standard","SANS 1438"], c:1, e:"Cap lamps must meet SANS 1438 for flameproof construction and battery safety."},
+        {q:"Who approves electrical reticulation design?", o:["Shift boss","Competent professional engineer"], c:1, e:"Designs must be approved by a registered professional electrical engineer."},
+        {q:"Trailing cables must be protected from?", o:["Dust only","Mechanical damage"], c:1, e:"Cables must be hung or protected to prevent vehicle damage."},
+        {q:"What gas is produced when charging batteries?", o:["Oxygen","Hydrogen"], c:1, e:"Hydrogen gas evolved during charging is highly explosive in confined spaces."},
+        {q:"Battery charging stations must have?", o:["Nothing special","Ventilation and no smoking"], c:1, e:"Forced ventilation and no ignition sources are required to disperse hydrogen."},
+        {q:"Can water be used on electrical fires?", o:["Always","No, use dry extinguisher"], c:1, e:"Water conducts electricity; only CO₂ or dry powder extinguishers may be used."},
+        {q:"What is required for portable electrical tools underground?", o:["Normal plugs","Flameproof and earth leakage"], c:1, e:"Tools must be flameproof with 30 mA earth leakage protection."},
+        {q:"Earth leakage protection is mandatory on?", o:["High voltage only","All electrical apparatus"], c:1, e:"Earth leakage relays are required on all underground electrical supplies."},
+        {q:"Who tests electrical installations?", o:["Anyone","Competent person"], c:1, e:"Only competent authorised persons may test and certify installations."},
+        {q:"Overhead power lines underground must have?", o:["No protection","Guards or barriers"], c:1, e:"Physical guards or warning signs must prevent contact by vehicles."},
+        {q:"What is a 'competent person' for electrical work?", o:["Trained miner","Registered and experienced"], c:1, e:"Competent persons must hold formal electrical qualification and mine authorisation."},
+        {q:"Can flexible cables be repaired with tape?", o:["Yes","Only with proper vulcanizing"], c:1, e:"Temporary tape repairs are not permitted; proper vulcanised joints are required."},
+        {q:"What causes most electrical accidents underground?", o:["Water","Improper isolation"], c:1, e:"Failure to properly isolate and test for dead is the leading cause."},
+        {q:"Substations underground must be?", o:["Open","Enclosed and locked"], c:1, e:"Substations must be flameproof, locked, and access-controlled."},
+        {q:"What is the purpose of earthing?", o:["Grounding current","Prevent shock"], c:1, e:"Earthing provides a low-resistance path for fault current to trip protection."},
+        {q:"Can you overload electrical circuits?", o:["Yes","Never"], c:1, e:"Overloading causes overheating and potential ignition of methane."},
+        {q:"Portable transformers must be?", o:["Any type","Flameproof"], c:1, e:"All transformers underground must be flameproof certified."},
+        {q:"What is required after electrical maintenance?", o:["Nothing","Testing and certification"], c:1, e:"Post-maintenance testing and sign-off by authorised person is mandatory."},
+        {q:"Electrical tools must be inspected?", o:["Monthly","Before each use"], c:1, e:"Pre-use visual inspection of cables and plugs is required."},
+        {q:"What is a 'dead' circuit?", o:["Switched off","Tested and proven no voltage"], c:1, e:"Dead means isolated, locked, and tested with an approved voltage indicator."},
+        {q:"Who issues permit to work on electrical?", o:["Supervisor","Authorized person"], c:1, e:"Only an authorised electrical person may issue the permit."},
+        {q:"Cable joints underground must be?", o:["Taped","Flameproof"], c:1, e:"All joints must be made in flameproof joint boxes."},
+        {q:"What is the risk of damaged insulation?", o:["Minor","Electric shock"], c:1, e:"Damaged insulation exposes live conductors, risking shock or arc flash."},
+        {q:"Lightning arrestors are required on?", o:["Surface only","Surface power lines"], c:1, e:"Surge arrestors protect surface supply from lightning strikes."},
+        {q:"Can non-flameproof equipment be used underground?", o:["Yes","Never"], c:1, e:"All electrical equipment underground must be flameproof or intrinsically safe."},
+        {q:"What must be displayed on electrical panels?", o:["Nothing","Warnings and ratings"], c:1, e:"Danger notices, voltage ratings, and responsible person details must be displayed."},
+        {q:"Electrical records must be kept for?", o:["1 year","As required by COP"], c:1, e:"Examination and test records must be retained per the mine's Code of Practice."},
+        {q:"Who reports electrical defects?", o:["Only electrician","All employees"], c:1, e:"Every employee has a duty to report defects immediately."},
+        {q:"What is 'intrinsically safe' equipment?", o:["Low power","Cannot cause ignition"], c:1, e:"Intrinsically safe circuits limit energy to prevent spark ignition of methane."},
+        {q:"Power must be isolated during?", o:["Blasting","Blasting nearby"], c:1, e:"Power must be cut in the blasting zone to prevent stray currents detonating explosives."},
+        {q:"What is a 'switch handle lock' for?", o:["Security","Lockout"], c:1, e:"Padlocks on switch handles prevent unauthorised re-energisation."},
+        {q:"Can you touch exposed wires?", o:["If insulated","Never"], c:1, e:"Exposed conductors must always be treated as live."},
+        {q:"Electrical safety is part of?", o:["Optional training","Mandatory induction"], c:1, e:"Electrical safety forms part of compulsory induction and refresher training."},
+        {q:"What is the voltage limit for handheld tools?", o:["220V","110V or less"], c:1, e:"Handheld tools are limited to 110 V for reduced shock severity."},
+        {q:"Cables must not lie in?", o:["Dry areas","Water"], c:1, e:"Water reduces insulation resistance and increases shock risk."},
+        {q:"Who approves electrical COP?", o:["Manager","Inspector"], c:1, e:"The Principal Inspector of Mines approves the electrical Code of Practice."},
+        {q:"Electrical fires produce?", o:["Smoke only","Toxic fumes"], c:1, e:"Burning insulation releases highly toxic fumes including dioxins."},
+        {q:"What is 'double insulation'?", o:["Extra protection","No earth needed"], c:1, e:"Double-insulated tools have two independent insulation layers and do not require earthing."},
+        {q:"Can you use damaged plugs?", o:["Yes","Never"], c:1, e:"Damaged plugs must be replaced immediately."},
+        {q:"Electrical apparatus must be examined?", o:["Annually","Regularly as per plan"], c:1, e:"Statutory examinations follow schedules in the COP."},
+        {q:"What is a 'ground fault'?", o:["Normal","Leakage to earth"], c:1, e:"Ground fault is unintended current flow to earth, detected by earth leakage relays."},
+        {q:"All electrical work requires?", o:["Nothing","Risk assessment"], c:1, e:"Formal risk assessment is mandatory before any electrical task."},
+        {q:"Who trains electrical workers?", o:["Anyone","Accredited"], c:1, e:"Training must be provided by MQA-accredited providers."},
+        {q:"Electrical safety rules are in?", o:["MHSA only","Chapter 3 regulations"], c:1, e:"Detailed electrical regulations are contained in Chapter 3 of the MHSA regulations."}
     ]},
-    blasting: {name:"BLASTING & EXPLOSIVES", q: [
-        {q:"Who may handle explosives?", o:["Any miner","Only competent blaster"], c:1},
-        {q:"Minimum age for blasting certificate?", o:["18","21"], c:1},
-        {q:"What is a 'priming'?", o:["First charge","Initiator placement"], c:1},
-        {q:"Can you store explosives underground?", o:["Yes","Only in approved magazine"], c:1},
-        {q:"What is a 'misfire'?", o:["Failed blast","Unexploded charge"], c:1},
-        {q:"Who investigates misfires?", o:["Anyone","Only blaster"], c:1},
-        {q:"What is 'ANFO'?", o:["Explosive type","Ammonium Nitrate Fuel Oil"], c:1},
-        {q:"Can you smoke near explosives?", o:["Yes","Never"], c:1},
-        {q:"What is a 'booster'?", o:["Main charge","High explosive"], c:1},
-        {q:"Who signs blasting register?", o:["Anyone","Only blaster"], c:1},
-        {q:"What is a 'shock tube'?", o:["Detonator","Non-electric"], c:1},
-        {q:"Can you mix explosives?", o:["Yes","Only authorized"], c:1},
-        {q:"What is a 'stemming'?", o:["Plug","Hole filler"], c:1},
-        {q:"Who checks blast clearance?", o:["Anyone","Blasting officer"], c:1},
-        {q:"What is a 'delay detonator'?", o:["Instant","Timed"], c:1},
-        {q:"Can you blast without permit?", o:["Yes","Never"], c:1},
-        {q:"What is a 'magazine'?", o:["Store","Explosives storage"], c:1},
-        {q:"Who transports explosives?", o:["Anyone","Only licensed"], c:1},
-        {q:"What is a 'firing line'?", o:["Cable","Blast circuit"], c:1},
-        {q:"Can you re-use detonators?", o:["Yes","Never"], c:1},
-        {q:"What is a 'blast guard'?", o:["Security","Person at barricade"], c:1},
-        {q:"Who records blast details?", o:["Anyone","Only blaster"], c:1},
-        {q:"What is a 'face advance'?", o:["Progress","Blast result"], c:1},
-        {q:"Can you blast in fault zone?", o:["Yes","Only with approval"], c:1},
-        {q:"What is a 'blast pattern'?", o:["Random","Designed holes"], c:1}
-    ]},
-    evacuation: {name:"EMERGENCY EVACUATION", q: [
-        {q:"What is the emergency signal?", o:["Siren","7 bells repeated"], c:1},
-        {q:"Where do you go on evacuation?", o:["Surface","Nearest refuge bay"], c:1},
-        {q:"Who leads evacuation?", o:["Anyone","Shift boss"], c:1},
-        {q:"Can you use main shaft?", o:["Yes","Only if safe"], c:1},
-        {q:"What is a 'stink damp'?", o:["Smell","CO after fire"], c:1},
-        {q:"Who checks headcount?", o:["Anyone","Safety officer"], c:1},
-        {q:"What is a 'self-rescuer'?", o:["SCSR","Breathing device"], c:1},
-        {q:"Can you run during evacuation?", o:["Yes","No - walk fast"], c:1},
-        {q:"What is a 'refuge bay'?", o:["Rest area","Sealed safe room"], c:1},
-        {q:"Who activates emergency plan?", o:["Anyone","Proto team"], c:1},
-        {q:"What is a 'proto team'?", o:["Rescue team","Trained rescuers"], c:1},
-        {q:"Can you go back for tools?", o:["Yes","Never"], c:1},
-        {q:"What is a 'cascade system'?", o:["Air supply","Oxygen delivery"], c:1},
-        {q:"Who carries extra SCSR?", o:["Anyone","Team leader"], c:1},
-        {q:"What is a 'tag board'?", o:["Notice board","Headcount system"], c:1},
-        {q:"Can you use lift during fire?", o:["Yes","Never"], c:1},
-        {q:"What is a 'fire round'?", o:["Blasting","Emergency blast"], c:1},
-        {q:"Who declares all clear?", o:["Shift boss","Mine Manager"], c:1},
-        {q:"What is a 'smoke helmet'?", o:["Old device","Breathing apparatus"], c:1},
-        {q:"Can you evacuate alone?", o:["Yes","Never"], c:1},
-        {q:"What is a 'secondary exit'?", o:["Back door","Escape route"], c:1},
-        {q:"Who trains evacuation?", o:["Anyone","Safety department"], c:1},
-        {q:"What is a 'muster point'?", o:["Meeting place","Assembly area"], c:1},
-        {q:"Can you drive during evacuation?", o:["Yes","Only authorized"], c:1},
-        {q:"What is a 'roll call'?", o:["Attendance","Headcount"], c:1}
-    ]},
-    fire: {name:"FIRE UNDERGROUND", q: [
-        {q:"First action on fire?", o:["Fight it","Activate alarm + evacuate"], c:1},
-        {q:"What is a 'fire triangle'?", o:["Shape","Fuel, oxygen, heat"], c:1},
-        {q:"Can you use water on electrical fire?", o:["Yes","Never"], c:1},
-        {q:"Who fights underground fires?", o:["Anyone","Only proto team"], c:1},
-        {q:"What is a 'fire door'?", o:["Normal door","Sealed fire barrier"], c:1},
-        {q:"Can you open fire doors?", o:["Yes","Only during emergency"], c:1},
-        {q:"What is a 'smoke inhalation'?", o:["Minor","Leading cause of death"], c:1},
-        {q:"Who declares fire emergency?", o:["Anyone","Shift boss"], c:1},
-        {q:"What is a 'fire round'?", o:["Blasting","Emergency blast"], c:1},
-        {q:"Can you re-enter after fire?", o:["Yes","Only after examination"], c:1},
-        {q:"What is a 'CO monitor'?", o:["Gas detector","Carbon monoxide"], c:1},
-        {q:"Who checks fire extinguishers?", o:["Anyone","Only safety officer"], c:1},
-        {q:"What is a 'fire suppression system'?", o:["Water","Automatic on vehicles"], c:1},
-        {q:"Can you store diesel underground?", o:["Yes","Only in approved tanks"], c:1},
-        {q:"What is a 'hot work permit'?", o:["Welding permit","Required for cutting"], c:1},
-        {q:"Who approves hot work?", o:["Anyone","Safety officer"], c:1},
-        {q:"What is a 'fire watch'?", o:["Observer","Person monitoring"], c:1},
-        {q:"Can you smoke underground?", o:["Yes","Never"], c:1},
-        {q:"What is a 'fire damper'?", o:["Valve","Air control"], c:1},
-        {q:"Who trains fire fighting?", o:["Anyone","Proto team"], c:1},
-        {q:"What is a 'fire break'?", o:["Gap","Sealed area"], c:1},
-        {q:"Can you use foam on oil fire?", o:["Yes","Only Class B"], c:1},
-        {q:"What is a 'fire load'?", o:["Heat","Fuel amount"], c:1},
-        {q:"Who records fire incidents?", o:["Anyone","Safety department"], c:1},
-        {q:"What is a 'fire drill'?", o:["Practice","Mandatory monthly"], c:1}
+    mhsa: {name:"MHSA 1996 REGULATIONS", q: [
+        {q:"What is the main purpose of MHSA 1996?", o:["Production","Health and safety of miners"], c:1, e:"The primary objective is to protect the health and safety of persons at mines."},
+        {q:"Who must ensure safety at the mine?", o:["Employees","Employer"], c:1, e:"Section 5 places the duty on the employer (owner) to ensure safety."},
+        {q:"Can employees refuse dangerous work?", o:["No","Yes, right to leave"], c:1, e:"Section 23 allows employees to withdraw from unsafe areas without fear of dismissal."},
+        {q:"Who appoints the mine manager?", o:["Inspector","Employer"], c:1, e:"The employer appoints a competent manager with the required certificate."},
+        {q:"What must employer provide for training?", o:["Nothing","Health and safety training"], c:1, e:"Adequate health and safety training must be provided free of charge."},
+        {q:"Employees must report?", o:["Production","Unsafe conditions"], c:1, e:"Employees have a duty to report any unsafe situation immediately."},
+        {q:"What is a health and safety representative?", o:["Supervisor","Elected employee"], c:1, e:"Health and safety reps are elected by employees in defined areas."},
+        {q:"Can employer charge for PPE?", o:["Yes","No"], c:1, e:"PPE must be provided free of charge and maintained by the employer."},
+        {q:"What is the role of MHSC?", o:["Production","Advise on health and safety"], c:1, e:"The Mine Health and Safety Council advises the Minister on policy and standards."},
+        {q:"Employer must prepare?", o:["Nothing","Code of Practice"], c:1, e:"Codes of Practice must be drawn up for significant risks."},
+        {q:"Who conducts inquiries into accidents?", o:["Employer only","Inspector"], c:1, e:"Formal inquiries into serious accidents are presided over by the Inspectorate."},
+        {q:"What is tripartite structure?", o:["One party","Government, employer, unions"], c:1, e:"Decisions are made with input from state, employers, and organised labour."},
+        {q:"Juveniles underground prohibited under?", o:["18","Specific age"], c:1, e:"Persons under 18 may not work underground."},
+        {q:"Employer must conduct?", o:["Risk assessments","Risk assessments"], c:1, e:"Continuous risk assessment is a cornerstone of the Act."},
+        {q:"What is mandatory COP for?", o:["All hazards","Significant risks"], c:1, e:"COPs are mandatory for risks identified as significant."},
+        {q:"Employees must cooperate with?", o:["Production","Safety duties"], c:1, e:"Employees must cooperate in fulfilling safety obligations."},
+        {q:"What is the right to withdraw?", o:["For pay","Dangerous place"], c:1, e:"Employees may leave a workplace they reasonably believe is dangerous."},
+        {q:"Who pays health and safety reps?", o:["Union","Employer"], c:1, e:"Reps must be paid normal wages while performing safety duties."},
+        {q:"Medical surveillance is?", o:["Optional","Mandatory"], c:1, e:"Mandatory for employees exposed to health hazards."},
+        {q:"What is the inspectorate for?", o:["Enforcement","Enforcement"], c:1, e:"The Inspectorate enforces compliance and investigates incidents."},
+        {q:"Offences under MHSA can lead to?", o:["Warning","Fines or imprisonment"], c:1, e:"Serious contraventions carry criminal penalties including jail."},
+        {q:"Employer must supply?", o:["Tools only","PPE free"], c:1, e:"Suitable PPE must be provided at no cost to employees."},
+        {q:"What is occupational hygiene?", o:["Cleaning","Measuring hazards"], c:1, e:"Systematic measurement and control of workplace stressors."},
+        {q:"Who establishes MQA?", o:["MHSA","MHSA"], c:1, e:"The Mining Qualifications Authority is established under the Act."},
+        {q:"Employees must take care of?", o:["Production","Own and others safety"], c:1, e:"Section 22 requires reasonable care for own and fellow workers’ safety."},
+        {q:"What is a serious injury?", o:["Minor","Reportable"], c:1, e:"Injuries causing unconsciousness, amputation, or likely permanent disability."},
+        {q:"Employer must investigate?", o:["All incidents","Accidents"], c:1, e:"All reportable accidents and dangerous occurrences must be investigated."},
+        {q:"What is the annual report for?", o:["Production","Health and safety"], c:1, e:"Annual report to the Inspectorate on health and safety performance."},
+        {q:"No discrimination for?", o:["Reporting hazards","Reporting hazards"], c:1, e:"Protection against victimisation for raising safety concerns."},
+        {q:"What is a refuge bay?", o:["Rest area","Emergency shelter"], c:1, e:"Permanent place of safety in case of fire or irrespirable atmosphere."},
+        {q:"Ventilation is regulated under?", o:["MHSA","MHSA"], c:1, e:"Detailed ventilation requirements are in Chapter 8 of the regulations."},
+        {q:"Who approves plans?", o:["Manager","Inspector"], c:1, e:"Significant mine plans must be approved by the Principal Inspector."},
+        {q:"What is lead exposure limit?", o:["None","Regulated"], c:1, e:"Lead in air and blood levels are strictly regulated."},
+        {q:"Noise limits are?", o:["100 dB","Regulated"], c:1, e:"Maximum 85 dB(A) 8-hour exposure; higher requires specific controls."},
+        {q:"What is the duty of CEO?", o:["None","Overall responsibility"], c:1, e:"Section 2A places ultimate responsibility on the CEO."},
+        {q:"Health and safety committees are?", o:["Optional","Mandatory"], c:1, e:"Required at mines with more than 20 employees."},
+        {q:"What is exit from mine?", o:["One way","Multiple"], c:1, e:"Every underground mine must have at least two separate exits."},
+        {q:"Emergency procedures must be?", o:["Written","Practiced"], c:1, e:"Written procedures must be regularly practiced through drills."},
+        {q:"Who can stop operations?", o:["Only manager","Inspector"], c:1, e:"Inspectors have the power to halt dangerous operations."},
+        {q:"What is hazardous substance?", o:["All chemicals","Defined"], c:1, e:"Substances listed or meeting criteria in the Hazardous Chemical Substances Regulations."},
+        {q:"Training records must be kept?", o:["No","Yes"], c:1, e:"Records of all safety training must be maintained."},
+        {q:"What is the role of unions?", o:["Production","Safety input"], c:1, e:"Unions appoint members to the MHSC and safety committees."},
+        {q:"MHSA applies to?", o:["Surface only","All mines"], c:1, e:"Applies to all mines, works, and machinery as defined."},
+        {q:"What is risk management?", o:["Optional","Mandatory"], c:1, e:"Continuous identification, assessment, and control of risks."},
+        {q:"Employees must use?", o:["Tools","PPE correctly"], c:1, e:"Employees must use provided PPE and follow safe procedures."},
+        {q:"What is investigation report?", o:["Internal","Submitted to inspector"], c:1, e:"Formal accident investigation reports must be submitted to the DMRE."},
+        {q:"Penalties for non-compliance?", o:["Minor","Severe"], c:1, e:"Contraventions can result in fines up to R1 million or imprisonment."},
+        {q:"What is continuous risk assessment?", o:["Once","Ongoing"], c:1, e:"Risk assessment is a dynamic process that must be repeated regularly."},
+        {q:"Employer must monitor?", o:["Production","Health"], c:1, e:"Occupational health monitoring for noise, dust, etc. is mandatory."},
+        {q:"What is the MHSA objective?", o:["Profit","Zero harm"], c:1, e:"The ultimate goal is the elimination of fatalities and harm."}
     ]},
     tmm: {name:"TRACKLESS MOBILE MACHINERY", q: [
-        {q:"What is TMM?", o:["Any vehicle","Trackless Mobile Machinery"], c:1},
-        {q:"Who may operate TMM?", o:["Anyone trained","Only competent operator"], c:1},
-        {q:"What is a 'collision avoidance system'?", o:["Optional","Mandatory on new TMM"], c:1},
-        {q:"Can you reverse without guide?", o:["Yes","Only with camera"], c:1},
-        {q:"What is a 'proximity detection'?", o:["Radar","Personnel warning"], c:1},
-        {q:"Who checks TMM daily?", o:["Anyone","Operator"], c:1},
-        {q:"What is a 'rollover protection'?", o:["ROPS","Safety cage"], c:1},
-        {q:"Can you carry passengers?", o:["Yes","Only in designated seats"], c:1},
-        {q:"What is a 'brake test'?", o:["Daily check","Mandatory"], c:1},
-        {q:"Who approves TMM modifications?", o:["Anyone","Engineering"], c:1},
-        {q:"What is a 'load haul dumper'?", o:["LHD","Ore carrier"], c:1},
-        {q:"Can you exceed speed limit?", o:["Yes","Never"], c:1},
-        {q:"What is a 'traffic management plan'?", o:["Map","Legal requirement"], c:1},
-        {q:"Who trains TMM operators?", o:["Anyone","Only accredited"], c:1},
-        {q:"What is a 'derailment'?", o:["Accident","Off road"], c:1},
-        {q:"Can you park on incline?", o:["Yes","Only with chocks"], c:1},
-        {q:"What is a 'light vehicle'?", o:["Bakkie","Underground utility"], c:1},
-        {q:"Who checks TMM lights?", o:["Anyone","Operator"], c:1},
-        {q:"What is a 'fatigue monitor'?", o:["Camera","Driver alertness"], c:1},
-        {q:"Can you use phone while driving?", o:["Yes","Never"], c:1},
-        {q:"What is a 'TMM register'?", o:["List","All machines"], c:1},
-        {q:"Who reports TMM incidents?", o:["Anyone","Operator"], c:1},
-        {q:"What is a 'service brake'?", o:["Main brake","Emergency brake"], c:1},
-        {q:"Can you modify TMM?", o:["Yes","Only with approval"], c:1},
-        {q:"What is a 'TMM code of practice'?", o:["Guideline","Legal document"], c:1}
+        {q:"What is TMM?", o:["Any vehicle","Trackless Mobile Machinery"], c:1, e:"TMM refers to all self-propelled mobile machines without tracks used underground."},
+        {q:"Who may operate TMM?", o:["Anyone trained","Only competent operator"], c:1, e:"Only operators holding valid competency certificates may operate TMM."},
+        {q:"What is a 'collision avoidance system'?", o:["Optional","Mandatory on new TMM"], c:1, e:"Collision avoidance/proximity detection systems are mandatory on new and retrofitted machines."},
+        {q:"Can you reverse without guide?", o:["Yes","Only with camera"], c:1, e:"Reversing requires functional reverse camera or a banksman/guide."},
+        {q:"What is a 'proximity detection'?", o:["Radar","Personnel warning"], c:1, e:"PDS warns or intervenes when personnel enter dangerous zones around TMM."},
+        {q:"Who checks TMM daily?", o:["Anyone","Operator"], c:1, e:"The operator must conduct and record a pre-use inspection daily."},
+        {q:"What is a 'rollover protection'?", o:["ROPS","Safety cage"], c:1, e:"ROPS (Roll-Over Protective Structure) protects the operator in case of rollover."},
+        {q:"Can you carry passengers?", o:["Yes","Only in designated seats"], c:1, e:"Passengers only in certified passenger compartments or seats."},
+        {q:"What is a 'brake test'?", o:["Daily check","Mandatory"], c:1, e:"Service and parking brake performance must be tested daily."},
+        {q:"Who approves TMM modifications?", o:["Anyone","Engineering"], c:1, e:"All modifications must be approved by the mine’s engineering authority."},
+        {q:"What is a 'load haul dumper'?", o:["LHD","Ore carrier"], c:1, e:"LHD is the common term for load-haul-dump machines."},
+        {q:"Can you exceed speed limit?", o:["Yes","Never"], c:1, e:"Speed limits are set based on roadway conditions and must never be exceeded."},
+        {q:"What is a 'traffic management plan'?", o:["Map","Legal requirement"], c:1, e:"A formal traffic management plan is mandatory under the TMM regulations."},
+        {q:"Who trains TMM operators?", o:["Anyone","Only accredited"], c:1, e:"Training must be conducted by MQA-accredited training providers."},
+        {q:"What is a 'derailment'?", o:["Accident","Off road"], c:1, e:"When a TMM leaves the designated roadway."},
+        {q:"Can you park on incline?", o:["Yes","Only with chocks"], c:1, e:"Wheels must be chocked and brake engaged on inclines."},
+        {q:"What is a 'light vehicle'?", o:["Bakkie","Underground utility"], c:1, e:"Light diesel or battery utility vehicles used underground."},
+        {q:"Who checks TMM lights?", o:["Anyone","Operator"], c:1, e:"Operator must verify all lights are functional during pre-use check."},
+        {q:"What is a 'fatigue monitor'?", o:["Camera","Driver alertness"], c:1, e:"Systems monitor operator eye closure and head position to detect fatigue."},
+        {q:"Can you use phone while driving?", o:["Yes","Never"], c:1, e:"Hand-held communication while operating TMM is prohibited."},
+        {q:"What is a 'TMM register'?", o:["List","All machines"], c:1, e:"A register of all TMM with unique IDs and maintenance records."},
+        {q:"Who reports TMM incidents?", o:["Anyone","Operator"], c:1, e:"All persons witnessing an incident must report it immediately."},
+        {q:"What is a 'service brake'?", o:["Main brake","Emergency brake"], c:1, e:"The service brake is the primary foot brake for normal stopping."},
+        {q:"Can you modify TMM?", o:["Yes","Only with approval"], c:1, e:"Modifications require engineering approval and risk assessment."},
+        {q:"What is a 'TMM code of practice'?", o:["Guideline","Legal document"], c:1, e:"The TMM COP is a mandatory standard under MHSA Chapter 8."}
     ]},
     winders: {name:"WINDERS & HOISTING SYSTEMS", q: [
-        {q:"Who may operate a mine winder?", o:["Any driver","Only competent winder driver"], c:1},
-        {q:"What is the emergency stop signal?", o:["3 bells","7 bells repeated"], c:1},
-        {q:"What is a 'double drum winder'?", o:["Two ropes","Two drums"], c:1},
-        {q:"Who checks the rope condition daily?", o:["Anyone","Only winder driver"], c:1},
-        {q:"What is a 'lily controller'?", o:["Speed control","Safety device"], c:1},
-        {q:"Can you ride the kibble?", o:["Yes","Only authorized personnel"], c:1},
-        {q:"What is a 'safety catch'?", o:["Brake","Emergency arrestor"], c:1},
-        {q:"Who approves winder modifications?", o:["Shift boss","Mechanical Engineer"], c:1},
-        {q:"What is a 'rope test'?", o:["Pull test","Non-destructive"], c:1},
-        {q:"Can you overload the cage?", o:["Yes","Never"], c:1},
-        {q:"What is a 'headgear'?", o:["Helmet","Shaft top structure"], c:1},
-        {q:"Who checks brakes before shift?", o:["Anyone","Winder driver"], c:1},
-        {q:"What is a 'suicide circuit'?", o:["Emergency stop","Field reversal"], c:1},
-        {q:"Can you talk on phone in winder house?", o:["Yes","Never"], c:1},
-        {q:"What is a 'depth indicator'?", o:["Gauge","Position display"], c:1},
-        {q:"Who records winder logbook?", o:["Anyone","Only driver"], c:1},
-        {q:"What is a 'slack rope'?", o:["Normal","Dangerous condition"], c:1},
-        {q:"Can you wind during storm?", o:["Yes","Only if safe"], c:1},
-        {q:"What is a 'cage gate interlock'?", o:["Safety switch","Prevents movement"], c:1},
-        {q:"Who tests emergency brakes?", o:["Anyone","Only weekly by driver"], c:1},
-        {q:"What is a 'winder house'?", o:["Office","Control room"], c:1},
-        {q:"Can you leave winder unattended?", o:["Yes","Never"], c:1},
-        {q:"What is a 'drum brake'?", o:["Main brake","Emergency brake"], c:1},
-        {q:"Who calibrates depth indicator?", o:["Anyone","Only specialist"], c:1},
-        {q:"What is a 'man-winding'?", o:["Material only","Personnel transport"], c:1}
+        {q:"Who may operate a mine winder?", o:["Any driver","Only competent winder driver"], c:1, e:"Only persons holding a valid winder driver certificate of competency may operate."},
+        {q:"What is the emergency stop signal?", o:["3 bells","7 bells repeated"], c:1, e:"Seven bells repeated is the universal emergency stop signal."},
+        {q:"What is a 'double drum winder'?", o:["Two ropes","Two drums"], c:1, e:"Double drum winders use two drums for balance rope systems."},
+        {q:"Who checks the rope condition daily?", o:["Anyone","Only winder driver"], c:1, e:"The winder driver must perform and record daily rope inspections."},
+        {q:"What is a 'lily controller'?", o:["Speed control","Safety device"], c:1, e:"The lily controller limits speed and prevents over-wind."},
+        {q:"Can you ride the kibble?", o:["Yes","Only authorized personnel"], c:1, e:"Only authorised persons with proper training may ride material conveyances."},
+        {q:"What is a 'safety catch'?", o:["Brake","Emergency arrestor"], c:1, e:"Safety catches arrest the conveyance in case of over-wind."},
+        {q:"Who approves winder modifications?", o:["Shift boss","Mechanical Engineer"], c:1, e:"Modifications require approval by the appointed engineer (16.1)."},
+        {q:"What is a 'rope test'?", o:["Pull test","Non-destructive"], c:1, e:"Regular electromagnetic non-destructive testing plus sample destructive tests."},
+        {q:"Can you overload the cage?", o:["Yes","Never"], c:1, e:"Overloading compromises braking and rope safety factors."},
+        {q:"What is a 'headgear'?", o:["Helmet","Shaft top structure"], c:1, e:"The headgear/sheave wheel structure at the top of the shaft."},
+        {q:"Who checks brakes before shift?", o:["Anyone","Winder driver"], c:1, e:"The driver must perform brake tests before commencing winding."},
+        {q:"What is a 'suicide circuit'?", o:["Emergency stop","Field reversal"], c:1, e:"Direct field reversal for emergency dynamic braking."},
+        {q:"Can you talk on phone in winder house?", o:["Yes","Never"], c:1, e:"No unauthorised communication to avoid distraction during critical operations."},
+        {q:"What is a 'depth indicator'?", o:["Gauge","Position display"], c:1, e:"Shows exact position of the conveyance in the shaft."},
+        {q:"Who records winder logbook?", o:["Anyone","Only driver"], c:1, e:"The winder driver must complete all statutory entries."},
+        {q:"What is a 'slack rope'?", o:["Normal","Dangerous condition"], c:1, e:"Slack rope can cause rope slip or derailment on drums."},
+        {q:"Can you wind during storm?", o:["Yes","Only if safe"], c:1, e:"Winding must stop during electrical storms to prevent lightning damage."},
+        {q:"What is a 'cage gate interlock'?", o:["Safety switch","Prevents movement"], c:1, e:"Interlocks prevent winding unless all gates are closed."},
+        {q:"Who tests emergency brakes?", o:["Anyone","Only weekly by driver"], c:1, e:"Weekly emergency brake drop tests are mandatory."},
+        {q:"What is a 'winder house'?", o:["Office","Control room"], c:1, e:"The secure control room housing winder controls and driver."},
+        {q:"Can you leave winder unattended?", o:["Yes","Never"], c:1, e:"The winder must never be left unattended while energised."},
+        {q:"What is a 'drum brake'?", o:["Main brake","Emergency brake"], c:1, e:"Mechanical brakes applied directly to the drum."},
+        {q:"Who calibrates depth indicator?", o:["Anyone","Only specialist"], c:1, e:"Calibration is done by competent instrumentation personnel."},
+        {q:"What is a 'man-winding'?", o:["Material only","Personnel transport"], c:1, e:"Winding of persons requires higher safety factors and controls."}
     ]},
-
-electrical: {name:"UNDERGROUND ELECTRICAL SAFETY", q: [
-        {q:"Who may perform work on electrical apparatus?", o:["Any miner","Only competent authorized person"], c:1},
-        {q:"What is the main hazard of trailing cables?", o:["Tripping","Damage leading to shock or fire"], c:1},
-        {q:"Can you work on live electrical equipment?", o:["Yes, if quick","Never, must be isolated"], c:1},
-        {q:"What must be done before working on electrical machinery?", o:["Nothing","Lockout and tagout"], c:1},
-        {q:"Flameproof equipment is required underground to prevent?", o:["Dust","Ignition of methane"], c:1},
-        {q:"What is an arc flash?", o:["Short circuit","Uncontrolled electrical discharge"], c:1},
-        {q:"Helmet light assemblies must comply with?", o:["Any standard","SANS 1438"], c:1},
-        {q:"Who approves electrical reticulation design?", o:["Shift boss","Competent professional engineer"], c:1},
-        {q:"Trailing cables must be protected from?", o:["Dust only","Mechanical damage"], c:1},
-        {q:"What gas is produced when charging batteries?", o:["Oxygen","Hydrogen"], c:1},
-        {q:"Battery charging stations must have?", o:["Nothing special","Ventilation and no smoking"], c:1},
-        {q:"Can water be used on electrical fires?", o:["Always","No, use dry extinguisher"], c:1},
-        {q:"What is required for portable electrical tools underground?", o:["Normal plugs","Flameproof and earth leakage"], c:1},
-        {q:"Earth leakage protection is mandatory on?", o:["High voltage only","All electrical apparatus"], c:1},
-        {q:"Who tests electrical installations?", o:["Anyone","Competent person"], c:1},
-        {q:"Overhead power lines underground must have?", o:["No protection","Guards or barriers"], c:1},
-        {q:"What is a 'competent person' for electrical work?", o:["Trained miner","Registered and experienced"], c:1},
-        {q:"Can flexible cables be repaired with tape?", o:["Yes","Only with proper vulcanizing"], c:1},
-        {q:"What causes most electrical accidents underground?", o:["Water","Improper isolation"], c:1},
-        {q:"Substations underground must be?", o:["Open","Enclosed and locked"], c:1},
-        {q:"What is the purpose of earthing?", o:["Grounding current","Prevent shock"], c:1},
-        {q:"Can you overload electrical circuits?", o:["Yes","Never"], c:1},
-        {q:"Portable transformers must be?", o:["Any type","Flameproof"], c:1},
-        {q:"What is required after electrical maintenance?", o:["Nothing","Testing and certification"], c:1},
-        {q:"Electrical tools must be inspected?", o:["Monthly","Before each use"], c:1},
-        {q:"What is a 'dead' circuit?", o:["Switched off","Tested and proven no voltage"], c:1},
-        {q:"Who issues permit to work on electrical?", o:["Supervisor","Authorized person"], c:1},
-        {q:"Cable joints underground must be?", o:["Taped","Flameproof"], c:1},
-        {q:"What is the risk of damaged insulation?", o:["Minor","Electric shock"], c:1},
-        {q:"Lightning arrestors are required on?", o:["Surface only","Surface power lines"], c:1},
-        {q:"Can non-flameproof equipment be used underground?", o:["Yes","Never"], c:1},
-        {q:"What must be displayed on electrical panels?", o:["Nothing","Warnings and ratings"], c:1},
-        {q:"Electrical records must be kept for?", o:["1 year","As required by COP"], c:1},
-        {q:"Who reports electrical defects?", o:["Only electrician","All employees"], c:1},
-        {q:"What is 'intrinsically safe' equipment?", o:["Low power","Cannot cause ignition"], c:1},
-        {q:"Power must be isolated during?", o:["Blasting","Blasting nearby"], c:1},
-        {q:"What is a 'switch handle lock' for?", o:["Security","Lockout"], c:1},
-        {q:"Can you touch exposed wires?", o:["If insulated","Never"], c:1},
-        {q:"Electrical safety is part of?", o:["Optional training","Mandatory induction"], c:1},
-        {q:"What is the voltage limit for handheld tools?", o:["220V","110V or less"], c:1},
-        {q:"Cables must not lie in?", o:["Dry areas","Water"], c:1},
-        {q:"Who approves electrical COP?", o:["Manager","Inspector"], c:1},
-        {q:"Electrical fires produce?", o:["Smoke only","Toxic fumes"], c:1},
-        {q:"What is 'double insulation'?", o:["Extra protection","No earth needed"], c:1},
-        {q:"Can you use damaged plugs?", o:["Yes","Never"], c:1},
-        {q:"Electrical apparatus must be examined?", o:["Annually","Regularly as per plan"], c:1},
-        {q:"What is a 'ground fault'?", o:["Normal","Leakage to earth"], c:1},
-        {q:"All electrical work requires?", o:["Nothing","Risk assessment"], c:1},
-        {q:"Who trains electrical workers?", o:["Anyone","Accredited"], c:1},
-        {q:"Electrical safety rules are in?", o:["MHSA only","Chapter 3 regulations"], c:1}
+    seismicity: {name:"SEISMICITY & ROCKBURSTS", q: [
+        {q:"Primary control for rockbursts?", o:["Mining rate","Support systems and sequencing"], c:1, e:"Engineered support and controlled mining sequences are primary controls."},
+        {q:"Who monitors seismic activity?", o:["Shift boss","Seismic department"], c:1, e:"Dedicated seismic monitoring with real-time analysis."},
+        {q:"Re-entry after seismic event?", o:["Immediately","After risk assessment"], c:1, e:"Re-entry only after ground stability confirmed by rock engineer."},
+        {q:"What is 'bracket pillar'?", o:["Support","Seismic energy absorption"], c:1, e:"Designed pillars to absorb and contain seismic energy."},
+        {q:"Seismic warning triggers?", o:["Noise","Micro-seismic events"], c:1, e:"Pre-defined magnitude thresholds trigger TARP responses."},
+        {q:"Who designs destress blasting?", o:["Blaster","Rock engineer"], c:1, e:"Destress patterns designed by geotechnical specialists."},
+        {q:"Netting for rockburst protection?", o:["Optional","Mandatory in high-risk"], c:1, e:"Dynamic support with energy-absorbing nets and bolts."},
+        {q:"Seismic data recording?", o:["Voluntary","Mandatory"], c:1, e:"Continuous seismic monitoring and data retention required."},
+        {q:"Who declares area safe post-event?", o:["Supervisor","Rock engineer"], c:1, e:"Only rock engineer may declare area safe after inspection."},
+        {q:"Rockburst COP required?", o:["No","Yes, mandatory"], c:1, e:"Specific code of practice for seismic risk management."}
     ]},
-
-    mhsa: {name:"MHSA 1996 REGULATIONS", q: [
-        {q:"What is the main purpose of MHSA 1996?", o:["Production","Health and safety of miners"], c:1},
-        {q:"Who must ensure safety at the mine?", o:["Employees","Employer"], c:1},
-        {q:"Can employees refuse dangerous work?", o:["No","Yes, right to leave"], c:1},
-        {q:"Who appoints the mine manager?", o:["Inspector","Employer"], c:1},
-        {q:"What must employer provide for training?", o:["Nothing","Health and safety training"], c:1},
-        {q:"Employees must report?", o:["Production","Unsafe conditions"], c:1},
-        {q:"What is a health and safety representative?", o:["Supervisor","Elected employee"], c:1},
-        {q:"Can employer charge for PPE?", o:["Yes","No"], c:1},
-        {q:"What is the role of MHSC?", o:["Production","Advise on health and safety"], c:1},
-        {q:"Employer must prepare?", o:["Nothing","Code of Practice"], c:1},
-        {q:"Who conducts inquiries into accidents?", o:["Employer only","Inspector"], c:1},
-        {q:"What is tripartite structure?", o:["One party","Government, employer, unions"], c:1},
-        {q:"Juveniles underground prohibited under?", o:["18","Specific age"], c:1},
-        {q:"Employer must conduct?", o:["Risk assessments","Risk assessments"], c:1},
-        {q:"What is mandatory COP for?", o:["All hazards","Significant risks"], c:1},
-        {q:"Employees must cooperate with?", o:["Production","Safety duties"], c:1},
-        {q:"What is the right to withdraw?", o:["For pay","Dangerous place"], c:1},
-        {q:"Who pays health and safety reps?", o:["Union","Employer"], c:1},
-        {q:"Medical surveillance is?", o:["Optional","Mandatory"], c:1},
-        {q:"What is the inspectorate for?", o:["Enforcement","Enforcement"], c:1},
-        {q:"Offences under MHSA can lead to?", o:["Warning","Fines or imprisonment"], c:1},
-        {q:"Employer must supply?", o:["Tools only","PPE free"], c:1},
-        {q:"What is occupational hygiene?", o:["Cleaning","Measuring hazards"], c:1},
-        {q:"Who establishes MQA?", o:["MHSA","MHSA"], c:1},
-        {q:"Employees must take care of?", o:["Production","Own and others safety"], c:1},
-        {q:"What is a serious injury?", o:["Minor","Reportable"], c:1},
-        {q:"Employer must investigate?", o:["All incidents","Accidents"], c:1},
-        {q:"What is the annual report for?", o:["Production","Health and safety"], c:1},
-        {q:"No discrimination for?", o:["Reporting hazards","Reporting hazards"], c:1},
-        {q:"What is a refuge bay?", o:["Rest area","Emergency shelter"], c:1},
-        {q:"Ventilation is regulated under?", o:["MHSA","MHSA"], c:1},
-        {q:"Who approves plans?", o:["Manager","Inspector"], c:1},
-        {q:"What is lead exposure limit?", o:["None","Regulated"], c:1},
-        {q:"Noise limits are?", o:["100 dB","Regulated"], c:1},
-        {q:"What is the duty of CEO?", o:["None","Overall responsibility"], c:1},
-        {q:"Health and safety committees are?", o:["Optional","Mandatory"], c:1},
-        {q:"What is exit from mine?", o:["One way","Multiple"], c:1},
-        {q:"Emergency procedures must be?", o:["Written","Practiced"], c:1},
-        {q:"Who can stop operations?", o:["Only manager","Inspector"], c:1},
-        {q:"What is hazardous substance?", o:["All chemicals","Defined"], c:1},
-        {q:"Training records must be kept?", o:["No","Yes"], c:1},
-        {q:"What is the role of unions?", o:["Production","Safety input"], c:1},
-        {q:"MHSA applies to?", o:["Surface only","All mines"], c:1},
-        {q:"What is risk management?", o:["Optional","Mandatory"], c:1},
-        {q:"Employees must use?", o:["Tools","PPE correctly"], c:1},
-        {q:"What is investigation report?", o:["Internal","Submitted to inspector"], c:1},
-        {q:"Penalties for non-compliance?", o:["Minor","Severe"], c:1},
-        {q:"What is continuous risk assessment?", o:["Once","Ongoing"], c:1},
-        {q:"Employer must monitor?", o:["Production","Health"], c:1},
-        {q:"What is the MHSA objective?", o:["Profit","Zero harm"], c:1}
+    blasting: {name:"BLASTING & EXPLOSIVES", q: [
+        {q:"Who may handle explosives?", o:["Any miner","Only competent blaster"], c:1, e:"Only persons holding a valid blasting certificate may handle explosives."},
+        {q:"Re-entry time after blasting?", o:["15 min","30 min minimum"], c:1, e:"Minimum 30 minutes for ventilation clearance and fume dissipation."},
+        {q:"Who guards blast site?", o:["Anyone","Appointed sentries"], c:1, e:"Trained sentries control access during charging and guarding."},
+        {q:"Misfire procedure?", o:["Wait 10 min","Wait 30 min + report"], c:1, e:"30-minute wait, then competent person investigates."},
+        {q:"Explosives transport?", o:["Any vehicle","Designated explosive vehicle"], c:1, e:"Dedicated, marked vehicles with fire suppression."},
+        {q:"Who approves blast design?", o:["Blaster","Rock engineer"], c:1, e:"Blast patterns require rock engineer approval."},
+        {q:"Initiation system?", o:["Fuse","Electronic or shock tube"], c:1, e:"Safety fuse prohibited underground; non-electronic preferred."},
+        {q:"Blast clearance radius?", o:["100 m","500 m minimum"], c:1, e:"Minimum 500 m clearance for underground blasts."},
+        {q:"Who records blast details?", o:["Operator","Blasting officer"], c:1, e:"Full details in statutory blast log."},
+        {q:"Secondary breaking method?", o:["Any","Controlled with explosives"], c:1, e:"Secondary breaking requires specific procedures."}
+    ]},
+    evacuation: {name:"EMERGENCY EVACUATION", q: [
+        {q:"Primary evacuation signal?", o:["Siren","Stench gas"], c:1, e:"Stench gas release is the primary underground evacuation trigger."},
+        {q:"Who activates evacuation?", o:["Anyone","Control room or manager"], c:1, e:"Only authorised personnel may initiate full evacuation."},
+        {q:"Evacuation route marking?", o:["Optional","Reflective signage"], c:1, e:"Clear, illuminated primary and secondary routes."},
+        {q:"SCSR cache locations?", o:["Work areas","Every 500 m"], c:1, e:"Additional SCSRs cached along escape routes."},
+        {q:"Who accounts for personnel?", o:["Supervisor","Section leaders"], c:1, e:"Roll call at refuge chambers and surface assembly points."},
+        {q:"Evacuation drill frequency?", o:["Annually","Quarterly"], c:1, e:"Full evacuation drills at least quarterly."},
+        {q:"Self-escape philosophy?", o:["Wait for rescue","Immediate self-escape"], c:1, e:"Personnel trained to self-escape using SCSRs."},
+        {q:"Refuge chamber duration?", o:["24 hours","36 hours minimum"], c:1, e:"Refuge chambers designed for 36-hour occupation."},
+        {q:"Who updates evacuation plan?", o:["Safety officer","Emergency team"], c:1, e:"Plan reviewed after incidents or layout changes."},
+        {q:"Communication during evacuation?", o:["Radio","Tagging system"], c:1, e:"Pedestrian tagging and radio check-in protocols."}
+    ]},
+    fire: {name:"FIRE UNDERGROUND", q: [
+        {q:"First action on discovering fire?", o:["Fight fire","Report and evacuate"], c:1, e:"Immediate reporting via radio and activation of evacuation if required."},
+        {q:"Who leads fire fighting?", o:["Anyone","Proto team"], c:1, e:"Trained proto (rescue) teams handle underground fire response."},
+        {q:"Fire suppression on vehicles?", o:["Optional","Mandatory"], c:1, e:"All diesel vehicles require automatic fire suppression systems."},
+        {q:"What is 'fire round'?", o:["Inspection","Designated fire patrol"], c:1, e:"Regular fire risk inspections by appointed persons."},
+        {q:"Conveyor belt fire protection?", o:["None","CO sensors and suppression"], c:1, e:"CO monitoring and water deluge systems."},
+        {q:"Who declares fire emergency?", o:["Supervisor","Mine manager"], c:1, e:"Incident command structure activated by manager."},
+        {q:"Refuge chamber fire rating?", o:["1 hour","4 hours"], c:1, e:"Chambers must withstand external fire for minimum 4 hours."},
+        {q:"Fire extinguisher inspection?", o:["Monthly","By competent person"], c:1, e:"Monthly checks recorded in fire equipment register."},
+        {q:"Hydraulic fluid requirement?", o:["Water-based","Fire-resistant"], c:1, e:"Only fire-resistant fluids permitted underground."},
+        {q:"Post-fire re-entry?", o:["Immediately","After air quality clearance"], c:1, e:"Re-entry only after full atmospheric testing and structural assessment."}
     ]}
-    
 };
 
-// Persistent scores stored in localStorage
 let scores = JSON.parse(localStorage.getItem('miningSafetyScores') || '{}');
 let quizStartTime = 0;
 
-const moduleKeys = [
-    "handover","lhd","drill","support","vent","rockfall","traffic","reentry",
-    "shaft_sinking","raise_drill","seismicity","blasting","evacuation","fire","tmm","winders","electrical","mhsa"
-];
+const moduleKeys = Object.keys(moduleNames);
 
 function renderModuleGrid() {
     const grid = document.getElementById('moduleGrid');
@@ -990,12 +825,9 @@ function renderModuleGrid() {
         const btn = document.createElement('div');
         btn.className = 'module-btn' + (['seismicity','blasting','evacuation','fire','tmm','winders'].includes(key) ? ' module-advanced' : '');
         btn.setAttribute('data-module', key);
-        btn.textContent = key === 'shaft_sinking' ? 'Shaft Sinking' :
-                         key === 'raise_drill' ? 'Raise Drilling' :
-                         key === 'winders' ? 'WINDERS & HOISTING' :
-                         key.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        let title = moduleNames[key] || key.replace(/_/g, ' ').toUpperCase();
+        btn.textContent = title;
         
-        // Add score badge if completed
         if (scores[key]) {
             const badge = document.createElement('div');
             badge.className = 'score-badge ' + (scores[key].passed ? 'passed' : 'failed');
@@ -1023,7 +855,7 @@ let currentQuiz = null;
 
 function getShuffledQuiz(moduleKey) {
     const base = baseQuiz[moduleKey];
-    if (!base) return {q: []};
+    if (!base || !base.q) return {q: []};
     
     const shuffled = {name: base.name, q: []};
     
@@ -1035,7 +867,7 @@ function getShuffledQuiz(moduleKey) {
             [options[i], options[j]] = [options[j], options[i]];
         }
         const newC = options.indexOf(correctAnswer);
-        shuffled.q.push({q: origQ.q, o: options, c: newC});
+        shuffled.q.push({q: origQ.q, o: options, c: newC, e: origQ.e || ''});
     });
     
     return shuffled;
@@ -1097,29 +929,47 @@ function showQuestion() {
     document.getElementById('qtext').textContent = question.q;
     const opts = document.getElementById('opts');
     opts.innerHTML = '';
+    opts.classList.remove('d-flex');
+    if (question.o.length === 2) opts.classList.add('d-flex');
+    
     question.o.forEach((opt, i) => {
         const btn = document.createElement('button');
         btn.className = 'quiz-btn';
         btn.textContent = opt;
-        btn.onclick = () => checkAns(i === question.c);
+        btn.onclick = () => checkAns(i === question.c, btn);
         opts.appendChild(btn);
     });
-    document.getElementById('fb').innerHTML = '';
+    document.getElementById('fb').style.display = 'none';
     document.getElementById('nextQ').style.display = 'none';
 }
 
-function checkAns(isCorrect) {
-    if(isCorrect) correct++;
-    document.getElementById('fb').innerHTML = isCorrect ?
-        '<span style="color:#00ff00">CORRECT</span>' :
-        '<span style="color:#ff0066">INCORRECT</span>';
+function checkAns(isCorrect, selectedBtn) {
+    if (isCorrect) correct++;
+    const question = currentQuiz.q[qi];
+    const opts = document.getElementById('opts');
+    Array.from(opts.children).forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === question.o[question.c]) {
+            btn.classList.add('correct');
+        }
+    });
+    if (!isCorrect) {
+        selectedBtn.classList.add('incorrect');
+    }
+    
+    const fb = document.getElementById('fb');
+    if (isCorrect) {
+        fb.innerHTML = '<div class="alert alert-success d-flex align-items-center"><i class="bi bi-check-circle-fill me-2"></i>Correct!</div>';
+    } else {
+        fb.innerHTML = `<div class="alert alert-danger d-flex align-items-center"><i class="bi bi-x-circle-fill me-2"></i>Incorrect! ${question.e}</div>`;
+    }
+    fb.style.display = 'block';
     document.getElementById('nextQ').style.display = 'block';
-    document.querySelectorAll('.quiz-btn').forEach(b => b.disabled = true);
 }
 
 function nextQ() {
     qi++;
-    if(qi < currentQuiz.q.length) {
+    if (qi < currentQuiz.q.length) {
         showQuestion();
     } else {
         showFinalResult();
@@ -1129,12 +979,11 @@ function nextQ() {
 function showFinalResult() {
     const total = currentQuiz.q.length;
     const percentage = Math.round((correct / total) * 100);
-    const passed = correct >= Math.ceil(total * 0.8);
+    const passed = percentage >= 80;
     const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-    const mins = Math.floor(timeTaken / 60).toString().padStart(2, '0');
-    const secs = (timeTaken % 60).toString().padStart(2, '0');
+    const mins = String(Math.floor(timeTaken / 60)).padStart(2, '0');
+    const secs = String(timeTaken % 60).padStart(2, '0');
 
-    // Save score
     scores[current] = {
         score: correct,
         total: total,
@@ -1145,10 +994,9 @@ function showFinalResult() {
     };
     localStorage.setItem('miningSafetyScores', JSON.stringify(scores));
 
-    // Update result screen
-    document.getElementById('resultText').innerHTML = passed ?
-        '<span style="color:#00ff00">COMPETENT — CLEARED FOR WORK</span>' :
-        '<span style="color:#ff0066">RE-TRAINING REQUIRED</span>';
+    document.getElementById('resultText').innerHTML = passed 
+        ? '<span style="color:#28a745">COMPETENT — CLEARED FOR WORK</span>' 
+        : '<span style="color:#dc3545">RE-TRAINING REQUIRED</span>';
     
     document.getElementById('resultScore').textContent = `${correct}/${total} (${percentage}%)`;
     document.getElementById('progressFill').style.width = percentage + '%';
@@ -1156,20 +1004,19 @@ function showFinalResult() {
     document.getElementById('questionsTotal').textContent = total;
     document.getElementById('correctAnswers').textContent = correct;
     document.getElementById('accuracy').textContent = percentage + '%';
-    document.getElementById('passMessage').textContent = passed ?
-        'Excellent work! You have demonstrated competency in this critical safety module.' :
-        'You need at least 80% to pass. Please review the training video and try again.';
+    document.getElementById('passMessage').textContent = passed 
+        ? 'Excellent work! You have demonstrated competency in this critical safety module.' 
+        : 'You need at least 80% to pass. Please review the training video and try again.';
 
     document.getElementById('quizPanel').style.display = 'none';
     document.getElementById('result').classList.remove('d-none');
 
-    // Update module grid and sidebar
     renderModuleGrid();
 }
 
 function retakeTest() {
     document.getElementById('result').classList.add('d-none');
-    startTest(); // Fresh shuffle and timer
+    startTest();
 }
 
 function backToModules() {
@@ -1179,10 +1026,8 @@ function backToModules() {
     document.getElementById('videoPlayer').src = '';
 }
 
-// Initialize grid on load
 renderModuleGrid();
 
-// YouTube API remains the same
 let player;
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -1197,10 +1042,3 @@ function onYouTubeIframeAPIReady() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
