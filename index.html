@@ -991,6 +991,11 @@ function hideAll() {
 function showScreen(id) {
     hideAll();
     document.getElementById(id).classList.remove('d-none');
+    
+    // Forcefully stop & unload YouTube video when leaving the video screen
+    if (id !== 'videoScreen') {
+        els.videoPlayer.src = '';
+    }
 }
 
 function updateProgress() {
@@ -1222,3 +1227,4 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
