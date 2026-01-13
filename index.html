@@ -1054,8 +1054,27 @@ function loadModule(moduleKey) {
 
 function startVideo() {
     if (!currentModule || !videos[currentModule]) return;
-    els.videoPlayer.src = videos[currentModule] + "?autoplay=1&rel=0";
+
+    // Best parameters for immediate play with sound after user interaction
+    const params = "?autoplay=1&mute=0&rel=0&modestbranding=1&showinfo=0&controls=1&enablejsapi=1";
+    
+    els.videoPlayer.src = videos[currentModule] + params;
+    
     showScreen('videoScreen');
+    
+    // Small fallback: force play via YouTube API (works in most cases)
+    setTimeout(() => {
+        if (els.videoPlayer.contentWindow) {
+            els.videoPlayer.contentWindow.postMessage(
+                JSON.stringify({
+                    event: "command",
+                    func: "playVideo",
+                    args: ""
+                }),
+                "*"
+            );
+        }
+    }, 500); // small delay to make sure iframe is ready
 }
 
 function startQuiz() {
@@ -1227,4 +1246,5 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
