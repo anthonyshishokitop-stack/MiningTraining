@@ -1054,27 +1054,17 @@ function loadModule(moduleKey) {
 
 function startVideo() {
     if (!currentModule || !videos[currentModule]) return;
-
-    // Best parameters for immediate play with sound after user interaction
-    const params = "?autoplay=1&mute=0&rel=0&modestbranding=1&showinfo=0&controls=1&enablejsapi=1";
     
-    els.videoPlayer.src = videos[currentModule] + params;
+    // Add autoplay=1 and make sure it's not muted (so sound plays immediately)
+    const videoUrl = videos[currentModule] + "?autoplay=1&rel=0&mute=0&enablejsapi=1";
     
+    els.videoPlayer.src = videoUrl;
     showScreen('videoScreen');
     
-    // Small fallback: force play via YouTube API (works in most cases)
-    setTimeout(() => {
-        if (els.videoPlayer.contentWindow) {
-            els.videoPlayer.contentWindow.postMessage(
-                JSON.stringify({
-                    event: "command",
-                    func: "playVideo",
-                    args: ""
-                }),
-                "*"
-            );
-        }
-    }, 500); // small delay to make sure iframe is ready
+    // Optional: Try to force play in case browser blocks autoplay
+    els.videoPlayer.addEventListener('load', () => {
+        els.videoPlayer.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    }, { once: true });
 }
 
 function startQuiz() {
@@ -1246,5 +1236,6 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
