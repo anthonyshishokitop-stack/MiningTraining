@@ -257,6 +257,37 @@
             </div>
         </div>
 
+        <!-- New Community Chat Screen (moved here as a sibling screen) -->
+        <div id="communityScreen" class="d-none container">
+            <h2 class="text-primary text-center mb-5 fw-bold">Mining Community Group</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
+                <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts! Discuss modules, share experiences, and collaborate in real-time.</p>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item"><i class="bi bi-chat-dots me-2"></i>Real-time text chat</li>
+                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging and recordings</li>
+                    <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2"></i>File uploads (videos, photos, documents)</li>
+                    <li class="list-group-item"><i class="bi bi-people me-2"></i>Unlimited participants – join via link or add friends</li>
+                </ul>
+                <div class="text-center">
+                    <a href="https://discord.gg/zCpNXWqT" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
+                        <i class="bi bi-discord me-2"></i> Join Discord Group Now
+                    </a>
+                    <p class="text-muted">Powered by Discord – free app download required for full features. Alternatively, ask an admin to add you using your Discord username.</p>
+                </div>
+                <!-- Optional Discord Widget Embed (shows server preview) -->
+                <div class="text-center mt-4">
+                    <!-- Replace YOUR_SERVER_ID with your actual Discord server ID if you want the widget -->
+                    <iframe src="https://discord.com/widget?id=1462449166218301605&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+                  
+                    <p class="small text-muted">1462449166218301605</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-secondary btn-lg px-4" onclick="backToModules()">Back to Modules</button>
+            </div>
+        </div>
+
         <!-- Dashboard -->
         <div id="dashboardScreen" class="d-none container">
             <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
@@ -326,10 +357,13 @@ const moduleNames = {
     evacuation: "Emergency Evacuation",
     fire: "Fire Monitoring, Prevention and Control",
     tmm: "Trackless Mobile Machinery",
-    winders: "Winding Plant, Shafts and Headgears"
+    winders: "Winding Plant, Shafts and Headgears",
+
+    community_chat: "Mining Community Group"
+
 };
 
-const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders'];
+const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
 
 const moduleIcons = {
     handover: "bi-arrow-left-right",
@@ -358,7 +392,10 @@ const moduleIcons = {
     evacuation: "bi-box-arrow-right",
     fire: "bi-fire",
     tmm: "bi-truck-flatbed",
-    winders: "bi-elevator"
+    winders: "bi-elevator",
+
+    community_chat: "bi-people-fill"
+
 };
 
 const videos = {
@@ -1155,7 +1192,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
     ]}
 
 
-
 };
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -1211,7 +1247,8 @@ const els = {
 // ──────────────────────────────────────────────────────────────────────────────
 
 function hideAll() {
-    document.querySelectorAll('#welcomeScreen, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #dashboardScreen')
+    // Added #communityScreen to the list
+    document.querySelectorAll('#welcomeScreen, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #communityScreen, #dashboardScreen')
         .forEach(el => el.classList.add('d-none'));
 }
 
@@ -1275,9 +1312,14 @@ function renderModules(filter = 'all', term = '') {
 
 function loadModule(moduleKey) {
     currentModule = moduleKey;
-    els.moduleTitle.textContent = moduleNames[moduleKey];
-    showScreen('moduleView');
+    if (moduleKey === 'community_chat') {
+        showScreen('communityScreen');
+    } else {
+        els.moduleTitle.textContent = moduleNames[moduleKey];
+        showScreen('moduleView');
+    }
 }
+
 
 function startVideo() {
     if (!currentModule || !videos[currentModule]) return;
@@ -1463,11 +1505,3 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
