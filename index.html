@@ -224,9 +224,6 @@
             <div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-4">
                 <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="text-center">
-                <button class="btn btn-outline-secondary btn-lg px-4" onclick="backToModule()">Back to Module</button>
-            </div>
         </div>
 
         <!-- Quiz -->
@@ -1525,6 +1522,7 @@ document.querySelectorAll('[data-filter]').forEach(btn => {
 });
 
 // Go back to module selection list (especially important on mobile)
+// Go back to module selection list (especially important on mobile)
 function backToModules() {
     const isMobile = window.innerWidth < 992;
 
@@ -1547,6 +1545,20 @@ function backToModules() {
     }
 }
 
+// Optional: also improve backToModule (when returning from video to module details)
+function backToModule() {
+    els.videoPlayer.src = ''; // Clear video
+    const isMobile = window.innerWidth < 992;
+
+    showScreen('moduleView');
+
+    if (isMobile) {
+        // Keep sidebar hidden, stay in content view
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('content-area').style.display = 'block';
+    }
+}
+
 
 function restartQuiz() {
     startQuiz();
@@ -1563,5 +1575,6 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
