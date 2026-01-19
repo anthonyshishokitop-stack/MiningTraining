@@ -194,9 +194,6 @@
 
         <!-- Module View -->
         <div id="moduleView" class="d-none">
-            <div class="text-center mb-4 d-lg-none">
-                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
-            </div>
             <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
@@ -214,16 +211,19 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
         </div>
 
         <!-- Video Player -->
         <div id="videoScreen" class="d-none container">
-            <div class="text-center mb-4 d-lg-none">
-                <button class="btn btn-outline-secondary" onclick="backToModule()">Back to Module</button>
-            </div>
             <div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-4">
                 <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
             </div>
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModule()">Back to Module</button>
+            </div>  
         </div>
 
         <!-- Quiz -->
@@ -240,9 +240,6 @@
 
         <!-- Results -->
         <div id="resultsScreen" class="d-none container">
-            <div class="text-center mb-4 d-lg-none">
-                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
-            </div>
             <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5">
                 <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
                 <div class="progress bg-light rounded-pill mb-4" style="height:40px;">
@@ -273,13 +270,15 @@
                     <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
                 </div>
             </div>
+           <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
+            
         </div>
 
         <!-- New Community Chat Screen (moved here as a sibling screen) -->
         <div id="communityScreen" class="d-none container">
-            <div class="text-center mb-4 d-lg-none">
-                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
-            </div>
+
             <h2 class="text-primary text-center mb-5 fw-bold">Mining Community Group</h2>
             <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
                 <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts! Discuss modules, share experiences, and collaborate in real-time.</p>
@@ -309,14 +308,14 @@
                     
                 </div>
             </div>
-
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
         </div>
 
         <!-- Dashboard -->
         <div id="dashboardScreen" class="d-none container">
-            <div class="text-center mb-4 d-lg-none">
-                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
-            </div>
+
             <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
             <div class="row g-4 mb-5">
                 <div class="col-md-4">
@@ -349,6 +348,11 @@
             </div>
         </div>
     </div>
+
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
+    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -1569,6 +1573,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
