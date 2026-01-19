@@ -1524,13 +1524,41 @@ document.querySelectorAll('[data-filter]').forEach(btn => {
     });
 });
 
-function backToModule() {
-    els.videoPlayer.src = '';
-    showScreen('moduleView');
+// Go back to module selection list (especially important on mobile)
+function backToModules() {
+    const isMobile = window.innerWidth < 992;
+
+    // Always show sidebar/module grid on mobile
+    if (isMobile) {
+        document.getElementById('sidebar').style.display = 'block';
+        document.getElementById('content-area').style.display = 'none';
+    }
+
+    // Hide all content screens
+    hideAll();
+
+    // Show welcome + module grid (which is inside sidebar)
+    // We don't need to show welcomeScreen explicitly on mobile
+    renderModules(); // refresh the module list just in case
+
+    // On desktop we still show welcome screen
+    if (!isMobile) {
+        document.getElementById('welcomeScreen').classList.remove('d-none');
+    }
 }
 
-function backToModules() {
-    showScreen('welcomeScreen');
+// Optional: also improve backToModule (when returning from video to module details)
+function backToModule() {
+    els.videoPlayer.src = ''; // Clear video
+    const isMobile = window.innerWidth < 992;
+
+    showScreen('moduleView');
+
+    if (isMobile) {
+        // Keep sidebar hidden, stay in content view
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('content-area').style.display = 'block';
+    }
 }
 
 function restartQuiz() {
@@ -1548,3 +1576,4 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
