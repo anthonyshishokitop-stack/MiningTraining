@@ -1547,19 +1547,6 @@ function backToModules() {
     }
 }
 
-// Optional: also improve backToModule (when returning from video to module details)
-function backToModule() {
-    els.videoPlayer.src = ''; // Clear video
-    const isMobile = window.innerWidth < 992;
-
-    showScreen('moduleView');
-
-    if (isMobile) {
-        // Keep sidebar hidden, stay in content view
-        document.getElementById('sidebar').style.display = 'none';
-        document.getElementById('content-area').style.display = 'block';
-    }
-}
 
 function restartQuiz() {
     startQuiz();
@@ -1576,4 +1563,5 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
