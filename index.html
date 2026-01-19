@@ -132,7 +132,20 @@
         }
 
         @media (max-width: 991px) {
-            #sidebar { max-height: 50vh; height: auto; border-right: none; border-bottom: 1px solid #dee2e6; }
+            #sidebar {
+                height: 100vh !important;
+                border-right: none;
+            }
+            #content-area {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                overflow: auto;
+                display: none;
+                z-index: 10;
+            }
         }
     </style>
 </head>
@@ -181,6 +194,9 @@
 
         <!-- Module View -->
         <div id="moduleView" class="d-none">
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
             <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
@@ -202,6 +218,9 @@
 
         <!-- Video Player -->
         <div id="videoScreen" class="d-none container">
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModule()">Back to Module</button>
+            </div>
             <div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-4">
                 <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
             </div>
@@ -224,6 +243,9 @@
 
         <!-- Results -->
         <div id="resultsScreen" class="d-none container">
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
             <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5">
                 <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
                 <div class="progress bg-light rounded-pill mb-4" style="height:40px;">
@@ -259,6 +281,9 @@
 
         <!-- New Community Chat Screen (moved here as a sibling screen) -->
         <div id="communityScreen" class="d-none container">
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
             <h2 class="text-primary text-center mb-5 fw-bold">Mining Community Group</h2>
             <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
                 <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts! Discuss modules, share experiences, and collaborate in real-time.</p>
@@ -298,6 +323,9 @@
 
         <!-- Dashboard -->
         <div id="dashboardScreen" class="d-none container">
+            <div class="text-center mb-4 d-lg-none">
+                <button class="btn btn-outline-secondary" onclick="backToModules()">Back to Modules</button>
+            </div>
             <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
             <div class="row g-4 mb-5">
                 <div class="col-md-4">
@@ -1200,7 +1228,9 @@ fire: {name:"FIRE UNDERGROUND", q: [
     ]}
 
 
+
 };
+
 
 // ──────────────────────────────────────────────────────────────────────────────
 // STATE & UTILITIES
@@ -1320,11 +1350,16 @@ function renderModules(filter = 'all', term = '') {
 
 function loadModule(moduleKey) {
     currentModule = moduleKey;
+    const isMobile = window.innerWidth < 992;
     if (moduleKey === 'community_chat') {
         showScreen('communityScreen');
     } else {
         els.moduleTitle.textContent = moduleNames[moduleKey];
         showScreen('moduleView');
+    }
+    if (isMobile) {
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('content-area').style.display = 'block';
     }
 }
 
@@ -1513,15 +1548,3 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
