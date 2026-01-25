@@ -340,37 +340,46 @@
         </div>
 
         <!-- Dashboard -->
-        <div id="dashboardScreen" class="d-none container">
+<div id="dashboardScreen" class="d-none container">
 
-            <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
-            <div class="row g-4 mb-5">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow text-center p-4">
-                        <h5 class="text-muted mb-3">Modules Completed</h5>
-                        <div class="display-4 fw-bold text-primary" id="dashCompleted">0/24</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow text-center p-4">
-                        <h5 class="text-muted mb-3">Overall Pass Rate</h5>
-                        <div class="display-4 fw-bold text-success" id="dashPassRate">0%</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow text-center p-4">
-                        <h5 class="text-muted mb-3">Certificates Earned</h5>
-                        <div class="display-4 fw-bold text-warning" id="dashCertificates">0</div>
-                    </div>
-                </div>
+    <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow text-center p-4">
+                <h5 class="text-muted mb-3">Modules Completed</h5>
+                <div class="display-4 fw-bold text-primary" id="dashCompleted">0/24</div>
             </div>
-            <div class="card shadow border-0">
-                <div class="card-body p-4">
-                    <h4 class="mb-3">Completed Modules</h4>
-                    <ul id="completedModulesList" class="list-group list-group-flush"></ul>
-                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow text-center p-4">
+                <h5 class="text-muted mb-3">Overall Pass Rate</h5>
+                <div class="display-4 fw-bold text-success" id="dashPassRate">0%</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow text-center p-4">
+                <h5 class="text-muted mb-3">Certificates Earned</h5>
+                <div class="display-4 fw-bold text-warning" id="dashCertificates">0</div>
             </div>
         </div>
     </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-4">
+            <h4 class="mb-3">Completed Modules</h4>
+            <ul id="completedModulesList" class="list-group list-group-flush"></ul>
+        </div>
+    </div>
+
+    <!-- Mobile-only Back button -->
+    <div class="text-center mt-5 mb-5 d-lg-none">
+        <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModules()">
+            ← Back to Modules
+        </button>
+    </div>
+
+</div>
     
 </div>
 
@@ -1592,6 +1601,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
