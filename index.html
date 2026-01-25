@@ -1520,18 +1520,33 @@ document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
 document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
 
 document.getElementById('dashboardBtn')?.addEventListener('click', () => {
+    // Rebuild the completed modules list
     els.completedModulesList.innerHTML = '';
-    Object.entries(scores).forEach(([key, data]) => {
-        const li = document.createElement('li');
-        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-        li.innerHTML = `
-            ${moduleNames[key]}
-            <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">
-                ${data.percentage}%
-            </span>
-        `;
-        els.completedModulesList.appendChild(li);
-    });
+
+    if (Object.keys(scores).length === 0) {
+        els.completedModulesList.innerHTML = 
+            '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
+    } else {
+        Object.entries(scores).forEach(([key, data]) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `
+                ${moduleNames[key] || key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">
+                    ${data.percentage}%
+                </span>
+            `;
+            els.completedModulesList.appendChild(li);
+        });
+    }
+
+    // Mobile behavior: hide sidebar, show content full-screen
+    const isMobile = window.innerWidth < 992;
+    if (isMobile) {
+        document.getElementById('sidebar').style.display = 'none';
+        document.getElementById('content-area').style.display = 'block';
+    }
+
     showScreen('dashboardScreen');
 });
 
@@ -1597,6 +1612,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
