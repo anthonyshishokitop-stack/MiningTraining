@@ -1535,10 +1535,6 @@ document.getElementById('dashboardBtn')?.addEventListener('click', () => {
     showScreen('dashboardScreen');
 });
 
-els.search.addEventListener('input', e => {
-    renderModules('all', e.target.value.trim());
-});
-
 document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
@@ -1601,6 +1597,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
