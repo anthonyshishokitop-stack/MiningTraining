@@ -147,20 +147,18 @@
             display: block;
         }
 
-        /* ────────────────────────────────────────────────
-           MOBILE: Menu button & nav hiding logic
-        ──────────────────────────────────────────────── */
+        /* Mobile menu behavior */
         @media (max-width: 991px) {
             #navLinks {
-                display: none !important;
+                display: none;
             }
             #showMenuBtn {
                 display: inline-block !important;
             }
-            .nav-visible #navLinks {
+            #mainNavbar.menu-open #navLinks {
                 display: flex !important;
             }
-            .nav-visible #showMenuBtn {
+            #mainNavbar.menu-open #showMenuBtn {
                 display: none !important;
             }
         }
@@ -168,6 +166,9 @@
         @media (min-width: 992px) {
             #showMenuBtn {
                 display: none !important;
+            }
+            #navLinks {
+                display: flex !important;
             }
         }
     </style>
@@ -179,29 +180,29 @@
         <div class="container-fluid">
             <a class="navbar-brand logo-title" href="#">Mining Training</a>
 
-            <!-- Menu button – shown on mobile when nav is hidden -->
+            <!-- Menu button – shown on mobile when menu is collapsed -->
             <button class="btn btn-outline-primary btn-sm d-lg-none me-2" id="showMenuBtn" type="button">
                 <i class="bi bi-list"></i> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('home');return false;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('modules');return false;">Modules</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('dashboard');return false;">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('community');return false;">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('home'); return false;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('modules'); return false;">Modules</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('dashboard'); return false;">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('community'); return false;">Community</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main Content Area -->
     <div class="container-fluid p-4 p-lg-5" id="content-area">
 
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#" onclick="selectNavItem('home');return false;">Home</a></li>
+                <li class="breadcrumb-item"><a href="#" onclick="selectNavItem('home'); return false;">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Current</li>
             </ol>
         </nav>
@@ -239,7 +240,7 @@
                  class="img-fluid rounded-4 shadow mb-5" style="max-height:420px; object-fit:cover;" alt="Mining">
         </div>
 
-        <!-- Module Details View -->
+        <!-- Module View -->
         <div id="moduleView" class="d-none">
             <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
             <div class="row g-4 justify-content-center">
@@ -273,7 +274,7 @@
             </div>
         </div>
 
-        <!-- Quiz Screen -->
+        <!-- Quiz -->
         <div id="quizScreen" class="d-none container">
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-4 p-md-5">
@@ -288,7 +289,7 @@
             </div>
         </div>
 
-        <!-- Results Screen -->
+        <!-- Results -->
         <div id="resultsScreen" class="d-none container">
             <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5">
                 <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
@@ -325,14 +326,14 @@
             </div>
         </div>
 
-        <!-- Community Screen -->
+        <!-- Community -->
         <div id="communityScreen" class="d-none container">
             <h2 class="text-primary text-center mb-5 fw-bold">Mining Community Group</h2>
             <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
                 <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts!</p>
                 <ul class="list-group mb-4">
                     <li class="list-group-item"><i class="bi bi-chat-dots me-2"></i>Real-time text chat</li>
-                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging</li>
+                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging and recordings</li>
                     <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2"></i>File uploads</li>
                     <li class="list-group-item"><i class="bi bi-people me-2"></i>Unlimited participants</li>
                 </ul>
@@ -352,7 +353,7 @@
             </div>
         </div>
 
-        <!-- Dashboard Screen -->
+        <!-- Dashboard -->
         <div id="dashboardScreen" class="d-none container">
             <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
             <div class="row g-4 mb-5">
@@ -389,7 +390,7 @@
 
     <script>
         // ────────────────────────────────────────────────
-        // DATA – replace sampleQuizzes with your full version
+        // DATA (insert your full sampleQuizzes object here)
         // ────────────────────────────────────────────────
 
         const moduleNames = {
@@ -477,7 +478,7 @@
             winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
         };
 
-  
+
 // Sample quizzes (you can expand with real questions)
 const sampleQuizzes = {
 
@@ -1490,18 +1491,19 @@ fire: {name:"FIRE UNDERGROUND", q: [
         }
 
         // ────────────────────────────────────────────────
-        // NAVIGATION WITH MOBILE MENU HIDING
+        // NAVIGATION & MOBILE MENU CONTROL
         // ────────────────────────────────────────────────
 
         function selectNavItem(section) {
+            // Perform navigation
             if (section === 'home')      showHome();
             if (section === 'modules')   showModulesList();
             if (section === 'dashboard') showDashboard();
             if (section === 'community') showCommunity();
 
-            // Hide nav links on mobile, show only Menu button
+            // Collapse menu on mobile
             if (window.innerWidth <= 991) {
-                document.getElementById('mainNavbar').classList.add('nav-visible');
+                document.getElementById('mainNavbar').classList.add('menu-collapsed');
             }
         }
 
@@ -1567,15 +1569,15 @@ fire: {name:"FIRE UNDERGROUND", q: [
             });
         });
 
-        // Show menu again when tapping the Menu button
+        // Re-open menu when tapping the Menu button
         document.getElementById('showMenuBtn')?.addEventListener('click', () => {
-            document.getElementById('mainNavbar').classList.remove('nav-visible');
+            document.getElementById('mainNavbar').classList.remove('menu-collapsed');
         });
 
-        // Reset visibility when window resized to desktop
+        // Reset on desktop resize
         window.addEventListener('resize', () => {
             if (window.innerWidth > 991) {
-                document.getElementById('mainNavbar').classList.remove('nav-visible');
+                document.getElementById('mainNavbar').classList.remove('menu-collapsed');
             }
         });
 
