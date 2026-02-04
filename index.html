@@ -361,7 +361,6 @@
         // DATA (shortened – paste your full sampleQuizzes here)
         // ──────────────────────────────────────────────────────────────────────────────
 
-
 const moduleNames = {
     handover: "Shift Handover & Pre-Shift Checks",
     lhd: "LHD Tramming in Decline",
@@ -379,7 +378,7 @@ const moduleNames = {
     conveyor_monorail: "Conveyor Belt and Monorail",
     compressed_air: "Compressed Air and Reticulation",
     pump_fluid: "Pump and Fluid handling",
-    steam_pressure: "Steam and Pressure Vessels",
+    steam_pressure: "Steam Generations and Pressure Vessels",
     
     electrical: "Underground Electrical Systems Safety",
     mhsa: "MHSA 1996 Regulations",
@@ -1229,7 +1228,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 
 
-
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
         let currentQuiz = null;
@@ -1377,7 +1375,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function startQuiz() {
             if (!currentModule || !sampleQuizzes[currentModule]) return;
-            currentQuiz = sampleQuizzes[currentModule].q;
+            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q); // Shuffle questions
             questionIndex = 0;
             correctAnswers = 0;
             quizStartTime = Date.now();
@@ -1385,8 +1383,75 @@ fire: {name:"FIRE UNDERGROUND", q: [
             showScreen('quizScreen');
         }
 
-        // Quiz logic remains the same as in previous version
-        // (showQuestion, selectAnswer, nextQuestion, finishQuiz, restartQuiz)
+        function showQuestion() {
+            els.optionsContainer.innerHTML = '';
+            els.feedback.innerHTML = '';
+            els.nextBtn.classList.add('d-none');
+
+            if (questionIndex >= currentQuiz.length) {
+                finishQuiz();
+                return;
+            }
+
+            const q = currentQuiz[questionIndex];
+            els.questionText.textContent = q.question;
+
+            q.options.forEach((opt, i) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option';
+                div.textContent = opt;
+                div.addEventListener('click', () => selectAnswer(i));
+                els.optionsContainer.appendChild(div);
+            });
+        }
+
+        function selectAnswer(selected) {
+            const correct = currentQuiz[questionIndex].correct;
+            const options = els.optionsContainer.querySelectorAll('.quiz-option');
+
+            options.forEach((opt, i) => {
+                opt.classList.add(i === correct ? 'bg-success' : 'bg-danger');
+                opt.style.pointerEvents = 'none';
+            });
+
+            els.feedback.innerHTML = currentQuiz[questionIndex].explanation;
+            els.feedback.classList.add(correct === selected ? 'text-success' : 'text-danger');
+
+            if (correct === selected) correctAnswers++;
+
+            els.nextBtn.classList.remove('d-none');
+        }
+
+        function nextQuestion() {
+            questionIndex++;
+            showQuestion();
+        }
+
+        function finishQuiz() {
+            const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
+            const percentage = Math.round((correctAnswers / currentQuiz.length) * 100);
+            const passed = percentage >= 70;
+
+            scores[currentModule] = { percentage, passed };
+            localStorage.setItem('miningScores', JSON.stringify(scores));
+
+            els.resultTitle.textContent = passed ? 'Passed!' : 'Failed';
+            els.progressBar.style.width = percentage + '%';
+            els.progressBar.textContent = percentage + '%';
+            els.progressBar.classList.add(passed ? 'bg-success' : 'bg-danger');
+            els.scorePercent.textContent = percentage + '%';
+            els.correctCount.textContent = correctAnswers + '/' + currentQuiz.length;
+            els.timeDisplay.textContent = Math.floor(timeTaken / 60) + ':' + (timeTaken % 60).toString().padStart(2, '0');
+            els.passMessage.textContent = passed ? 'Great job! You have passed this module.' : 'You need 70% to pass. Please retake the assessment.';
+
+            showScreen('resultsScreen');
+            updateProgress();
+            renderModules();
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
 
         function showHome() {
             showScreen('welcomeScreen');
@@ -1430,10 +1495,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
         // Event listeners
         document.getElementById('watchVideo')?.addEventListener('click', startVideo);
         document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
-        document.getElementById('nextBtn')?.addEventListener('click', () => {
-            questionIndex++;
-            showQuestion();
-        });
+        document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
 
         els.searchInput.addEventListener('input', (e) => {
             const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
@@ -1462,7 +1524,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
             });
         });
 
-        // Init
+             // Initialize
         window.addEventListener('DOMContentLoaded', () => {
             showHome();
             renderModules();
