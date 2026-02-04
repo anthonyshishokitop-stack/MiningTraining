@@ -1456,15 +1456,74 @@ function show(id) {
     window.scrollTo(0, 0);
 }
 
-function showHome()           { show('welcomeScreen'); }
-function showModulesList()    { show('modulesContainer'); }
-function showDashboard()      { show('dashboardScreen'); }
-function showCommunity()      { show('communityScreen'); }
+        // Quiz logic remains the same as in previous version
+        // (showQuestion, selectAnswer, nextQuestion, finishQuiz, restartQuiz)
 
-function backToModulesList()  { showModulesList(); }
-function backToModule()       { show('moduleView'); }
-  
+        function showHome() {
+            showScreen('welcomeScreen');
+        }
 
+        function showModulesList() {
+            const activeFilter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+            renderModules(activeFilter, els.searchInput.value.trim());
+            showScreen('modulesContainer');
+            els.modulesContainer.classList.add('active');
+        }
+
+        function showDashboard() {
+            els.completedModulesList.innerHTML = '';
+            if (Object.keys(scores).length === 0) {
+                els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
+            } else {
+                Object.entries(scores).forEach(([key, data]) => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.innerHTML = `${moduleNames[key] || key} <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">${data.percentage}%</span>`;
+                    els.completedModulesList.appendChild(li);
+                });
+            }
+            showScreen('dashboardScreen');
+        }
+
+        function showCommunity() {
+            showScreen('communityScreen');
+        }
+
+        function backToModulesList() {
+            showModulesList();
+        }
+
+        function backToModule() {
+            els.videoPlayer.src = '';
+            showScreen('moduleView');
+        }
+
+        // Event listeners
+        document.getElementById('watchVideo')?.addEventListener('click', startVideo);
+        document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
+        document.getElementById('nextBtn')?.addEventListener('click', () => {
+            questionIndex++;
+            showQuestion();
+        });
+
+        els.searchInput.addEventListener('input', (e) => {
+            const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+            renderModules(filter, e.target.value.trim());
+        });
+
+        document.querySelectorAll('[data-filter]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderModules(btn.dataset.filter, els.searchInput.value.trim());
+            });
+        });
+
+        // Init
+        window.addEventListener('DOMContentLoaded', () => {
+            showHome();
+            renderModules();
+        });
 
   
 // ────────────────────────────────────────────────
@@ -1508,4 +1567,5 @@ window.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+
 
