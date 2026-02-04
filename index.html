@@ -1438,18 +1438,35 @@ function finishQuiz() {
 // ROUTES
 // ────────────────────────────────────────────────
 
-function showHome()           { show('welcomeScreen'); }
-function showModulesList()    {
-  const f = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-  renderModules(f, els.searchInput.value.trim());
-  show('modulesContainer');
+function show(id) {
+    // Hide everything
+    document.querySelectorAll(
+        '#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, ' +
+        '#quizScreen, #resultsScreen, #communityScreen, #dashboardScreen'
+    ).forEach(el => el.classList.add('d-none'));
+
+    // Show requested screen
+    const element = document.getElementById(id);
+    if (element) {
+        element.classList.remove('d-none');
+    } else {
+        console.error("Screen not found: " + id);
+    }
+
+    window.scrollTo(0, 0);
 }
+
+function showHome()           { show('welcomeScreen'); }
+function showModulesList()    { show('modulesContainer'); }
 function showDashboard()      { show('dashboardScreen'); }
 function showCommunity()      { show('communityScreen'); }
+
 function backToModulesList()  { showModulesList(); }
 function backToModule()       { show('moduleView'); }
-function restartQuiz()        { startQuiz(); }
+  
 
+
+  
 // ────────────────────────────────────────────────
 // EVENT LISTENERS
 // ────────────────────────────────────────────────
@@ -1491,3 +1508,4 @@ window.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+
