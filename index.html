@@ -150,23 +150,26 @@
 </head>
 <body>
 
-    <!-- Top Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand logo-title" href="#">Mining Training</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showHome(); return false;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList(); return false;">Modules</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard(); return false;">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showCommunity(); return false;">Community</a></li>
-                </ul>
-            </div>
+<!-- Top Navigation – modified -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNavbar">
+    <div class="container-fluid">
+        <a class="navbar-brand logo-title" href="#">Mining Training</a>
+
+        <!-- This button is only visible on mobile after menu is hidden -->
+        <button class="btn btn-outline-secondary btn-sm d-lg-none" id="showMenuBtn" style="display: none;">
+            <i class="bi bi-list"></i> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
+                <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('home'); return false;">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('modules'); return false;">Modules</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('dashboard'); return false;">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('community'); return false;">Community</a></li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Main Content -->
     <div class="container-fluid p-4 p-lg-5" id="content-area">
@@ -1455,3 +1458,4 @@ fire: {name:"FIRE UNDERGROUND", q: [
     </script>
 </body>
 </html>
+
