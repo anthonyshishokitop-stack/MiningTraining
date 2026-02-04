@@ -147,65 +147,61 @@
             display: block;
         }
 
-        /* ────────────────────────────────────────
-           MOBILE: hide nav links after selection
-        ──────────────────────────────────────── */
-        @media (max-width: 991.98px) {
-            .nav-hidden .navbar-nav {
+        /* ────────────────────────────────────────────────
+           MOBILE: Menu button & nav hiding logic
+        ──────────────────────────────────────────────── */
+        @media (max-width: 991px) {
+            #navLinks {
                 display: none !important;
             }
-            .nav-hidden #showMenuBtn {
+            #showMenuBtn {
                 display: inline-block !important;
+            }
+            .nav-visible #navLinks {
+                display: flex !important;
+            }
+            .nav-visible #showMenuBtn {
+                display: none !important;
             }
         }
 
-        #showMenuBtn {
-            display: none;
+        @media (min-width: 992px) {
+            #showMenuBtn {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ────────────────────────────────────────
-         Top Navigation Bar
-    ──────────────────────────────────────── -->
+    <!-- Top Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand logo-title" href="#">Mining Training</a>
 
-            <!-- Small "Menu" button shown on mobile after hiding links -->
-            <button class="btn btn-outline-secondary btn-sm d-lg-none" id="showMenuBtn">
+            <!-- Menu button – shown on mobile when nav is hidden -->
+            <button class="btn btn-outline-primary btn-sm d-lg-none me-2" id="showMenuBtn" type="button">
                 <i class="bi bi-list"></i> Menu
             </button>
 
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectNavItem('home'); return false;">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectNavItem('modules'); return false;">Modules</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectNavItem('dashboard'); return false;">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="selectNavItem('community'); return false;">Community</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('home');return false;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('modules');return false;">Modules</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('dashboard');return false;">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('community');return false;">Community</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ────────────────────────────────────────
-         Main Content Area
-    ──────────────────────────────────────── -->
+    <!-- Main Content -->
     <div class="container-fluid p-4 p-lg-5" id="content-area">
 
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#" onclick="selectNavItem('home'); return false;">Home</a></li>
+                <li class="breadcrumb-item"><a href="#" onclick="selectNavItem('home');return false;">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Current</li>
             </ol>
         </nav>
@@ -235,7 +231,7 @@
             </div>
         </div>
 
-        <!-- Welcome -->
+        <!-- Welcome Screen -->
         <div id="welcomeScreen" class="text-center py-5">
             <h1 class="display-4 fw-bold text-primary mb-4">Mining Training</h1>
             <p class="lead text-muted mb-5">24 Critical Competency Modules • MHSA Compliance</p>
@@ -243,7 +239,7 @@
                  class="img-fluid rounded-4 shadow mb-5" style="max-height:420px; object-fit:cover;" alt="Mining">
         </div>
 
-        <!-- Module View -->
+        <!-- Module Details View -->
         <div id="moduleView" class="d-none">
             <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
             <div class="row g-4 justify-content-center">
@@ -277,7 +273,7 @@
             </div>
         </div>
 
-        <!-- Quiz -->
+        <!-- Quiz Screen -->
         <div id="quizScreen" class="d-none container">
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-4 p-md-5">
@@ -292,7 +288,7 @@
             </div>
         </div>
 
-        <!-- Results -->
+        <!-- Results Screen -->
         <div id="resultsScreen" class="d-none container">
             <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5">
                 <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
@@ -329,30 +325,26 @@
             </div>
         </div>
 
-        <!-- Community -->
+        <!-- Community Screen -->
         <div id="communityScreen" class="d-none container">
             <h2 class="text-primary text-center mb-5 fw-bold">Mining Community Group</h2>
             <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
-                <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts! Discuss modules, share experiences, and collaborate in real-time.</p>
+                <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts!</p>
                 <ul class="list-group mb-4">
                     <li class="list-group-item"><i class="bi bi-chat-dots me-2"></i>Real-time text chat</li>
-                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging and recordings</li>
-                    <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2"></i>File uploads (videos, photos, documents)</li>
-                    <li class="list-group-item"><i class="bi bi-people me-2"></i>Unlimited participants – join via link or add friends</li>
+                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging</li>
+                    <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2"></i>File uploads</li>
+                    <li class="list-group-item"><i class="bi bi-people me-2"></i>Unlimited participants</li>
                 </ul>
                 <div class="text-center">
                     <a href="https://discord.gg/rfsRXS3BUR" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-discord me-2"></i> Join Discord Group Now
+                        <i class="bi bi-discord me-2"></i> Join Discord Group
                     </a>
                     <a href="https://drive.google.com/drive/folders/1IeRl6fuKQLLisLX1I0_FT2Xa6MyoLQFM?usp=drive_link" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-cloud-arrow-up me-2"></i> Share Files via Google Drive
+                        <i class="bi bi-cloud-arrow-up me-2"></i> Share Files
                     </a>
-                    <p class="text-muted">Powered by Discord – free app download required for full features.</p>
-                    <a href="https://www.linkedin.com/in/anthony-shishoki-11938331a" target="_blank">Connect with me on LinkedIn</a>
-                </div>
-                <div class="text-center mt-2">
-                    <p class="text-primary fw-bold">SHISHOKI</p>
-                    <p class="small text-muted">Mining Safety Community</p>
+                    <p class="text-muted">Powered by Discord</p>
+                    <a href="https://www.linkedin.com/in/anthony-shishoki-11938331a" target="_blank">Connect on LinkedIn</a>
                 </div>
             </div>
             <div class="text-center mt-4">
@@ -360,7 +352,7 @@
             </div>
         </div>
 
-        <!-- Dashboard -->
+        <!-- Dashboard Screen -->
         <div id="dashboardScreen" class="d-none container">
             <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
             <div class="row g-4 mb-5">
@@ -397,7 +389,7 @@
 
     <script>
         // ────────────────────────────────────────────────
-        //  DATA  (you need to insert your full sampleQuizzes object here)
+        // DATA – replace sampleQuizzes with your full version
         // ────────────────────────────────────────────────
 
         const moduleNames = {
@@ -485,8 +477,7 @@
             winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
         };
 
-
-
+  
 // Sample quizzes (you can expand with real questions)
 const sampleQuizzes = {
 
@@ -1257,6 +1248,8 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 
 
+
+
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
         let currentQuiz = null;
@@ -1315,7 +1308,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function updateBreadcrumbs(screen) {
             els.breadcrumbNav.classList.remove('d-none');
-            els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="selectNavItem(\'home\'); return false;">Home</a></li>';
+            els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="selectNavItem(\'home\');return false;">Home</a></li>';
 
             let item = document.createElement('li');
             item.className = 'breadcrumb-item active';
@@ -1497,7 +1490,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
         }
 
         // ────────────────────────────────────────────────
-        // NAVIGATION
+        // NAVIGATION WITH MOBILE MENU HIDING
         // ────────────────────────────────────────────────
 
         function selectNavItem(section) {
@@ -1506,9 +1499,9 @@ fire: {name:"FIRE UNDERGROUND", q: [
             if (section === 'dashboard') showDashboard();
             if (section === 'community') showCommunity();
 
-            // Hide navigation links on mobile
-            if (window.innerWidth < 992) {
-                document.getElementById('mainNavbar').classList.add('nav-hidden');
+            // Hide nav links on mobile, show only Menu button
+            if (window.innerWidth <= 991) {
+                document.getElementById('mainNavbar').classList.add('nav-visible');
             }
         }
 
@@ -1574,19 +1567,19 @@ fire: {name:"FIRE UNDERGROUND", q: [
             });
         });
 
-        // Re-show menu when tapping the small Menu button on mobile
+        // Show menu again when tapping the Menu button
         document.getElementById('showMenuBtn')?.addEventListener('click', () => {
-            document.getElementById('mainNavbar').classList.remove('nav-hidden');
+            document.getElementById('mainNavbar').classList.remove('nav-visible');
         });
 
-        // Reset nav visibility when resizing to desktop
+        // Reset visibility when window resized to desktop
         window.addEventListener('resize', () => {
-            if (window.innerWidth >= 992) {
-                document.getElementById('mainNavbar').classList.remove('nav-hidden');
+            if (window.innerWidth > 991) {
+                document.getElementById('mainNavbar').classList.remove('nav-visible');
             }
         });
 
-        // Init
+        // Initial load
         window.addEventListener('DOMContentLoaded', () => {
             showHome();
             renderModules();
