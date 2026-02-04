@@ -1,468 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mining Training - Health & Safety</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mining Training - Health & Safety</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/apple-touch-icon.png">
-    <meta name="google-site-verification" content="ZZJlrAeMKfsNd-5W5TF3F9QJMX2K2yulcwC-FzgITmE">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root {
+      --primary:    #0d6efd;
+      --success:    #198754;
+      --warning:    #fd7e14;
+      --danger:     #dc3545;
+      --dark-text:  #0f172a;
+      --light-bg:   #ffffff;
+    }
 
-    <style>
-        :root {
-            --primary: #0d6efd;
-            --primary-dark: #0b5ed7;
-            --success: #198754;
-            --warning: #fd7e14;
-            --danger: #dc3545;
-            --light-bg: rgba(255,255,255,0.96);
-        }
+    body {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+                  url('https://westwitsmining.com/wp-content/uploads/2025/10/5D7A6385.jpg') center/cover no-repeat fixed;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--dark-text);
+      padding-top: 56px;
+    }
 
-        body {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)),
-                url('https://westwitsmining.com/wp-content/uploads/2025/10/5D7A6385.jpg') center/cover no-repeat fixed;
-            min-height: 100vh;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            padding-top: 56px;
-            color: #333;
-        }
+    #content-area {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      min-height: calc(100vh - 56px);
+      border-radius: 0 0 16px 16px;
+    }
 
-        .logo-title {
-            font-weight: 800;
-            color: var(--primary);
-        }
+    .logo-title {
+      font-weight: 800;
+      color: var(--primary);
+    }
 
-        .module-card {
-            background: white;
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-            transition: all 0.25s ease;
-            margin-bottom: 1rem;
-            cursor: pointer;
-        }
+    .module-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+      transition: all 0.22s ease;
+      cursor: pointer;
+    }
 
-        .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(13,110,253,0.15);
-        }
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(13,110,253,0.14);
+    }
 
-        .module-card .card-body {
-            padding: 1.2rem 1.35rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+    .icon-wrapper {
+      width: 54px;
+      height: 54px;
+      border-radius: 10px;
+      background: #e0f0ff;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
 
-        .icon-wrapper {
-            width: 52px;
-            height: 52px;
-            border-radius: 10px;
-            background: #eff6ff;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
+    .module-card.advanced .icon-wrapper {
+      background: #ffedd5;
+      color: #c2410c;
+    }
 
-        .module-card.advanced .icon-wrapper {
-            background: #fff7ed;
-            color: #c2410c;
-        }
+    .module-name {
+      font-weight: 600;
+      font-size: 1.08rem;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
 
-        .module-name {
-            font-weight: 600;
-            color: #1e293b;
-            margin: 0;
-            font-size: 1.05rem;
-            line-height: 1.35;
-            flex-grow: 1;
-        }
+    .progress-badge {
+      font-size: 0.84rem;
+      padding: 0.45em 0.9em;
+      border-radius: 999px;
+      font-weight: 600;
+      min-width: 64px;
+      text-align: center;
+    }
 
-        .progress-badge {
-            font-size: 0.82rem;
-            padding: 0.4em 0.75em;
-            border-radius: 999px;
-            font-weight: 600;
-            min-width: 60px;
-            text-align: center;
-        }
+    .action-card {
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s;
+      background: white;
+    }
 
-        .bg-success-soft { background: #dcfce7; color: #166534; }
-        .bg-warning-soft { background: #fef3c7; color: #92400e; }
-        .bg-danger-soft  { background: #f8d7da; color: #721c24; }
+    .action-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(13,110,253,0.16);
+    }
 
-        #content-area {
-            background: var(--light-bg);
-            backdrop-filter: blur(8px);
-            min-height: calc(100vh - 56px);
-        }
+    .quiz-option {
+      border: 2px solid #dee2e6;
+      border-radius: 10px;
+      padding: 1.15rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
 
-        .action-card {
-            border-radius: 16px;
-            transition: all 0.35s ease;
-            cursor: pointer;
-            border: 1px solid #e2e8f0;
-        }
+    .quiz-option:hover:not(.bg-success):not(.bg-danger) {
+      border-color: var(--primary);
+      background: #f0f7ff;
+    }
 
-        .action-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(13,110,253,0.18);
-        }
+    .navbar {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
 
-        .quiz-option {
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
-            padding: 1.1rem;
-            margin-bottom: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: white;
-        }
+    .breadcrumb {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+    }
 
-        .quiz-option:hover {
-            border-color: var(--primary);
-            background: #f8f9fa;
-        }
+    #modulesContainer {
+      display: none;
+    }
 
-        .navbar {
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .breadcrumb {
-            background: #f8f9fa;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        #modulesContainer {
-            display: none;
-        }
-
-        #modulesContainer.active {
-            display: block;
-        }
-    </style>
+    #modulesContainer.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand logo-title" href="#">Act 29</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showHome(); return false;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList(); return false;">Modules</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard(); return false;">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showCommunity(); return false;">Community</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand logo-title" href="#">Act 29</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showHome();return false">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList();return false">Modules</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard();return false">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" onclick="showCommunity();return false">Community</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid p-4 p-lg-5" id="content-area">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none mb-4">
+    <ol class="breadcrumb" id="breadcrumbItems"></ol>
+  </nav>
+
+  <!-- Modules list -->
+  <div id="modulesContainer">
+    <h2 class="text-primary fw-bold mb-4">Training Modules</h2>
+
+    <div class="row mb-4 align-items-center">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search modules…">
+      </div>
+      <div class="col-md-6">
+        <div class="btn-group w-100" role="group">
+          <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="basic">Basic</button>
+          <button type="button" class="btn btn-outline-primary" data-filter="advanced">Advanced</button>
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container-fluid p-4 p-lg-5" id="content-area">
-
-        <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
-            <ol class="breadcrumb mb-4" id="breadcrumbItems"></ol>
-        </nav>
-
-        <!-- Modules List Screen -->
-        <div id="modulesContainer">
-            <h2 class="text-primary fw-bold mb-4">Training Modules</h2>
-
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search modules...">
-                </div>
-                <div class="col-md-6">
-                    <div class="btn-group w-100" role="group">
-                        <button type="button" class="btn btn-outline-primary active" data-filter="all">All</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="basic">Basic</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="advanced">Advanced</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row g-3" id="moduleGrid"></div>
-
-            <div class="card mt-4 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <strong>Progress:</strong> <span id="completedCount">0</span>/24  
-                    <strong class="ms-4">Pass rate:</strong> <span id="overallPass">0%</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Welcome -->
-        <div id="welcomeScreen" class="text-center py-5">
-            <h1 class="display-4 fw-bold text-primary mb-4">Mining Training</h1>
-            <p class="lead text-muted mb-5">24 Critical Competency Modules • MHSA Compliance</p>
-            <img src="https://westwitsmining.com/wp-content/uploads/2025/10/5D7A6385.jpg" 
-                 class="img-fluid rounded-4 shadow mb-5" style="max-height:420px; object-fit:cover;" alt="Mining">
-        </div>
-
-        <!-- Module Details -->
-        <div id="moduleView" class="d-none">
-            <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-5">
-                    <div class="action-card text-center p-5 bg-white shadow" id="watchVideo">
-                        <i class="bi bi-play-circle-fill display-1 text-primary mb-3"></i>
-                        <h4 class="fw-bold">Watch Training Video</h4>
-                        <p class="text-muted">Review the required safety content</p>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="action-card text-center p-5 bg-white shadow" id="startQuiz">
-                        <i class="bi bi-check2-circle display-1 text-success mb-3"></i>
-                        <h4 class="fw-bold">Take Assessment</h4>
-                        <p class="text-muted">Demonstrate knowledge & understanding</p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-5">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
-            </div>
-        </div>
-
-        <!-- Video -->
-        <div id="videoScreen" class="d-none container">
-            <div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-4">
-                <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">← Back</button>
-            </div>
-        </div>
-
-        <!-- Quiz -->
-        <div id="quizScreen" class="d-none container">
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-body p-4 p-md-5">
-                    <h4 class="text-center mb-4 fw-bold" id="questionText"></h4>
-                    <div id="optionsContainer" class="row g-3"></div>
-                    <div id="feedback" class="mt-4 text-center fw-bold fs-5 min-vh-50 d-flex align-items-center justify-content-center"></div>
-                    <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">← Back</button>
-            </div>
-        </div>
-
-        <!-- Results -->
-        <div id="resultsScreen" class="d-none container">
-            <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5">
-                <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
-                <div class="progress bg-light rounded-pill mb-4" style="height:40px;">
-                    <div id="progressBar" class="progress-bar progress-bar-striped fs-4 fw-bold" style="width:0%">0%</div>
-                </div>
-                <div class="row g-3 mb-4">
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-light rounded-4">
-                            <div class="fs-3 fw-bold text-primary" id="scorePercent">0%</div>
-                            <small>Score</small>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-light rounded-4">
-                            <div class="fs-3 fw-bold text-success" id="correctCount">0</div>
-                            <small>Correct</small>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-light rounded-4">
-                            <div class="fs-3 fw-bold" id="timeDisplay">0:00</div>
-                            <small>Time</small>
-                        </div>
-                    </div>
-                </div>
-                <p id="passMessage" class="lead fw-bold mb-4"></p>
-                <div class="d-flex flex-wrap gap-3 justify-content-center">
-                    <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
-                    <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">Back to Module</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Community -->
-        <div id="communityScreen" class="d-none container">
-            <h2 class="text-primary text-center mb-5 fw-bold">Mining Community Group</h2>
-            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
-                <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts!</p>
-                <ul class="list-group mb-4">
-                    <li class="list-group-item"><i class="bi bi-chat-dots me-2"></i>Real-time text chat</li>
-                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging</li>
-                    <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2"></i>File uploads</li>
-                    <li class="list-group-item"><i class="bi bi-people me-2"></i>Unlimited participants</li>
-                </ul>
-                <div class="text-center">
-                    <a href="https://discord.gg/rfsRXS3BUR" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-discord me-2"></i> Join Discord Group
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/1IeRl6fuKQLLisLX1I0_FT2Xa6MyoLQFM?usp=drive_link" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-cloud-arrow-up me-2"></i> Share Files
-                    </a>
-                    <p class="text-muted">Powered by Discord</p>
-                    <a href="https://www.linkedin.com/in/anthony-shishoki-11938331a" target="_blank">Connect on LinkedIn</a>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
-            </div>
-        </div>
-
-        <!-- Dashboard -->
-        <div id="dashboardScreen" class="d-none container">
-            <h2 class="text-primary text-center mb-5 fw-bold">Training Dashboard</h2>
-            <div class="row g-4 mb-5">
-                <div class="col-md-4"><div class="card border-0 shadow text-center p-4">
-                    <h5 class="text-muted mb-3">Modules Completed</h5>
-                    <div class="display-4 fw-bold text-primary" id="dashCompleted">0/24</div>
-                </div></div>
-                <div class="col-md-4"><div class="card border-0 shadow text-center p-4">
-                    <h5 class="text-muted mb-3">Overall Pass Rate</h5>
-                    <div class="display-4 fw-bold text-success" id="dashPassRate">0%</div>
-                </div></div>
-                <div class="col-md-4"><div class="card border-0 shadow text-center p-4">
-                    <h5 class="text-muted mb-3">Certificates Earned</h5>
-                    <div class="display-4 fw-bold text-warning" id="dashCertificates">0</div>
-                </div></div>
-            </div>
-            <div class="card shadow border-0">
-                <div class="card-body p-4">
-                    <h4 class="mb-3">Completed Modules</h4>
-                    <ul id="completedModulesList" class="list-group list-group-flush"></ul>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="row g-3" id="moduleGrid"></div>
 
-    <script>
-        // ──────────────────────────────────────────────────────────────────────────────
-        // DATA
-        // ──────────────────────────────────────────────────────────────────────────────
- 
+    <div class="card mt-5 border-0 shadow-sm">
+      <div class="card-body text-center py-3">
+        <strong>Progress:</strong> <span id="completedCount">0</span>/24  
+            <strong>Pass rate:</strong> <span id="overallPass">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome -->
+  <div id="welcomeScreen" class="text-center py-5">
+    <h1 class="display-4 fw-bold text-primary mb-4">Mining Training</h1>
+    <p class="lead text-muted mb-5">24 Critical Competency Modules • MHSA Compliance</p>
+    <img src="https://westwitsmining.com/wp-content/uploads/2025/10/5D7A6385.jpg"
+         class="img-fluid rounded-4 shadow mb-5" style="max-height:420px; object-fit:cover;" alt="Mining">
+  </div>
+
+  <!-- Module detail -->
+  <div id="moduleView" class="d-none">
+    <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-5">
+        <div class="action-card text-center p-5 shadow" id="watchVideo">
+          <i class="bi bi-play-circle-fill display-1 text-primary mb-3"></i>
+          <h4 class="fw-bold">Watch Training Video</h4>
+          <p class="text-muted">Review the required safety content</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="action-card text-center p-5 shadow" id="startQuiz">
+          <i class="bi bi-check2-circle display-1 text-success mb-3"></i>
+          <h4 class="fw-bold">Take Assessment</h4>
+          <p class="text-muted">Demonstrate knowledge & understanding</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
+    </div>
+  </div>
+
+  <!-- Video screen -->
+  <div id="videoScreen" class="d-none container">
+    <div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-4">
+      <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">← Back</button>
+    </div>
+  </div>
+
+  <!-- Quiz screen -->
+  <div id="quizScreen" class="d-none container">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-4 p-md-5">
+        <h4 class="text-center mb-4 fw-bold" id="questionText"></h4>
+        <div id="optionsContainer"></div>
+        <div id="feedback" class="mt-4 text-center fw-bold fs-5 min-vh-50 d-flex align-items-center justify-content-center"></div>
+        <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">← Back</button>
+    </div>
+  </div>
+
+  <!-- Results screen -->
+  <div id="resultsScreen" class="d-none container">
+    <div class="card shadow-lg border-0 rounded-4 text-center p-5">
+      <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
+      <div class="progress bg-light rounded-pill mb-4" style="height:40px;">
+        <div id="progressBar" class="progress-bar progress-bar-striped fs-4 fw-bold" style="width:0%">0%</div>
+      </div>
+      <div class="row g-3 mb-4 justify-content-center">
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="p-3 bg-light rounded-4">
+            <div class="fs-3 fw-bold text-primary" id="scorePercent">0%</div>
+            <small>Score</small>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="p-3 bg-light rounded-4">
+            <div class="fs-3 fw-bold text-success" id="correctCount">0</div>
+            <small>Correct</small>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4 col-md-3">
+          <div class="p-3 bg-light rounded-4">
+            <div class="fs-3 fw-bold" id="timeDisplay">0:00</div>
+            <small>Time</small>
+          </div>
+        </div>
+      </div>
+      <p id="passMessage" class="lead fw-bold mb-4"></p>
+      <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
+        <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Community screen (placeholder) -->
+  <div id="communityScreen" class="d-none container text-center py-5">
+    <h2 class="text-primary fw-bold mb-4">Mining Community Group</h2>
+    <p class="lead mb-4">Join our global community for GCC candidates and mining professionals</p>
+    <a href="https://discord.gg/rfsRXS3BUR" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
+      <i class="bi bi-discord me-2"></i> Join Discord Group
+    </a>
+    <div class="mt-4">
+      <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
+    </div>
+  </div>
+
+  <!-- Dashboard screen (placeholder) -->
+  <div id="dashboardScreen" class="d-none container py-5">
+    <h2 class="text-primary fw-bold text-center mb-5">Training Dashboard</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="card border-0 shadow p-4">
+          <h5 class="text-muted">Modules Completed</h5>
+          <div class="display-4 fw-bold text-primary" id="dashCompleted">0/24</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow p-4">
+          <h5 class="text-muted">Pass Rate</h5>
+          <div class="display-4 fw-bold text-success" id="dashPassRate">0%</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow p-4">
+          <h5 class="text-muted">Certificates</h5>
+          <div class="display-4 fw-bold text-warning" id="dashCertificates">0</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ────────────────────────────────────────────────
+// DATA
+// ────────────────────────────────────────────────
+
+
+const moduleNames = {
+    handover: "Shift Handover & Pre-Shift Checks",
+    lhd: "LHD Tramming in Decline",
+    drill: "Face Drilling (Jumbo)",
+    support: "Install Mesh & Bolts",
+    vent: "Main Ventilation Failure",
+    rockfall: "Major Rock Fall Event",
+    traffic: "Traffic Conflict in Single Lane",
+    reentry: "Unsafe Re-Entry Attempt",
+    shaft_sinking: "Shaft Sinking (Vertical Shaft)",
+    raise_drill: "Raise Drilling (Raise Boring)",
+    
+    lifting_operations: "Lifting Operations",
+    civil_structural: "Civil and Structural Engineering",
+    conveyor_monorail: "Conveyor Belt and Monorail",
+    compressed_air: "Compressed Air and Reticulation",
+    pump_fluid: "Pump and Fluid handling",
+    steam_pressure: "Steam Generations and Pressure Vessels",
+    
+    electrical: "Underground Electrical Systems Safety",
+    mhsa: "MHSA 1996 Regulations",
+    seismicity: "Seismicity & Rockbursts",
+    blasting: "Blasting & Explosives",
+    evacuation: "Emergency Evacuation",
+    fire: "Fire Monitoring, Prevention and Control",
+    tmm: "Trackless Mobile Machinery",
+    winders: "Winding Plant, Shafts and Headgears",
+
+    community_chat: "Mining Community Group"
+
+};
+
+const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
+
+const moduleIcons = {
+    handover: "bi-arrow-left-right",
+    lhd: "bi-truck",
+    drill: "bi-hammer",
+    support: "bi-grid-3x3-gap",
+    vent: "bi-wind",
+    rockfall: "bi-exclamation-triangle",
+    traffic: "bi-sign-stop",
+    reentry: "bi-door-open",
+    shaft_sinking: "bi-arrows-vertical",
+    raise_drill: "bi-rocket-takeoff",
+    
+    lifting_operations: "bi-arrow-up-circle-fill",
+    civil_structural: "bi-building-fill",
+    conveyor_monorail: "bi-conveyor",
+    compressed_air: "bi-wind",
+    pump_fluid: "bi-water",
+    steam_pressure: "bi-thermometer-sun",
+
         
-    const moduleNames = {
-        handover: "Shift Handover & Pre-Shift Checks",
-        lhd: "LHD Tramming in Decline",
-        drill: "Face Drilling (Jumbo)",
-        support: "Install Mesh & Bolts",
-        vent: "Main Ventilation Failure",
-        rockfall: "Major Rock Fall Event",
-        traffic: "Traffic Conflict in Single Lane",
-        reentry: "Unsafe Re-Entry Attempt",
-        shaft_sinking: "Shaft Sinking (Vertical Shaft)",
-        raise_drill: "Raise Drilling (Raise Boring)",
-        
-        lifting_operations: "Lifting Operations",
-        civil_structural: "Civil and Structural Engineering",
-        conveyor_monorail: "Conveyor Belt and Monorail",
-        compressed_air: "Compressed Air and Reticulation",
-        pump_fluid: "Pump and Fluid handling",
-        steam_pressure: "Steam and Pressure Vessels",
-        
-        electrical: "Underground Electrical Systems Safety",
-        mhsa: "MHSA 1996 Regulations",
-        seismicity: "Seismicity & Rockbursts",
-        blasting: "Blasting & Explosives",
-        evacuation: "Emergency Evacuation",
-        fire: "Fire Monitoring, Prevention and Control",
-        tmm: "Trackless Mobile Machinery",
-        winders: "Winding Plant, Shafts and Headgears",
+    electrical: "bi-lightning",
+    mhsa: "bi-book",
+    seismicity: "bi-graph-up-arrow",
+    blasting: "bi-boombox",
+    evacuation: "bi-box-arrow-right",
+    fire: "bi-fire",
+    tmm: "bi-truck-flatbed",
+    winders: "bi-elevator",
 
-        community_chat: "Mining Community Group"
-    };
+    community_chat: "bi-people-fill"
 
-    const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
+};
 
-    const moduleIcons = {
-        handover: "bi-arrow-left-right",
-        lhd: "bi-truck",
-        drill: "bi-hammer",
-        support: "bi-grid-3x3-gap",
-        vent: "bi-wind",
-        rockfall: "bi-exclamation-triangle",
-        traffic: "bi-sign-stop",
-        reentry: "bi-door-open",
-        shaft_sinking: "bi-arrows-vertical",
-        raise_drill: "bi-rocket-takeoff",
-        
-        lifting_operations: "bi-arrow-up-circle-fill",
-        civil_structural: "bi-building-fill",
-        conveyor_monorail: "bi-conveyor",
-        compressed_air: "bi-wind",
-        pump_fluid: "bi-water",
-        steam_pressure: "bi-thermometer-sun",
+const videos = {
+    handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
+    lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
+    drill: "https://www.youtube.com/embed/rALo7h9pCwg",
+    support: "https://www.youtube.com/embed/CJ80Gbmes88",
+    vent: "https://www.youtube.com/embed/scULNpKA3ZU",
+    rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
+    traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
+    reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
+    shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
+    raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
+    lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",  
+    civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
+    
 
-            
-        electrical: "bi-lightning",
-        mhsa: "bi-book",
-        seismicity: "bi-graph-up-arrow",
-        blasting: "bi-boombox",
-        evacuation: "bi-box-arrow-right",
-        fire: "bi-fire",
-        tmm: "bi-truck-flatbed",
-        winders: "bi-elevator",
-
-        community_chat: "bi-people-fill"
-    };
-
-    const videos = {
-        handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
-        lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
-        drill: "https://www.youtube.com/embed/rALo7h9pCwg",
-        support: "https://www.youtube.com/embed/CJ80Gbmes88",
-        vent: "https://www.youtube.com/embed/scULNpKA3ZU",
-        rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
-        traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
-        reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
-        shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
-        raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
-        lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",  
-        civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
-        
-
-        conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
-        compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
-        pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
-        steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
-       
-        
-        electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
-        mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
-        seismicity: "https://www.youtube.com/embed/geun1k07NkM",
-        blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
-        evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
-        fire: "https://www.youtube.com/embed/x414lRd1aak",
-        tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
-        winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
-    };
-
-
-         
-        // ──────────────────────────────────────────────────────────────────────────────
-        // QUIZZES (example – add more as needed)
-        // ──────────────────────────────────────────────────────────────────────────────
-
-
+    conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
+    compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
+    pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
+    steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
+   
+    
+    electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
+    mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
+    seismicity: "https://www.youtube.com/embed/geun1k07NkM",
+    blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
+    evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
+    fire: "https://www.youtube.com/embed/x414lRd1aak",
+    tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
+    winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
+};
 
 // Sample quizzes (you can expand with real questions)
 const sampleQuizzes = {
@@ -1196,7 +1158,17 @@ handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
         {question:"Emergency evacuation COP?", options:["No","Yes"], correct:1, explanation:"Mandatory detailed plan."},
         {question:"What is 'safe haven'?", options:["Refuge","Alternative term"], correct:0, explanation:"Same as refuge chamber."}
     ]},
-
+fire: {name:"FIRE UNDERGROUND", q: [
+        {question:"First action on discovering fire?", options:["Fight fire","Report and evacuate"], correct:1, explanation:"Immediate reporting via radio and activation of evacuation if required."},
+        {question:"Who leads fire fighting?", options:["Anyone","Proto team"], correct:1, explanation:"Trained proto (rescue) teams handle underground fire response."},
+        {question:"Fire suppression on vehicles?", options:["Optional","Mandatory"], correct:1, explanation:"All diesel vehicles require automatic fire suppression systems."},
+        {question:"What is 'fire round'?", options:["Inspection","Designated fire patrol"], correct:1, explanation:"Regular fire risk inspections by appointed persons."},
+        {question:"Conveyor belt fire protection?", options:["None","CO sensors and suppression"], correct:1, explanation:"CO monitoring and water deluge systems."},
+        {question:"Who declares fire emergency?", options:["Supervisor","Mine manager"], correct:1, explanation:"Incident command structure activated by manager."},
+        {question:"Refuge chamber fire rating?", options:["1 hour","4 hours"], correct:1, explanation:"Chambers must withstand external fire for minimum 4 hours."},
+        {question:"Fire extinguisher inspection?", options:["Monthly","By competent person"], correct:0, explanation:"Monthly checks recorded in fire equipment register."},
+        {question:"Hydraulic fluid requirement?", options:["Water-based","Fire-resistant"], correct:1, explanation:"Only fire-resistant fluids permitted underground."},
+        {question:"Post-fire re-entry?", options:["Immediately","After air quality clearance"], correct:1, explanation:"Re-entry only after full atmospheric testing and structural assessment."},
 
 fire: {name:"FIRE UNDERGROUND", q: [
         {question:"First action on discovering fire?", options:["Fight fire","Report and evacuate"], correct:1, explanation:"Immediate reporting via radio and activation of evacuation if required."},
@@ -1234,328 +1206,288 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 
 
+// ────────────────────────────────────────────────
+// STATE
+// ────────────────────────────────────────────────
 
+let scores = JSON.parse(localStorage.getItem('miningScores')||'{}');
+let currentModule = null;
+let currentQuiz   = null;
+let qIndex        = 0;
+let correct       = 0;
+let startTime     = 0;
 
+const $ = id => document.getElementById(id);
+const els = {
+  moduleGrid:     $('moduleGrid'),
+  searchInput:    $('searchInput'),
+  completedCount: $('completedCount'),
+  overallPass:    $('overallPass'),
+  moduleTitle:    $('moduleTitle'),
+  videoPlayer:    $('videoPlayer'),
+  questionText:   $('questionText'),
+  options:        $('optionsContainer'),
+  feedback:       $('feedback'),
+  nextBtn:        $('nextBtn'),
+  resultTitle:    $('resultTitle'),
+  progressBar:    $('progressBar'),
+  scorePercent:   $('scorePercent'),
+  correctCount:   $('correctCount'),
+  timeDisplay:    $('timeDisplay'),
+  passMessage:    $('passMessage'),
+  dashCompleted:  $('dashCompleted'),
+  dashPassRate:   $('dashPassRate'),
+  dashCertificates:$('dashCertificates'),
+  breadcrumbItems:$('breadcrumbItems')
+};
 
+// ────────────────────────────────────────────────
+// HELPERS
+// ────────────────────────────────────────────────
 
+function shuffle(a) {
+  const b = a.slice();
+  for (let i = b.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
 
+function hideAll() {
+  document.querySelectorAll('#welcomeScreen,#modulesContainer,#moduleView,#videoScreen,#quizScreen,#resultsScreen,#communityScreen,#dashboardScreen')
+    .forEach(el=>el.classList.add('d-none'));
+}
 
+function show(id) {
+  hideAll();
+  $(id).classList.remove('d-none');
+  updateBreadcrumb(id);
+  if (id !== 'videoScreen') els.videoPlayer.src = '';
+  scrollTo(0,0);
+}
 
+function updateBreadcrumb(screen) {
+  const nav = $('breadcrumbNav');
+  els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="showHome();return false;">Home</a></li>';
 
+  if (screen === 'welcomeScreen') {
+    nav.classList.add('d-none');
+    return;
+  }
 
+  nav.classList.remove('d-none');
+  let text = '';
 
-        // ──────────────────────────────────────────────────────────────────────────────
-        // APPLICATION STATE
-        // ──────────────────────────────────────────────────────────────────────────────
+  if (screen==='modulesContainer')   text = 'Modules';
+  else if (screen==='moduleView')    text = `Module: ${moduleNames[currentModule]||currentModule}`;
+  else if (screen==='videoScreen')   text = 'Video';
+  else if (screen==='quizScreen')    text = 'Assessment';
+  else if (screen==='resultsScreen') text = 'Results';
+  else if (screen==='communityScreen') text = 'Community';
+  else if (screen==='dashboardScreen') text = 'Dashboard';
 
-        let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
-        let currentModule = null;
-        let currentQuiz = null;
-        let questionIndex = 0;
-        let correctAnswers = 0;
-        let quizStartTime = 0;
+  if (text) {
+    const li = document.createElement('li');
+    li.className = 'breadcrumb-item active';
+    li.textContent = text;
+    els.breadcrumbItems.appendChild(li);
+  }
+}
 
-        const els = {
-            moduleGrid: document.getElementById('moduleGrid'),
-            searchInput: document.getElementById('searchInput'),
-            completedCount: document.getElementById('completedCount'),
-            overallPass: document.getElementById('overallPass'),
-            moduleTitle: document.getElementById('moduleTitle'),
-            videoPlayer: document.getElementById('videoPlayer'),
-            questionText: document.getElementById('questionText'),
-            optionsContainer: document.getElementById('optionsContainer'),
-            feedback: document.getElementById('feedback'),
-            nextBtn: document.getElementById('nextBtn'),
-            resultTitle: document.getElementById('resultTitle'),
-            progressBar: document.getElementById('progressBar'),
-            scorePercent: document.getElementById('scorePercent'),
-            correctCount: document.getElementById('correctCount'),
-            timeDisplay: document.getElementById('timeDisplay'),
-            passMessage: document.getElementById('passMessage'),
-            dashCompleted: document.getElementById('dashCompleted'),
-            dashPassRate: document.getElementById('dashPassRate'),
-            dashCertificates: document.getElementById('dashCertificates'),
-            completedModulesList: document.getElementById('completedModulesList'),
-            breadcrumbItems: document.getElementById('breadcrumbItems'),
-            modulesContainer: document.getElementById('modulesContainer')
-        };
+function updateProgress() {
+  const done = Object.keys(scores).length;
+  const passed = Object.values(scores).filter(v=>v?.passed).length;
+  const rate = done ? Math.round(passed/done*100) : 0;
 
-        // ──────────────────────────────────────────────────────────────────────────────
-        // HELPER FUNCTIONS
-        // ──────────────────────────────────────────────────────────────────────────────
+  els.completedCount.textContent = done;
+  els.overallPass.textContent    = rate+'%';
+  els.dashCompleted.textContent  = done+'/24';
+  els.dashPassRate.textContent   = rate+'%';
+  els.dashCertificates.textContent = passed;
+}
 
-        function shuffleArray(array) {
-            const copy = [...array];
-            for (let i = copy.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [copy[i], copy[j]] = [copy[j], copy[i]];
-            }
-            return copy;
-        }
+// ────────────────────────────────────────────────
+// RENDER MODULES
+// ────────────────────────────────────────────────
 
-        function hideAllScreens() {
-            document.querySelectorAll('#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #communityScreen, #dashboardScreen')
-                .forEach(el => el.classList.add('d-none'));
-        }
+function renderModules(filter='all', term='') {
+  els.moduleGrid.innerHTML = '';
 
-        function showScreen(id) {
-            hideAllScreens();
-            document.getElementById(id).classList.remove('d-none');
-            updateBreadcrumbs(id);
-            if (id !== 'videoScreen') els.videoPlayer.src = '';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+  Object.entries(moduleNames).forEach(([key,name]) => {
+    if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
+    if (filter==='basic'  && advancedModules.includes(key)) return;
+    if (filter==='advanced' && !advancedModules.includes(key)) return;
 
-        function updateBreadcrumbs(screen) {
-            const nav = document.getElementById('breadcrumbNav');
-            els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>';
+    const div = document.createElement('div');
+    div.className = 'col-12 col-sm-6 col-lg-4 col-xl-3';
+    div.innerHTML = `
+      <div class="module-card ${advancedModules.includes(key)?'advanced':''}" data-key="${key}">
+        <div class="card-body">
+          <div class="icon-wrapper"><i class="bi ${moduleIcons[key]||'bi-shield-check'}"></i></div>
+          <h6 class="module-name">${name}</h6>
+          ${scores[key] ? `<span class="progress-badge ${scores[key].passed?'bg-success-soft':'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
+        </div>
+      </div>`;
+    div.querySelector('.module-card').onclick = ()=> loadModule(key);
+    els.moduleGrid.appendChild(div);
+  });
 
-            if (screen === 'welcomeScreen') {
-                nav.classList.add('d-none');
-                return;
-            }
+  updateProgress();
+}
 
-            nav.classList.remove('d-none');
-            let text = '';
+// ────────────────────────────────────────────────
+// NAVIGATION
+// ────────────────────────────────────────────────
 
-            if (screen === 'modulesContainer') text = 'Modules';
-            else if (screen === 'moduleView') text = `Modules > ${moduleNames[currentModule] || currentModule}`;
-            else if (screen === 'videoScreen') text = `Video: ${moduleNames[currentModule] || currentModule}`;
-            else if (screen === 'quizScreen') text = `Quiz: ${moduleNames[currentModule] || currentModule}`;
-            else if (screen === 'resultsScreen') text = `Results: ${moduleNames[currentModule] || currentModule}`;
-            else if (screen === 'communityScreen') text = 'Community';
-            else if (screen === 'dashboardScreen') text = 'Dashboard';
+function loadModule(key) {
+  currentModule = key;
+  if (key === 'community_chat') {
+    show('communityScreen');
+    return;
+  }
+  els.moduleTitle.textContent = moduleNames[key] || key;
+  show('moduleView');
+}
 
-            if (text) {
-                const li = document.createElement('li');
-                li.className = 'breadcrumb-item active';
-                li.setAttribute('aria-current', 'page');
-                li.textContent = text;
-                els.breadcrumbItems.appendChild(li);
-            }
-        }
+function startVideo() {
+  if (!videos[currentModule]) return alert('No video available');
+  els.videoPlayer.src = videos[currentModule] + '?autoplay=1&rel=0';
+  show('videoScreen');
+}
 
-        function updateProgress() {
-            const done = Object.keys(scores).length;
-            const passed = Object.values(scores).filter(v => v?.passed).length;
-            const rate = done ? Math.round((passed / done) * 100) : 0;
+function startQuiz() {
+  if (!sampleQuizzes[currentModule]) return alert('No quiz available yet');
+  currentQuiz = shuffle(sampleQuizzes[currentModule].q);
+  qIndex = 0;
+  correct = 0;
+  startTime = Date.now();
+  showQuestion();
+  show('quizScreen');
+}
 
-            els.completedCount.textContent = done;
-            els.overallPass.textContent = rate + '%';
-            els.dashCompleted.textContent = `${done}/24`;
-            els.dashPassRate.textContent = rate + '%';
-            els.dashCertificates.textContent = passed;
-        }
+function showQuestion() {
+  if (qIndex >= currentQuiz.length) return finishQuiz();
 
-        // ──────────────────────────────────────────────────────────────────────────────
-        // MAIN FUNCTIONS
-        // ──────────────────────────────────────────────────────────────────────────────
+  const q = currentQuiz[qIndex];
+  els.questionText.textContent = q.q;
+  els.options.innerHTML = '';
+  els.feedback.textContent = '';
+  els.feedback.className = 'mt-4 text-center fw-bold fs-5 min-vh-50 d-flex align-items-center justify-content-center';
+  els.nextBtn.classList.add('d-none');
 
-        function renderModules(filter = 'all', term = '') {
-            els.moduleGrid.innerHTML = '';
+  q.o.forEach((opt,i)=>{
+    const d = document.createElement('div');
+    d.className = 'quiz-option';
+    d.textContent = opt;
+    d.dataset.idx = i;
+    d.onclick = selectAnswer;
+    els.options.appendChild(d);
+  });
+}
 
-            Object.entries(moduleNames).forEach(([key, name]) => {
-                if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
-                if (filter === 'basic' && advancedModules.includes(key)) return;
-                if (filter === 'advanced' && !advancedModules.includes(key)) return;
+function selectAnswer(e) {
+  const idx = +e.target.dataset.idx;
+  const correctIdx = currentQuiz[qIndex].c;
 
-                const card = document.createElement('div');
-                card.className = `col-12 col-sm-6 col-lg-4 col-xl-3`;
-                card.innerHTML = `
-                    <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
-                        <div class="card-body">
-                            <div class="icon-wrapper"><i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i></div>
-                            <h6 class="module-name">${name}</h6>
-                            ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
-                        </div>
-                    </div>
-                `;
-                card.querySelector('.module-card').addEventListener('click', () => loadModule(key));
-                els.moduleGrid.appendChild(card);
-            });
+  Array.from(els.options.children).forEach(c=>{
+    c.style.pointerEvents = 'none';
+    c.onclick = null;
+  });
 
-            updateProgress();
-        }
+  if (idx === correctIdx) {
+    correct++;
+    els.feedback.textContent = `Correct! ${currentQuiz[qIndex].e}`;
+    els.feedback.classList.add('text-success');
+    e.target.classList.add('bg-success');
+  } else {
+    els.feedback.textContent = `Incorrect. ${currentQuiz[qIndex].e}`;
+    els.feedback.classList.add('text-danger');
+    e.target.classList.add('bg-danger');
+    els.options.children[correctIdx].classList.add('bg-success');
+  }
 
-        function loadModule(key) {
-            currentModule = key;
-            if (key === 'community_chat') {
-                showScreen('communityScreen');
-            } else {
-                els.moduleTitle.textContent = moduleNames[key] || key;
-                showScreen('moduleView');
-            }
-        }
+  els.nextBtn.classList.remove('d-none');
+}
 
-        function startVideo() {
-            if (!currentModule || !videos[currentModule]) return alert("No video available for this module.");
-            els.videoPlayer.src = videos[currentModule] + "?autoplay=1&rel=0";
-            showScreen('videoScreen');
-        }
+function finishQuiz() {
+  const secs = Math.floor((Date.now()-startTime)/1000);
+  const pct  = Math.round(correct / currentQuiz.length * 100);
+  const pass = pct >= 80;
 
-        function startQuiz() {
-            if (!currentModule || !sampleQuizzes[currentModule]) {
-                alert("No quiz available for this module yet.");
-                return;
-            }
+  els.resultTitle.textContent = pass ? 'Passed!' : 'Not Passed';
+  els.resultTitle.className = `display-5 fw-bold mb-4 ${pass?'text-success':'text-danger'}`;
+  els.progressBar.style.width = pct+'%';
+  els.progressBar.textContent = pct+'%';
+  els.progressBar.className = `progress-bar progress-bar-striped fs-4 fw-bold ${pass?'bg-success':'bg-danger'}`;
+  els.scorePercent.textContent = pct+'%';
+  els.correctCount.textContent = correct + ' / ' + currentQuiz.length;
+  els.timeDisplay.textContent = Math.floor(secs/60)+':'+(secs%60).toString().padStart(2,'0');
+  els.passMessage.textContent = pass
+    ? 'Well done – you have demonstrated competency.'
+    : 'Please review the material and try again.';
 
-            currentQuiz = shuffleArray([...sampleQuizzes[currentModule].q]);
-            questionIndex = 0;
-            correctAnswers = 0;
-            quizStartTime = Date.now();
-            showQuestion();
-            showScreen('quizScreen');
-        }
+  scores[currentModule] = { percentage:pct, passed:pass };
+  localStorage.setItem('miningScores', JSON.stringify(scores));
+  updateProgress();
 
-        function showQuestion() {
-            if (questionIndex >= currentQuiz.length) {
-                finishQuiz();
-                return;
-            }
+  show('resultsScreen');
+}
 
-            const q = currentQuiz[questionIndex];
-            els.questionText.textContent = q.question;
-            els.optionsContainer.innerHTML = '';
-            els.feedback.textContent = '';
-            els.feedback.className = 'mt-4 text-center fw-bold fs-5 min-vh-50 d-flex align-items-center justify-content-center';
-            els.nextBtn.classList.add('d-none');
+// ────────────────────────────────────────────────
+// ROUTES
+// ────────────────────────────────────────────────
 
-            q.options.forEach((option, idx) => {
-                const div = document.createElement('div');
-                div.className = 'quiz-option col-12';
-                div.textContent = option;
-                div.dataset.index = idx;
-                div.addEventListener('click', selectAnswer);
-                els.optionsContainer.appendChild(div);
-            });
-        }
+function showHome()           { show('welcomeScreen'); }
+function showModulesList()    {
+  const f = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+  renderModules(f, els.searchInput.value.trim());
+  show('modulesContainer');
+}
+function showDashboard()      { show('dashboardScreen'); }
+function showCommunity()      { show('communityScreen'); }
+function backToModulesList()  { showModulesList(); }
+function backToModule()       { show('moduleView'); }
+function restartQuiz()        { startQuiz(); }
 
-        function selectAnswer(e) {
-            const selectedIdx = parseInt(e.target.dataset.index);
-            const correctIdx = currentQuiz[questionIndex].correct;
+// ────────────────────────────────────────────────
+// EVENT LISTENERS
+// ────────────────────────────────────────────────
 
-            // Disable further clicks
-            Array.from(els.optionsContainer.children).forEach(child => {
-                child.style.pointerEvents = 'none';
-                child.removeEventListener('click', selectAnswer);
-            });
+document.getElementById('watchVideo')?.onclick = startVideo;
+document.getElementById('startQuiz')?.onclick   = startQuiz;
+els.nextBtn.onclick = ()=> { qIndex++; showQuestion(); };
 
-            if (selectedIdx === correctIdx) {
-                correctAnswers++;
-                els.feedback.textContent = `Correct! ${currentQuiz[questionIndex].explanation}`;
-                els.feedback.classList.add('text-success');
-                e.target.classList.add('bg-success-soft');
-            } else {
-                els.feedback.textContent = `Incorrect. ${currentQuiz[questionIndex].explanation}`;
-                els.feedback.classList.add('text-danger');
-                e.target.classList.add('bg-danger-soft');
-                els.optionsContainer.children[correctIdx].classList.add('bg-success-soft');
-            }
+els.searchInput.oninput = e => {
+  const f = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+  renderModules(f, e.target.value.trim());
+};
 
-            els.nextBtn.classList.remove('d-none');
-        }
+document.querySelectorAll('[data-filter]').forEach(b=>{
+  b.onclick = ()=>{
+    document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    renderModules(b.dataset.filter, els.searchInput.value.trim());
+  };
+});
 
-        function nextQuestion() {
-            questionIndex++;
-            showQuestion();
-        }
+// mobile menu fix
+document.querySelectorAll('.nav-link').forEach(lnk=>{
+  lnk.onclick = ()=>{
+    if (window.innerWidth < 992) {
+      bootstrap.Collapse.getInstance($('#navbarContent'))?.hide();
+    }
+  };
+});
 
-        function finishQuiz() {
-            const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-            const total = currentQuiz.length;
-            const percentage = Math.round((correctAnswers / total) * 100);
-            const passed = percentage >= 80;
+// ────────────────────────────────────────────────
+// INIT
+// ────────────────────────────────────────────────
 
-            els.resultTitle.textContent = passed ? "Congratulations! You Passed" : "Assessment Not Passed";
-            els.resultTitle.className = passed ? "display-5 fw-bold mb-4 text-success" : "display-5 fw-bold mb-4 text-danger";
-
-            els.progressBar.style.width = percentage + "%";
-            els.progressBar.textContent = percentage + "%";
-            els.progressBar.className = `progress-bar progress-bar-striped fs-4 fw-bold ${passed ? 'bg-success' : 'bg-danger'}`;
-
-            els.scorePercent.textContent = percentage + "%";
-            els.correctCount.textContent = `${correctAnswers} / ${total}`;
-            els.timeDisplay.textContent = `${Math.floor(timeTaken / 60)}:${(timeTaken % 60).toString().padStart(2,'0')}`;
-
-            els.passMessage.textContent = passed 
-                ? "Well done! You have demonstrated the required competency."
-                : "Review the training material and try again.";
-
-            // Save score
-            scores[currentModule] = { percentage, passed, date: new Date().toISOString() };
-            localStorage.setItem('miningScores', JSON.stringify(scores));
-            updateProgress();
-
-            showScreen('resultsScreen');
-        }
-
-        function restartQuiz() {
-            startQuiz();
-        }
-
-        function showHome()           { showScreen('welcomeScreen'); }
-        function showModulesList()    { 
-            const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-            renderModules(filter, els.searchInput.value.trim());
-            showScreen('modulesContainer'); 
-        }
-        function showDashboard()      { 
-            els.completedModulesList.innerHTML = '';
-            if (Object.keys(scores).length === 0) {
-                els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
-            } else {
-                Object.entries(scores).forEach(([key, data]) => {
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                    li.innerHTML = `${moduleNames[key] || key} <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">${data.percentage}%</span>`;
-                    els.completedModulesList.appendChild(li);
-                });
-            }
-            showScreen('dashboardScreen'); 
-        }
-        function showCommunity()      { showScreen('communityScreen'); }
-        function backToModulesList()  { showModulesList(); }
-        function backToModule()       { showScreen('moduleView'); }
-
-        // ──────────────────────────────────────────────────────────────────────────────
-        // EVENT LISTENERS
-        // ──────────────────────────────────────────────────────────────────────────────
-
-        document.getElementById('watchVideo')?.addEventListener('click', startVideo);
-        document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
-        document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
-
-        els.searchInput.addEventListener('input', (e) => {
-            const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-            renderModules(filter, e.target.value.trim());
-        });
-
-        document.querySelectorAll('[data-filter]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderModules(btn.dataset.filter, els.searchInput.value.trim());
-            });
-        });
-
-        // Mobile menu collapse fix
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth < 992) {
-                    bootstrap.Collapse.getInstance(document.getElementById('navbarContent'))?.hide();
-                }
-            });
-        });
-
-        // ──────────────────────────────────────────────────────────────────────────────
-        // INITIALIZATION
-        // ──────────────────────────────────────────────────────────────────────────────
-
-        window.addEventListener('DOMContentLoaded', () => {
-            showHome();
-            renderModules();
-        });
-    </script>
+window.addEventListener('DOMContentLoaded', ()=>{
+  showHome();
+  renderModules();
+});
+</script>
 </body>
 </html>
-
