@@ -187,22 +187,22 @@
 
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('home'); return false;">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('modules'); return false;">Modules</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('dashboard'); return false;">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="selectNavItem('community'); return false;">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-section="home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-section="modules">Modules</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-section="dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-section="community">Community</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
+    <!-- Main Content -->
     <div class="container-fluid p-4 p-lg-5" id="content-area">
 
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#" onclick="selectNavItem('home'); return false;">Home</a></li>
+                <li class="breadcrumb-item"><a href="#" data-section="home">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Current</li>
             </ol>
         </nav>
@@ -390,7 +390,7 @@
 
     <script>
         // ────────────────────────────────────────────────
-        // DATA (insert your full sampleQuizzes object here)
+        // DATA (paste your full sampleQuizzes object here)
         // ────────────────────────────────────────────────
 
         const moduleNames = {
@@ -477,6 +477,7 @@
             tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
             winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
         };
+
 
 
 // Sample quizzes (you can expand with real questions)
@@ -1251,6 +1252,8 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 
 
+
+
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
         let currentQuiz = null;
@@ -1309,7 +1312,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function updateBreadcrumbs(screen) {
             els.breadcrumbNav.classList.remove('d-none');
-            els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="selectNavItem(\'home\');return false;">Home</a></li>';
+            els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" data-section="home">Home</a></li>';
 
             let item = document.createElement('li');
             item.className = 'breadcrumb-item active';
@@ -1495,15 +1498,14 @@ fire: {name:"FIRE UNDERGROUND", q: [
         // ────────────────────────────────────────────────
 
         function selectNavItem(section) {
-            // Perform navigation
             if (section === 'home')      showHome();
             if (section === 'modules')   showModulesList();
             if (section === 'dashboard') showDashboard();
             if (section === 'community') showCommunity();
 
-            // Collapse menu on mobile
+            // Collapse menu on mobile after selection
             if (window.innerWidth <= 991) {
-                document.getElementById('mainNavbar').classList.add('menu-collapsed');
+                document.getElementById('mainNavbar').classList.remove('menu-open');
             }
         }
 
@@ -1569,15 +1571,25 @@ fire: {name:"FIRE UNDERGROUND", q: [
             });
         });
 
-        // Re-open menu when tapping the Menu button
+        // Menu button toggle
         document.getElementById('showMenuBtn')?.addEventListener('click', () => {
-            document.getElementById('mainNavbar').classList.remove('menu-collapsed');
+            document.getElementById('mainNavbar').classList.toggle('menu-open');
         });
 
         // Reset on desktop resize
         window.addEventListener('resize', () => {
             if (window.innerWidth > 991) {
-                document.getElementById('mainNavbar').classList.remove('menu-collapsed');
+                document.getElementById('mainNavbar').classList.remove('menu-open');
+            }
+        });
+
+        // Event delegation for nav links (reliable on mobile)
+        document.getElementById('navLinks')?.addEventListener('click', function(e) {
+            const link = e.target.closest('a[data-section]');
+            if (link) {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                selectNavItem(section);
             }
         });
 
