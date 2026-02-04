@@ -153,7 +153,7 @@
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand logo-title" href="#">Act 29</a>
+            <a class="navbar-brand logo-title" href="#">Mining Training</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -181,7 +181,7 @@
 
         <!-- Modules List Screen (now in main area) -->
         <div id="modulesContainer">
-            <h2 class="text-primary fw-bold mb-4">Training Modules</h2>
+            <h2 class="text-primary fw-bold mb-4">All Training Modules</h2>
 
             <div class="row mb-4">
                 <div class="col-md-6">
@@ -234,7 +234,7 @@
                 </div>
             </div>
             <div class="text-center mt-5">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back</button>
+                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
             </div>
         </div>
 
@@ -313,7 +313,7 @@
                 </ul>
                 <div class="text-center">
                     <a href="https://discord.gg/rfsRXS3BUR" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-discord me-2"></i> Join Group
+                        <i class="bi bi-discord me-2"></i> Join Discord Group
                     </a>
                     <a href="https://drive.google.com/drive/folders/1IeRl6fuKQLLisLX1I0_FT2Xa6MyoLQFM?usp=drive_link" class="btn btn-primary btn-lg px-5 mb-3">
                         <i class="bi bi-cloud-arrow-up me-2"></i> Share Files
@@ -323,7 +323,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back</button>
+                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModulesList()">← Back to Modules</button>
             </div>
         </div>
 
@@ -653,306 +653,7 @@ handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
         {question:"Speed limit in traffic conflict areas?", options:["20 km/h","As per traffic plan"], correct:1, explanation:"Reduced speed limits apply in high-conflict zones."},
         {question:"Who controls traffic?", options:["Anyone","Appointed traffic controller"], correct:1, explanation:"Designated controllers manage complex intersections."},
         {question:"Refuge bay spacing?", options:["50 m","Maximum 30 m"], correct:1, explanation:"Refuge bays must be provided at maximum 30 m intervals in travel ways."},
-        {question:"What is 'call-up point'?", options:["Sign","Radio check-in location"], correct:1, explanation:"Designated points where vehicles must radio position before proceeding."},
-        {question:"Can light vehicles overtake TMM?", options:["Yes","Never"], correct:1, explanation:"Light vehicles must never overtake trackless mobile machinery."},
-        {question:"Signage requirement?", options:["Optional","Mandatory at all changes"], correct:1, explanation:"Clear signage for speed, priority, and hazards is mandatory."},
-        {question:"Who updates traffic plan?", options:["Operator","Engineering"], correct:1, explanation:"The traffic management plan is reviewed by engineering department."},
-        {question:"Collision reporting?", options:["Next shift","Immediately"], correct:1, explanation:"All collisions or near-misses must be reported immediately."},
-        {question:"What is 'separation distance'?", options:["Any","Minimum 50 m"], correct:1, explanation:"Safe following distance between vehicles."},
-        {question:"Who trains drivers in traffic rules?", options:["Anyone","Accredited"], correct:1, explanation:"Formal training and assessment required."},
-        {question:"Light vehicle speed limit?", options:["40 km/h","As per plan"], correct:1, explanation:"Typically lower than TMM."},
-        {question:"What is 'passing bay'?", options:["Parking","Wide section for overtaking"], correct:1, explanation:"Designated areas for safe passing."},
-        {question:"Radio protocol for conflict?", options:["Optional","Mandatory call and response"], correct:1, explanation:"Clear communication to resolve priority."},
-        {question:"Who monitors traffic compliance?", options:["Supervisor","All levels"], correct:1, explanation:"Supervisors enforce rules daily."},
-        {question:"Traffic incident investigation?", options:["Minor","Formal for all"], correct:1, explanation:"All incidents investigated to prevent recurrence."},
-        {question:"What is 'proximity detection'?", options:["Optional","Mandatory on TMM"], correct:1, explanation:"Systems warn of personnel near vehicles."},
-        {question:"Parking on inclines?", options:["Any","With chocks"], correct:1, explanation:"Wheels chocked and brake applied."},
-        {question:"Who approves traffic changes?", options:["Manager","Engineering"], correct:1, explanation:"All layout changes require formal approval."},
-        {question:"Traffic COP required?", options:["No","Yes"], correct:1, explanation:"Mandatory traffic management code of practice."},
-        {question:"What is 'right of way' sign?", options:["Suggestion","Mandatory obedience"], correct:1, explanation:"Signs dictate priority at intersections."},
-        {question:"Can pedestrians walk in haulage ways?", options:["Yes","Only in emergencies"], correct:1, explanation:"Pedestrians must use separate walkways."},
-        {question:"Who records traffic incidents?", options:["Driver","Safety department"], correct:1, explanation:"All incidents logged and analysed."},
-        {question:"Traffic plan review frequency?", options:["Never","Annual or after incident"], correct:1, explanation:"Regular review and update required."},
-        {question:"What is 'collision avoidance'?", options:["Driver skill","Technology + procedures"], correct:1, explanation:"Combination of systems and rules."}
-    ]},
-    reentry: {name:"UNSAFE RE-ENTRY ATTEMPT", q: [
-        {question:"Minimum re-entry time after blasting?", options:["15 minutes","30 minutes"], correct:1, explanation:"Minimum 30 minutes for ventilation to clear fumes and dust."},
-        {question:"Who authorises re-entry?", options:["Blaster","Shift boss after examination"], correct:1, explanation:"Only the shift boss may authorise re-entry after face examination."},
-        {question:"What must be checked before re-entry?", options:["Nothing","Misfires, ventilation, support"], correct:1, explanation:"Comprehensive check for misfires, gas levels, and ground conditions."},
-        {question:"Can you re-enter alone?", options:["Yes","Never"], correct:1, explanation:"Re-entry must be in teams with communication."},
-        {question:"Fume clearance measured by?", options:["Smell","Gas monitoring"], correct:1, explanation:"Portable gas detectors confirm safe atmosphere."},
-        {question:"Who examines for misfires?", options:["Anyone","Competent blaster"], correct:1, explanation:"Only competent persons may search for and handle misfires."},
-        {question:"Re-entry log required?", options:["No","Yes, signed by shift boss"], correct:1, explanation:"Re-entry must be recorded in the logbook."},
-        {question:"What is 'blow-over'?", options:["Ventilation term","Fume clearance time"], correct:1, explanation:"Additional time allowed for complete fume dilution."},
-        {question:"Early re-entry penalty?", options:["Warning","Serious offence"], correct:1, explanation:"Premature re-entry is a serious violation with disciplinary action."},
-        {question:"Who monitors re-entry compliance?", options:["Safety rep","All supervisors"], correct:1, explanation:"Supervisors enforce re-entry procedures at all levels."},
-        {question:"What is 'sentinel'?", options:["Guard","Person controlling access"], correct:1, explanation:"Appointed person prevents unauthorised entry."},
-        {question:"Re-entry after secondary blast?", options:["Same time","Extended"], correct:1, explanation:"Additional clearance time required."},
-        {question:"Who declares face safe?", options:["Blaster","Shift boss"], correct:1, explanation:"Shift boss after examination and testing."},
-        {question:"Can re-entry time be reduced?", options:["Yes","Never"], correct:1, explanation:"Fixed minimum times for safety."},
-        {question:"Gas testing instruments?", options:["Any","Calibrated detectors"], correct:1, explanation:"Only approved and calibrated instruments."},
-        {question:"Who records re-entry time?", options:["Anyone","Shift boss"], correct:1, explanation:"Accurate time recorded in logbook."},
-        {question:"What is 'fume class'?", options:["Blasting term","Toxicity rating"], correct:1, explanation:"Determines required clearance time."},
-        {question:"Re-entry training?", options:["Optional","Mandatory"], correct:1, explanation:"All personnel trained in procedures."},
-        {question:"Who investigates early re-entry?", options:["Safety","Formal inquiry"], correct:1, explanation:"Serious incidents require formal investigation."}
-    ]},
-    shaft_sinking: {name:"SHAFT SINKING", q: [
-        {question:"Who may work in sinking shaft?", options:["Any miner","Only competent sinkers"], correct:1, explanation:"Only trained and competent shaft sinking crews may work in the shaft."},
-        {question:"Minimum kibble clearance?", options:["1 m","3 m from bottom"], correct:1, explanation:"Kibble must be raised at least 3 m before personnel enter bottom."},
-        {question:"Shaft lining type?", options:["Any","Concrete or steel"], correct:0, explanation:"Permanent lining based on ground conditions."},
-        {question:"What is 'mucking'?", options:["Drilling","Removing broken rock"], correct:1, explanation:"Loading and hoisting blasted rock from shaft bottom."},
-        {question:"Can you ride kibble?", options:["Yes","Only authorised"], correct:1, explanation:"Only for emergency or inspection, with safety devices."},
-        {question:"Shaft inspection frequency?", options:["Daily","Before each shift"], correct:1, explanation:"Full inspection for loose rock and damage."},
-        {question:"What is 'stage'?", options:["Platform","Sinking platform"], correct:1, explanation:"Multi-deck platform for sinking operations."},
-        {question:"Who approves sinking method?", options:["Supervisor","Engineer"], correct:1, explanation:"Detailed method statement approved by shaft engineer."},
-        {question:"Ventilation in sinking shaft?", options:["Natural","Forced auxiliary"], correct:1, explanation:"Auxiliary fans and ducting to shaft bottom."},
-        {question:"What is 'curb ring'?", options:["Support","Concrete form"], correct:0, explanation:"Temporary support ring for lining placement."},
-        {question:"Shaft signals system?", options:["Bell","Two-way radio"], correct:1, explanation:"Reliable communication mandatory."},
-        {question:"Who checks ropes?", options:["Anyone","Rigger"], correct:1, explanation:"Daily inspection by competent rigger."},
-        {question:"What is 'headgear'?", options:["Helmet","Hoisting structure"], correct:1, explanation:"Surface structure for sheaves and kibble."},
-        {question:"Can sinking continue in water?", options:["Yes","Only with control"], correct:1, explanation:"Water inflow must be managed with pumps."},
-        {question:"Shaft bottom barricade?", options:["Optional","Mandatory"], correct:1, explanation:"To prevent falls during mucking."},
-        {question:"Who records sinking advance?", options:["Operator","Shaft supervisor"], correct:1, explanation:"Daily progress and incidents logged."},
-        {question:"What is 'pilot hole'?", options:["Guide","Advance bore"], correct:1, explanation:"For alignment and ground probing."},
-        {question:"Shaft sinking COP?", options:["No","Yes"], correct:1, explanation:"Mandatory code of practice."},
-        {question:"What is 'grout curtain'?", options:["Water control","Sealing injections"], correct:1, explanation:"To reduce water inflow."},
-        {question:"Who trains sinkers?", options:["Anyone","Accredited"], correct:1, explanation:"MQA-accredited training."},
-        {question:"Shaft emergency procedure?", options:["Normal","Specific plan"], correct:1, explanation:"For rescue from bottom."},
-        {question:"What is 'bunton'?", options:["Beam","Shaft divider"], correct:1, explanation:"Horizontal beams for support."},
-        {question:"Shaft survey frequency?", options:["Monthly","After each blast"], correct:1, explanation:"To ensure verticality."},
-        {question:"Who approves explosives use?", options:["Blaster","Shaft blaster"], correct:1, explanation:"Specialised shaft blasting."},
-        {question:"Shaft sinking risk assessment?", options:["Once","Ongoing"], correct:1, explanation:"Updated for each phase."}
-    ]},
-    raise_drill: {name:"RAISE DRILLING", q: [
-        {question:"Who operates raise drill?", options:["Any driller","Competent operator"], correct:1, explanation:"Only certified raise drill operators."},
-        {question:"Pilot hole diameter?", options:["Any","As per reamer"], correct:1, explanation:"Typically 230-350 mm for alignment."},
-        {question:"What is 'reamer'?", options:["Bit","Enlarging head"], correct:1, explanation:"Cutting head pulled up to enlarge hole."},
-        {question:"Can personnel enter during reaming?", options:["Yes","Never"], correct:1, explanation:"Area below barricaded and guarded."},
-        {question:"Who checks torque?", options:["Operator","Continuous monitoring"], correct:0, explanation:"Operator monitors pressure and torque."},
-        {question:"Raise boring advantage?", options:["Speed","Stability"], correct:0, explanation:"Safer than conventional raise climbing."},
-        {question:"What is 'back reaming'?", options:["Alternative","Not used"], correct:0, explanation:"Standard is bottom-up reaming."},
-        {question:"Who surveys pilot hole?", options:["Operator","Surveyor"], correct:1, explanation:"Accurate surveying for alignment."},
-        {question:"Raise ventilation during reaming?", options:["Natural","Forced"], correct:1, explanation:"Auxiliary ventilation required."},
-        {question:"Who records raise advance?", options:["Operator","Supervisor"], correct:1, explanation:"Daily progress recorded."},
-        {question:"Raise boring COP required?", options:["No","Yes"], correct:1, explanation:"Specific procedures mandatory."},
-        {question:"What is 'stabiliser'?", options:["Support","Drilling component"], correct:1, explanation:"Centralisers in drill string."},
-        {question:"Who approves reamer change?", options:["Operator","Engineering"], correct:1, explanation:"Planned maintenance procedure."},
-        {question:"Raise inspection frequency?", options:["Once","Regular"], correct:1, explanation:"Ongoing ground condition monitoring."},
-        {question:"What is 'breakthrough'?", options:["Completion","Pilot reaching lower level"], correct:1, explanation:"Critical alignment phase."},
-        {question:"Who clears raise after reaming?", options:["Anyone","Dedicated crew"], correct:1, explanation:"Safe mucking procedure."},
-        {question:"Raise ladder installation?", options:["Optional","Mandatory for access"], correct:1, explanation:"Safe access system required."},
-        {question:"Raise boring risk assessment?", options:["Once","Before each raise"], correct:1, explanation:"Site-specific assessment required."}
-    ]},
-
-
-
-    lifting_operations:{ name: "Lifting Operations", q: [
-
-  {"question": "What is the statutory factor of safety (FOS) for chain slings used for general lifting?", "options": ["4:1", "5:1", "6:1", "8:1"], "correct": 1, "explanation": "Driven Machinery Regulations require 5:1 minimum for chain slings."},
-  {"question": "Who must personally inspect lifting tackle before each use?", "options": ["Storeman", "Operator", "Appointed lifting machinery inspector", "Any artisan"], "correct": 2, "explanation": "The appointed competent person must inspect and tag."},
-  {"question": "What colour tag shows lifting tackle is currently safe?", "options": ["Red", "Green", "Yellow", "White"], "correct": 1, "explanation": "Green = inspected and safe; red = defective/out of service."},
-  {"question": "Maximum allowable wear on a chain link before discard?", "options": ["5%", "10%", "15%", "20%"], "correct": 1, "explanation": "10% reduction in diameter is the statutory limit."},
-  {"question": "Synthetic fibre slings should not be used at angles greater than?", "options": ["30°", "45°", "60°", "90°"], "correct": 2, "explanation": "Capacity drops dramatically above 60° from vertical."},
-  {"question": "What marking must appear on a wire rope sling thimble?", "options": ["SWL only", "Manufacturer and size", "Date of manufacture", "All of the above"], "correct": 3, "explanation": "Full traceability markings are required."},
-  {"question": "How often must lifting tackle be thoroughly examined?", "options": ["Daily", "Monthly", "Every 3 months", "Annually"], "correct": 2, "explanation": "Every 3 months or after any incident."},
-  {"question": "What is the purpose of a bow shackle keeper pin?", "options": ["Prevent unscrewing", "Increase strength", "Reduce weight", "Improve appearance"], "correct": 0, "explanation": "Safety pin/bolt prevents accidental opening."},
-  {"question": "Which lifting machine requires a load-radius chart?", "options": ["Overhead crane", "Mobile crane", "Chain block", "Forklift"], "correct": 1, "explanation": "Mobile cranes must display rated capacity at different radii."},
-  {"question": "What must be done if a chain link is elongated?", "options": ["Use until next inspection", "Discard immediately", "Weld repair", "Shorten chain"], "correct": 1, "explanation": "Elongation indicates plastic deformation – discard."},
-  {"question": "Minimum FOS for man-riding tackle?", "options": ["6:1", "8:1", "10:1", "12:1"], "correct": 2, "explanation": "10:1 is required for personnel lifting."},
-  {"question": "Who issues a permit to use defective lifting tackle?", "options": ["No one", "Chief inspector", "Competent person", "Operator"], "correct": 0, "explanation": "Defective tackle may never be used."},
-  {"question": "What is the correct way to store synthetic slings?", "options": ["In sunlight", "In cool, dry, dark place", "Hanging outside", "In engine room"], "correct": 1, "explanation": "UV and heat degrade synthetic materials."},
-  {"question": "What indicates a wire rope must be discarded?", "options": ["6 broken wires in one lay", "Visible rust only", "Slight kinking", "Normal shine"], "correct": 0, "explanation": "Broken wires in one lay length is a discard criterion."},
-  {"question": "What is the purpose of a spreader beam?", "options": ["Increase lifting height", "Reduce sling angle stress", "Replace chain", "Speed up lifting"], "correct": 1, "explanation": "Maintains vertical sling legs to maximise capacity."},
-  {"question": "How should a load be lifted off the ground?", "options": ["Quick jerk", "Slow and steady", "Sideways pull", "Any way"], "correct": 1, "explanation": "Sudden jerks cause shock loading."},
-  {"question": "What device prevents load swing on a crane?", "options": ["Tag line", "Anti-two-block", "Limit switch", "Hoist brake"], "correct": 0, "explanation": "Tag lines control swing during travel."},
-  {"question": "Who may operate a mobile crane?", "options": ["Any driver", "Person with valid certificate", "Apprentice", "Supervisor"], "correct": 1, "explanation": "Driven Machinery Regulations require competency certificate."},
-  {"question": "What is the maximum wind speed for safe crane operation?", "options": ["10 m/s", "15 m/s", "20 m/s", "No limit"], "correct": 1, "explanation": "Typically 15 m/s (54 km/h) is the safe limit."},
-  {"question": "What must be done before lifting personnel?", "options": ["Use man basket only", "Use any cage", "No special requirement", "Use chain sling"], "correct": 0, "explanation": "Approved man-riding basket/cage required."},
-  {"question": "Purpose of load test on new lifting tackle?", "options": ["Prove strength", "Check appearance", "Reduce cost", "Speed up use"], "correct": 0, "explanation": "125% proof load test required before first use."},
-  {"question": "What is a 'soft eye' on a sling?", "options": ["Thimble protected", "No thimble", "Chain eye", "Shackle eye"], "correct": 1, "explanation": "Soft eye = unprotected loop, lower capacity."},
-  {"question": "Minimum age to operate lifting machinery?", "options": ["16", "18", "21", "No age limit"], "correct": 1, "explanation": "18 years minimum per DMR."},
-  {"question": "What indicates overloading of a sling?", "options": ["Permanent elongation", "Colour change", "Noise", "Smell"], "correct": 0, "explanation": "Permanent stretch = overload – discard."},
-  {"question": "Who keeps records of lifting tackle inspections?", "options": ["Operator", "Appointed person", "Storeman", "DMR"], "correct": 1, "explanation": "Appointed competent person maintains register."}
-
-
-        
-     ]},   
-        
-    civil_structural: { name: "Civil and Structural Engineering", q: [ 
-
-  {"question": "Purpose of movement joints in concrete structures?", "options": ["Increase strength", "Allow thermal expansion/shrinkage", "Reduce cost", "Improve finish"], "correct": 1, "explanation": "Prevents uncontrolled cracking from temperature and shrinkage."},
-  {"question": "Minimum concrete cover for severe exposure (SANS 10400)?", "options": ["25 mm", "40 mm", "50 mm", "75 mm"], "correct": 2, "explanation": "50 mm required in severe conditions to protect rebar."},
-  {"question": "Why are construction joints planned in large pours?", "options": ["Aesthetic", "Control cracking and allow phasing", "Save cement", "Increase strength"], "correct": 1, "explanation": "Manage heat and shrinkage cracking."},
-  {"question": "Most common field test for concrete workability?", "options": ["Compressive test", "Slump test", "Rebound hammer", "Core test"], "correct": 1, "explanation": "Slump test measures consistency."},
-  {"question": "Typical minimum grade for structural columns?", "options": ["C20/25", "C25/30", "C30/37", "C40/50"], "correct": 2, "explanation": "C30/37 commonly specified for columns."},
-  {"question": "What causes concrete spalling?", "options": ["Too much water", "Corrosion of reinforcement", "Low cement", "Excess aggregate"], "correct": 1, "explanation": "Rust expansion cracks cover concrete."},
-  {"question": "Purpose of shear reinforcement in beams?", "options": ["Increase bending strength", "Resist diagonal tension", "Reduce deflection", "Improve appearance"], "correct": 1, "explanation": "Stirrups resist shear failure."},
-  {"question": "Minimum curing time for structural concrete?", "options": ["3 days", "7 days", "14 days", "28 days"], "correct": 1, "explanation": "7 days minimum for most structural elements."},
-  {"question": "What is the slump range for pumped concrete?", "options": ["25–50 mm", "75–100 mm", "100–150 mm", "200+ mm"], "correct": 2, "explanation": "Higher slump (100–150 mm) required for pumping."},
-  {"question": "Maximum allowable crack width in water-retaining structures?", "options": ["0.1 mm", "0.2 mm", "0.3 mm", "0.5 mm"], "correct": 1, "explanation": "0.2 mm typical limit to prevent leakage."},
-  {"question": "Purpose of expansion joints in long buildings?", "options": ["Allow movement due to temperature", "Increase load capacity", "Reduce foundation size", "Improve aesthetics"], "correct": 0, "explanation": "Prevent stress from thermal expansion."},
-  {"question": "What test measures compressive strength?", "options": ["Slump", "Cube test", "Rebound", "Ultrasonic"], "correct": 1, "explanation": "150 mm cubes crushed at 28 days."},
-  {"question": "Minimum grade for foundations in aggressive soil?", "options": ["C20/25", "C25/30", "C30/37", "C40/50"], "correct": 3, "explanation": "Higher grade for durability in sulphate soils."},
-  {"question": "What is 'bleeding' in concrete?", "options": ["Excess water rising", "Cracking", "Honeycombing", "Segregation"], "correct": 0, "explanation": "Excess water migrates to surface."},
-  {"question": "Purpose of formwork ties?", "options": ["Hold forms together", "Reinforce concrete", "Improve finish", "Reduce weight"], "correct": 0, "explanation": "Resist concrete pressure."},
-  {"question": "Maximum aggregate size for columns?", "options": ["10 mm", "20 mm", "40 mm", "No limit"], "correct": 1, "explanation": "20 mm typical to avoid congestion."},
-  {"question": "What indicates poor compaction?", "options": ["Honeycombing", "Smooth finish", "High strength", "No cracks"], "correct": 0, "explanation": "Voids from inadequate vibration."},
-  {"question": "Minimum lap length for rebar (SANS)?", "options": ["20 × diameter", "30 × diameter", "40 × diameter", "50 × diameter"], "correct": 2, "explanation": "Typically 40d for tension laps."},
-  {"question": "Purpose of waterstops in joints?", "options": ["Prevent water leakage", "Increase strength", "Reduce cost", "Improve appearance"], "correct": 0, "explanation": "Seal construction joints in water tanks."},
-  {"question": "What is 'carbonation'?", "options": ["Chloride attack", "CO₂ reduces alkalinity", "Sulphate attack", "Freeze-thaw damage"], "correct": 1, "explanation": "Lowers pH, initiates rebar corrosion."},
-  {"question": "Minimum concrete temperature for placing?", "options": ["0 °C", "5 °C", "10 °C", "15 °C"], "correct": 1, "explanation": "5 °C minimum to prevent freezing."},
-  {"question": "What causes honeycombing?", "options": ["Poor vibration", "Too much water", "Low cement", "Fine aggregate only"], "correct": 0, "explanation": "Inadequate consolidation."},
-  {"question": "Purpose of construction sequence planning?", "options": ["Speed up work", "Control shrinkage stresses", "Reduce labour", "Improve safety"], "correct": 1, "explanation": "Phased pours reduce restraint cracking."},
-  {"question": "Maximum w/c ratio for durability?", "options": ["0.40", "0.50", "0.60", "0.70"], "correct": 1, "explanation": "0.50 maximum for most structural concrete."},
-  {"question": "Who approves concrete mix design?", "options": ["Contractor", "Engineer", "Lab technician", "Client"], "correct": 1, "explanation": "Structural engineer approves."}
-
-
-     ]},   
-
-    
-        
-    conveyor_monorail: { name: "Conveyor Belt and Monorail", q: [
-
-  {"question": "What is the statutory requirement for guarding conveyor nip points?", "options": ["Optional", "Fixed guards where accessible", "Warning signs only", "No guarding if slow"], "correct": 1, "explanation": "DMR Regulation 8 mandates secure guarding of all nip points."},
-  {"question": "Device required to prevent run-back on inclined conveyors?", "options": ["Anti-runback idler", "Backstop or holdback", "Brake on pulley", "Speed sensor"], "correct": 1, "explanation": "Backstop prevents reverse movement during power failure."},
-  {"question": "Maximum allowable sag between idlers on loaded belt?", "options": ["1%", "2.5%", "5%", "No limit"], "correct": 1, "explanation": "Sag >2.5% causes spillage and high power use."},
-  {"question": "Minimum FOS for monorail load chain/rope?", "options": ["4:1", "5:1", "6:1", "8:1"], "correct": 2, "explanation": "DMR requires 6:1 for monorail hoisting elements."},
-  {"question": "Immediate action on longitudinal belt tear?", "options": ["Continue slowly", "Stop and isolate", "Increase tension", "Patch later"], "correct": 1, "explanation": "Immediate stop prevents catastrophic failure."},
-  {"question": "What must be installed at conveyor transfer points?", "options": ["Skirt boards and seals", "Extra idlers only", "Nothing special", "Warning lights"], "correct": 0, "explanation": "Skirts reduce spillage and dust."},
-  {"question": "Purpose of belt training idlers?", "options": ["Increase speed", "Keep belt centred", "Reduce noise", "Clean belt"], "correct": 1, "explanation": "Self-aligning idlers correct belt tracking."},
-  {"question": "Maximum permissible belt speed in underground mines?", "options": ["2 m/s", "3 m/s", "4 m/s", "No limit"], "correct": 2, "explanation": "Typically limited to 4 m/s for safety."},
-  {"question": "What device detects belt slip?", "options": ["Slip switch", "Load cell", "Temperature sensor", "Vibration switch"], "correct": 0, "explanation": "Slip switch trips on excessive pulley-belt slip."},
-  {"question": "Minimum clearance under conveyor belt?", "options": ["300 mm", "500 mm", "750 mm", "1000 mm"], "correct": 2, "explanation": "750 mm minimum for safe crossing/maintenance."},
-  {"question": "What colour coding is used for conveyor emergency stop cords?", "options": ["Red", "Yellow", "Green", "Blue"], "correct": 0, "explanation": "Red pull-cords are standard for emergency stops."},
-  {"question": "Purpose of take-up device on conveyor?", "options": ["Adjust belt tension", "Increase capacity", "Reduce sag", "Both A & C"], "correct": 3, "explanation": "Maintains proper tension and controls sag."},
-  {"question": "How often must conveyor belt splices be inspected?", "options": ["Daily", "Weekly", "Monthly", "Every 3 months"], "correct": 0, "explanation": "Daily visual checks required for splices."},
-  {"question": "What indicates a worn drive pulley lagging?", "options": ["Belt slip", "Noise increase", "Vibration", "All of the above"], "correct": 3, "explanation": "Poor lagging causes slip, noise and vibration."},
-  {"question": "Minimum distance between conveyor and walkway?", "options": ["300 mm", "500 mm", "750 mm", "1000 mm"], "correct": 2, "explanation": "750 mm clearance for safe access."},
-  {"question": "What protects against belt tear propagation?", "options": ["Rip detectors", "Edge sensors", "Speed switches", "Load cells"], "correct": 0, "explanation": "Rip detectors stop belt on longitudinal tear."},
-  {"question": "Purpose of impact idlers at loading points?", "options": ["Absorb shock", "Increase speed", "Reduce noise", "Clean material"], "correct": 0, "explanation": "Cushion heavy material drop impact."},
-  {"question": "Who may operate a monorail locomotive?", "options": ["Any person", "Competent certificate holder", "Apprentice", "Supervisor"], "correct": 1, "explanation": "Requires valid competency certificate."},
-  {"question": "What is mandatory on monorail tracks?", "options": ["Derailment prevention", "Speed limit signs", "Both A & B", "Nothing special"], "correct": 2, "explanation": "Derailment guards and signage required."},
-  {"question": "Maximum gradient for monorail track?", "options": ["1:10", "1:20", "1:30", "No limit"], "correct": 1, "explanation": "Typically 1:20 maximum for safe operation."},
-  {"question": "What must be done before conveyor maintenance?", "options": ["Lockout/tagout", "Speed reduction only", "Warning signs", "Nothing"], "correct": 0, "explanation": "Full LOTO required for safety."},
-  {"question": "Purpose of belt weigher?", "options": ["Measure tonnage", "Detect overload", "Both A & B", "Clean belt"], "correct": 2, "explanation": "Continuous mass measurement."},
-  {"question": "What indicates misalignment?", "options": ["Edge wear", "Spillage", "Both A & B", "Nothing"], "correct": 2, "explanation": "Misalignment causes edge damage and spillage."},
-  {"question": "Minimum pulley diameter ratio to belt thickness?", "options": ["100:1", "150:1", "200:1", "No ratio"], "correct": 1, "explanation": "Typical minimum 150:1 for bend fatigue."},
-  {"question": "Emergency stop pull cord spacing?", "options": ["Every 10 m", "Every 20 m", "Every 30 m", "No spacing"], "correct": 2, "explanation": "Maximum 30 m spacing per regulations."}
-
-
-     ]},   
-
-
-    
-    compressed_air: { name: "Compressed Air and Reticulation", q: [
-
-
-  {"question": "Maximum allowable working pressure for standard compressed air reticulation?", "options": ["500 kPa", "700 kPa", "1000 kPa", "No limit"], "correct": 2, "explanation": "DMR limits to 1000 kPa unless specially designed."},
-  {"question": "Valve required at end of every air branch line?", "options": ["Gate valve", "Self-closing dead-man valve", "Ball valve", "Globe valve"], "correct": 1, "explanation": "Dead-man valve prevents uncontrolled discharge."},
-  {"question": "Primary purpose of moisture separators?", "options": ["Increase pressure", "Remove water/corrosion prevention", "Reduce noise", "Improve flow"], "correct": 1, "explanation": "Prevents corrosion and freezing."},
-  {"question": "Standard colour for compressed air pipelines underground?", "options": ["Red", "Blue", "Yellow", "Green"], "correct": 1, "explanation": "Blue is standard for compressed air."},
-  {"question": "What must be fitted to air receivers?", "options": ["Safety valve", "Pressure gauge", "Drain valve", "All of the above"], "correct": 3, "explanation": "All are mandatory per PER."},
-  {"question": "Maximum hose length without support?", "options": ["5 m", "10 m", "15 m", "No limit"], "correct": 1, "explanation": "Hoses over 10 m require support."},
-  {"question": "Purpose of aftercooler on compressor?", "options": ["Reduce temperature", "Increase pressure", "Remove oil", "Reduce noise"], "correct": 0, "explanation": "Cools air to condense moisture."},
-  {"question": "What indicates water in air lines?", "options": ["Freezing in winter", "Rust in tools", "Both A & B", "Nothing"], "correct": 2, "explanation": "Water causes freezing and corrosion."},
-  {"question": "Minimum inspection frequency for air receivers?", "options": ["Monthly", "3-monthly", "Annually", "Every 36 months"], "correct": 2, "explanation": "Annual external, 36-month internal per PER."},
-  {"question": "What protects against overpressure in air lines?", "options": ["Relief valve", "Pressure switch", "Both A & B", "Nothing"], "correct": 2, "explanation": "Both devices required."},
-  {"question": "Standard thread for air hose couplings?", "options": ["BSP", "NPT", "Metric", "Any"], "correct": 0, "explanation": "BSP is standard in South Africa."},
-  {"question": "Purpose of oil/water separator?", "options": ["Remove contaminants", "Increase efficiency", "Reduce pressure", "Clean pipes"], "correct": 0, "explanation": "Prevents oil pollution."},
-  {"question": "What must be done before opening air line?", "options": ["Depressurise", "Increase pressure", "Nothing", "Open valve slowly"], "correct": 0, "explanation": "Full depressurisation required."},
-  {"question": "Minimum pipe size for main air header?", "options": ["25 mm", "50 mm", "Depends on flow", "No minimum"], "correct": 2, "explanation": "Sized according to flow and pressure drop."},
-  {"question": "What causes excessive pressure drop in reticulation?", "options": ["Small pipes", "Leaks", "Both A & B", "Nothing"], "correct": 2, "explanation": "Undersized pipes and leaks reduce efficiency."},
-  {"question": "Who may repair compressed air equipment?", "options": ["Any artisan", "Competent person", "Operator", "Supervisor"], "correct": 1, "explanation": "Requires competent person per regulations."},
-  {"question": "Purpose of air dryer?", "options": ["Remove moisture", "Increase volume", "Reduce temperature", "All"], "correct": 0, "explanation": "Prevents water in system."},
-  {"question": "Maximum allowable leak rate?", "options": ["5%", "10%", "15%", "No limit"], "correct": 1, "explanation": "Typical target <10% leakage."},
-  {"question": "What indicates compressor overload?", "options": ["High temperature", "Low pressure", "Both", "Nothing"], "correct": 2, "explanation": "Overheating and pressure drop."},
-  {"question": "Minimum distance from compressor to receiver?", "options": ["1 m", "3 m", "5 m", "No minimum"], "correct": 1, "explanation": "Minimum 3 m for cooling."},
-  {"question": "Purpose of automatic drain trap?", "options": ["Remove condensate", "Save energy", "Both", "Nothing"], "correct": 2, "explanation": "Removes water automatically."},
-  {"question": "What protects against air line whip?", "options": ["Whipcheck cables", "Strong clamps", "Both", "Nothing"], "correct": 2, "explanation": "Prevents hose whipping if disconnected."},
-  {"question": "Standard pressure for rock drills?", "options": ["400 kPa", "600 kPa", "800 kPa", "1000 kPa"], "correct": 1, "explanation": "Typically 600 kPa for pneumatic drills."},
-  {"question": "What must be recorded for air receivers?", "options": ["Inspection dates", "Test pressures", "Both", "Nothing"], "correct": 2, "explanation": "Full history in register."},
-  {"question": "Maximum temperature for compressed air discharge?", "options": ["40 °C", "60 °C", "80 °C", "No limit"], "correct": 2, "explanation": "Typically limited to 80 °C."}
-
-
-     ]},   
-
-        
-    pump_fluid: { name: "Pump and Fluid handling", q: [
-
-  {"question": "Main cause of cavitation in centrifugal pumps?", "options": ["High discharge", "NPSHa < NPSHr", "High speed", "High viscosity"], "correct": 1, "explanation": "Net Positive Suction Head insufficient."},
-  {"question": "Device to prevent dry running?", "options": ["Pressure switch", "Low level/float switch", "Check valve", "Relief valve"], "correct": 1, "explanation": "Protects pump from no-flow damage."},
-  {"question": "Purpose of foot valve in sump pumps?", "options": ["Prevent backflow/keep prime", "Increase pressure", "Reduce vibration", "Filter"], "correct": 0, "explanation": "Maintains suction prime."},
-  {"question": "Minimum inspection frequency for dewatering pumps?", "options": ["Daily", "Weekly", "Monthly", "Quarterly"], "correct": 0, "explanation": "Daily checks per mine regulations."},
-  {"question": "What indicates worn pump impeller?", "options": ["Reduced flow/head", "Vibration", "Both", "Nothing"], "correct": 2, "explanation": "Erosion reduces performance."},
-  {"question": "Purpose of gland packing?", "options": ["Seal shaft", "Cool shaft", "Both", "Nothing"], "correct": 2, "explanation": "Seals and cools."},
-  {"question": "What is 'pump priming'?", "options": ["Filling with fluid", "Increasing speed", "Reducing pressure", "Cleaning"], "correct": 0, "explanation": "Removing air for suction."},
-  {"question": "Maximum suction lift for centrifugal pumps?", "options": ["4 m", "6 m", "8 m", "10 m"], "correct": 2, "explanation": "Approximately 8 m theoretical max."},
-  {"question": "Purpose of non-return valve?", "options": ["Prevent reverse flow", "Increase pressure", "Reduce noise", "All"], "correct": 0, "explanation": "Stops backflow on shutdown."},
-  {"question": "What causes seal failure?", "options": ["Dry running", "Abrasion", "Both", "Nothing"], "correct": 2, "explanation": "Common causes of mechanical seal damage."},
-  {"question": "Minimum NPSH margin recommended?", "options": ["0.5 m", "1 m", "2 m", "No margin"], "correct": 2, "explanation": "2 m safety margin typical."},
-  {"question": "Purpose of strainer on suction line?", "options": ["Prevent debris entry", "Increase flow", "Reduce pressure", "Nothing"], "correct": 0, "explanation": "Protects impeller."},
-  {"question": "What is 'vapour locking'?", "options": ["Air in pump", "Vapour bubbles", "Both", "Nothing"], "correct": 2, "explanation": "Vapour blocks suction."},
-  {"question": "Typical material for acid-resistant pumps?", "options": ["Cast iron", "Stainless steel", "Bronze", "Plastic"], "correct": 1, "explanation": "SS for corrosive fluids."},
-  {"question": "Purpose of balance drum in multistage pump?", "options": ["Reduce axial thrust", "Increase pressure", "Reduce speed", "Nothing"], "correct": 0, "explanation": "Balances thrust forces."},
-  {"question": "What indicates bearing failure?", "options": ["Noise", "High temperature", "Both", "Nothing"], "correct": 2, "explanation": "Early warning signs."},
-  {"question": "Minimum flow through pump?", "options": ["Zero", "10% of BEP", "30% of BEP", "No minimum"], "correct": 2, "explanation": "Minimum flow to prevent overheating."},
-  {"question": "Purpose of pump curve?", "options": ["Show performance", "Calculate power", "Both", "Nothing"], "correct": 2, "explanation": "Head, flow, efficiency, power."},
-  {"question": "What causes pump recirculation?", "options": ["Low flow", "High flow", "Both", "Nothing"], "correct": 0, "explanation": "Occurs at low flow rates."},
-  {"question": "Who may repair critical pumps?", "options": ["Any artisan", "Competent person", "Operator", "Supervisor"], "correct": 1, "explanation": "Requires competent person."},
-  {"question": "Purpose of lantern ring?", "options": ["Distribute flush water", "Reduce leakage", "Both", "Nothing"], "correct": 2, "explanation": "Cooling and sealing."},
-  {"question": "Maximum temperature for standard centrifugal pump?", "options": ["80 °C", "120 °C", "150 °C", "No limit"], "correct": 1, "explanation": "Typically 120 °C without cooling."},
-  {"question": "What is 'specific speed'?", "options": ["Pump classification", "Efficiency measure", "Both", "Nothing"], "correct": 0, "explanation": "Characterises impeller type."},
-  {"question": "Purpose of vent valve on pump casing?", "options": ["Remove air", "Increase pressure", "Reduce flow", "Nothing"], "correct": 0, "explanation": "For priming."},
-  {"question": "Minimum clearance for gland adjustment?", "options": ["0.5 mm", "1 mm", "2 mm", "No clearance"], "correct": 1, "explanation": "Typical 1 mm drip rate."}
-
-
-     ]},   
-
-        
-    steam_pressure: { name: "Steam Generations and Pressure Vessels", q: [
-
-  {"question": "Who is legally responsible for safe boiler operation?", "options": ["Operator", "Appointed competent person", "Manager", "Inspector"], "correct": 1, "explanation": "PER requires appointed competent person."},
-  {"question": "Minimum frequency for internal inspection of steam receiver?", "options": ["12 months", "24 months", "36 months", "48 months"], "correct": 2, "explanation": "36 months per Pressure Equipment Regulations."},
-  {"question": "Mandatory device to prevent boiler overpressure?", "options": ["Pressure gauge", "Safety valve", "Water gauge", "Blowdown valve"], "correct": 1, "explanation": "Safety valve is essential."},
-  {"question": "Procedure before entering pressure vessel?", "options": ["Permit-to-work + isolation", "Drain only", "Cool only", "No procedure"], "correct": 0, "explanation": "Full PTW and gas-free required."},
-  {"question": "Purpose of boiler blowdown?", "options": ["Remove sludge/TDS", "Increase pressure", "Cool boiler", "Clean tubes"], "correct": 0, "explanation": "Controls scaling and corrosion."},
-  {"question": "What indicates low water in boiler?", "options": ["Low level alarm", "High steam pressure", "Both", "Nothing"], "correct": 0, "explanation": "Critical safety alarm."},
-  {"question": "Minimum water level gauge requirement?", "options": ["One", "Two independent", "Three", "No gauge"], "correct": 1, "explanation": "Two independent gauges mandatory."},
-  {"question": "Purpose of superheater?", "options": ["Increase steam temperature", "Reduce pressure", "Remove moisture", "All"], "correct": 0, "explanation": "Produces dry superheated steam."},
-  {"question": "What is 'carryover' in boilers?", "options": ["Water in steam", "Steam in water", "Both", "Nothing"], "correct": 0, "explanation": "Contaminates steam system."},
-  {"question": "Maximum allowable TDS in boiler water?", "options": ["1000 ppm", "2000 ppm", "3000 ppm", "Depends on boiler"], "correct": 3, "explanation": "Controlled by blowdown."},
-  {"question": "Purpose of economiser?", "options": ["Preheat feedwater", "Superheat steam", "Reduce pressure", "Nothing"], "correct": 0, "explanation": "Recovers heat from flue gas."},
-  {"question": "Who may operate a steam boiler?", "options": ["Any person", "Boiler attendant certificate holder", "Apprentice", "Manager"], "correct": 1, "explanation": "Requires valid certificate."},
-  {"question": "What protects against furnace explosion?", "options": ["Flame scanner", "Purge cycle", "Both", "Nothing"], "correct": 2, "explanation": "Prevents fuel accumulation."},
-  {"question": "Minimum pressure test frequency for boilers?", "options": ["Annually", "Every 2 years", "Every 3 years", "After repair"], "correct": 3, "explanation": "After major repair or as required."},
-  {"question": "Purpose of fusible plug?", "options": ["Low water protection", "Overpressure", "Both", "Nothing"], "correct": 0, "explanation": "Melts on low water exposure."},
-  {"question": "What is 'priming' in boilers?", "options": ["Sudden water carryover", "Slow steam rise", "Both", "Nothing"], "correct": 0, "explanation": "Caused by high water level."},
-  {"question": "Material for high-pressure steam pipes?", "options": ["Mild steel", "Carbon steel", "Stainless", "Cast iron"], "correct": 1, "explanation": "Carbon steel standard for high temp."},
-  {"question": "Purpose of steam trap?", "options": ["Remove condensate", "Allow steam pass", "Both", "Nothing"], "correct": 2, "explanation": "Efficient condensate removal."},
-  {"question": "What indicates scale buildup?", "options": ["High fuel use", "Overheating tubes", "Both", "Nothing"], "correct": 2, "explanation": "Reduces heat transfer."},
-  {"question": "Minimum safety valve capacity?", "options": ["Evaporation rate", "1.5 × evaporation", "2 × evaporation", "No minimum"], "correct": 1, "explanation": "Must exceed boiler capacity."},
-  {"question": "Who approves boiler repairs?", "options": ["Operator", "Authorized inspector", "Manager", "Any"], "correct": 1, "explanation": "Authorized person required."},
-  {"question": "Purpose of feedwater treatment?", "options": ["Remove oxygen/scale", "Increase pH", "Both", "Nothing"], "correct": 2, "explanation": "Prevents corrosion and scaling."},
-  {"question": "Maximum allowable CO in boiler flue?", "options": ["100 ppm", "200 ppm", "500 ppm", "No limit"], "correct": 1, "explanation": "Typical limit for efficiency/safety."},
-  {"question": "What is 'water hammer'?", "options": ["Sudden pressure surge", "Slow flow", "Both", "Nothing"], "correct": 0, "explanation": "Caused by condensate slugs."},
-  {"question": "Minimum logbook entries for boiler?", "options": ["Pressure, water level, blowdown", "Only pressure", "Nothing", "All"], "correct": 0, "explanation": "Full operating parameters."}
-
-     ]},   
-
-
-    
-    electrical: {name:"UNDERGROUND ELECTRICAL SAFETY", q: [
-        {question:"Who may perform work on electrical apparatus?", options:["Any miner","Only competent authorized person"], correct:1, explanation:"Only persons registered and authorised under the regulations may work on electrical apparatus."},
-        {question:"What is the main hazard of trailing cables?", options:["Tripping","Damage leading to shock or fire"], correct:1, explanation:"Mechanical damage to insulation can expose live conductors, causing shock or methane ignition."},
-        {question:"Can you work on live electrical equipment?", options:["Yes, if quick","Never, must be isolated"], correct:1, explanation:"All work on electrical apparatus must be done dead; live work is strictly prohibited underground."},
-        {question:"What must be done before working on electrical machinery?", options:["Nothing","Lockout and tagout"], correct:1, explanation:"Isolation, lockout, tagout, and testing for dead are mandatory steps."},
-        {question:"Flameproof equipment is required underground to prevent?", options:["Dust","Ignition of methane"], correct:1, explanation:"Flameproof enclosures contain internal explosions without igniting surrounding methane."},
-        {question:"What is an arc flash?", options:["Short circuit","Uncontrolled electrical discharge"], correct:1, explanation:"Arc flash is a violent release of energy from an electrical fault, causing severe burns and blast."},
-        {question:"Helmet light assemblies must comply with?", options:["Any standard","SANS 1438"], correct:1, explanation:"Cap lamps must meet SANS 1438 for flameproof construction and battery safety."},
-        {question:"Who approves electrical reticulation design?", options:["Shift boss","Competent professional engineer"], correct:1, explanation:"Designs must be approved by a registered professional electrical engineer."},
-        {question:"Trailing cables must be protected from?", options:["Dust only","Mechanical damage"], correct:1, explanation:"Cables must be hung or protected to prevent vehicle damage."},
-        {question:"What gas is produced when charging batteries?", options:["Oxygen","Hydrogen"], correct:1, explanation:"Hydrogen gas evolved during charging is highly explosive in confined spaces."},
-        {question:"Battery charging stations must have?", options:["Nothing special","Ventilation and no smoking"], correct:1, explanation:"Forced ventilation and no ignition sources are required to disperse hydrogen."},
+        {question:"What is 'call-up point'?", op...(truncated 46206 characters)...tations must have?", options:["Nothing special","Ventilation and no smoking"], correct:1, explanation:"Forced ventilation and no ignition sources are required to disperse hydrogen."},
         {question:"Can water be used on electrical fires?", options:["Always","No, use dry extinguisher"], correct:1, explanation:"Water conducts electricity; only CO₂ or dry powder extinguishers may be used."},
         {question:"What is required for portable electrical tools underground?", options:["Normal plugs","Flameproof and earth leakage"], correct:1, explanation:"Tools must be flameproof with 30 mA earth leakage protection."},
         {question:"Earth leakage protection is mandatory on?", options:["High voltage only","All electrical apparatus"], correct:1, explanation:"Earth leakage relays are required on all underground electrical supplies."},
@@ -1230,6 +931,8 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 
 
+
+
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
         let currentQuiz = null;
@@ -1470,6 +1173,3 @@ fire: {name:"FIRE UNDERGROUND", q: [
     </script>
 </body>
 </html>
-
-
-
