@@ -28,6 +28,7 @@
             min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding-top: 56px;
+            color: #333;
         }
 
         .logo-title {
@@ -95,6 +96,7 @@
 
         .bg-success-soft { background: #dcfce7; color: #166534; }
         .bg-warning-soft { background: #fef3c7; color: #92400e; }
+        .bg-danger-soft  { background: #f8d7da; color: #721c24; }
 
         #content-area {
             background: var(--light-bg);
@@ -121,6 +123,7 @@
             margin-bottom: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
+            background: white;
         }
 
         .quiz-option:hover {
@@ -153,7 +156,7 @@
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand logo-title" href="#">Mining Training</a>
+            <a class="navbar-brand logo-title" href="#">Act 29</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -173,15 +176,12 @@
 
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Current</li>
-            </ol>
+            <ol class="breadcrumb mb-4" id="breadcrumbItems"></ol>
         </nav>
 
-        <!-- Modules List Screen (now in main area) -->
+        <!-- Modules List Screen -->
         <div id="modulesContainer">
-            <h2 class="text-primary fw-bold mb-4">All Training Modules</h2>
+            <h2 class="text-primary fw-bold mb-4">Training Modules</h2>
 
             <div class="row mb-4">
                 <div class="col-md-6">
@@ -293,10 +293,8 @@
                 <p id="passMessage" class="lead fw-bold mb-4"></p>
                 <div class="d-flex flex-wrap gap-3 justify-content-center">
                     <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
+                    <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">Back to Module</button>
                 </div>
-            </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">← Back</button>
             </div>
         </div>
 
@@ -358,109 +356,98 @@
 
     <script>
         // ──────────────────────────────────────────────────────────────────────────────
-        // DATA (shortened – paste your full sampleQuizzes here)
+        // DATA
         // ──────────────────────────────────────────────────────────────────────────────
 
-<script>
-    // ──────────────────────────────────────────────────────────────────────────────
-    // DATA (shortened – paste your full sampleQuizzes here)
-    // ──────────────────────────────────────────────────────────────────────────────
+        const moduleNames = {
+            handover: "Shift Handover & Pre-Shift Checks",
+            lhd: "LHD Tramming in Decline",
+            drill: "Face Drilling (Jumbo)",
+            support: "Install Mesh & Bolts",
+            vent: "Main Ventilation Failure",
+            rockfall: "Major Rock Fall Event",
+            traffic: "Traffic Conflict in Single Lane",
+            reentry: "Unsafe Re-Entry Attempt",
+            shaft_sinking: "Shaft Sinking (Vertical Shaft)",
+            raise_drill: "Raise Drilling (Raise Boring)",
+            lifting_operations: "Lifting Operations",
+            civil_structural: "Civil and Structural Engineering",
+            conveyor_monorail: "Conveyor Belt and Monorail",
+            compressed_air: "Compressed Air and Reticulation",
+            pump_fluid: "Pump and Fluid handling",
+            steam_pressure: "Steam and Pressure Vessels",
+            electrical: "Underground Electrical Systems Safety",
+            mhsa: "MHSA 1996 Regulations",
+            seismicity: "Seismicity & Rockbursts",
+            blasting: "Blasting & Explosives",
+            evacuation: "Emergency Evacuation",
+            fire: "Fire Monitoring, Prevention and Control",
+            tmm: "Trackless Mobile Machinery",
+            winders: "Winding Plant, Shafts and Headgears",
+            community_chat: "Mining Community Group"
+        };
 
-    const moduleNames = {
-        handover: "Shift Handover & Pre-Shift Checks",
-        lhd: "LHD Tramming in Decline",
-        drill: "Face Drilling (Jumbo)",
-        support: "Install Mesh & Bolts",
-        vent: "Main Ventilation Failure",
-        rockfall: "Major Rock Fall Event",
-        traffic: "Traffic Conflict in Single Lane",
-        reentry: "Unsafe Re-Entry Attempt",
-        shaft_sinking: "Shaft Sinking (Vertical Shaft)",
-        raise_drill: "Raise Drilling (Raise Boring)",
-        
-        lifting_operations: "Lifting Operations",
-        civil_structural: "Civil and Structural Engineering",
-        conveyor_monorail: "Conveyor Belt and Monorail",
-        compressed_air: "Compressed Air and Reticulation",
-        pump_fluid: "Pump and Fluid handling",
-        steam_pressure: "Steam and Pressure Vessels",
-        
-        electrical: "Underground Electrical Systems Safety",
-        mhsa: "MHSA 1996 Regulations",
-        seismicity: "Seismicity & Rockbursts",
-        blasting: "Blasting & Explosives",
-        evacuation: "Emergency Evacuation",
-        fire: "Fire Monitoring, Prevention and Control",
-        tmm: "Trackless Mobile Machinery",
-        winders: "Winding Plant, Shafts and Headgears",
+        const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
 
-        community_chat: "Mining Community Group"
-    };
+        const moduleIcons = {
+            handover: "bi-arrow-left-right",
+            lhd: "bi-truck",
+            drill: "bi-hammer",
+            support: "bi-grid-3x3-gap",
+            vent: "bi-wind",
+            rockfall: "bi-exclamation-triangle",
+            traffic: "bi-sign-stop",
+            reentry: "bi-door-open",
+            shaft_sinking: "bi-arrows-vertical",
+            raise_drill: "bi-rocket-takeoff",
+            lifting_operations: "bi-arrow-up-circle-fill",
+            civil_structural: "bi-building-fill",
+            conveyor_monorail: "bi-conveyor",
+            compressed_air: "bi-wind",
+            pump_fluid: "bi-water",
+            steam_pressure: "bi-thermometer-sun",
+            electrical: "bi-lightning",
+            mhsa: "bi-book",
+            seismicity: "bi-graph-up-arrow",
+            blasting: "bi-boombox",
+            evacuation: "bi-box-arrow-right",
+            fire: "bi-fire",
+            tmm: "bi-truck-flatbed",
+            winders: "bi-elevator",
+            community_chat: "bi-people-fill"
+        };
 
-    const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
+        const videos = {
+            handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
+            lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
+            drill: "https://www.youtube.com/embed/rALo7h9pCwg",
+            support: "https://www.youtube.com/embed/CJ80Gbmes88",
+            vent: "https://www.youtube.com/embed/scULNpKA3ZU",
+            rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
+            traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
+            reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
+            shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
+            raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
+            lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",
+            civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
+            conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
+            compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
+            pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
+            steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
+            electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
+            mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
+            seismicity: "https://www.youtube.com/embed/geun1k07NkM",
+            blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
+            evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
+            fire: "https://www.youtube.com/embed/x414lRd1aak",
+            tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
+            winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
+        };
 
-    const moduleIcons = {
-        handover: "bi-arrow-left-right",
-        lhd: "bi-truck",
-        drill: "bi-hammer",
-        support: "bi-grid-3x3-gap",
-        vent: "bi-wind",
-        rockfall: "bi-exclamation-triangle",
-        traffic: "bi-sign-stop",
-        reentry: "bi-door-open",
-        shaft_sinking: "bi-arrows-vertical",
-        raise_drill: "bi-rocket-takeoff",
-        
-        lifting_operations: "bi-arrow-up-circle-fill",
-        civil_structural: "bi-building-fill",
-        conveyor_monorail: "bi-conveyor",
-        compressed_air: "bi-wind",
-        pump_fluid: "bi-water",
-        steam_pressure: "bi-thermometer-sun",
+        // ──────────────────────────────────────────────────────────────────────────────
+        // QUIZZES (example – add more as needed)
+        // ──────────────────────────────────────────────────────────────────────────────
 
-            
-        electrical: "bi-lightning",
-        mhsa: "bi-book",
-        seismicity: "bi-graph-up-arrow",
-        blasting: "bi-boombox",
-        evacuation: "bi-box-arrow-right",
-        fire: "bi-fire",
-        tmm: "bi-truck-flatbed",
-        winders: "bi-elevator",
-
-        community_chat: "bi-people-fill"
-    };
-
-    const videos = {
-        handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
-        lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
-        drill: "https://www.youtube.com/embed/rALo7h9pCwg",
-        support: "https://www.youtube.com/embed/CJ80Gbmes88",
-        vent: "https://www.youtube.com/embed/scULNpKA3ZU",
-        rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
-        traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
-        reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
-        shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
-        raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
-        lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",  
-        civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
-        
-
-        conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
-        compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
-        pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
-        steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
-       
-        
-        electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
-        mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
-        seismicity: "https://www.youtube.com/embed/geun1k07NkM",
-        blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
-        evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
-        fire: "https://www.youtube.com/embed/x414lRd1aak",
-        tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
-        winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
-    };
 
 
 // Sample quizzes (you can expand with real questions)
@@ -1227,325 +1214,333 @@ fire: {name:"FIRE UNDERGROUND", q: [
     ]}
 
 
+
 };
 
 
 
-    let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
-    let currentModule = null;
-    let currentQuiz = null;
-    let questionIndex = 0;
-    let correctAnswers = 0;
-    let quizStartTime = 0;
 
-    const els = {
-        moduleGrid: document.getElementById('moduleGrid'),
-        searchInput: document.getElementById('searchInput'),
-        completedCount: document.getElementById('completedCount'),
-        overallPass: document.getElementById('overallPass'),
-        moduleTitle: document.getElementById('moduleTitle'),
-        videoPlayer: document.getElementById('videoPlayer'),
-        questionText: document.getElementById('questionText'),
-        optionsContainer: document.getElementById('optionsContainer'),
-        feedback: document.getElementById('feedback'),
-        nextBtn: document.getElementById('nextBtn'),
-        resultTitle: document.getElementById('resultTitle'),
-        progressBar: document.getElementById('progressBar'),
-        scorePercent: document.getElementById('scorePercent'),
-        correctCount: document.getElementById('correctCount'),
-        timeDisplay: document.getElementById('timeDisplay'),
-        passMessage: document.getElementById('passMessage'),
-        dashCompleted: document.getElementById('dashCompleted'),
-        dashPassRate: document.getElementById('dashPassRate'),
-        dashCertificates: document.getElementById('dashCertificates'),
-        completedModulesList: document.getElementById('completedModulesList'),
-        breadcrumbNav: document.getElementById('breadcrumbNav'),
-        breadcrumbItems: document.querySelector('#breadcrumbNav .breadcrumb'),
-        modulesContainer: document.getElementById('modulesContainer')
-    };
 
-    function shuffleArray(array) {
-        const copy = [...array];
-        for (let i = copy.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [copy[i], copy[j]] = [copy[j], copy[i]];
-        }
-        return copy;
-    }
 
-    function hideAllScreens() {
-        document.querySelectorAll('#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #communityScreen, #dashboardScreen')
-            .forEach(el => el.classList.add('d-none'));
-    }
 
-    function showScreen(id) {
-        hideAllScreens();
-        document.getElementById(id).classList.remove('d-none');
-        updateBreadcrumbs(id);
-        if (id !== 'videoScreen') els.videoPlayer.src = '';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    function updateBreadcrumbs(screen) {
-        els.breadcrumbNav.classList.remove('d-none');
-        els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>';
 
-        let item = document.createElement('li');
-        item.className = 'breadcrumb-item active';
-        item.setAttribute('aria-current', 'page');
 
-        if (screen === 'welcomeScreen') {
-            els.breadcrumbNav.classList.add('d-none');
-        } else if (screen === 'modulesContainer') {
-            item.textContent = 'Modules';
-            els.breadcrumbItems.appendChild(item);
-        } else if (screen === 'moduleView') {
-            item.textContent = `Modules > ${moduleNames[currentModule] || currentModule}`;
-            els.breadcrumbItems.appendChild(item);
-        } else if (screen === 'videoScreen') {
-            item.textContent = `Video: ${moduleNames[currentModule] || currentModule}`;
-            els.breadcrumbItems.appendChild(item);
-        } else if (screen === 'quizScreen') {
-            item.textContent = `Quiz: ${moduleNames[currentModule] || currentModule}`;
-            els.breadcrumbItems.appendChild(item);
-        } else if (screen === 'resultsScreen') {
-            item.textContent = `Results: ${moduleNames[currentModule] || currentModule}`;
-            els.breadcrumbItems.appendChild(item);
-        } else if (screen === 'communityScreen') {
-            item.textContent = 'Community';
-            els.breadcrumbItems.appendChild(item);
-        } else if (screen === 'dashboardScreen') {
-            item.textContent = 'Dashboard';
-            els.breadcrumbItems.appendChild(item);
-        } else {
-            els.breadcrumbNav.classList.add('d-none');
-        }
-    }
 
-    function updateProgress() {
-        const done = Object.keys(scores).length;
-        const passed = Object.values(scores).filter(v => v?.passed).length;
-        const rate = done ? Math.round((passed / done) * 100) : 0;
 
-        els.completedCount.textContent = done;
-        els.overallPass.textContent = rate + '%';
-        els.dashCompleted.textContent = `${done}/24`;
-        els.dashPassRate.textContent = rate + '%';
-        els.dashCertificates.textContent = passed;
-    }
 
-    function renderModules(filter = 'all', term = '') {
-        els.moduleGrid.innerHTML = '';
 
-        Object.entries(moduleNames).forEach(([key, name]) => {
-            if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
-            if (filter === 'basic' && advancedModules.includes(key)) return;
-            if (filter === 'advanced' && !advancedModules.includes(key)) return;
+        // ──────────────────────────────────────────────────────────────────────────────
+        // APPLICATION STATE
+        // ──────────────────────────────────────────────────────────────────────────────
 
-            const card = document.createElement('div');
-            card.className = `col-12 col-sm-6 col-lg-4 col-xl-3`;
-            card.innerHTML = `
-                <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
-                    <div class="card-body">
-                        <div class="icon-wrapper"><i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i></div>
-                        <h6 class="module-name">${name}</h6>
-                        ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
-                    </div>
-                </div>
-            `;
-            card.querySelector('.module-card').addEventListener('click', () => loadModule(key));
-            els.moduleGrid.appendChild(card);
-        });
+        let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
+        let currentModule = null;
+        let currentQuiz = null;
+        let questionIndex = 0;
+        let correctAnswers = 0;
+        let quizStartTime = 0;
 
-        updateProgress();
-    }
+        const els = {
+            moduleGrid: document.getElementById('moduleGrid'),
+            searchInput: document.getElementById('searchInput'),
+            completedCount: document.getElementById('completedCount'),
+            overallPass: document.getElementById('overallPass'),
+            moduleTitle: document.getElementById('moduleTitle'),
+            videoPlayer: document.getElementById('videoPlayer'),
+            questionText: document.getElementById('questionText'),
+            optionsContainer: document.getElementById('optionsContainer'),
+            feedback: document.getElementById('feedback'),
+            nextBtn: document.getElementById('nextBtn'),
+            resultTitle: document.getElementById('resultTitle'),
+            progressBar: document.getElementById('progressBar'),
+            scorePercent: document.getElementById('scorePercent'),
+            correctCount: document.getElementById('correctCount'),
+            timeDisplay: document.getElementById('timeDisplay'),
+            passMessage: document.getElementById('passMessage'),
+            dashCompleted: document.getElementById('dashCompleted'),
+            dashPassRate: document.getElementById('dashPassRate'),
+            dashCertificates: document.getElementById('dashCertificates'),
+            completedModulesList: document.getElementById('completedModulesList'),
+            breadcrumbItems: document.getElementById('breadcrumbItems'),
+            modulesContainer: document.getElementById('modulesContainer')
+        };
 
-    function loadModule(key) {
-        currentModule = key;
-        if (key === 'community_chat') {
-            showScreen('communityScreen');
-        } else {
-            els.moduleTitle.textContent = moduleNames[key];
-            showScreen('moduleView');
-        }
-    }
+        // ──────────────────────────────────────────────────────────────────────────────
+        // HELPER FUNCTIONS
+        // ──────────────────────────────────────────────────────────────────────────────
 
-    function startVideo() {
-        if (!currentModule || !videos[currentModule]) return;
-        els.videoPlayer.src = videos[currentModule] + "?autoplay=1&rel=0";
-        showScreen('videoScreen');
-    }
-
-    function startQuiz() {
-        if (!currentModule || !sampleQuizzes[currentModule]) return;
-        currentQuiz = shuffleArray(sampleQuizzes[currentModule].q); // Shuffle for variety
-        questionIndex = 0;
-        correctAnswers = 0;
-        quizStartTime = Date.now();
-        showQuestion();
-        showScreen('quizScreen');
-    }
-
-    // MISSING QUIZ LOGIC: Added here
-    function showQuestion() {
-        if (questionIndex >= currentQuiz.length) {
-            finishQuiz();
-            return;
+        function shuffleArray(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
         }
 
-        els.questionText.textContent = currentQuiz[questionIndex].question;
-        els.optionsContainer.innerHTML = '';
-        els.feedback.textContent = '';
-        els.feedback.className = '';
-        els.nextBtn.classList.add('d-none');
-
-        currentQuiz[questionIndex].options.forEach((option, idx) => {
-            const optionEl = document.createElement('div');
-            optionEl.className = 'quiz-option';
-            optionEl.textContent = option;
-            optionEl.dataset.index = idx;
-            optionEl.addEventListener('click', selectAnswer);
-            els.optionsContainer.appendChild(optionEl);
-        });
-    }
-
-    function selectAnswer(e) {
-        const selected = parseInt(e.target.dataset.index);
-        const correctIdx = currentQuiz[questionIndex].correct;
-
-        // Disable all options
-        Array.from(els.optionsContainer.children).forEach(child => {
-            child.removeEventListener('click', selectAnswer);
-            child.style.pointerEvents = 'none';
-        });
-
-        if (selected === correctIdx) {
-            correctAnswers++;
-            els.feedback.textContent = 'Correct! ' + currentQuiz[questionIndex].explanation;
-            els.feedback.className = 'text-success';
-            e.target.classList.add('bg-success-soft');
-        } else {
-            els.feedback.textContent = 'Incorrect. ' + currentQuiz[questionIndex].explanation;
-            els.feedback.className = 'text-danger';
-            e.target.classList.add('bg-danger-soft');
-            // Highlight correct one
-            els.optionsContainer.children[correctIdx].classList.add('bg-success-soft');
+        function hideAllScreens() {
+            document.querySelectorAll('#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #communityScreen, #dashboardScreen')
+                .forEach(el => el.classList.add('d-none'));
         }
 
-        els.nextBtn.classList.remove('d-none');
-    }
+        function showScreen(id) {
+            hideAllScreens();
+            document.getElementById(id).classList.remove('d-none');
+            updateBreadcrumbs(id);
+            if (id !== 'videoScreen') els.videoPlayer.src = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    function nextQuestion() {
-        questionIndex++;
-        showQuestion();
-    }
+        function updateBreadcrumbs(screen) {
+            const nav = document.getElementById('breadcrumbNav');
+            els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>';
 
-    function finishQuiz() {
-        const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-        const percentage = Math.round((correctAnswers / currentQuiz.length) * 100);
-        const passed = percentage >= 80; // Adjust threshold if needed
+            if (screen === 'welcomeScreen') {
+                nav.classList.add('d-none');
+                return;
+            }
 
-        els.resultTitle.textContent = passed ? 'Passed!' : 'Failed';
-        els.resultTitle.className = passed ? 'text-success' : 'text-danger';
-        els.progressBar.style.width = percentage + '%';
-        els.progressBar.textContent = percentage + '%';
-        els.progressBar.className = 'progress-bar progress-bar-striped fs-4 fw-bold ' + (passed ? 'bg-success' : 'bg-danger');
-        els.scorePercent.textContent = percentage + '%';
-        els.correctCount.textContent = correctAnswers + ' / ' + currentQuiz.length;
-        els.timeDisplay.textContent = Math.floor(timeTaken / 60) + ':' + (timeTaken % 60).toString().padStart(2, '0');
-        els.passMessage.textContent = passed ? 'Congratulations! You have passed the assessment.' : 'Better luck next time. Please review the material and try again.';
+            nav.classList.remove('d-none');
+            let text = '';
 
-        scores[currentModule] = { percentage, passed };
-        localStorage.setItem('miningScores', JSON.stringify(scores));
-        updateProgress();
+            if (screen === 'modulesContainer') text = 'Modules';
+            else if (screen === 'moduleView') text = `Modules > ${moduleNames[currentModule] || currentModule}`;
+            else if (screen === 'videoScreen') text = `Video: ${moduleNames[currentModule] || currentModule}`;
+            else if (screen === 'quizScreen') text = `Quiz: ${moduleNames[currentModule] || currentModule}`;
+            else if (screen === 'resultsScreen') text = `Results: ${moduleNames[currentModule] || currentModule}`;
+            else if (screen === 'communityScreen') text = 'Community';
+            else if (screen === 'dashboardScreen') text = 'Dashboard';
 
-        showScreen('resultsScreen');
-    }
-
-    function restartQuiz() {
-        startQuiz();
-    }
-
-    function showHome() {
-        showScreen('welcomeScreen');
-    }
-
-    function showModulesList() {
-        const activeFilter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-        renderModules(activeFilter, els.searchInput.value.trim());
-        showScreen('modulesContainer');
-        els.modulesContainer.classList.add('active');
-    }
-
-    function showDashboard() {
-        els.completedModulesList.innerHTML = '';
-        if (Object.keys(scores).length === 0) {
-            els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
-        } else {
-            Object.entries(scores).forEach(([key, data]) => {
+            if (text) {
                 const li = document.createElement('li');
-                li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                li.innerHTML = `${moduleNames[key] || key} <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">${data.percentage}%</span>`;
-                els.completedModulesList.appendChild(li);
+                li.className = 'breadcrumb-item active';
+                li.setAttribute('aria-current', 'page');
+                li.textContent = text;
+                els.breadcrumbItems.appendChild(li);
+            }
+        }
+
+        function updateProgress() {
+            const done = Object.keys(scores).length;
+            const passed = Object.values(scores).filter(v => v?.passed).length;
+            const rate = done ? Math.round((passed / done) * 100) : 0;
+
+            els.completedCount.textContent = done;
+            els.overallPass.textContent = rate + '%';
+            els.dashCompleted.textContent = `${done}/24`;
+            els.dashPassRate.textContent = rate + '%';
+            els.dashCertificates.textContent = passed;
+        }
+
+        // ──────────────────────────────────────────────────────────────────────────────
+        // MAIN FUNCTIONS
+        // ──────────────────────────────────────────────────────────────────────────────
+
+        function renderModules(filter = 'all', term = '') {
+            els.moduleGrid.innerHTML = '';
+
+            Object.entries(moduleNames).forEach(([key, name]) => {
+                if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
+                if (filter === 'basic' && advancedModules.includes(key)) return;
+                if (filter === 'advanced' && !advancedModules.includes(key)) return;
+
+                const card = document.createElement('div');
+                card.className = `col-12 col-sm-6 col-lg-4 col-xl-3`;
+                card.innerHTML = `
+                    <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
+                        <div class="card-body">
+                            <div class="icon-wrapper"><i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i></div>
+                            <h6 class="module-name">${name}</h6>
+                            ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
+                        </div>
+                    </div>
+                `;
+                card.querySelector('.module-card').addEventListener('click', () => loadModule(key));
+                els.moduleGrid.appendChild(card);
+            });
+
+            updateProgress();
+        }
+
+        function loadModule(key) {
+            currentModule = key;
+            if (key === 'community_chat') {
+                showScreen('communityScreen');
+            } else {
+                els.moduleTitle.textContent = moduleNames[key] || key;
+                showScreen('moduleView');
+            }
+        }
+
+        function startVideo() {
+            if (!currentModule || !videos[currentModule]) return alert("No video available for this module.");
+            els.videoPlayer.src = videos[currentModule] + "?autoplay=1&rel=0";
+            showScreen('videoScreen');
+        }
+
+        function startQuiz() {
+            if (!currentModule || !sampleQuizzes[currentModule]) {
+                alert("No quiz available for this module yet.");
+                return;
+            }
+
+            currentQuiz = shuffleArray([...sampleQuizzes[currentModule].q]);
+            questionIndex = 0;
+            correctAnswers = 0;
+            quizStartTime = Date.now();
+            showQuestion();
+            showScreen('quizScreen');
+        }
+
+        function showQuestion() {
+            if (questionIndex >= currentQuiz.length) {
+                finishQuiz();
+                return;
+            }
+
+            const q = currentQuiz[questionIndex];
+            els.questionText.textContent = q.question;
+            els.optionsContainer.innerHTML = '';
+            els.feedback.textContent = '';
+            els.feedback.className = 'mt-4 text-center fw-bold fs-5 min-vh-50 d-flex align-items-center justify-content-center';
+            els.nextBtn.classList.add('d-none');
+
+            q.options.forEach((option, idx) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option col-12';
+                div.textContent = option;
+                div.dataset.index = idx;
+                div.addEventListener('click', selectAnswer);
+                els.optionsContainer.appendChild(div);
             });
         }
-        showScreen('dashboardScreen');
-    }
 
-    function showCommunity() {
-        showScreen('communityScreen');
-    }
+        function selectAnswer(e) {
+            const selectedIdx = parseInt(e.target.dataset.index);
+            const correctIdx = currentQuiz[questionIndex].correct;
 
-    function backToModulesList() {
-        showModulesList();
-    }
+            // Disable further clicks
+            Array.from(els.optionsContainer.children).forEach(child => {
+                child.style.pointerEvents = 'none';
+                child.removeEventListener('click', selectAnswer);
+            });
 
-    function backToModule() {
-        els.videoPlayer.src = '';
-        showScreen('moduleView');
-    }
-
-    // Event listeners
-    document.getElementById('watchVideo')?.addEventListener('click', startVideo);
-    document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
-    document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
-    // Add restart button listener (assuming you have a button with onclick="restartQuiz()" in HTML)
-    // If not, add: document.querySelector('#resultsScreen button[onclick="restartQuiz()"]') or similar
-
-    els.searchInput.addEventListener('input', (e) => {
-        const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-        renderModules(filter, e.target.value.trim());
-    });
-
-    document.querySelectorAll('[data-filter]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderModules(btn.dataset.filter, els.searchInput.value.trim());
-        });
-    });
-
-    // NEW: Fix for mobile menu - Ensure menu collapses on link click and can be reopened
-    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            // Only on mobile (Bootstrap lg breakpoint is 992px)
-            if (window.innerWidth < 992) {
-                const collapseElement = document.getElementById('navbarContent');
-                const bsCollapse = bootstrap.Collapse.getInstance(collapseElement);
-                if (bsCollapse) {
-                    bsCollapse.hide(); // Explicitly hide the collapse
-                }
+            if (selectedIdx === correctIdx) {
+                correctAnswers++;
+                els.feedback.textContent = `Correct! ${currentQuiz[questionIndex].explanation}`;
+                els.feedback.classList.add('text-success');
+                e.target.classList.add('bg-success-soft');
+            } else {
+                els.feedback.textContent = `Incorrect. ${currentQuiz[questionIndex].explanation}`;
+                els.feedback.classList.add('text-danger');
+                e.target.classList.add('bg-danger-soft');
+                els.optionsContainer.children[correctIdx].classList.add('bg-success-soft');
             }
+
+            els.nextBtn.classList.remove('d-none');
+        }
+
+        function nextQuestion() {
+            questionIndex++;
+            showQuestion();
+        }
+
+        function finishQuiz() {
+            const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
+            const total = currentQuiz.length;
+            const percentage = Math.round((correctAnswers / total) * 100);
+            const passed = percentage >= 80;
+
+            els.resultTitle.textContent = passed ? "Congratulations! You Passed" : "Assessment Not Passed";
+            els.resultTitle.className = passed ? "display-5 fw-bold mb-4 text-success" : "display-5 fw-bold mb-4 text-danger";
+
+            els.progressBar.style.width = percentage + "%";
+            els.progressBar.textContent = percentage + "%";
+            els.progressBar.className = `progress-bar progress-bar-striped fs-4 fw-bold ${passed ? 'bg-success' : 'bg-danger'}`;
+
+            els.scorePercent.textContent = percentage + "%";
+            els.correctCount.textContent = `${correctAnswers} / ${total}`;
+            els.timeDisplay.textContent = `${Math.floor(timeTaken / 60)}:${(timeTaken % 60).toString().padStart(2,'0')}`;
+
+            els.passMessage.textContent = passed 
+                ? "Well done! You have demonstrated the required competency."
+                : "Review the training material and try again.";
+
+            // Save score
+            scores[currentModule] = { percentage, passed, date: new Date().toISOString() };
+            localStorage.setItem('miningScores', JSON.stringify(scores));
+            updateProgress();
+
+            showScreen('resultsScreen');
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        function showHome()           { showScreen('welcomeScreen'); }
+        function showModulesList()    { 
+            const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+            renderModules(filter, els.searchInput.value.trim());
+            showScreen('modulesContainer'); 
+        }
+        function showDashboard()      { 
+            els.completedModulesList.innerHTML = '';
+            if (Object.keys(scores).length === 0) {
+                els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
+            } else {
+                Object.entries(scores).forEach(([key, data]) => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.innerHTML = `${moduleNames[key] || key} <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">${data.percentage}%</span>`;
+                    els.completedModulesList.appendChild(li);
+                });
+            }
+            showScreen('dashboardScreen'); 
+        }
+        function showCommunity()      { showScreen('communityScreen'); }
+        function backToModulesList()  { showModulesList(); }
+        function backToModule()       { showScreen('moduleView'); }
+
+        // ──────────────────────────────────────────────────────────────────────────────
+        // EVENT LISTENERS
+        // ──────────────────────────────────────────────────────────────────────────────
+
+        document.getElementById('watchVideo')?.addEventListener('click', startVideo);
+        document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
+        document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
+
+        els.searchInput.addEventListener('input', (e) => {
+            const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+            renderModules(filter, e.target.value.trim());
         });
-    });
 
-    // Init
-    window.addEventListener('DOMContentLoaded', () => {
-        showHome();
-        renderModules();
-    });
-</script>
+        document.querySelectorAll('[data-filter]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderModules(btn.dataset.filter, els.searchInput.value.trim());
+            });
+        });
 
+        // Mobile menu collapse fix
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 992) {
+                    bootstrap.Collapse.getInstance(document.getElementById('navbarContent'))?.hide();
+                }
+            });
+        });
 
+        // ──────────────────────────────────────────────────────────────────────────────
+        // INITIALIZATION
+        // ──────────────────────────────────────────────────────────────────────────────
+
+        window.addEventListener('DOMContentLoaded', () => {
+            showHome();
+            renderModules();
+        });
+    </script>
 </body>
 </html>
