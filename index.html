@@ -410,12 +410,46 @@
             <h2 class="text-primary text-center mb-4 fw-bold section-header">Contact Us</h2>
             <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 card-professional">
                 <p class="lead mb-4">Get in touch with us for any inquiries, support, or feedback.</p>
-                <form class="contact-form">
-                    <input type="text" class="form-control" placeholder="Your Name" required>
-                    <input type="email" class="form-control" placeholder="Your Email" required>
-                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
-                </form>
+<form class="contact-form"
+      action="https://formsubmit.co/anthonyshishokitop@gmail.com"
+      method="POST">
+
+    <!-- Your existing fields with added 'name' attributes (required for the email to format nicely) -->
+    <input type="text" 
+           class="form-control" 
+           name="name" 
+           placeholder="Your Name" 
+           required>
+
+    <input type="email" 
+           class="form-control" 
+           name="email" 
+           placeholder="Your Email" 
+           required>
+
+    <textarea class="form-control" 
+              rows="5" 
+              name="message" 
+              placeholder="Your Message (e.g., course enquiry, booking, or question)" 
+              required></textarea>
+
+    <!-- Hidden fields to make the email look professional -->
+    <input type="hidden" name="_subject" value="New Enquiry from MiningTraining.co.za">
+    <input type="hidden" name="_template" value="table">   <!-- Makes email nicely formatted as a table -->
+
+    <!-- Optional: Redirect visitor to a thank-you page after submit -->
+    <!-- Create a simple thank-you.html page on your site first -->
+    <input type="hidden" name="_next" value="https://www.miningtraining.co.za/thank-you.html">
+
+    <!-- Optional: Basic auto-reply to the sender (enable if you want) -->
+    <!-- <input type="hidden" name="_autoresponse" value="Thank you for your message! We'll get back to you soon regarding your mining training enquiry."> -->
+
+    <!-- Spam protection (recommended - shows a simple captcha) -->
+    <!-- Remove the next line if you prefer no captcha -->
+    <input type="hidden" name="_captcha" value="true">
+
+    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+</form>
                 <div class="text-center mt-4">
                     <p>Email: anthony.shishoki@implats.co.za</p>
                     <p>Phone: +27 83 5533 210</p>
@@ -1358,6 +1392,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
     </script>
 </body>
 </html>
+
 
 
 
