@@ -303,9 +303,9 @@
             </div>
         </div>
 
-        <!-- Results -->
+<!-- Results -->
         <div id="resultsScreen" class="d-none container">
-            <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5">
+            <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5 card-professional">
                 <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
                 <div class="progress bg-light rounded-pill mb-4" style="height:40px;">
                     <div id="progressBar" class="progress-bar progress-bar-striped fs-4 fw-bold" style="width:0%">0%</div>
@@ -331,6 +331,11 @@
                     </div>
                 </div>
                 <p id="passMessage" class="lead fw-bold mb-4"></p>
+                <p id="completionTimestamp" class="text-muted mb-4"></p>
+                <div id="certificateSection" class="certificate d-none">
+                    <h4>Certificate of Completion</h4>
+                    <p>Congratulations! You have completed this module.</p>
+                </div>
                 <div class="d-flex flex-wrap gap-3 justify-content-center">
                     <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
                 </div>
@@ -1698,6 +1703,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
     </script>
 </body>
 </html>
+
 
 
 
