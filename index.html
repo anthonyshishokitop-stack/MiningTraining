@@ -195,45 +195,40 @@
             .modules-overview-controls { flex-direction: column; align-items: center; }
         }
 
-       /* Stronger borders for cards and video containers */
-       .action-card,
-       .card,
-       .module-card,
-       .ratio.ratio-16x9 {
-       border: 2px solid rgba(13, 110, 253, 0.3) !important;  /* subtle blue tint, or change to #ced4da for gray */
-       border-radius: 12px;
-       }
+        .action-card,
+        .card,
+        .module-card,
+        .ratio.ratio-16x9 {
+            border: 2px solid rgba(13, 110, 253, 0.3) !important;
+            border-radius: 12px;
+        }
 
-      .ratio.ratio-16x9 {
-      border: 3px solid #0d6efd;          /* more prominent for video frame */
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      }
+        .ratio.ratio-16x9 {
+            border: 3px solid #0d6efd;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
 
-      /* Optional: hover effect to emphasize */
-      .action-card:hover,
-      .module-card:hover {
-      border-color: var(--primary) !important;
-      }
+        .action-card:hover,
+        .module-card:hover {
+            border-color: var(--primary) !important;
+        }
 
-      /* List view styling */
-      .module-list-view #moduleGrid .col-12 {
-      flex: 0 0 100%;
-      max-width: 100%;
-      }
+        .module-list-view #moduleGrid .col-12 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
 
-     .module-list-view .module-card {
-     flex-direction: row !important;
-     align-items: center;
-     justify-content: space-between;
-     padding: 1rem;
-     }
+        .module-list-view .module-card {
+            flex-direction: row !important;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+        }
 
-    .module-list-view .module-name {
-    font-size: 1.2rem;
-    margin-right: auto;
-    }
-
-
+        .module-list-view .module-name {
+            font-size: 1.2rem;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -263,9 +258,8 @@
 
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none mb-4">
-            <ol class="breadcrumb bg-white bg-opacity-75 rounded p-3">
+            <ol class="breadcrumb bg-white bg-opacity-75 rounded p-3" id="breadcrumbItems">
                 <li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page" id="currentBreadcrumb">Current</li>
             </ol>
         </nav>
 
@@ -274,56 +268,56 @@
             <div class="welcome-overlay">
                 <h1 class="display-3 fw-bold mb-4" style="color: #60a5fa;">Mining Training</h1>
                 <p class="lead fs-4 mb-4">24 Critical Competency Modules • MHSA Compliance</p>
-                <p class="fs-5 opacity-90">GCC candidates & mining professionals</p>
+                <p class="fs-5 opacity-90">Self-paced • Certificate on successful completion • For GCC candidates & mining professionals</p>
             </div>
         </div>
 
         <!-- Modules Overview -->
-  <div id="modulesContainer" class="d-none">
-    <div class="modules-header">
-      <h2 class="fw-bold mb-3">Modules Overview</h2>
-      <p class="lead mb-4">24 Critical Competency Modules • MHSA Compliant</p>
+        <div id="modulesContainer" class="d-none">
+            <div class="modules-header">
+                <h2 class="fw-bold mb-3">Modules Overview</h2>
+                <p class="lead mb-4">24 Critical Competency Modules • MHSA Compliant</p>
 
-      <div class="modules-overview-controls">
-        <div class="dropdown">
-          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="basic">Basic</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li>
-          </ul>
+                <div class="modules-overview-controls">
+                    <div class="dropdown">
+                        <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
+                            <li><a class="dropdown-item" href="#" data-filter="basic">Basic</a></li>
+                            <li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li>
+                        </ul>
+                    </div>
+
+                    <input type="text" class="form-control stat-badge" id="searchInput" placeholder="Search modules…" style="max-width:320px;">
+
+                    <div class="dropdown">
+                        <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="sortLabel">Sort: Name A–Z</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="viewLabel">Card View</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-view="card">Card View</a></li>
+                            <li><a class="dropdown-item" href="#" data-view="list">List View</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="moduleGrid" class="row g-4"></div>
+
+            <div class="card mt-5 bg-white text-dark shadow">
+                <div class="card-body text-center py-4">
+                    <strong>Modules completed:</strong> <span id="completedCount">0</span>/24
+                       <strong>Pass rate:</strong> <span id="overallPass">0%</span>
+                </div>
+            </div>
         </div>
-
-        <input type="text" class="form-control stat-badge" id="searchInput" placeholder="Search modules…" style="max-width:320px;">
-
-        <div class="dropdown">
-          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="sortLabel">Sort: Name A–Z</button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li>
-            <li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li>
-            <li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li>
-          </ul>
-        </div>
-
-        <div class="dropdown">
-          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="viewLabel">Card View</button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-view="card">Card View</a></li>
-            <li><a class="dropdown-item" href="#" data-view="list">List View</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div id="moduleGrid" class="row g-4"></div>
-
-    <div class="card mt-5 bg-white text-dark shadow">
-      <div class="card-body text-center py-4">
-        <strong>Modules completed:</strong> <span id="completedCount">0</span>/24
-           <strong>Pass rate:</strong> <span id="overallPass">0%</span>
-      </div>
-    </div>
-  </div>
 
         <!-- Module Details -->
         <div id="moduleView" class="d-none">
@@ -359,7 +353,7 @@
 
         <!-- Quiz -->
         <div id="quizScreen" class="d-none container">
-            <div class="card shadow-lg border-0 rounded-4 card-professional">
+            <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-4 p-md-5">
                     <h4 class="text-center mb-4 fw-bold" id="questionText"></h4>
                     <div id="optionsContainer" class="row g-3"></div>
@@ -402,12 +396,13 @@
                 </div>
                 <p id="passMessage" class="lead fw-bold mb-4"></p>
                 <p id="completionTimestamp" class="text-muted mb-4"></p>
-                
-<div id="certificateSection" class="border border-success p-4 rounded bg-light d-none">
-    <h4 class="text-success">Certificate of Completion</h4>
-    <p>Congratulations! You have successfully completed this module.</p>
-    <button onclick="downloadCertificate()" class="btn btn-success mt-3">Download Certificate</button>
-</div>
+
+                <div id="certificateSection" class="border border-success p-4 rounded bg-light d-none mt-4">
+                    <h4 class="text-success mb-3">Certificate of Completion</h4>
+                    <p class="mb-3">You have successfully demonstrated competency in this module.</p>
+                    <button onclick="downloadCertificate()" class="btn btn-success btn-lg">Download Certificate (PDF)</button>
+                </div>
+
                 <div class="text-center mt-4">
                     <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
                 </div>
@@ -494,7 +489,7 @@
                     <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
                 </form>
                 <div class="text-center mt-5">
-                    <p><strong>Email:</strong>anthony.shishoki@implats.co.za</p>
+                    <p><strong>Email:</strong> anthony.shishoki@implats.co.za</p>
                     <p><strong>Phone:</strong> +27 83 553 3210</p>
                     <p><strong>Location:</strong> Rustenburg / Pretoria, South Africa</p>
                 </div>
@@ -516,113 +511,102 @@
         </div>
     </footer>
 
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         // ──────────────────────────────────────────────────────────────────────────────
-        // DATA (shortened – paste your full sampleQuizzes here)
+        // DATA
         // ──────────────────────────────────────────────────────────────────────────────
 
-const moduleNames = {
-    handover: "Shift Handover & Pre-Shift Checks",
-    lhd: "LHD Tramming in Decline",
-    drill: "Face Drilling (Jumbo)",
-    support: "Install Mesh & Bolts",
-    vent: "Main Ventilation Failure",
-    rockfall: "Major Rock Fall Event",
-    traffic: "Traffic Conflict in Single Lane",
-    reentry: "Unsafe Re-Entry Attempt",
-    shaft_sinking: "Shaft Sinking (Vertical Shaft)",
-    raise_drill: "Raise Drilling (Raise Boring)",
-    
-    lifting_operations: "Lifting Operations",
-    civil_structural: "Civil and Structural Engineering",
-    conveyor_monorail: "Conveyor Belt and Monorail",
-    compressed_air: "Compressed Air and Reticulation",
-    pump_fluid: "Pump and Fluid handling",
-    steam_pressure: "Steam Generations and Pressure Vessels",
-    
-    electrical: "Underground Electrical Systems Safety",
-    mhsa: "MHSA 1996 Regulations",
-    seismicity: "Seismicity & Rockbursts",
-    blasting: "Blasting & Explosives",
-    evacuation: "Emergency Evacuation",
-    fire: "Fire",
-    tmm: "Trackless Mobile Machinery",
-    winders: "Winding Plant, Shafts and Headgears",
+        const moduleNames = {
+            handover: "Shift Handover & Pre-Shift Checks",
+            lhd: "LHD Tramming in Decline",
+            drill: "Face Drilling (Jumbo)",
+            support: "Install Mesh & Bolts",
+            vent: "Main Ventilation Failure",
+            rockfall: "Major Rock Fall Event",
+            traffic: "Traffic Conflict in Single Lane",
+            reentry: "Unsafe Re-Entry Attempt",
+            shaft_sinking: "Shaft Sinking (Vertical Shaft)",
+            raise_drill: "Raise Drilling (Raise Boring)",
+            lifting_operations: "Lifting Operations",
+            civil_structural: "Civil and Structural Engineering",
+            conveyor_monorail: "Conveyor Belt and Monorail",
+            compressed_air: "Compressed Air and Reticulation",
+            pump_fluid: "Pump and Fluid handling",
+            steam_pressure: "Steam Generations and Pressure Vessels",
+            electrical: "Underground Electrical Systems Safety",
+            mhsa: "MHSA 1996 Regulations",
+            seismicity: "Seismicity & Rockbursts",
+            blasting: "Blasting & Explosives",
+            evacuation: "Emergency Evacuation",
+            fire: "Fire",
+            tmm: "Trackless Mobile Machinery",
+            winders: "Winding Plant, Shafts and Headgears",
+            community_chat: "Mining Community Group"
+        };
 
-    community_chat: "Mining Community Group"
+        const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
 
-};
+        const moduleIcons = {
+            handover: "bi-arrow-left-right",
+            lhd: "bi-truck",
+            drill: "bi-hammer",
+            support: "bi-grid-3x3-gap",
+            vent: "bi-wind",
+            rockfall: "bi-exclamation-triangle",
+            traffic: "bi-sign-stop",
+            reentry: "bi-door-open",
+            shaft_sinking: "bi-arrows-vertical",
+            raise_drill: "bi-rocket-takeoff",
+            lifting_operations: "bi-arrow-up-circle-fill",
+            civil_structural: "bi-building-fill",
+            conveyor_monorail: "bi-box",
+            compressed_air: "bi-wind",
+            pump_fluid: "bi-water",
+            steam_pressure: "bi-thermometer-sun",
+            electrical: "bi-lightning",
+            mhsa: "bi-book",
+            seismicity: "bi-graph-up-arrow",
+            blasting: "bi-boombox",
+            evacuation: "bi-box-arrow-right",
+            fire: "bi-fire",
+            tmm: "bi-truck-flatbed",
+            winders: "bi-house",
+            community_chat: "bi-people-fill"
+        };
 
-const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat'];
+        const videos = {
+            handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
+            lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
+            drill: "https://www.youtube.com/embed/rALo7h9pCwg",
+            support: "https://www.youtube.com/embed/CJ80Gbmes88",
+            vent: "https://www.youtube.com/embed/scULNpKA3ZU",
+            rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
+            traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
+            reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
+            shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
+            raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
+            lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",
+            civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
+            conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
+            compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
+            pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
+            steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
+            electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
+            mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
+            seismicity: "https://www.youtube.com/embed/geun1k07NkM",
+            blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
+            evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
+            fire: "https://www.youtube.com/embed/x414lRd1aak",
+            tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
+            winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
+        };
 
-const moduleIcons = {
-    handover: "bi-arrow-left-right",
-    lhd: "bi-truck",
-    drill: "bi-hammer",
-    support: "bi-grid-3x3-gap",
-    vent: "bi-wind",
-    rockfall: "bi-exclamation-triangle",
-    traffic: "bi-sign-stop",
-    reentry: "bi-door-open",
-    shaft_sinking: "bi-arrows-vertical",
-    raise_drill: "bi-rocket-takeoff",
-    
-    lifting_operations: "bi-arrow-up-circle-fill",
-    civil_structural: "bi-building-fill",
-    conveyor_monorail: "bi-box",
-    compressed_air: "bi-wind",
-    pump_fluid: "bi-water",
-    steam_pressure: "bi-thermometer-sun",
-
-        
-    electrical: "bi-lightning",
-    mhsa: "bi-book",
-    seismicity: "bi-graph-up-arrow",
-    blasting: "bi-boombox",
-    evacuation: "bi-box-arrow-right",
-    fire: "bi-fire",
-    tmm: "bi-truck-flatbed",
-    winders: "bi-house",
-
-    community_chat: "bi-people-fill"
-
-};
-
-const videos = {
-    handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
-    lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
-    drill: "https://www.youtube.com/embed/rALo7h9pCwg",
-    support: "https://www.youtube.com/embed/CJ80Gbmes88",
-    vent: "https://www.youtube.com/embed/scULNpKA3ZU",
-    rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
-    traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
-    reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
-    shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
-    raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
-    lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",  
-    civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
-    
-
-    conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
-    compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
-    pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
-    steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
-   
-    
-    electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
-    mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
-    seismicity: "https://www.youtube.com/embed/geun1k07NkM",
-    blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
-    evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
-    fire: "https://www.youtube.com/embed/x414lRd1aak",
-    tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
-    winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
-};
-
-// Sample quizzes (expanded with real questions as per original)
-const sampleQuizzes = {
+  const sampleQuizzes = {
 
 
 handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
@@ -1395,7 +1379,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
             dashCertificates: document.getElementById('dashCertificates'),
             completedModulesList: document.getElementById('completedModulesList'),
             breadcrumbNav: document.getElementById('breadcrumbNav'),
-            breadcrumbItems: document.querySelector('#breadcrumbNav .breadcrumb'),
+            breadcrumbItems: document.getElementById('breadcrumbItems'),
             modulesContainer: document.getElementById('modulesContainer')
         };
 
@@ -1434,18 +1418,18 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Modules</li>';
             } else if (screen === 'moduleView') {
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">' + (moduleNames[currentModule] || currentModule) + '</li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">' + (moduleNames[currentModule] || 'Module') + '</li>';
             } else if (screen === 'videoScreen') {
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || currentModule) + '</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Video</li>';
             } else if (screen === 'quizScreen') {
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || currentModule) + '</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Quiz</li>';
             } else if (screen === 'resultsScreen') {
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || currentModule) + '</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Results</li>';
             } else if (screen === 'communityScreen') {
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Community</li>';
@@ -1457,7 +1441,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Contact Us</li>';
             } else {
                 els.breadcrumbNav.classList.add('d-none');
-                return;
             }
         }
 
@@ -1470,7 +1453,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
             els.overallPass.textContent = rate + '%';
             els.dashCompleted.textContent = `${done}/24`;
             els.dashPassRate.textContent = rate + '%';
-          
             els.dashCertificates.textContent = passed;
         }
 
@@ -1505,9 +1487,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 card.innerHTML = `
                     <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
                         <div class="card-body">
-                            <div class="icon-wrapper">
-                                <i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i>
-                            </div>
+                            <div class="icon-wrapper"><i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i></div>
                             <h6 class="module-name">${name}</h6>
                             ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
                         </div>
@@ -1531,9 +1511,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 card.innerHTML = `
                     <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
                         <div class="card-body">
-                            <div class="icon-wrapper">
-                                <i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i>
-                            </div>
+                            <div class="icon-wrapper"><i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i></div>
                             <h6 class="module-name">${name}</h6>
                             ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
                         </div>
@@ -1564,7 +1542,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function startQuiz() {
             if (!currentModule || !sampleQuizzes[currentModule]) return;
-            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q);
+            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q || []);
             questionIndex = 0;
             correctAnswers = 0;
             quizStartTime = Date.now();
@@ -1583,32 +1561,50 @@ fire: {name:"FIRE UNDERGROUND", q: [
             }
 
             const q = currentQuiz[questionIndex];
-            els.questionText.textContent = q.question;
 
-            q.options.forEach((opt, i) => {
+            const originalOptions = q.options || [];
+            const correctAnswerText = originalOptions[q.correct];
+
+            let shuffledOptions = shuffleArray([...originalOptions]);
+            const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+
+            els.questionText.textContent = q.question || "Question text missing";
+
+            shuffledOptions.forEach((opt, i) => {
                 const div = document.createElement('div');
                 div.className = 'col-12';
-                div.innerHTML = `<div class="quiz-option btn btn-outline-secondary w-100 text-start">${opt}</div>`;
-                div.querySelector('.quiz-option').addEventListener('click', () => selectAnswer(i));
+                div.innerHTML = `
+                    <div class="quiz-option btn btn-outline-secondary w-100 text-start">
+                        ${opt || 'Option'}
+                    </div>
+                `;
+                const button = div.querySelector('.quiz-option');
+                button.addEventListener('click', () => selectAnswer(i, newCorrectIndex));
                 els.optionsContainer.appendChild(div);
             });
+
+            els.optionsContainer.dataset.correct = newCorrectIndex;
         }
 
-        function selectAnswer(selected) {
-            const correct = currentQuiz[questionIndex].correct;
+        function selectAnswer(selectedIndex, correctIndex) {
             const options = els.optionsContainer.querySelectorAll('.quiz-option');
 
             options.forEach((opt, i) => {
                 opt.classList.remove('btn-outline-secondary');
-                opt.classList.add(i === correct ? 'btn-success' : 'btn-danger');
+                if (i === correctIndex) {
+                    opt.classList.add('btn-success');
+                } else if (i === selectedIndex) {
+                    opt.classList.add('btn-danger');
+                }
                 opt.style.pointerEvents = 'none';
             });
 
-            els.feedback.textContent = currentQuiz[questionIndex].explanation;
+            const q = currentQuiz[questionIndex] || {};
+            els.feedback.textContent = q.explanation || '';
             els.feedback.classList.remove('text-success', 'text-danger');
-            els.feedback.classList.add(correct === selected ? 'text-success' : 'text-danger');
+            els.feedback.classList.add(selectedIndex === correctIndex ? 'text-success' : 'text-danger');
 
-            if (correct === selected) correctAnswers++;
+            if (selectedIndex === correctIndex) correctAnswers++;
 
             els.nextBtn.classList.remove('d-none');
         }
@@ -1620,7 +1616,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function finishQuiz() {
             const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-            const percentage = Math.round((correctAnswers / currentQuiz.length) * 100);
+            const percentage = currentQuiz.length > 0 ? Math.round((correctAnswers / currentQuiz.length) * 100) : 0;
             const passed = percentage >= 70;
             const timestamp = new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' });
 
@@ -1632,7 +1628,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
             els.progressBar.textContent = percentage + '%';
             els.progressBar.className = `progress-bar progress-bar-striped fs-3 fw-bold ${passed ? 'bg-success' : 'bg-danger'}`;
             els.scorePercent.textContent = percentage + '%';
-            els.correctCount.textContent = correctAnswers + ' / ' + currentQuiz.length;
+            els.correctCount.textContent = correctAnswers + ' / ' + (currentQuiz.length || 0);
             els.timeDisplay.textContent = Math.floor(timeTaken / 60) + ':' + (timeTaken % 60).toString().padStart(2, '0');
             els.passMessage.textContent = passed 
                 ? 'You have successfully completed this module.' 
@@ -1672,59 +1668,55 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 });
         }
 
-function downloadCertificate() {
-    // Make sure we have the data
-    if (!currentModule || !scores[currentModule]) {
-        alert("No certificate data available. Please complete a module first.");
-        return;
-    }
+        function downloadCertificate() {
+            if (!currentModule || !scores[currentModule]) {
+                alert("No certificate data available. Please complete a module first.");
+                return;
+            }
 
-    const { jsPDF } = window.jspdf;
-    if (!jsPDF) {
-        alert("PDF library failed to load. Please check your internet connection.");
-        return;
-    }
+            const { jsPDF } = window.jspdf;
+            if (!jsPDF) {
+                alert("PDF library failed to load. Please check your internet connection.");
+                return;
+            }
 
-    const doc = new jsPDF();
+            const doc = new jsPDF();
 
-    // ─── Basic certificate layout ───────────────────────────────────────
-    doc.setFontSize(22);
-    doc.setTextColor(13, 110, 253); // your --primary color
-    doc.text("Certificate of Completion", 105, 30, { align: "center" });
+            doc.setFontSize(22);
+            doc.setTextColor(13, 110, 253);
+            doc.text("Certificate of Completion", 105, 40, { align: "center" });
 
-    doc.setFontSize(16);
-    doc.setTextColor(0);
-    doc.text(`This certifies that`, 105, 55, { align: "center" });
+            doc.setFontSize(16);
+            doc.setTextColor(0);
+            doc.text("This is to certify that", 105, 65, { align: "center" });
 
-    doc.setFontSize(20);
-    doc.setFont("helvetica", "bold");
-    doc.text("ANTHONY", 105, 75, { align: "center" }); // ← you can make this dynamic later
+            doc.setFontSize(24);
+            doc.setFont("helvetica", "bold");
+            doc.text("ANTHONY", 105, 90, { align: "center" });
 
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "normal");
-    doc.text(`has successfully completed the module`, 105, 95, { align: "center" });
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "normal");
+            doc.text("has successfully completed the module", 105, 115, { align: "center" });
 
-    doc.setFontSize(18);
-    doc.setTextColor(40, 167, 69); // success green
-    doc.text(moduleNames[currentModule] || currentModule, 105, 115, { align: "center" });
+            doc.setFontSize(20);
+            doc.setTextColor(40, 167, 69);
+            doc.text(moduleNames[currentModule] || currentModule, 105, 140, { align: "center" });
 
-    doc.setFontSize(14);
-    doc.setTextColor(0);
-    doc.text(`with a score of ${scores[currentModule].percentage}%`, 105, 135, { align: "center" });
+            doc.setFontSize(16);
+            doc.setTextColor(0);
+            doc.text(`Score: ${scores[currentModule].percentage}%`, 105, 165, { align: "center" });
 
-    doc.setFontSize(12);
-    doc.text(`Completed on: ${scores[currentModule].timestamp}`, 105, 155, { align: "center" });
+            doc.setFontSize(12);
+            doc.setTextColor(80);
+            doc.text(`Completed on: ${scores[currentModule].timestamp}`, 105, 185, { align: "center" });
 
-    doc.setFontSize(10);
-    doc.setTextColor(100);
-    doc.text("Act 29 Mining Training Platform • MHSA Compliant", 105, 180, { align: "center" });
+            doc.setFontSize(10);
+            doc.setTextColor(120);
+            doc.text("Act 29 Mining Training Platform • MHSA Compliant • Issued " + new Date().toLocaleDateString('en-ZA'), 105, 205, { align: "center" });
 
-    // Optional: add more styling, logo, border, signature line, etc.
-
-    // Save the file
-    const fileName = `Certificate_${(moduleNames[currentModule] || currentModule).replace(/\s+/g, '_')}.pdf`;
-    doc.save(fileName);
-}
+            const fileName = `Certificate_${(moduleNames[currentModule] || currentModule).replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
+            doc.save(fileName);
+        }
 
         function restartQuiz() {
             startQuiz();
@@ -1762,10 +1754,7 @@ function downloadCertificate() {
             loadModule(currentModule);
         }
 
-        // ────────────────────────────────────────────────
-        // EVENT LISTENERS
-        // ────────────────────────────────────────────────
-
+        // Event Listeners
         document.getElementById('watchVideo')?.addEventListener('click', startVideo);
         document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
         document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
@@ -1775,7 +1764,6 @@ function downloadCertificate() {
             renderModules(filter, els.searchInput.value.trim());
         });
 
-        // Filter buttons
         document.querySelectorAll('[data-filter]').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1786,7 +1774,6 @@ function downloadCertificate() {
             });
         });
 
-        // Sort buttons
         document.querySelectorAll('[data-sort]').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1795,7 +1782,6 @@ function downloadCertificate() {
             });
         });
 
-        // View toggle (card/list) - basic implementation
         document.querySelectorAll('[data-view]').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1808,7 +1794,6 @@ function downloadCertificate() {
             });
         });
 
-        // Mobile navbar collapse on link click
         document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth < 992) {
@@ -1818,34 +1803,20 @@ function downloadCertificate() {
             });
         });
 
-        // Contact form feedback (demo)
         document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Thank you! Your message has been sent.');
             e.target.reset();
         });
 
-        // ────────────────────────────────────────────────
-        // INITIALIZATION
-        // ────────────────────────────────────────────────
-
+        // Initialization
         window.addEventListener('DOMContentLoaded', () => {
             showHome();
             renderModules();
             renderCompletedModules();
             updateProgress();
-
-            // Set default active filter
             document.querySelector('[data-filter="all"]').classList.add('active');
         });
-
- 
-
-        
     </script>
 </body>
 </html>
-
-
-
-
