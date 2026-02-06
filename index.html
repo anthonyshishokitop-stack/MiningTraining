@@ -25,11 +25,12 @@
         }
 
         body {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)),
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
                 url('https://westwitsmining.com/wp-content/uploads/2025/10/5D7A6385.jpg') center/cover no-repeat fixed;
             min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding-top: 56px;
+            color: #fff;
         }
 
         .logo-title {
@@ -39,60 +40,60 @@
         }
 
         .module-card {
-            background: white;
+            background: rgba(255,255,255,0.92);
             border-radius: 12px;
             border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: all 0.25s ease;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             cursor: pointer;
         }
 
         .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(13,110,253,0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(13,110,253,0.2);
         }
 
         .module-card .card-body {
-            padding: 1.2rem 1.35rem;
+            padding: 1.25rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .icon-wrapper {
-            width: 52px;
-            height: 52px;
-            border-radius: 10px;
-            background: #eff6ff;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: #e9f1ff;
             color: #2563eb;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             flex-shrink: 0;
         }
 
         .module-card.advanced .icon-wrapper {
-            background: #fff7ed;
-            color: #c2410c;
+            background: #fff0e6;
+            color: #e65c00;
         }
 
         .module-name {
             font-weight: 600;
-            color: #1e293b;
+            color: #0f172a;
             margin: 0;
-            font-size: 1.05rem;
-            line-height: 1.35;
+            font-size: 1.1rem;
+            line-height: 1.4;
             flex-grow: 1;
         }
 
         .progress-badge {
-            font-size: 0.82rem;
-            padding: 0.4em 0.75em;
+            font-size: 0.9rem;
+            padding: 0.45em 0.9em;
             border-radius: 999px;
             font-weight: 600;
-            min-width: 60px;
+            min-width: 65px;
             text-align: center;
         }
 
@@ -100,111 +101,152 @@
         .bg-warning-soft { background: #fef3c7; color: #92400e; }
 
         #content-area {
-            background: var(--light-bg);
-            backdrop-filter: blur(8px);
-            min-height: calc(100vh - 56px);
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .welcome-overlay {
+            background: rgba(0,0,0,0.45);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            backdrop-filter: blur(4px);
         }
 
         .action-card {
             border-radius: 16px;
             transition: all 0.35s ease;
             cursor: pointer;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(226,232,240,0.5);
+            background: rgba(255,255,255,0.95);
         }
 
         .action-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(13,110,253,0.18);
-        }
-
-        .quiz-option {
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
-            padding: 1.1rem;
-            margin-bottom: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .quiz-option:hover {
-            border-color: var(--primary);
-            background: #f8f9fa;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(13,110,253,0.2);
         }
 
         .navbar {
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             background-color: #fff;
         }
 
-        .footer {
-            background-color: var(--dark);
-            color: #fff;
-            padding: 2rem 0;
+        .section-header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+
+        .module-list-view .module-card {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .module-list-view .module-name {
+            font-size: 1.15rem;
+        }
+
+        .modules-header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
             text-align: center;
         }
 
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .breadcrumb {
-            background: #f8f9fa;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        #modulesContainer {
-            display: none;
-        }
-
-        #modulesContainer.active {
-            display: block;
-        }
-
-        /* Enhanced Professional Styles */
-        .section-header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-professional {
+        .stat-badge {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 0.6rem 1.2rem;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            color: white;
             border: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
         }
 
-        .certificate {
-            border: 2px solid var(--success);
-            padding: 1rem;
-            margin-top: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 8px;
+        .stat-badge:focus, .stat-badge:active {
+            box-shadow: none;
         }
 
-        .contact-form input, .contact-form textarea {
-            margin-bottom: 1rem;
+        .modules-overview-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 2.5rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-overlay { padding: 2rem 1.5rem; }
+            .modules-header { padding: 2rem 1.5rem; }
+            .modules-overview-controls { flex-direction: column; align-items: center; }
+        }
+
+       /* Stronger borders for cards and video containers */
+       .action-card,
+       .card,
+       .module-card,
+       .ratio.ratio-16x9 {
+       border: 2px solid rgba(13, 110, 253, 0.3) !important;  /* subtle blue tint, or change to #ced4da for gray */
+       border-radius: 12px;
+       }
+
+      .ratio.ratio-16x9 {
+      border: 3px solid #0d6efd;          /* more prominent for video frame */
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      }
+
+      /* Optional: hover effect to emphasize */
+      .action-card:hover,
+      .module-card:hover {
+      border-color: var(--primary) !important;
+      }
+
+      /* List view styling */
+      .module-list-view #moduleGrid .col-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      }
+
+     .module-list-view .module-card {
+     flex-direction: row !important;
+     align-items: center;
+     justify-content: space-between;
+     padding: 1rem;
+     }
+
+    .module-list-view .module-name {
+    font-size: 1.2rem;
+    margin-right: auto;
+    }
+
+
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand logo-title" href="#">Act 29</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showHome(); return false;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList(); return false;">Modules</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard(); return false;">Dashboard</a></li>
@@ -217,57 +259,85 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container-fluid p-4 p-lg-5" id="content-area">
+    <div class="container p-4 p-lg-5" id="content-area">
 
         <!-- Breadcrumbs -->
-        <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
-            <ol class="breadcrumb mb-4">
+        <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none mb-4">
+            <ol class="breadcrumb bg-white bg-opacity-75 rounded p-3">
                 <li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Current</li>
+                <li class="breadcrumb-item active" aria-current="page" id="currentBreadcrumb">Current</li>
             </ol>
         </nav>
 
-        <!-- Modules List Screen -->
-        <div id="modulesContainer">
-            <h2 class="text-primary fw-bold mb-4 section-header">Training Modules</h2>
-
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search modules...">
-                </div>
-            </div>
-
-            <div class="row g-3" id="moduleGrid"></div>
-
-            <div class="card mt-4 border-0 shadow-sm card-professional">
-                <div class="card-body text-center">
-                    <strong>Progress:</strong> <span id="completedCount">0</span>/24  
-                    <strong class="ms-4">Pass rate:</strong> <span id="overallPass">0%</span>
-                </div>
+        <!-- Home / Welcome -->
+        <div id="welcomeScreen" class="text-center py-5">
+            <div class="welcome-overlay">
+                <h1 class="display-3 fw-bold mb-4" style="color: #60a5fa;">Mining Training</h1>
+                <p class="lead fs-4 mb-4">24 Critical Competency Modules • MHSA Compliance</p>
+                <p class="fs-5 opacity-90">Self-paced • Certificate on successful completion • For GCC candidates & mining professionals</p>
             </div>
         </div>
 
-        <!-- Welcome -->
-        <div id="welcomeScreen" class="text-center py-3">
-            <h1 class="display-4 fw-bold text-primary mb-3">Mining Training</h1>
-            <p class="lead text-muted mb-3">24 Critical Competency Modules • MHSA Compliance</p>
-            <img src="https://westwitsmining.com/wp-content/uploads/2025/10/5D7A6385.jpg" 
-                 class="img-fluid rounded-4 shadow mb-3" style="max-height:420px; object-fit:cover;" alt="Mining">
+        <!-- Modules Overview -->
+  <div id="modulesContainer" class="d-none">
+    <div class="modules-header">
+      <h2 class="fw-bold mb-3">Modules Overview</h2>
+      <p class="lead mb-4">24 Critical Competency Modules • MHSA Compliant</p>
+
+      <div class="modules-overview-controls">
+        <div class="dropdown">
+          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="basic">Basic</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li>
+          </ul>
         </div>
+
+        <input type="text" class="form-control stat-badge" id="searchInput" placeholder="Search modules…" style="max-width:320px;">
+
+        <div class="dropdown">
+          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="sortLabel">Sort: Name A–Z</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li>
+            <li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li>
+            <li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown">
+          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="viewLabel">Card View</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-view="card">Card View</a></li>
+            <li><a class="dropdown-item" href="#" data-view="list">List View</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="moduleGrid" class="row g-4"></div>
+
+    <div class="card mt-5 bg-white text-dark shadow">
+      <div class="card-body text-center py-4">
+        <strong>Modules completed:</strong> <span id="completedCount">0</span>/24
+           <strong>Pass rate:</strong> <span id="overallPass">0%</span>
+      </div>
+    </div>
+  </div>
 
         <!-- Module Details -->
         <div id="moduleView" class="d-none">
-            <h2 class="text-primary text-center mb-5 fw-bold" id="moduleTitle"></h2>
+            <h2 class="text-center mb-5 fw-bold text-white" id="moduleTitle"></h2>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
-                    <div class="action-card text-center p-5 bg-white shadow" id="watchVideo">
+                    <div class="action-card text-center p-5 shadow" id="watchVideo">
                         <i class="bi bi-play-circle-fill display-1 text-primary mb-3"></i>
                         <h4 class="fw-bold">Watch Training Video</h4>
                         <p class="text-muted">Review the required safety content</p>
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="action-card text-center p-5 bg-white shadow" id="startQuiz">
+                    <div class="action-card text-center p-5 shadow" id="startQuiz">
                         <i class="bi bi-check2-circle display-1 text-success mb-3"></i>
                         <h4 class="fw-bold">Take Assessment</h4>
                         <p class="text-muted">Demonstrate knowledge & understanding</p>
@@ -303,12 +373,12 @@
             </div>
         </div>
 
-<!-- Results -->
+        <!-- Results Screen -->
         <div id="resultsScreen" class="d-none container">
-            <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5 card-professional">
-                <h2 id="resultTitle" class="display-5 fw-bold mb-4"></h2>
-                <div class="progress bg-light rounded-pill mb-4" style="height:40px;">
-                    <div id="progressBar" class="progress-bar progress-bar-striped fs-4 fw-bold" style="width:0%">0%</div>
+            <div class="card shadow-lg border-0 rounded-4 text-center p-4 p-md-5 bg-white text-dark">
+                <h2 id="resultTitle" class="display-4 fw-bold mb-4"></h2>
+                <div class="progress bg-light rounded-pill mb-4" style="height:50px;">
+                    <div id="progressBar" class="progress-bar progress-bar-striped fs-3 fw-bold" style="width:0%">0%</div>
                 </div>
                 <div class="row g-3 mb-4">
                     <div class="col-6 col-md-3">
@@ -332,62 +402,66 @@
                 </div>
                 <p id="passMessage" class="lead fw-bold mb-4"></p>
                 <p id="completionTimestamp" class="text-muted mb-4"></p>
-                <div id="certificateSection" class="certificate d-none">
-                    <h4>Certificate of Completion</h4>
-                    <p>Congratulations! You have completed this module.</p>
+                <div id="certificateSection" class="border border-success p-4 rounded bg-light d-none">
+                    <h4 class="text-success">Certificate of Completion</h4>
+                    <p>Congratulations! You have successfully completed this module.</p>
+                    <button onclick="downloadCertificate()" class="btn btn-success mt-3">Download Certificate</button>
                 </div>
-                 <div class="text-center mt-4">
-                 <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>  
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
                 </div>
             </div>
         </div>
 
-
-        <!-- Community -->
+        <!-- Community Screen -->
         <div id="communityScreen" class="d-none container">
-            <h2 class="text-primary text-center mb-4 fw-bold section-header">Mining Community Group</h2>
-            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 card-professional">
+            <h2 class="text-center mb-5 fw-bold text-white section-header">Mining Community Group</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 bg-white text-dark">
                 <p class="lead text-center mb-4">Join our global community for GCC candidates and mining enthusiasts!</p>
                 <ul class="list-group mb-4">
-                    <li class="list-group-item"><i class="bi bi-chat-dots me-2"></i>Real-time text chat</li>
-                    <li class="list-group-item"><i class="bi bi-mic me-2"></i>Voice messaging</li>
-                    <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2"></i>File uploads</li>
-                    <li class="list-group-item"><i class="bi bi-people me-2"></i>Unlimited participants</li>
+                    <li class="list-group-item"><i class="bi bi-chat-dots me-2 text-primary"></i>Real-time text chat</li>
+                    <li class="list-group-item"><i class="bi bi-mic me-2 text-primary"></i>Voice messaging</li>
+                    <li class="list-group-item"><i class="bi bi-file-earmark-arrow-up me-2 text-primary"></i>File uploads & sharing</li>
+                    <li class="list-group-item"><i class="bi bi-people me-2 text-primary"></i>Unlimited participants</li>
                 </ul>
-
                 <div class="text-center">
-                    <a href="https://chat.whatsapp.com/IfQeeVFg2iqAJGsEDJxE8P?mode=ac_t" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-whatsapp me-2"></i> Join Group
+                    <a href="https://chat.whatsapp.com/IfQeeVFg2iqAJGsEDJxE8P?mode=ac_t" target="_blank" class="btn btn-success btn-lg px-5 mb-3">
+                        <i class="bi bi-whatsapp me-2"></i> Join WhatsApp Group
                     </a>
                     <a href="https://discord.gg/rfsRXS3BUR" target="_blank" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-discord me-2"></i> Join Group
+                        <i class="bi bi-discord me-2"></i> Join Discord Server
                     </a>
-                    <a href="https://drive.google.com/drive/folders/1IeRl6fuKQLLisLX1I0_FT2Xa6MyoLQFM?usp=drive_link" class="btn btn-primary btn-lg px-5 mb-3">
-                        <i class="bi bi-cloud-arrow-up me-2"></i> Share Files
+                    <a href="https://drive.google.com/drive/folders/1IeRl6fuKQLLisLX1I0_FT2Xa6MyoLQFM?usp=drive_link" target="_blank" class="btn btn-info btn-lg px-5 mb-3">
+                        <i class="bi bi-cloud-arrow-up me-2"></i> Access Shared Drive
                     </a>
-        
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard -->
+        <!-- Dashboard Screen -->
         <div id="dashboardScreen" class="d-none container">
-            <h2 class="text-primary text-center mb-5 fw-bold section-header">Training Dashboard</h2>
+            <h2 class="text-center mb-5 fw-bold text-white section-header">Training Dashboard</h2>
             <div class="row g-4 mb-5">
-                <div class="col-md-4"><div class="card border-0 shadow text-center p-4 card-professional">
-                    <h5 class="text-muted mb-3">Modules Completed</h5>
-                    <div class="display-4 fw-bold text-primary" id="dashCompleted">0/24</div>
-                </div></div>
-                <div class="col-md-4"><div class="card border-0 shadow text-center p-4 card-professional">
-                    <h5 class="text-muted mb-3">Overall Pass Rate</h5>
-                    <div class="display-4 fw-bold text-success" id="dashPassRate">0%</div>
-                </div></div>
-                <div class="col-md-4"><div class="card border-0 shadow text-center p-4 card-professional">
-                    <h5 class="text-muted mb-3">Certificates Earned</h5>
-                    <div class="display-4 fw-bold text-warning" id="dashCertificates">0</div>
-                </div></div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow text-center p-4 bg-white text-dark">
+                        <h5 class="text-muted mb-3">Modules Completed</h5>
+                        <div class="display-4 fw-bold text-primary" id="dashCompleted">0/24</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow text-center p-4 bg-white text-dark">
+                        <h5 class="text-muted mb-3">Overall Pass Rate</h5>
+                        <div class="display-4 fw-bold text-success" id="dashPassRate">0%</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow text-center p-4 bg-white text-dark">
+                        <h5 class="text-muted mb-3">Certificates Earned</h5>
+                        <div class="display-4 fw-bold text-warning" id="dashCertificates">0</div>
+                    </div>
+                </div>
             </div>
-            <div class="card shadow border-0 card-professional">
+            <div class="card shadow border-0 bg-white text-dark">
                 <div class="card-body p-4">
                     <h4 class="mb-3 section-header">Completed Modules</h4>
                     <ul id="completedModulesList" class="list-group list-group-flush"></ul>
@@ -397,63 +471,31 @@
 
         <!-- About Us -->
         <div id="aboutScreen" class="d-none container">
-            <h2 class="text-primary text-center mb-4 fw-bold section-header">About Us</h2>
-            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 card-professional">
-                <p class="lead mb-4">Act 29 is a professional organization dedicated to providing high-quality health and safety training for the mining industry. Our modules are designed to ensure MHSA compliance and enhance the skills of mining professionals.</p>
-                <p>We focus on critical competencies, from basic safety checks to advanced engineering practices. Our platform is built with depth and professionalism, incorporating real-world scenarios, interactive quizzes, and community support.</p>
-                <p>Founded by Shishoki Anthony, a mining EIT with years of experience, we aim to reduce accidents and promote a culture of safety in mining operations.</p>
+            <h2 class="text-center mb-5 fw-bold text-white section-header">About Us</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-5 bg-white text-dark">
+                <p class="lead mb-4">Act 29 provides professional, MHSA-compliant health and safety training for the mining industry.</p>
+                <p>We deliver 24 critical competency modules designed for GCC candidates, mine overseers, and safety professionals — combining video instruction, assessments, and certification.</p>
+                <p>Our mission is zero harm through better knowledge, better decisions, and better culture.</p>
+                <p class="mt-4"><strong>Founded & maintained by:</strong> Shishoki Anthony</p>
             </div>
         </div>
 
         <!-- Contact Us -->
         <div id="contactScreen" class="d-none container">
-            <h2 class="text-primary text-center mb-4 fw-bold section-header">Contact Us</h2>
-            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 card-professional">
-                <p class="lead mb-4">Get in touch with us for any inquiries, support, or feedback.</p>
-<form class="contact-form"
-      action="https://formsubmit.co/anthonyshishokitop@gmail.com"
-      method="POST">
-
-    <!-- Your existing fields with added 'name' attributes (required for the email to format nicely) -->
-    <input type="text" 
-           class="form-control" 
-           name="name" 
-           placeholder="Your Name" 
-           required>
-
-    <input type="email" 
-           class="form-control" 
-           name="email" 
-           placeholder="Your Email" 
-           required>
-
-    <textarea class="form-control" 
-              rows="5" 
-              name="message" 
-              placeholder="Your Message (e.g., module enquiry, GCC, or question)" 
-              required></textarea>
-
-    <!-- Hidden fields to make the email look professional -->
-    <input type="hidden" name="_subject" value="New Enquiry from MiningTraining.co.za">
-    <input type="hidden" name="_template" value="table">   <!-- Makes email nicely formatted as a table -->
-
-    <!-- Optional: Redirect visitor to a thank-you page after submit -->
-    <!-- Create a simple thank-you.html page on your site first -->
-    <input type="hidden" name="_next" value="https://www.miningtraining.co.za/thank-you.html">
-
-    <!-- Optional: Basic auto-reply to the sender (enable if you want) -->
-    <!-- <input type="hidden" name="_autoresponse" value="Thank you for your message! We'll get back to you soon regarding your mining training enquiry."> -->
-
-    <!-- Spam protection (recommended - shows a simple captcha) -->
-    <!-- Remove the next line if you prefer no captcha -->
-    <input type="hidden" name="_captcha" value="true">
-
-    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
-</form>
-                <div class="text-center mt-4">
-                    <p>Email: anthony.shishoki@implats.co.za</p>
-                    <p>Phone: +27 83 5533 210</p>
-                    <p>Address: Rustenburg, North West, South Africa</p>
+            <h2 class="text-center mb-5 fw-bold text-white section-header">Contact Us</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-5 bg-white text-dark">
+                <form class="contact-form" action="https://formsubmit.co/anthonyshishokitop@gmail.com" method="POST">
+                    <input type="text" class="form-control mb-3" name="name" placeholder="Your Name" required>
+                    <input type="email" class="form-control mb-3" name="email" placeholder="Your Email" required>
+                    <textarea class="form-control mb-4" rows="5" name="message" placeholder="Your message..." required></textarea>
+                    <input type="hidden" name="_subject" value="New message from Mining Training site">
+                    <input type="hidden" name="_captcha" value="true">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                </form>
+                <div class="text-center mt-5">
+                    <p><strong>Email:</strong> anthony.shishoki@implats.co.za</p>
+                    <p><strong>Phone:</strong> +27 83 553 3210</p>
+                    <p><strong>Location:</strong> Rustenburg / Pretoria, South Africa</p>
                 </div>
             </div>
         </div>
@@ -463,9 +505,13 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy;2026 Mining Training</p>
-            <p>Designed by <a href="https://www.linkedin.com/in/anthony-shishoki-11938331a" target="_blank">Shishoki Anthony</a></p>
-            <p><a href="#" onclick="showAbout(); return false;">About Us</a> | <a href="#" onclick="showContact(); return false;">Contact Us</a> | <a href="#">Privacy Policy</a></p>
+            <p>© 2026 Mining Training Platform</p>
+            <p>Built & maintained by <a href="https://www.linkedin.com/in/anthony-shishoki-11938331a" class="text-primary" target="_blank">Shishoki Anthony</a></p>
+            <p>
+                <a href="#" onclick="showAbout(); return false;" class="text-white me-3">About</a> |
+                <a href="#" onclick="showContact(); return false;" class="text-white mx-3">Contact</a> |
+                <a href="#" class="text-white ms-3">Privacy</a>
+            </p>
         </div>
     </footer>
 
@@ -573,6 +619,10 @@ const videos = {
     tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
     winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
 };
+
+// Sample quizzes (expanded with real questions as per original)
+
+
 
 // Sample quizzes (expanded with real questions as per original)
 const sampleQuizzes = {
@@ -1317,7 +1367,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 };
 
-
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
         let currentQuiz = null;
@@ -1379,35 +1428,40 @@ fire: {name:"FIRE UNDERGROUND", q: [
             els.breadcrumbNav.classList.remove('d-none');
             els.breadcrumbItems.innerHTML = '<li class="breadcrumb-item"><a href="#" onclick="showHome(); return false;">Home</a></li>';
 
-            let item = document.createElement('li');
-            item.className = 'breadcrumb-item active';
-            item.setAttribute('aria-current', 'page');
-
             if (screen === 'welcomeScreen') {
                 els.breadcrumbNav.classList.add('d-none');
-            } else if (screen === 'modulesContainer') {
-                item.textContent = 'Modules';
+                return;
+            }
+
+            if (screen === 'modulesContainer') {
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Modules</li>';
             } else if (screen === 'moduleView') {
-                item.textContent = `Modules > ${moduleNames[currentModule] || currentModule}`;
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">' + (moduleNames[currentModule] || currentModule) + '</li>';
             } else if (screen === 'videoScreen') {
-                item.textContent = `Video: ${moduleNames[currentModule] || currentModule}`;
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || currentModule) + '</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Video</li>';
             } else if (screen === 'quizScreen') {
-                item.textContent = `Quiz: ${moduleNames[currentModule] || currentModule}`;
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || currentModule) + '</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Quiz</li>';
             } else if (screen === 'resultsScreen') {
-                item.textContent = `Results: ${moduleNames[currentModule] || currentModule}`;
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || currentModule) + '</a></li>';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Results</li>';
             } else if (screen === 'communityScreen') {
-                item.textContent = 'Community';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Community</li>';
             } else if (screen === 'dashboardScreen') {
-                item.textContent = 'Dashboard';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Dashboard</li>';
             } else if (screen === 'aboutScreen') {
-                item.textContent = 'About Us';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">About Us</li>';
             } else if (screen === 'contactScreen') {
-                item.textContent = 'Contact Us';
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Contact Us</li>';
             } else {
                 els.breadcrumbNav.classList.add('d-none');
                 return;
             }
-            els.breadcrumbItems.appendChild(item);
         }
 
         function updateProgress() {
@@ -1419,7 +1473,52 @@ fire: {name:"FIRE UNDERGROUND", q: [
             els.overallPass.textContent = rate + '%';
             els.dashCompleted.textContent = `${done}/24`;
             els.dashPassRate.textContent = rate + '%';
+          
             els.dashCertificates.textContent = passed;
+        }
+
+        function sortModules(sortType = 'name-asc') {
+            const modulesArray = Object.entries(moduleNames).map(([key, name]) => ({
+                key,
+                name,
+                progress: scores[key]?.percentage || 0,
+                passed: scores[key]?.passed || false
+            }));
+
+            if (sortType === 'name-asc') {
+                modulesArray.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortType === 'name-desc') {
+                modulesArray.sort((a, b) => b.name.localeCompare(a.name));
+            } else if (sortType === 'progress-desc') {
+                modulesArray.sort((a, b) => b.progress - a.progress);
+            }
+
+            const activeFilter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+            const term = els.searchInput.value.trim().toLowerCase();
+
+            els.moduleGrid.innerHTML = '';
+
+            modulesArray.forEach(({ key, name }) => {
+                if (term && !name.toLowerCase().includes(term)) return;
+                if (activeFilter === 'basic' && advancedModules.includes(key)) return;
+                if (activeFilter === 'advanced' && !advancedModules.includes(key)) return;
+
+                const card = document.createElement('div');
+                card.className = `col-12 col-sm-6 col-lg-4 col-xl-3`;
+                card.innerHTML = `
+                    <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
+                        <div class="card-body">
+                            <div class="icon-wrapper">
+                                <i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i>
+                            </div>
+                            <h6 class="module-name">${name}</h6>
+                            ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
+                        </div>
+                    </div>
+                `;
+                card.querySelector('.module-card').addEventListener('click', () => loadModule(key));
+                els.moduleGrid.appendChild(card);
+            });
         }
 
         function renderModules(filter = 'all', term = '') {
@@ -1435,7 +1534,9 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 card.innerHTML = `
                     <div class="module-card ${advancedModules.includes(key) ? 'advanced' : ''}" data-module="${key}">
                         <div class="card-body">
-                            <div class="icon-wrapper"><i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i></div>
+                            <div class="icon-wrapper">
+                                <i class="bi ${moduleIcons[key] || 'bi-shield-check'}"></i>
+                            </div>
                             <h6 class="module-name">${name}</h6>
                             ${scores[key] ? `<span class="progress-badge ${scores[key].passed ? 'bg-success-soft' : 'bg-warning-soft'}">${scores[key].percentage}%</span>` : ''}
                         </div>
@@ -1453,7 +1554,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
             if (key === 'community_chat') {
                 showScreen('communityScreen');
             } else {
-                els.moduleTitle.textContent = moduleNames[key];
+                els.moduleTitle.textContent = moduleNames[key] || key;
                 showScreen('moduleView');
             }
         }
@@ -1466,7 +1567,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function startQuiz() {
             if (!currentModule || !sampleQuizzes[currentModule]) return;
-            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q); // Shuffle questions
+            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q);
             questionIndex = 0;
             correctAnswers = 0;
             quizStartTime = Date.now();
@@ -1489,9 +1590,9 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
             q.options.forEach((opt, i) => {
                 const div = document.createElement('div');
-                div.className = 'quiz-option';
-                div.textContent = opt;
-                div.addEventListener('click', () => selectAnswer(i));
+                div.className = 'col-12';
+                div.innerHTML = `<div class="quiz-option btn btn-outline-secondary w-100 text-start">${opt}</div>`;
+                div.querySelector('.quiz-option').addEventListener('click', () => selectAnswer(i));
                 els.optionsContainer.appendChild(div);
             });
         }
@@ -1501,11 +1602,13 @@ fire: {name:"FIRE UNDERGROUND", q: [
             const options = els.optionsContainer.querySelectorAll('.quiz-option');
 
             options.forEach((opt, i) => {
-                opt.classList.add(i === correct ? 'bg-success' : 'bg-danger');
+                opt.classList.remove('btn-outline-secondary');
+                opt.classList.add(i === correct ? 'btn-success' : 'btn-danger');
                 opt.style.pointerEvents = 'none';
             });
 
-            els.feedback.innerHTML = currentQuiz[questionIndex].explanation;
+            els.feedback.textContent = currentQuiz[questionIndex].explanation;
+            els.feedback.classList.remove('text-success', 'text-danger');
             els.feedback.classList.add(correct === selected ? 'text-success' : 'text-danger');
 
             if (correct === selected) correctAnswers++;
@@ -1522,26 +1625,24 @@ fire: {name:"FIRE UNDERGROUND", q: [
             const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
             const percentage = Math.round((correctAnswers / currentQuiz.length) * 100);
             const passed = percentage >= 70;
-            const timestamp = new Date().toLocaleString();
+            const timestamp = new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' });
 
-            scores[currentModule] = { percentage, passed, timestamp };
+            scores[currentModule] = { percentage, passed, timestamp, correct: correctAnswers, total: currentQuiz.length };
             localStorage.setItem('miningScores', JSON.stringify(scores));
 
-            els.resultTitle.textContent = passed ? 'Passed!' : 'Failed';
+            els.resultTitle.textContent = passed ? 'Congratulations! You Passed' : 'Assessment Not Passed';
             els.progressBar.style.width = percentage + '%';
             els.progressBar.textContent = percentage + '%';
-            els.progressBar.classList.add(passed ? 'bg-success' : 'bg-danger');
+            els.progressBar.className = `progress-bar progress-bar-striped fs-3 fw-bold ${passed ? 'bg-success' : 'bg-danger'}`;
             els.scorePercent.textContent = percentage + '%';
-            els.correctCount.textContent = correctAnswers + '/' + currentQuiz.length;
+            els.correctCount.textContent = correctAnswers + ' / ' + currentQuiz.length;
             els.timeDisplay.textContent = Math.floor(timeTaken / 60) + ':' + (timeTaken % 60).toString().padStart(2, '0');
-            els.passMessage.textContent = passed ? 'Great job! You have passed this module.' : 'You need 70% to pass. Please retake the assessment.';
-            els.completionTimestamp.textContent = `Completed on: ${timestamp}`;
+            els.passMessage.textContent = passed 
+                ? 'You have successfully completed this module.' 
+                : 'A minimum of 70% is required to pass. Please review the material and try again.';
+            els.completionTimestamp.textContent = `Completed: ${timestamp}`;
 
-            if (passed) {
-                els.certificateSection.classList.remove('d-none');
-            } else {
-                els.certificateSection.classList.add('d-none');
-            }
+            els.certificateSection.classList.toggle('d-none', !passed);
 
             showScreen('resultsScreen');
             updateProgress();
@@ -1553,23 +1654,32 @@ fire: {name:"FIRE UNDERGROUND", q: [
             els.completedModulesList.innerHTML = '';
             if (Object.keys(scores).length === 0) {
                 els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
-            } else {
-                Object.entries(scores).forEach(([key, data]) => {
+                return;
+            }
+
+            Object.entries(scores)
+                .sort((a, b) => new Date(b[1].timestamp) - new Date(a[1].timestamp))
+                .forEach(([key, data]) => {
                     const li = document.createElement('li');
                     li.className = 'list-group-item d-flex justify-content-between align-items-center';
                     li.innerHTML = `
-                        ${moduleNames[key] || key} 
-                        <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill">${data.percentage}%</span>
-                        <small class="text-muted">${data.timestamp}</small>
+                        <div>
+                            <strong>${moduleNames[key] || key}</strong><br>
+                            <small class="text-muted">${data.timestamp}</small>
+                        </div>
+                        <span class="badge ${data.passed ? 'bg-success' : 'bg-danger'} rounded-pill fs-6">
+                            ${data.percentage}%
+                        </span>
                     `;
                     els.completedModulesList.appendChild(li);
                 });
-            }
         }
 
         function downloadCertificate() {
-            // Simple alert for demo; in real app, generate PDF
-            alert(`Downloading certificate for ${moduleNames[currentModule]} completed on ${scores[currentModule].timestamp}`);
+            // Very basic placeholder — real implementation would use jsPDF or similar
+            const moduleName = moduleNames[currentModule] || currentModule;
+            const data = scores[currentModule];
+            alert(`Certificate download started for:\n\nModule: ${moduleName}\nScore: ${data.percentage}%\nDate: ${data.timestamp}\n\n(In real version this would generate a PDF)`);
         }
 
         function restartQuiz() {
@@ -1584,7 +1694,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
             const activeFilter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
             renderModules(activeFilter, els.searchInput.value.trim());
             showScreen('modulesContainer');
-            els.modulesContainer.classList.add('active');
         }
 
         function showDashboard() {
@@ -1604,108 +1713,87 @@ fire: {name:"FIRE UNDERGROUND", q: [
             showScreen('contactScreen');
         }
 
-        function backToModulesList() {
-            showModulesList();
-        }
-
         function backToModule() {
             els.videoPlayer.src = '';
-            showScreen('moduleView');
+            loadModule(currentModule);
         }
 
-        // Event listeners
+        // ────────────────────────────────────────────────
+        // EVENT LISTENERS
+        // ────────────────────────────────────────────────
+
         document.getElementById('watchVideo')?.addEventListener('click', startVideo);
         document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
         document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
 
-        els.searchInput.addEventListener('input', (e) => {
+        els.searchInput.addEventListener('input', () => {
             const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-            renderModules(filter, e.target.value.trim());
+            renderModules(filter, els.searchInput.value.trim());
         });
 
-        document.querySelectorAll('[data-filter]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderModules(btn.dataset.filter, els.searchInput.value.trim());
+        // Filter buttons
+        document.querySelectorAll('[data-filter]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('[data-filter]').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+                document.getElementById('filterLabel').textContent = `Filter: ${item.textContent}`;
+                renderModules(item.dataset.filter, els.searchInput.value.trim());
             });
         });
 
-        // NEW: Fix for mobile menu - Ensure menu collapses on link click and can be reopened
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                // Only on mobile (Bootstrap lg breakpoint is 992px)
-                if (window.innerWidth < 992) {
-                    const collapseElement = document.getElementById('navbarContent');
-                    const bsCollapse = bootstrap.Collapse.getInstance(collapseElement);
-                    if (bsCollapse) {
-                        bsCollapse.hide(); // Explicitly hide the collapse
-                    }
+        // Sort buttons
+        document.querySelectorAll('[data-sort]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('sortLabel').textContent = `Sort: ${item.textContent}`;
+                sortModules(item.dataset.sort);
+            });
+        });
+
+        // View toggle (card/list) - basic implementation
+        document.querySelectorAll('[data-view]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('viewLabel').textContent = item.textContent;
+                if (item.dataset.view === 'list') {
+                    els.modulesContainer.classList.add('module-list-view');
+                } else {
+                    els.modulesContainer.classList.remove('module-list-view');
                 }
             });
         });
 
-
-        // ──────────────────────────────────────────────────────────────────────────────
-        // EVENT LISTENERS & INITIALIZATION (continued)
-        // ──────────────────────────────────────────────────────────────────────────────
-
-        // Contact form submit
-        document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            e.target.reset();
-        });
-
-        // Mobile navbar collapse fix on link click
+        // Mobile navbar collapse on link click
         document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth < 992) {
                     const collapse = document.getElementById('navbarContent');
-                    const bsCollapse = bootstrap.Collapse.getInstance(collapse) || new bootstrap.Collapse(collapse, {toggle: false});
-                    bsCollapse.hide();
+                    bootstrap.Collapse.getInstance(collapse)?.hide();
                 }
             });
         });
 
-        // Initialize app
+        // Contact form feedback (demo)
+        document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! Your message has been sent.');
+            e.target.reset();
+        });
+
+        // ────────────────────────────────────────────────
+        // INITIALIZATION
+        // ────────────────────────────────────────────────
+
         window.addEventListener('DOMContentLoaded', () => {
             showHome();
             renderModules();
             renderCompletedModules();
             updateProgress();
-        });
 
+            // Set default active filter
+            document.querySelector('[data-filter="all"]').classList.add('active');
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
