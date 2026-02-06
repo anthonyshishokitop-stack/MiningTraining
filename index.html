@@ -322,6 +322,18 @@
         <!-- Module Details -->
         <div id="moduleView" class="d-none">
             <h2 class="text-center mb-5 fw-bold text-white" id="moduleTitle"></h2>
+
+            
+            <!-- Add this right after <h2 id="moduleTitle"></h2> -->
+<div class="mb-5 text-center">
+    <label for="userFullName" class="form-label text-white fs-5 fw-bold">
+        Your Full Name (will appear on certificate):
+    </label>
+    <input type="text" class="form-control form-control-lg mx-auto" id="userFullName"
+           placeholder="Enter your full name here" 
+           style="max-width: 500px; background: rgba(255,255,255,0.9);">
+</div>
+            
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
                     <div class="action-card text-center p-5 shadow" id="watchVideo">
@@ -1540,15 +1552,28 @@ fire: {name:"FIRE UNDERGROUND", q: [
             showScreen('videoScreen');
         }
 
-        function startQuiz() {
-            if (!currentModule || !sampleQuizzes[currentModule]) return;
-            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q || []);
-            questionIndex = 0;
-            correctAnswers = 0;
-            quizStartTime = Date.now();
-            showQuestion();
-            showScreen('quizScreen');
-        }
+function startQuiz() {
+    const nameInput = document.getElementById('userFullName');
+    const userName = nameInput?.value.trim();
+
+    if (!userName) {
+        alert("Please enter your full name before starting the assessment.\nThis name will appear on your certificate.");
+        nameInput?.focus();
+        return;
+    }
+
+    // Save the name (persists in this browser until cleared)
+    localStorage.setItem('currentUserNameForCertificate', userName);
+
+    if (!currentModule || !sampleQuizzes[currentModule]) return;
+
+    currentQuiz = shuffleArray(sampleQuizzes[currentModule].q || []);
+    questionIndex = 0;
+    correctAnswers = 0;
+    quizStartTime = Date.now();
+    showQuestion();
+    showScreen('quizScreen');
+}
 
         function showQuestion() {
             els.optionsContainer.innerHTML = '';
@@ -1690,9 +1715,11 @@ fire: {name:"FIRE UNDERGROUND", q: [
             doc.setTextColor(0);
             doc.text("This is to certify that", 105, 65, { align: "center" });
 
-            doc.setFontSize(24);
-            doc.setFont("helvetica", "bold");
-            doc.text("ANTHONY", 105, 90, { align: "center" });
+doc.setFontSize(24);
+doc.setFont("helvetica", "bold");
+
+const userName = localStorage.getItem('currentUserNameForCertificate') || "Participant";
+doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
 
             doc.setFontSize(16);
             doc.setFont("helvetica", "normal");
@@ -1820,3 +1847,4 @@ fire: {name:"FIRE UNDERGROUND", q: [
     </script>
 </body>
 </html>
+
