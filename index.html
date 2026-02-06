@@ -1672,12 +1672,59 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 });
         }
 
-        function downloadCertificate() {
-            // Very basic placeholder — real implementation would use jsPDF or similar
-            const moduleName = moduleNames[currentModule] || currentModule;
-            const data = scores[currentModule];
-            alert(`Certificate download started for:\n\nModule: ${moduleName}\nScore: ${data.percentage}%\nDate: ${data.timestamp}\n\n(In real version this would generate a PDF)`);
-        }
+function downloadCertificate() {
+    // Make sure we have the data
+    if (!currentModule || !scores[currentModule]) {
+        alert("No certificate data available. Please complete a module first.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    if (!jsPDF) {
+        alert("PDF library failed to load. Please check your internet connection.");
+        return;
+    }
+
+    const doc = new jsPDF();
+
+    // ─── Basic certificate layout ───────────────────────────────────────
+    doc.setFontSize(22);
+    doc.setTextColor(13, 110, 253); // your --primary color
+    doc.text("Certificate of Completion", 105, 30, { align: "center" });
+
+    doc.setFontSize(16);
+    doc.setTextColor(0);
+    doc.text(`This certifies that`, 105, 55, { align: "center" });
+
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text("ANTHONY", 105, 75, { align: "center" }); // ← you can make this dynamic later
+
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "normal");
+    doc.text(`has successfully completed the module`, 105, 95, { align: "center" });
+
+    doc.setFontSize(18);
+    doc.setTextColor(40, 167, 69); // success green
+    doc.text(moduleNames[currentModule] || currentModule, 105, 115, { align: "center" });
+
+    doc.setFontSize(14);
+    doc.setTextColor(0);
+    doc.text(`with a score of ${scores[currentModule].percentage}%`, 105, 135, { align: "center" });
+
+    doc.setFontSize(12);
+    doc.text(`Completed on: ${scores[currentModule].timestamp}`, 105, 155, { align: "center" });
+
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text("Act 29 Mining Training Platform • MHSA Compliant", 105, 180, { align: "center" });
+
+    // Optional: add more styling, logo, border, signature line, etc.
+
+    // Save the file
+    const fileName = `Certificate_${(moduleNames[currentModule] || currentModule).replace(/\s+/g, '_')}.pdf`;
+    doc.save(fileName);
+}
 
         function restartQuiz() {
             startQuiz();
@@ -1791,8 +1838,14 @@ fire: {name:"FIRE UNDERGROUND", q: [
             // Set default active filter
             document.querySelector('[data-filter="all"]').classList.add('active');
         });
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        
     </script>
 </body>
 </html>
+
 
 
