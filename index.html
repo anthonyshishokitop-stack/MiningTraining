@@ -195,10 +195,7 @@
             .modules-overview-controls { flex-direction: column; align-items: center; }
         }
 
-        .action-card,
-        .card,
-        .module-card,
-        .ratio.ratio-16x9 {
+        .action-card, .card, .module-card, .ratio.ratio-16x9 {
             border: 2px solid rgba(13, 110, 253, 0.3) !important;
             border-radius: 12px;
         }
@@ -208,8 +205,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
-        .action-card:hover,
-        .module-card:hover {
+        .action-card:hover, .module-card:hover {
             border-color: var(--primary) !important;
         }
 
@@ -245,6 +241,7 @@
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showHome(); return false;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList(); return false;">Modules</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard(); return false;">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showCertificates(); return false;">Certificates</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showCommunity(); return false;">Community</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showAbout(); return false;">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showContact(); return false;">Contact Us</a></li>
@@ -323,17 +320,16 @@
         <div id="moduleView" class="d-none">
             <h2 class="text-center mb-5 fw-bold text-white" id="moduleTitle"></h2>
 
-            
-            <!-- Add this right after <h2 id="moduleTitle"></h2> -->
-<div class="mb-5 text-center">
-    <label for="userFullName" class="form-label text-white fs-5 fw-bold">
-        Your Full Name:
-    </label>
-    <input type="text" class="form-control form-control-lg mx-auto" id="userFullName"
-           placeholder="Enter your full name here" 
-           style="max-width: 500px; background: rgba(255,255,255,0.9);">
-</div>
-            
+            <!-- Name input for certificate -->
+            <div class="mb-5 text-center">
+                <label for="userFullName" class="form-label text-white fs-5 fw-bold">
+                    Your Full Name (will appear on certificate):
+                </label>
+                <input type="text" class="form-control form-control-lg mx-auto" id="userFullName"
+                       placeholder="Enter your full name here" 
+                       style="max-width: 500px; background: rgba(255,255,255,0.9);">
+            </div>
+
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
                     <div class="action-card text-center p-5 shadow" id="watchVideo">
@@ -357,7 +353,6 @@
             <div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-4">
                 <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
             </div>
-
             <div class="text-center mt-4">
                 <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">Done</button>
             </div>
@@ -373,7 +368,6 @@
                     <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
                 </div>
             </div>
-
             <div class="text-center mt-4">
                 <button class="btn btn-outline-secondary btn-lg px-5" onclick="backToModule()">Done</button>
             </div>
@@ -417,6 +411,20 @@
 
                 <div class="text-center mt-4">
                     <button class="btn btn-outline-primary btn-lg px-5" onclick="restartQuiz()">Retake</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Screen -->
+        <div id="certificatesScreen" class="d-none container">
+            <h2 class="text-center mb-5 fw-bold text-white section-header">Your Certificates</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 bg-white text-dark">
+                <p class="lead text-center mb-4" id="certIntro">Download your earned certificates below.</p>
+                <div id="certList" class="list-group mb-4">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary btn-lg px-5" onclick="showDashboard();">Back to Dashboard</button>
                 </div>
             </div>
         </div>
@@ -501,9 +509,9 @@
                     <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
                 </form>
                 <div class="text-center mt-5">
-                    <p><strong>Email:</strong>anthonyshishokitop@gmail.com</p>
+                    <p><strong>Email:</strong> anthony.shishoki@implats.co.za</p>
                     <p><strong>Phone:</strong> +27 83 553 3210</p>
-                    <p><strong>Location:</strong> Rustenburg / Pretoria, South Africa</p>
+                    <p><strong>Location:</strong> Rustenburg, North West, South Africa</p>
                 </div>
             </div>
         </div>
@@ -530,15 +538,16 @@
 
     <script>
         // ──────────────────────────────────────────────────────────────────────────────
-        // DATA
+        // DATA (questions omitted)
         // ──────────────────────────────────────────────────────────────────────────────
 
+
         const moduleNames = {
-            handover: "Shift Handover & Pre-Shift Checks",
+            handover: "Shift Handover",
             lhd: "LHD Tramming in Decline",
             drill: "Face Drilling (Jumbo)",
             support: "Install Mesh & Bolts",
-            vent: "Main Ventilation Failure",
+            vent: "Ventilation",
             rockfall: "Major Rock Fall Event",
             traffic: "Traffic Conflict in Single Lane",
             reentry: "Unsafe Re-Entry Attempt",
@@ -546,18 +555,18 @@
             raise_drill: "Raise Drilling (Raise Boring)",
             lifting_operations: "Lifting Operations",
             civil_structural: "Civil and Structural Engineering",
-            conveyor_monorail: "Conveyor Belt and Monorail",
+            conveyor_monorail: "Conveyor and Monorail",
             compressed_air: "Compressed Air and Reticulation",
-            pump_fluid: "Pump and Fluid handling",
-            steam_pressure: "Steam Generations and Pressure Vessels",
-            electrical: "Underground Electrical Systems Safety",
+            pump_fluid: "Fluid handling",
+            steam_pressure: "Steam Generations",
+            electrical: "Electrical Systems",
             mhsa: "MHSA 1996 Regulations",
             seismicity: "Seismicity & Rockbursts",
             blasting: "Blasting & Explosives",
             evacuation: "Emergency Evacuation",
             fire: "Fire",
-            tmm: "Trackless Mobile Machinery",
-            winders: "Winding Plant, Shafts and Headgears",
+            tmm: "TMM",
+            winders: "Winding Plant",
             community_chat: "Mining Community Group"
         };
 
@@ -1360,6 +1369,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 };
 
+
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
         let currentQuiz = null;
@@ -1392,7 +1402,8 @@ fire: {name:"FIRE UNDERGROUND", q: [
             completedModulesList: document.getElementById('completedModulesList'),
             breadcrumbNav: document.getElementById('breadcrumbNav'),
             breadcrumbItems: document.getElementById('breadcrumbItems'),
-            modulesContainer: document.getElementById('modulesContainer')
+            modulesContainer: document.getElementById('modulesContainer'),
+            certList: document.getElementById('certList')
         };
 
         function shuffleArray(array) {
@@ -1405,7 +1416,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
         }
 
         function hideAllScreens() {
-            document.querySelectorAll('#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #communityScreen, #dashboardScreen, #aboutScreen, #contactScreen')
+            document.querySelectorAll('#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #certificatesScreen, #communityScreen, #dashboardScreen, #aboutScreen, #contactScreen')
                 .forEach(el => el.classList.add('d-none'));
         }
 
@@ -1426,31 +1437,26 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 return;
             }
 
-            if (screen === 'modulesContainer') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Modules</li>';
-            } else if (screen === 'moduleView') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">' + (moduleNames[currentModule] || 'Module') + '</li>';
-            } else if (screen === 'videoScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Video</li>';
-            } else if (screen === 'quizScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Quiz</li>';
-            } else if (screen === 'resultsScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Results</li>';
-            } else if (screen === 'communityScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Community</li>';
-            } else if (screen === 'dashboardScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Dashboard</li>';
-            } else if (screen === 'aboutScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">About Us</li>';
-            } else if (screen === 'contactScreen') {
-                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">Contact Us</li>';
+            let title = '';
+            if (screen === 'modulesContainer') title = 'Modules';
+            else if (screen === 'moduleView') title = moduleNames[currentModule] || 'Module';
+            else if (screen === 'videoScreen') title = 'Video';
+            else if (screen === 'quizScreen') title = 'Quiz';
+            else if (screen === 'resultsScreen') title = 'Results';
+            else if (screen === 'certificatesScreen') title = 'Certificates';
+            else if (screen === 'communityScreen') title = 'Community';
+            else if (screen === 'dashboardScreen') title = 'Dashboard';
+            else if (screen === 'aboutScreen') title = 'About Us';
+            else if (screen === 'contactScreen') title = 'Contact Us';
+
+            if (title) {
+                if (screen === 'moduleView' || screen === 'videoScreen' || screen === 'quizScreen' || screen === 'resultsScreen') {
+                    els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList(); return false;">Modules</a></li>';
+                    if (screen !== 'moduleView') {
+                        els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item"><a href="#" onclick="loadModule(currentModule); return false;">' + (moduleNames[currentModule] || 'Module') + '</a></li>';
+                    }
+                }
+                els.breadcrumbItems.innerHTML += '<li class="breadcrumb-item active" aria-current="page">' + title + '</li>';
             } else {
                 els.breadcrumbNav.classList.add('d-none');
             }
@@ -1476,13 +1482,9 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 passed: scores[key]?.passed || false
             }));
 
-            if (sortType === 'name-asc') {
-                modulesArray.sort((a, b) => a.name.localeCompare(b.name));
-            } else if (sortType === 'name-desc') {
-                modulesArray.sort((a, b) => b.name.localeCompare(a.name));
-            } else if (sortType === 'progress-desc') {
-                modulesArray.sort((a, b) => b.progress - a.progress);
-            }
+            if (sortType === 'name-asc') modulesArray.sort((a, b) => a.name.localeCompare(b.name));
+            else if (sortType === 'name-desc') modulesArray.sort((a, b) => b.name.localeCompare(a.name));
+            else if (sortType === 'progress-desc') modulesArray.sort((a, b) => b.progress - a.progress);
 
             const activeFilter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
             const term = els.searchInput.value.trim().toLowerCase();
@@ -1512,7 +1514,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
         function renderModules(filter = 'all', term = '') {
             els.moduleGrid.innerHTML = '';
-
             Object.entries(moduleNames).forEach(([key, name]) => {
                 if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
                 if (filter === 'basic' && advancedModules.includes(key)) return;
@@ -1532,7 +1533,6 @@ fire: {name:"FIRE UNDERGROUND", q: [
                 card.querySelector('.module-card').addEventListener('click', () => loadModule(key));
                 els.moduleGrid.appendChild(card);
             });
-
             updateProgress();
         }
 
@@ -1552,28 +1552,26 @@ fire: {name:"FIRE UNDERGROUND", q: [
             showScreen('videoScreen');
         }
 
-function startQuiz() {
-    const nameInput = document.getElementById('userFullName');
-    const userName = nameInput?.value.trim();
+        function startQuiz() {
+            const nameInput = document.getElementById('userFullName');
+            const userName = nameInput?.value.trim();
 
-    if (!userName) {
-        alert("Please enter your full name before starting the assessment.\nThis name will appear on your certificate.");
-        nameInput?.focus();
-        return;
-    }
+            if (!userName) {
+                alert("Please enter your full name before starting the assessment.\nThis name will appear on your certificate.");
+                nameInput?.focus();
+                return;
+            }
 
-    // Save the name (persists in this browser until cleared)
-    localStorage.setItem('currentUserNameForCertificate', userName);
+            localStorage.setItem('currentUserNameForCertificate', userName);
 
-    if (!currentModule || !sampleQuizzes[currentModule]) return;
-
-    currentQuiz = shuffleArray(sampleQuizzes[currentModule].q || []);
-    questionIndex = 0;
-    correctAnswers = 0;
-    quizStartTime = Date.now();
-    showQuestion();
-    showScreen('quizScreen');
-}
+            if (!currentModule || !sampleQuizzes[currentModule]) return;
+            currentQuiz = shuffleArray(sampleQuizzes[currentModule].q || []);
+            questionIndex = 0;
+            correctAnswers = 0;
+            quizStartTime = Date.now();
+            showQuestion();
+            showScreen('quizScreen');
+        }
 
         function showQuestion() {
             els.optionsContainer.innerHTML = '';
@@ -1586,7 +1584,6 @@ function startQuiz() {
             }
 
             const q = currentQuiz[questionIndex];
-
             const originalOptions = q.options || [];
             const correctAnswerText = originalOptions[q.correct];
 
@@ -1613,14 +1610,10 @@ function startQuiz() {
 
         function selectAnswer(selectedIndex, correctIndex) {
             const options = els.optionsContainer.querySelectorAll('.quiz-option');
-
             options.forEach((opt, i) => {
                 opt.classList.remove('btn-outline-secondary');
-                if (i === correctIndex) {
-                    opt.classList.add('btn-success');
-                } else if (i === selectedIndex) {
-                    opt.classList.add('btn-danger');
-                }
+                if (i === correctIndex) opt.classList.add('btn-success');
+                else if (i === selectedIndex) opt.classList.add('btn-danger');
                 opt.style.pointerEvents = 'none';
             });
 
@@ -1630,7 +1623,6 @@ function startQuiz() {
             els.feedback.classList.add(selectedIndex === correctIndex ? 'text-success' : 'text-danger');
 
             if (selectedIndex === correctIndex) correctAnswers++;
-
             els.nextBtn.classList.remove('d-none');
         }
 
@@ -1674,7 +1666,6 @@ function startQuiz() {
                 els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
                 return;
             }
-
             Object.entries(scores)
                 .sort((a, b) => new Date(b[1].timestamp) - new Date(a[1].timestamp))
                 .forEach(([key, data]) => {
@@ -1695,18 +1686,19 @@ function startQuiz() {
 
         function downloadCertificate() {
             if (!currentModule || !scores[currentModule]) {
-                alert("No certificate data available. Please complete a module first.");
+                alert("No certificate data found for this module.");
                 return;
             }
 
             const { jsPDF } = window.jspdf;
             if (!jsPDF) {
-                alert("PDF library failed to load. Please check your internet connection.");
+                alert("PDF library failed to load. Check your internet connection.");
                 return;
             }
 
-            const doc = new jsPDF();
+            const userName = localStorage.getItem('currentUserNameForCertificate') || "Participant";
 
+            const doc = new jsPDF();
             doc.setFontSize(22);
             doc.setTextColor(13, 110, 253);
             doc.text("Certificate of Completion", 105, 40, { align: "center" });
@@ -1715,11 +1707,9 @@ function startQuiz() {
             doc.setTextColor(0);
             doc.text("This is to certify that", 105, 65, { align: "center" });
 
-doc.setFontSize(24);
-doc.setFont("helvetica", "bold");
-
-const userName = localStorage.getItem('currentUserNameForCertificate') || "Participant";
-doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
+            doc.setFontSize(24);
+            doc.setFont("helvetica", "bold");
+            doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
 
             doc.setFontSize(16);
             doc.setFont("helvetica", "normal");
@@ -1743,6 +1733,55 @@ doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
 
             const fileName = `Certificate_${(moduleNames[currentModule] || currentModule).replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
             doc.save(fileName);
+        }
+
+        function showCertificates() {
+            renderCertificates();
+            showScreen('certificatesScreen');
+        }
+
+        function renderCertificates() {
+            const container = document.getElementById('certList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            const completed = Object.entries(scores)
+                .filter(([_, data]) => data.passed)
+                .sort((a, b) => new Date(b[1].timestamp) - new Date(a[1].timestamp));
+
+            if (completed.length === 0) {
+                container.innerHTML = `
+                    <div class="alert alert-info text-center">
+                        You haven't earned any certificates yet.<br>
+                        Complete some modules to get started!
+                    </div>
+                `;
+                return;
+            }
+
+            completed.forEach(([key, data]) => {
+                const item = document.createElement('div');
+                item.className = 'list-group-item d-flex justify-content-between align-items-center';
+                item.innerHTML = `
+                    <div>
+                        <strong>${moduleNames[key] || key}</strong><br>
+                        <small class="text-muted">Completed: ${data.timestamp} • Score: ${data.percentage}%</small>
+                    </div>
+                    <button class="btn btn-success btn-sm" 
+                            onclick="downloadSpecificCertificate('${key}')">
+                        Download PDF
+                    </button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function downloadSpecificCertificate(moduleKey) {
+            const originalModule = currentModule;
+            currentModule = moduleKey;
+            downloadCertificate();
+            currentModule = originalModule;
         }
 
         function restartQuiz() {
@@ -1792,7 +1831,7 @@ doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
         });
 
         document.querySelectorAll('[data-filter]').forEach(item => {
-            item.addEventListener('click', (e) => {
+            item.addEventListener('click', e => {
                 e.preventDefault();
                 document.querySelectorAll('[data-filter]').forEach(el => el.classList.remove('active'));
                 item.classList.add('active');
@@ -1802,7 +1841,7 @@ doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
         });
 
         document.querySelectorAll('[data-sort]').forEach(item => {
-            item.addEventListener('click', (e) => {
+            item.addEventListener('click', e => {
                 e.preventDefault();
                 document.getElementById('sortLabel').textContent = `Sort: ${item.textContent}`;
                 sortModules(item.dataset.sort);
@@ -1810,7 +1849,7 @@ doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
         });
 
         document.querySelectorAll('[data-view]').forEach(item => {
-            item.addEventListener('click', (e) => {
+            item.addEventListener('click', e => {
                 e.preventDefault();
                 document.getElementById('viewLabel').textContent = item.textContent;
                 if (item.dataset.view === 'list') {
@@ -1824,13 +1863,12 @@ doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
         document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth < 992) {
-                    const collapse = document.getElementById('navbarContent');
-                    bootstrap.Collapse.getInstance(collapse)?.hide();
+                    bootstrap.Collapse.getInstance(document.getElementById('navbarContent'))?.hide();
                 }
             });
         });
 
-        document.querySelector('.contact-form')?.addEventListener('submit', (e) => {
+        document.querySelector('.contact-form')?.addEventListener('submit', e => {
             e.preventDefault();
             alert('Thank you! Your message has been sent.');
             e.target.reset();
@@ -1847,7 +1885,3 @@ doc.text(userName.toUpperCase(), 105, 90, { align: "center" });
     </script>
 </body>
 </html>
-
-
-
-
