@@ -241,6 +241,7 @@
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showHome(); return false;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList(); return false;">Modules</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showDescriptions(); return false;">Descriptions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showResources(); return false;">Resources</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard(); return false;">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showCertificates(); return false;">Certificates</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showCommunity(); return false;">Community</a></li>
@@ -322,6 +323,16 @@
             <h2 class="text-center mb-5 fw-bold text-white section-header">Module Descriptions</h2>
             <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 bg-white text-dark">
                 <div id="moduleAccordion" class="accordion">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Resources -->
+        <div id="resourcesScreen" class="d-none container">
+            <h2 class="text-center mb-5 fw-bold text-white section-header">Additional Resources</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 bg-white text-dark">
+                <div id="resourcesAccordion" class="accordion">
                     <!-- Populated by JS -->
                 </div>
             </div>
@@ -1382,6 +1393,9 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 };
 
+
+
+
 const moduleDescriptions = {
     handover: "Shift handover and pre-shift checks ensure seamless, safe operations by bridging information gaps between teams.\n\nDetailed requirements:\n- Formal handover protocol: Documented exchange of equipment status, defects, hazards (e.g., geotechnical instability, gas levels, ventilation issues), ongoing maintenance, production updates, incidents/near-misses, and any permit or procedure changes.\n- Inspection and documentation: Statutory checks (daily for high-risk machinery, weekly/monthly for others), declarations of fitness for duty/equipment, comprehensive defect logbooks with timestamps and signatures, early morning examinations for critical plant like winders or fans.\n- MHSA compliance: Aligns with Chapter 2 (employer duties on risk management, safe systems) and Chapter 8 (Machinery & Equipment – e.g., pre-start checks, lock-outs), emphasizing risk assessments to prevent miscommunication-led accidents.\n- Practical tips: Use standardized digital checklists for traceability, include verbal walkthroughs, and train on handover COPs to reduce shift-start errors.",
 
@@ -1436,6 +1450,58 @@ const moduleDescriptions = {
     
 };
 
+const moduleResources = {
+    handover: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Comprehensive guide on occupational safety practices including handover procedures.\n- <a href='https://www.coursehero.com/file/194217607/001-2023-3-bpdf/' target='_blank'>Essential Guide to Construction and Mining Safety Management</a> - Covers MHSA requirements for shift handover and pre-checks.\n- <a href='https://pmg.org.za/files/171003MHSC.pdf' target='_blank'>Guidelines for Recognition of Prior Learning and Training</a> - Includes modules on safe handover practices.",
+
+    lhd: "- <a href='https://mandelaminingprecinct.org.za/wp-content/uploads/2021/09/Guideline-Mechanised-Equipment.pdf' target='_blank'>Guideline for Mechanised Equipment (Mandela Mining Precinct)</a> - Detailed guidelines for safe operation of LHD and other mechanised equipment.\n- <a href='https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf' target='_blank'>Guideline for COP on Road and Rail Safety Management</a> - Covers traffic management for TMM like LHD in declines.\n- <a href='https://www.holmessafety.org/wp-content/uploads/Combs-Task-Training.pdf' target='_blank'>Guidelines to Effective Task Training</a> - Includes OJT modules for LHD operations and safety.",
+
+    drill: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Chapter on machinery safety including jumbo drilling.\n- <a href='https://minesafetyinstitute.org/purchase/msha-operators-guide' target='_blank'>MSHA Operator's Guide</a> - Training modules on drilling equipment safety (adaptable to MHSA).\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Handbook%20Pages%201-89.pdf' target='_blank'>Handbook on Mine Occupational Hygiene Measurements</a> - Guidance on dust suppression during drilling.",
+
+    support: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Section on ground control and support installation.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Guidelines for Rock Fall and Rock Burst</a> - Combat rock fall accidents guidelines.\n- <a href='https://www.coursehero.com/file/194217607/001-2023-3-bpdf/' target='_blank'>Essential Guide to Construction and Mining Safety Management</a> - Covers support systems in mining.",
+
+    vent: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Handbook%20Pages%201-89.pdf' target='_blank'>Handbook on Mine Occupational Hygiene Measurements</a> - Detailed ventilation monitoring and failure response.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Chapter on environmental engineering and ventilation.\n- <a href='https://mqa.org.za/wp-content/uploads/2021/08/MQA-SSP-Final.pdf' target='_blank'>MQA Sector Skills Plan</a> - Training requirements for ventilation officers.",
+
+    rockfall: "- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Guidelines for Rock Fall</a> - Specific guidelines to combat rock fall and burst accidents.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Ground control and rock fall prevention.\n- <a href='https://www.coursehero.com/file/194217607/001-2023-3-bpdf/' target='_blank'>Essential Guide to Construction and Mining Safety Management</a> - Rock fall event management.",
+
+    traffic: "- <a href='https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf' target='_blank'>Guideline for COP on Road and Rail Safety Management</a> - Traffic conflict management in single lanes.\n- <a href='https://mandelaminingprecinct.org.za/wp-content/uploads/2021/09/Guideline-Mechanised-Equipment.pdf' target='_blank'>Guideline for Mechanised Equipment</a> - TMM traffic rules.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Machinery and traffic safety.",
+
+    reentry: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Post-blast re-entry procedures.\n- <a href='https://www.ensafrica.com/uploads/newsarticles/0_13guide06.pdf' target='_blank'>Guideline for COP Occupational Health Programme</a> - Re-entry after blasting.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Handbook%20Pages%201-89.pdf' target='_blank'>Handbook on Mine Occupational Hygiene Measurements</a> - Fume clearance monitoring.",
+
+    shaft_sinking: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Shaft sinking safety.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Guidelines for shafts and winders.\n- <a href='https://mandelaminingprecinct.org.za/wp-content/uploads/2021/09/Guideline-Mechanised-Equipment.pdf' target='_blank'>Guideline for Mechanised Equipment</a> - Applicable to sinking equipment.",
+
+    raise_drill: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Raise boring safety.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Drilling equipment guidelines.\n- <a href='https://www.holmessafety.org/wp-content/uploads/Combs-Task-Training.pdf' target='_blank'>Guidelines to Effective Task Training</a> - OJT for raise drilling.",
+
+    lifting_operations: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Lifting operations chapter.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Lifting machinery guidelines.\n- <a href='https://www.ensafrica.com/uploads/newsarticles/0_13guide06.pdf' target='_blank'>Guideline for COP Occupational Health Programme</a> - Related to lifting hazards.",
+
+    civil_structural: "- <a href='https://www.coursehero.com/file/194217607/001-2023-3-bpdf/' target='_blank'>Essential Guide to Construction and Mining Safety Management</a> - Civil and structural safety.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Infrastructure maintenance.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre</a> - Structural integrity guidelines.",
+
+    conveyor_monorail: "- <a href='https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf' target='_blank'>Guideline for COP on Road and Rail Safety Management</a> - Applicable to monorails.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Conveyor safety section.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Materials Handling</a> - Conveyor guidelines.",
+
+    compressed_air: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Handbook%20Pages%201-89.pdf' target='_blank'>Handbook on Mine Occupational Hygiene Measurements</a> - Compressed air safety.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Pressure vessel guidelines.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Compressed air regs.",
+
+    pump_fluid: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Pumping and fluid handling.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Occupational Hygiene</a> - Water management guidelines.\n- <a href='https://mandelaminingprecinct.org.za/wp-content/uploads/2021/09/Guideline-Mechanised-Equipment.pdf' target='_blank'>Guideline for Mechanised Equipment</a> - Pump safety.",
+
+    steam_pressure: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Steam and pressure vessel safety.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Pressure equipment guidelines.\n- <a href='https://www.ensafrica.com/uploads/newsarticles/0_13guide06.pdf' target='_blank'>Guideline for COP Occupational Health Programme</a> - Related to pressure hazards.",
+
+    electrical: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Electrical systems chapter.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Electrical guidelines.\n- <a href='https://mqa.org.za/wp-content/uploads/2021/08/MQA-SSP-Final.pdf' target='_blank'>MQA Sector Skills Plan</a> - Electrical safety training.",
+
+    mhsa: "- <a href='https://mqa.org.za/wp-content/uploads/2021/08/MQA-SSP-Final.pdf' target='_blank'>MQA Sector Skills Plan</a> - Overview of MHSA training requirements.\n- <a href='https://pmg.org.za/files/171003MHSC.pdf' target='_blank'>MHSC Presentation on Guidelines</a> - MHSA compliance guidelines.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre</a> - Full MHSA regulations and COP guidelines.",
+
+    seismicity: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Seismicity and rockbursts section.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Rock Fall Guidelines</a> - Combat rock burst accidents.\n- <a href='https://www.coursehero.com/file/194217607/001-2023-3-bpdf/' target='_blank'>Essential Guide to Construction and Mining Safety Management</a> - Seismicity management.",
+
+    blasting: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Blasting and explosives chapter.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre</a> - Explosives safety guidelines.\n- <a href='https://www.holmessafety.org/wp-content/uploads/Combs-Task-Training.pdf' target='_blank'>Guidelines to Effective Task Training</a> - Blasting OJT modules.",
+
+    evacuation: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Emergency evacuation procedures.\n- <a href='https://www.ensafrica.com/uploads/newsarticles/0_13guide06.pdf' target='_blank'>Guideline for COP Occupational Health Programme</a> - Emergency preparedness.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre</a> - Emergency response guidelines.",
+
+    fire: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Mine fires and explosions chapter.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre</a> - Fire safety guidelines.\n- <a href='https://repository.up.ac.za/bitstreams/1df5d4cb-1796-4f40-9d11-b58abfc827f5/download' target='_blank'>Education and Training in the Mining Sector</a> - Fire safety training modules.",
+
+    tmm: "- <a href='https://mandelaminingprecinct.org.za/wp-content/uploads/2021/09/Guideline-Mechanised-Equipment.pdf' target='_blank'>Guideline for Mechanised Equipment (Mandela Mining Precinct)</a> - TMM safety guidelines.\n- <a href='https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf' target='_blank'>Guideline for COP on Road and Rail Safety Management</a> - TMM traffic rules.\n- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Trackless machinery section.",
+
+    winders: "- <a href='https://mhsc.org.za/sites/default/files/public/publications/Safety%20Handbook%20Manuscript%20Final.pdf' target='_blank'>Safety Handbook Manuscript Final (MHSC)</a> - Winding plant safety.\n- <a href='https://www.dmre.gov.za/mineral-resources/mine-health-and-safety/resource-center' target='_blank'>DMRE Resource Centre - Mine Equipment Safety</a> - Winding regulations.\n- <a href='https://www.coursehero.com/file/194217607/001-2023-3-bpdf/' target='_blank'>Essential Guide to Construction and Mining Safety Management</a> - Shaft and winder safety.",
+
+    community_chat: "No additional resources available for this module."
+};
+
 
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
@@ -1471,7 +1537,8 @@ const moduleDescriptions = {
             breadcrumbItems: document.getElementById('breadcrumbItems'),
             modulesContainer: document.getElementById('modulesContainer'),
             certList: document.getElementById('certList'),
-            moduleAccordion: document.getElementById('moduleAccordion')
+            moduleAccordion: document.getElementById('moduleAccordion'),
+            resourcesAccordion: document.getElementById('resourcesAccordion')
         };
 
         function shuffleArray(array) {
@@ -1484,7 +1551,7 @@ const moduleDescriptions = {
         }
 
         function hideAllScreens() {
-            document.querySelectorAll('#welcomeScreen, #modulesContainer, #descriptionsScreen, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #certificatesScreen, #communityScreen, #dashboardScreen, #aboutScreen, #contactScreen')
+            document.querySelectorAll('#welcomeScreen, #modulesContainer, #descriptionsScreen, #resourcesScreen, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #certificatesScreen, #communityScreen, #dashboardScreen, #aboutScreen, #contactScreen')
                 .forEach(el => el.classList.add('d-none'));
         }
 
@@ -1508,6 +1575,7 @@ const moduleDescriptions = {
             let title = '';
             if (screen === 'modulesContainer') title = 'Modules';
             else if (screen === 'descriptionsScreen') title = 'Descriptions';
+            else if (screen === 'resourcesScreen') title = 'Resources';
             else if (screen === 'moduleView') title = moduleNames[currentModule] || 'Module';
             else if (screen === 'videoScreen') title = 'Video';
             else if (screen === 'quizScreen') title = 'Quiz';
@@ -1581,7 +1649,9 @@ const moduleDescriptions = {
             });
         }
 
-        function renderModules(filter = 'all', term = '') {
+
+
+               function renderModules(filter = 'all', term = '') {
             els.moduleGrid.innerHTML = '';
             Object.entries(moduleNames).forEach(([key, name]) => {
                 if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
@@ -1878,7 +1948,40 @@ const moduleDescriptions = {
                     <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" 
                          aria-labelledby="heading${index}" data-bs-parent="#moduleAccordion">
                         <div class="accordion-body">
-                            ${desc}
+                            ${desc.replace(/\n/g, '<br>')}
+                        </div>
+                    </div>
+                `;
+                accordion.appendChild(item);
+            });
+        }
+
+        function showResources() {
+            renderResources();
+            showScreen('resourcesScreen');
+        }
+
+        function renderResources() {
+            const accordion = document.getElementById('resourcesAccordion');
+            if (!accordion) return;
+
+            accordion.innerHTML = '';
+
+            Object.entries(moduleNames).forEach(([key, name], index) => {
+                const res = moduleResources[key] || "No additional resources available for this module.";
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <h2 class="accordion-header" id="resHeading${index}">
+                        <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#resCollapse${index}" aria-expanded="${index === 0}" aria-controls="resCollapse${index}">
+                            ${name}
+                        </button>
+                    </h2>
+                    <div id="resCollapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" 
+                         aria-labelledby="resHeading${index}" data-bs-parent="#resourcesAccordion">
+                        <div class="accordion-body">
+                            ${res.replace(/\n/g, '<br>')}
                         </div>
                     </div>
                 `;
@@ -1987,6 +2090,3 @@ const moduleDescriptions = {
     </script>
 </body>
 </html>
-
-
-
