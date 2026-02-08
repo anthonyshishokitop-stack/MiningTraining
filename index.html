@@ -240,6 +240,7 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showHome(); return false;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList(); return false;">Modules</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showDescriptions(); return false;">Contents</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard(); return false;">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showCertificates(); return false;">Certificates</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showCommunity(); return false;">Community</a></li>
@@ -312,6 +313,16 @@
                 <div class="card-body text-center py-4">
                     <strong>Completed:</strong> <span id="completedCount">0</span>/24
                        <strong>Pass rate:</strong> <span id="overallPass">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Descriptions -->
+        <div id="descriptionsScreen" class="d-none container">
+            <h2 class="text-center mb-5 fw-bold text-white section-header">Module Descriptions</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5 bg-white text-dark">
+                <div id="moduleAccordion" class="accordion">
+                    <!-- Populated by JS -->
                 </div>
             </div>
         </div>
@@ -423,6 +434,9 @@
                 <div id="certList" class="list-group mb-4">
                     <!-- Populated by JS -->
                 </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-secondary btn-lg px-5" onclick="showDashboard();">Back to Dashboard</button>
+                </div>
             </div>
         </div>
 
@@ -445,7 +459,7 @@
                         <i class="bi bi-discord me-2"></i> Join Group
                     </a>
                     <a href="https://drive.google.com/drive/folders/1IeRl6fuKQLLisLX1I0_FT2Xa6MyoLQFM?usp=drive_link" target="_blank" class="btn btn-info btn-lg px-5 mb-3">
-                        <i class="bi bi-cloud-arrow-up me-2"></i> Access Drive
+                        <i class="bi bi-cloud-arrow-up me-2"></i> Shared Drive
                     </a>
                 </div>
             </div>
@@ -505,7 +519,7 @@
                     <input type="hidden" name="_captcha" value="true">
                     <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
                 </form>
-               <div class="text-center mt-5" style="font-size: 0.92rem; line-height: 1.5;">
+                <div class="text-center mt-5 small">
                     <p><strong>Email:</strong> anthony.shishoki@implats.co.za</p>
                     <p><strong>Phone:</strong> +27 83 553 3210</p>
                     <p><strong>Location:</strong> Rustenburg, North West, South Africa</p>
@@ -534,17 +548,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // ──────────────────────────────────────────────────────────────────────────────
-        // DATA (questions omitted)
-        // ──────────────────────────────────────────────────────────────────────────────
 
+
+ 
+        // ──────────────────────────────────────────────────────────────────────────────
+        // DATA (questions omitted as requested)
+        // ──────────────────────────────────────────────────────────────────────────────
 
         const moduleNames = {
-            handover: "Shift Handover",
+            handover: "Shift Handover & Pre-Shift Checks",
             lhd: "LHD Tramming in Decline",
             drill: "Face Drilling (Jumbo)",
             support: "Install Mesh & Bolts",
-            vent: "Ventilation",
+            vent: "Main Ventilation Failure",
             rockfall: "Major Rock Fall Event",
             traffic: "Traffic Conflict in Single Lane",
             reentry: "Unsafe Re-Entry Attempt",
@@ -552,18 +568,18 @@
             raise_drill: "Raise Drilling (Raise Boring)",
             lifting_operations: "Lifting Operations",
             civil_structural: "Civil and Structural Engineering",
-            conveyor_monorail: "Conveyor and Monorail",
+            conveyor_monorail: "Conveyor Belt and Monorail",
             compressed_air: "Compressed Air and Reticulation",
-            pump_fluid: "Fluid handling",
-            steam_pressure: "Steam Generations",
-            electrical: "Electrical Systems",
+            pump_fluid: "Pump and Fluid handling",
+            steam_pressure: "Steam Generations and Pressure Vessels",
+            electrical: "Underground Electrical Systems Safety",
             mhsa: "MHSA 1996 Regulations",
             seismicity: "Seismicity & Rockbursts",
             blasting: "Blasting & Explosives",
             evacuation: "Emergency Evacuation",
             fire: "Fire",
-            tmm: "TMM",
-            winders: "Winding Plant",
+            tmm: "Trackless Mobile Machinery",
+            winders: "Winding Plant, Shafts and Headgears",
             community_chat: "Mining Community Group"
         };
 
@@ -624,7 +640,7 @@
             winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
         };
 
-  const sampleQuizzes = {
+const sampleQuizzes = {
 
 
 handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
@@ -1366,6 +1382,57 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
 };
 
+const moduleDescriptions = {
+    handover: "Shift handover and pre-shift checks ensure seamless, safe operations by bridging information gaps between teams.\n\nDetailed requirements:\n- Formal handover protocol: Documented exchange of equipment status, defects, hazards (e.g., geotechnical instability, gas levels, ventilation issues), ongoing maintenance, production updates, incidents/near-misses, and any permit or procedure changes.\n- Inspection and documentation: Statutory checks (daily for high-risk machinery, weekly/monthly for others), declarations of fitness for duty/equipment, comprehensive defect logbooks with timestamps and signatures, early morning examinations for critical plant like winders or fans.\n- MHSA compliance: Aligns with Chapter 2 (employer duties on risk management, safe systems) and Chapter 8 (Machinery & Equipment – e.g., pre-start checks, lock-outs), emphasizing risk assessments to prevent miscommunication-led accidents.\n- Practical tips: Use standardized digital checklists for traceability, include verbal walkthroughs, and train on handover COPs to reduce shift-start errors.",
+
+    lhd: "LHD tramming in declines mandates advanced safety under MHSA Chapter 8 Reg 8.10 (TMM regulations, 2015 amendment; fail-to-safe collision systems enforced ~2022).\n\nCore controls and insights:\n- Pre-operational inspections: Thorough checks of braking systems (service, park, emergency – must be fail-safe), lighting/horns/reflectors, automatic fire suppression activation, hydraulic integrity, tyre condition/pressures, visibility aids like cameras/mirrors – all logged daily.\n- Operational practices: Gradient-specific controls (e.g., no free-wheeling, use of retarders), load limits to prevent tipping, speed restrictions based on decline angle/road conditions.\n- Hazard mitigation: Pedestrian exclusion zones with barriers, radio-based traffic coordination, automatic fire extinguishers for engine/hot surfaces.\n- Collision avoidance: Mandatory proximity detection (pedestrian/machine warnings, speed retardation, full auto-braking without operator input per Reg 8.10.1.2(b)), machine-to-machine interfacing in congested areas.\n- Additional: Runaway prevention via incline-specific brakes, rollover protective structures (ROPS) if risk-assessed; integrates with SAMRASS reporting for any incidents.\n- Why critical: TMM incidents account for ~30% of mine fatalities – prioritize engineering controls like auto-braking over reliance on operator vigilance.",
+
+    drill: "Face drilling with jumbo rigs (hydraulic/pneumatic) requires precise safety measures under MHSA Chapter 8 Reg 8.8 (general machinery safeguards).\n\nExpanded elements:\n- Competency and setup: Certified operator training on rig controls/stability; mandatory dust suppression (wet methods, vacuum extractors) to comply with occupational exposure limits (OELs) for silica dust.\n- Pre-drilling protocols: Install temporary roof/rib support; conduct detailed face examinations for fractures, water ingress, or unstable strata using barring tools.\n- Drilling execution: Accurate hole patterning/marking to optimize blast efficiency and minimize misfires; collaring techniques to ensure alignment/depth control.\n- Safety features: Full guarding of rotating drill steels/rods, interlocked barriers, lock-out/tag-out during maintenance, pre-start audible/visual warnings (minimum 10-second delay per site risk assessment).\n- Emergency and compliance: Accessible emergency stops, no loose attire near moving parts; links to explosives regs for safe proximity; report any drill-related incidents via SAMRASS.\n- Learning point: Inadequate support or poor patterning often causes flyrock or ground failure – regular audits essential.",
+
+    support: "Installation of support systems (mesh, bolts, cables, shotcrete) is guided by rock engineering to counter ground instability.\n\nDetailed practices:\n- System selection: Temporary (e.g., friction bolts, split sets) for immediate stability vs. permanent (grouted rock bolts, mesh reinforcement) based on geotechnical strata analysis.\n- Installation techniques: Precise drilling depths, bolt torque/tensioning to manufacturer specs, resin/grout mixing/curing, washer/plate securing for load distribution.\n- Quality assurance: Routine pull testing (e.g., 10-20% of installations to verify holding capacity), corrosion protection (galvanized coatings in wet environments), density mapping per rock quality designation (RQD).\n- Advanced applications: Yielding/dynamic bolts in seismic-prone areas to absorb energy; ongoing monitoring with extensometers or visual inspections.\n- MHSA alignment: Complies with geotechnical regulations (Chapter 16 equivalent) and Chapter 8 for machinery used in installation; incident reporting through SAMRASS if failures occur.\n- Risk focus: Falls of ground (FOG) are a leading hazard – integrate with site COPs for proactive re-support.",
+
+    vent: "Main ventilation failure procedures are vital under MHSA Chapter 9 (environmental engineering) and emergency regulations.\n\nStep-by-step response:\n- Immediate actions: Fan failure alarms trigger evacuation to designated fresh air bases or refuge bays; all personnel don self-contained self-rescuers (SCSRs) for at least 30-60 minutes of breathable air.\n- Refuge protocols: Bays equipped with compressed air lines, CO2 scrubbers, potable water, communications (telephones/leaky feeders), and sustainment for 36-96 hours depending on mine depth.\n- Recovery phase: Post-fan restart, conduct multi-point gas monitoring (methane <1%, CO <50ppm, O2 >19.5%, NOx/dust levels); stepwise re-entry with competent supervision and barring of loose ground.\n- Reporting and drills: Log incidents via SAMRASS (immediate for serious events); mandatory quarterly evacuation drills to test response times.\n- Integration: Links to overall emergency preparedness COPs; prevents asphyxiation/explosions by ensuring auxiliary ventilation backups.",
+
+    rockfall: "Major rock fall event management prioritizes prevention and rapid response to falls of ground (FOG).\n\nComprehensive strategies:\n- Risk identification: Geotechnical assessments including seismic monitoring, stress mapping, and daily face/ground inspections for precursors like cracking or spalling.\n- Preventive measures: Proactive scaling/barring-down using mechanized scalers or hand tools; installation of additional supports like nets or straps in high-risk zones.\n- Post-event protocols: Immediate area evacuation/barricading; re-entry only after waiting periods (e.g., 4-8 hours), gas clearance, and re-inspection by rock engineer.\n- Investigation: Root-cause analysis (e.g., blasting-induced or natural), SAMRASS reporting for fatalities/injuries, and updates to ground control COPs.\n- MHSA compliance: Aligns with geotechnical regs and Chapter 8 for safe equipment use in response; emphasizes hierarchy of controls (eliminate via design, then engineer supports).",
+
+    traffic: "Single-lane traffic management for TMM under MHSA Chapter 8 Reg 8.10 minimizes conflicts in confined spaces.\n\nKey controls:\n- Planning: Develop site-specific traffic management COPs with one-way circuits, designated passing bays equipped with visibility aids (mirrors, lights, sensors).\n- Rules enforcement: Clear priorities (e.g., loaded vehicles uphill), speed limits tailored to road width/gradient (e.g., <20km/h in singles), pedestrian-free zones with physical barriers.\n- Communication: Mandatory two-way radios for coordination, proximity alerts integrated with collision systems.\n- Monitoring: Fleet tracking via GPS/dispatch centers; incident logging through SAMRASS for any collisions.\n- Risk reduction: Enhanced lighting/signage, training on right-of-way; prevents ~20% of TMM-related incidents in narrow haulages.",
+
+    reentry: "Unsafe re-entry prevention after blasting follows MHSA explosives regulations (Chapter 21 equivalent) and ventilation standards.\n\nStructured protocols:\n- Waiting periods: Minimum ventilation times (e.g., 30-60 minutes) for fume dispersal based on blast size/airflow rates.\n- Testing: Systematic multi-gas detection (NOx <25ppm, CO <50ppm, SO2 <2ppm) using calibrated instruments; check for irrespirable zones.\n- Misfire handling: Visual inspection for unexploded charges; safe disposal methods (re-firing or water flushing) by certified blasters.\n- Re-examination: Full face/ground assessment for instability, flyrock remnants; only authorized entry post-clearance.\n- Reporting: SAMRASS submission for any misfires or fume incidents; integrates with Chapter 8 for machinery re-start safety.\n- Emphasis: Toxic fumes cause acute health issues – rigorous testing mandatory.",
+
+    shaft_sinking: "Vertical shaft sinking is regulated under MHSA Chapter 8 Reg 8.13 (2025 amendments via GN 6054/52388 and GN 6267/52781, repealing Minerals Act Chapter 16).\n\nOperational details:\n- Methods: Controlled drill-blast-muck cycles or raise-boring; equipping with steel sets, guides, piping for services.\n- Safety systems: Overwind/underspeed protection on hoists, automatic shaft gates/doors, falling object arrestors.\n- Hoisting: Kibble or stage management with load limits; emergency man-riding/escape ladders or capsules.\n- Personnel: Competency certification for banksman (surface signaling), onsetter (underground loading), and winder drivers; training on emergency signals.\n- Compliance: Design approvals by DMRE, daily inspections/records, SAMRASS reporting for incidents like inrushes or falls; focuses on preventing catastrophic hoisting failures.",
+
+    raise_drill: "Raise drilling (boring) for vertical/inclined raises adheres to MHSA Chapter 8 Reg 8.8 general machinery rules.\n\nSafety breakdown:\n- Setup: Secure machine anchoring on stable platforms; pilot hole drilling with laser-guided alignment surveys to prevent deviation.\n- Reaming: Controlled upward/downward reaming with efficient cuttings removal via mud/flushing systems.\n- Monitoring: Remote operation/video feeds for hazardous zones; real-time dust/fume extraction to meet OELs.\n- Protections: Exclusion zones around rotating components, full guarding of drill strings/rods, lock-out/tag-out for maintenance/changes.\n- Incident management: SAMRASS reporting for any collapses or entanglements; emphasizes precision to avoid costly re-drills.",
+
+    lifting_operations: "Lifting operations (cranes, forklifts) are governed by MHSA Chapter 8 Reg 8.5 (lifting equipment and tackle).\n\nRigorous standards:\n- Inspections: Daily pre-use checks of wires, hooks, slings, limit switches; statutory thorough examinations every 6-12 months with proof load testing.\n- Planning: Competent rigger develops lift plans including weight estimates, center of gravity, wind/ground stability factors, sling configurations.\n- Execution: Use of tag lines for load control, exclusion zones below lifts, standardized hand/radio signals.\n- Compliance: Safe working load (SWL) markings, factors of safety (e.g., 5:1 for wire ropes); SAMRASS for dropped load incidents.\n- Focus: Prevents structural failures – mandatory for all surface/underground handling.",
+
+    civil_structural: "Civil and structural engineering maintains mine infrastructure integrity under MHSA structural regulations.\n\nKey aspects:\n- Design: Engineer approvals for load-bearing elements (e.g., headgears, dams) considering seismic/ground loads.\n- Construction: Quality controls like concrete compressive testing, steel welding NDT (non-destructive testing).\n- Maintenance: Corrosion protection (e.g., epoxy, cathodic); periodic inspections (visual, ultrasonic) every 1-5 years.\n- Monitoring: Strain gauges for deformation; SAMRASS reporting for collapses.\n- Compliance: Ensures resilience against environmental degradation or overloading.",
+
+    conveyor_monorail: "Conveyor belt and monorail systems fall under MHSA Chapter 8 general machinery and materials handling regs.\n\nControls:\n- Installation: Proper belt alignment/tensioning, idler spacing; guarding at all pinch points/tail ends.\n- Operation: Emergency pull-cords along entire length, automatic fire detection/suppression (e.g., infrared sensors, water deluge).\n- Maintenance: Splicing to SANS standards, idler/bearing replacements; lock-out/tag-out procedures.\n- Special: Man-riding rules (speed <2.5m/s, emergency stops); spillage controls with scrapers.\n- Reporting: SAMRASS for fires/entanglements; prevents belt-related incidents.",
+
+    compressed_air: "Compressed air reticulation under MHSA Chapter 8 Reg 8.1 (compressors and pressure vessels).\n\nEssentials:\n- Operation: Interlocked compressors with auto-shutdowns, pressure relief valves set to 110% of max.\n- Inspections: Statutory internal/external exams of receivers (every 24-36 months), thickness gauging.\n- Distribution: Leak detection programs, pressure-regulated reticulation; hose fittings with whip restraints/safety clips.\n- Safety: Lock-out for repairs; SAMRASS for bursts/explosions.\n- Risk: High-pressure hazards – mandatory training.",
+
+    pump_fluid: "Pump and fluid handling systems under MHSA Chapter 8 general machinery regulations.\n\nDetails:\n- Selection/Maintenance: Multistage pumps for high-head dewatering, submersibles for sumps; routine impeller/seal checks.\n- Systems: Pipeline integrity testing (pressure/hydro), sump auto-level controls with flood alarms.\n- Treatment: Water neutralization/settling to prevent corrosion; sludge handling with safe disposal.\n- Protections: Guarding on rotating shafts/couplings, lock-out procedures.\n- Compliance: SAMRASS for flooding incidents; critical in wet mines to avoid inundations.",
+
+    steam_pressure: "Steam generation and pressure vessels linked to MHSA Chapter 8 pressure equipment rules.\n\nProtocols:\n- Operation: Boiler feedwater treatment, low-water cut-offs, pressure/temperature monitoring.\n- Safety devices: Dual safety valves (tested quarterly), blowdown valves for sediment removal.\n- Inspections: Statutory exams (internal every 24 months), calibration of gauges.\n- Maintenance: Scheduled shutdowns for cleaning; SAMRASS for ruptures/explosions.\n- Focus: Scalding/explosion prevention in surface plants.",
+
+    electrical: "Underground electrical systems safety under MHSA Chapter 3 (electrical installations) cross-referenced with Chapter 8 guarding.\n\nFeatures:\n- Equipment: Flameproof enclosures in gassy areas, intrinsically safe circuits for instruments.\n- Protections: Earth leakage relays (<500mA trip), overload/short-circuit devices.\n- Maintenance: Cable insulation testing, switchgear/transformer bunding for oil leaks.\n- Procedures: Lockout/tagout for isolations; SAMRASS for shocks/arcs.\n- Hazard: Ignition risks in methane-prone zones – rigorous compliance essential.",
+
+    mhsa: "The Mine Health and Safety Act 1996 (MHSA) and Regulations form South Africa's comprehensive legal framework for zero-harm mining.\n\nExpanded overview:\n- Core duties: Employers conduct baseline/ongoing risk assessments, provide training/PPE, develop mandatory Codes of Practice (COPs) for high-risk areas like TMM or falls of ground.\n- Employee rights: Right to refuse dangerous work, access to health/safety info, participation in tripartite committees (mine, regional, national).\n- Structures: Mine Health and Safety Council (MHSC) advises on policy; tripartite forums for stakeholder input.\n- Incident reporting via SAMRASS (South African Mines Reportable Accidents Statistical System): Mandatory electronic submission within specified timelines (e.g., immediate for fatalities, 7 days for reportables); covers accidents, dangerous occurrences, occupational diseases; data used for national statistics, trend analysis, and DMRE investigations.\n- Enforcement: DMRE inspectors have stop-work powers, issue prohibitions/notices; penalties up to R3 million or imprisonment for non-compliance.\n- Continuous improvement: Annual health/safety programs, audits; covers all chapters from occupational health (Ch 11) to explosives (Ch 21).",
+
+    seismicity: "Seismicity and rockbursts management in high-stress/deep-level mining under MHSA geotechnical regulations.\n\nStrategies:\n- Monitoring: Real-time seismic networks with event localization, magnitude calculation, aftershock predictions.\n- Analysis: Rock mass stress modeling using numerical software; identification of burst-prone zones.\n- Controls: Energy-absorbing support (e.g., cone bolts, mesh straps); de-stressing techniques like preconditioning blasts.\n- Protocols: Automated warning systems, exclusion periods post-events, controlled re-entry with inspections.\n- Reporting: SAMRASS for bursts causing injury/damage; integrates with COPs for seismic risk.",
+
+    blasting: "Blasting and explosives handling under MHSA explosives regulations (linked to Chapter 8 machinery).\n\nDetailed processes:\n- Design: Optimized patterns (burden, spacing, delays) for fragmentation while controlling vibration/flyrock.\n- Handling: Secure storage/magazines, charging with approved primers/boosters, electronic initiation for precision.\n- Safety: Misfire procedures (wait 30 mins, then inspect/dispose); fume management via ventilation modeling.\n- Controls: Perimeter guarding, siren warnings, post-blast inspections.\n- Compliance: Blaster certification; SAMRASS reporting for premature detonations or overbreaks.",
+
+    evacuation: "Emergency evacuation procedures under MHSA emergency preparedness regulations.\n\nKey components:\n- Activation: Stench gas systems for underground alerts; self-escape routes marked with reflective signage.\n- Equipment: SCSRs for all personnel (training on donning/use); refuge chambers with air, water, first aid.\n- Execution: Designated assembly points, headcount verification via tags or electronic systems.\n- Drills: Quarterly simulations; SAMRASS for actual events like fires or outbursts.\n- Integration: Coordinated with ventilation/fire COPs for organized withdrawal.",
+
+    fire: "Fire prevention, detection, and suppression under MHSA fire regulations.\n\nMulti-layered approach:\n- Prevention: Fuel source controls, hot work permits with fire watches, no-smoking zones.\n- Detection: Heat/smoke sensors, routine patrols in high-risk areas like conveyors.\n- Suppression: Fixed systems (deluge sprinklers, foam for flammable liquids), portable extinguishers classified by fire type.\n- Response: Trained firefighting teams, ventilation shutdown/isolation to contain smoke.\n- Reporting: SAMRASS for all fires; emphasis on minimizing secondary explosions in gassy mines.",
+
+    tmm: "Trackless Mobile Machinery (TMM) operations under MHSA Chapter 8 Reg 8.10 (comprehensive TMM framework).\n\nBroad requirements:\n- Competency: Operator licensing with medical fitness, simulator/practical training.\n- Maintenance: Scheduled servicing (e.g., brakes weekly), defect reporting systems.\n- Technology: Level 9 collision avoidance (full intervention in high-risk); fleet management with fatigue detection.\n- Standards: Braking (fail-safe), visibility (360° cameras), ROPS/FOPS where needed.\n- Oversight: SAMRASS for accidents; mandatory TMM COPs to address ~30% of fatalities.",
+
+    winders: "Winding plant, shafts, and headgears under MHSA Chapter 8 Reg 8.13 (2025 amendments, detailed up to Reg 8.13.139).\n\nIn-depth regulations:\n- Design/Installation: Approved engineering drawings, capacity limits, headgear stability assessments.\n- Operation: Winder controls with depth/speed indicators, overwind/underspeed prevention devices.\n- Components: Rope selection/inspections (non-destructive testing every 6 months), drum grooving, brake systems (dual independent).\n- Safety: Arrestors for falling conveyances, emergency power backups, signaling codes (bells/lights).\n- Personnel: Certified winder drivers, banksman/onsetter training; daily logbooks for operations.\n- Emergency: Procedures for rope severance, stuck conveyances; SAMRASS reporting for malfunctions.\n- Compliance: Replaces outdated Minerals Act Ch 16; focuses on preventing vertical transport failures.",
+
+};
+
 
         let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
         let currentModule = null;
@@ -1400,7 +1467,8 @@ fire: {name:"FIRE UNDERGROUND", q: [
             breadcrumbNav: document.getElementById('breadcrumbNav'),
             breadcrumbItems: document.getElementById('breadcrumbItems'),
             modulesContainer: document.getElementById('modulesContainer'),
-            certList: document.getElementById('certList')
+            certList: document.getElementById('certList'),
+            moduleAccordion: document.getElementById('moduleAccordion')
         };
 
         function shuffleArray(array) {
@@ -1413,7 +1481,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
         }
 
         function hideAllScreens() {
-            document.querySelectorAll('#welcomeScreen, #modulesContainer, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #certificatesScreen, #communityScreen, #dashboardScreen, #aboutScreen, #contactScreen')
+            document.querySelectorAll('#welcomeScreen, #modulesContainer, #descriptionsScreen, #moduleView, #videoScreen, #quizScreen, #resultsScreen, #certificatesScreen, #communityScreen, #dashboardScreen, #aboutScreen, #contactScreen')
                 .forEach(el => el.classList.add('d-none'));
         }
 
@@ -1436,6 +1504,7 @@ fire: {name:"FIRE UNDERGROUND", q: [
 
             let title = '';
             if (screen === 'modulesContainer') title = 'Modules';
+            else if (screen === 'descriptionsScreen') title = 'Descriptions';
             else if (screen === 'moduleView') title = moduleNames[currentModule] || 'Module';
             else if (screen === 'videoScreen') title = 'Video';
             else if (screen === 'quizScreen') title = 'Quiz';
@@ -1781,6 +1850,39 @@ fire: {name:"FIRE UNDERGROUND", q: [
             currentModule = originalModule;
         }
 
+        function showDescriptions() {
+            renderDescriptions();
+            showScreen('descriptionsScreen');
+        }
+
+        function renderDescriptions() {
+            const accordion = document.getElementById('moduleAccordion');
+            if (!accordion) return;
+
+            accordion.innerHTML = '';
+
+            Object.entries(moduleNames).forEach(([key, name], index) => {
+                const desc = moduleDescriptions[key] || "Description not available.";
+                const item = document.createElement('div');
+                item.className = 'accordion-item';
+                item.innerHTML = `
+                    <h2 class="accordion-header" id="heading${index}">
+                        <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapse${index}" aria-expanded="${index === 0}" aria-controls="collapse${index}">
+                            ${name}
+                        </button>
+                    </h2>
+                    <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" 
+                         aria-labelledby="heading${index}" data-bs-parent="#moduleAccordion">
+                        <div class="accordion-body">
+                            ${desc}
+                        </div>
+                    </div>
+                `;
+                accordion.appendChild(item);
+            });
+        }
+
         function restartQuiz() {
             startQuiz();
         }
@@ -1882,13 +1984,3 @@ fire: {name:"FIRE UNDERGROUND", q: [
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
