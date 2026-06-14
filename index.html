@@ -519,14 +519,19 @@
         <div id="contactScreen" class="d-none container">
             <h2 class="text-center mb-5 fw-bold text-white section-header">Contact Us</h2>
             <div class="card shadow-lg border-0 rounded-4 p-5 bg-white text-dark">
-                <form class="contact-form" action="https://formsubmit.co/anthonyshishokitop@gmail.com" method="POST">
-                    <input type="text" class="form-control mb-3" name="name" placeholder="Your Name" required>
-                    <input type="email" class="form-control mb-3" name="email" placeholder="Your Email" required>
-                    <textarea class="form-control mb-4" rows="5" name="message" placeholder="Your message..." required></textarea>
-                    <input type="hidden" name="_subject" value="New message from Mining Training site">
-                    <input type="hidden" name="_captcha" value="true">
-                    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
-                </form>
+<form class="contact-form" action="https://formsubmit.co/b0a8bfefe18f642e40b2114810762876" method="POST">
+    <input type="text" class="form-control mb-3" name="name" placeholder="Your Name" required>
+    <input type="email" class="form-control mb-3" name="email" placeholder="Your Email" required>
+    <textarea class="form-control mb-4" rows="5" name="message" placeholder="Your message..." required></textarea>
+    
+    <!-- Recommended hidden fields for better functionality -->
+    <input type="hidden" name="_subject" value="New message from Mining Training site">
+    <input type="hidden" name="_captcha" value="true">
+    <input type="hidden" name="_next" value="https://www.miningtraining.co.za/"> <!-- Redirect after submit -->
+    <input type="hidden" name="_template" value="table"> <!-- Nice email format -->
+    
+    <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+</form>
                 <div class="text-center mt-5 small">
                     <p><strong>Email:</strong> anthony.shishoki@implats.co.za</p>
                     <p><strong>Phone:</strong> +27 83 553 3210</p>
