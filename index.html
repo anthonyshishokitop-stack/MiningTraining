@@ -184,6 +184,10 @@ body {
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   border-radius: 12px;
 }
+/* Hide as much YouTube chrome as possible inside the player */
+#videoPlayer {
+  border: none;
+}
 @media (max-width: 767.98px) {
   body { padding-top: 56px; }
   #content-area { padding: 1rem .75rem 2.5rem; }
@@ -258,7 +262,11 @@ body {
 </div>
 
 <div id="videoScreen" class="d-none">
-<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3"><iframe id="videoPlayer" src="" frameborder="0" allowfullscreen allow="autoplay"></iframe></div>
+<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3">
+  <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
 <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
 </div>
 
@@ -975,9 +983,13 @@ function openPresentation(key) {
 }
 
 function startVideo() {
-  const src = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
-  els.videoPlayer.src = src + (src.includes('?') ? '&' : '?') + 'rel=0';
-  showScreen('videoScreen');
+  // Clean embed: reduce YouTube branding, hide annotations, enable sound (user-initiated)
+  // modestbranding=1, iv_load_policy=3, rel=0, playsinline=1
+  // No mute so audio works when the user presses play
+  const base = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
+  const params = "rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1&disablekb=0&cc_load_policy=0";
+  els.videoPlayer.src = base + (base.includes("?") ? "&" : "?") + params;
+  showScreen("videoScreen");
 }
 
 function startQuiz() {
