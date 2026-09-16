@@ -77,7 +77,7 @@
 <button class="btn btn-primary btn-lg px-4" onclick="showModulesList()"><i class="bi bi-grid-3x3-gap me-2"></i>View All Modules</button>
 </div>
 <div class="row g-3 g-md-4 mb-4">
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary" id="homeModuleCount">26</div><div class="small text-muted">Competency Modules</div></div></div>
+<div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary" id="homeModuleCount">35</div><div class="small text-muted">Competency Modules</div></div></div>
 <div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary">70%</div><div class="small text-muted">Pass Mark</div></div></div>
 <div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary">PDF</div><div class="small text-muted">Certificates</div></div></div>
 <div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary">MHSA</div><div class="small text-muted">Aligned</div></div></div>
@@ -98,7 +98,7 @@
 <ul class="dropdown-menu"><li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li><li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li><li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li></ul></div>
 </div></div>
 <div id="moduleGrid" class="row g-3 g-md-4"></div>
-<div class="card mt-4 border-0 shadow-sm"><div class="card-body text-center py-3"><strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">26</span> &nbsp;•&nbsp; <strong>Pass rate:</strong> <span id="overallPass">0%</span></div></div>
+<div class="card mt-4 border-0 shadow-sm"><div class="card-body text-center py-3"><strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">35</span> &nbsp;•&nbsp; <strong>Pass rate:</strong> <span id="overallPass">0%</span></div></div>
 </div>
 
 <div id="moduleView" class="d-none">
@@ -188,10 +188,10 @@
 <div id="dashboardScreen" class="d-none">
 <h2 class="section-title text-center">My Dashboard</h2>
 <div class="row g-3 mb-4">
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-primary" id="dashCompleted">0/26</div><div class="small text-muted">Completed</div></div></div>
+<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-primary" id="dashCompleted">0/35</div><div class="small text-muted">Completed</div></div></div>
 <div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-success" id="dashPassRate">0%</div><div class="small text-muted">Pass Rate</div></div></div>
 <div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-primary" id="dashCertificates">0</div><div class="small text-muted">Certificates</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold" id="dashTotal">26</div><div class="small text-muted">Total Modules</div></div></div>
+<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold" id="dashTotal">35</div><div class="small text-muted">Total Modules</div></div></div>
 </div>
 <div class="card border-0 shadow-sm"><div class="card-header bg-white fw-bold">Recently Completed</div>
 <ul class="list-group list-group-flush" id="completedModulesList"></ul></div>
@@ -250,10 +250,20 @@ const moduleNames = {
             fire: "Fire monitoring",
             tmm: "TMM",
             winders: "Winding Plant",
-            community_chat: "Mining Community Group"
+            induction_protocol: "Induction Protocol & House Rules",
+            company_intro: "Company Introduction – Implats",
+            vision_mission: "Vision, Mission & Values",
+            emergency_response: "Emergency Response Protocol",
+            assembly_points: "Assembly Points & Emergency Exits",
+            fire_first_aid: "Fire Fighting & First Aid Equipment",
+            life_saving_rules: "Life-Saving Rules",
+            ppe: "PPE Requirements",
+            employee_rights: "Employee Rights & Duties (MHSA)",
+            exleave: "Ex-Leave Induction Overview",
+            hirac: "HIRAC Refresher"
         };
 
-const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','community_chat','hirac'];
+const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','hirac','induction_protocol','company_intro','vision_mission','emergency_response','assembly_points','fire_first_aid','life_saving_rules','ppe','employee_rights','exleave'];
 
 const moduleIcons = {
             handover: "bi-arrow-left-right",
@@ -280,7 +290,17 @@ const moduleIcons = {
             fire: "bi-fire",
             tmm: "bi-truck-flatbed",
             winders: "bi-house",
-            community_chat: "bi-people-fill"
+            induction_protocol: "bi-list-check",
+            company_intro: "bi-building",
+            vision_mission: "bi-bullseye",
+            emergency_response: "bi-bell",
+            assembly_points: "bi-signpost",
+            fire_first_aid: "bi-heart-pulse",
+            life_saving_rules: "bi-shield-exclamation",
+            ppe: "bi-person-badge",
+            employee_rights: "bi-hand-thumbs-up",
+            exleave: "bi-person-walking",
+            hirac: "bi-exclamation-triangle"
         };
 
 const videos = {
@@ -1101,9 +1121,27 @@ const moduleDescriptions = {
 
     winders: "Winding plant, shafts, and headgears under MHSA Chapter 8 Reg 8.13 (2025 amendments, detailed up to Reg 8.13.139).\n\nIn-depth regulations:\n- Design/Installation: Approved engineering drawings, capacity limits, headgear stability assessments.\n- Operation: Winder controls with depth/speed indicators, overwind/underspeed prevention devices.\n- Components: Rope selection/inspections (non-destructive testing every 6 months), drum grooving, brake systems (dual independent).\n- Safety: Arrestors for falling conveyances, emergency power backups, signaling codes (bells/lights).\n- Personnel: Certified winder drivers, banksman/onsetter training; daily logbooks for operations.\n- Emergency: Procedures for rope severance, stuck conveyances; SAMRASS reporting for malfunctions.\n- Compliance: Replaces outdated Minerals Act Ch 16; focuses on preventing vertical transport failures.",
 
-    community_chat: "Mining Community Group: Platform for GCC candidates & professionals to discuss, share knowledge, and network (not in Annexure E)."
+    induction_protocol: "Induction Protocol & House Rules: Mandatory site induction covering house rules, expected behaviour, cell phone policy, questioning protocol and critical life-saving information presented by the facilitator.",
 
-    
+    company_intro: "Company Introduction – Implats: Overview of the organisation, its operations, structure and how new or returning employees fit into the broader mining house.",
+
+    vision_mission: "Vision, Mission & Values: The organisation’s vision, mission statement and core values that guide safe and responsible mining behaviour.",
+
+    emergency_response: "Emergency Response Protocol: Site-specific emergency response strategy, alarm types, roles and immediate actions required when an emergency is declared.",
+
+    assembly_points: "Assembly Points & Emergency Exits: Location and use of designated assembly points and emergency exits that every person on site must know.",
+
+    fire_first_aid: "Fire Fighting & First Aid Equipment: Location, identification and basic use of fire-fighting equipment and first-aid stations across the workplace.",
+
+    life_saving_rules: "Life-Saving Rules: Non-negotiable critical rules that, if violated, can result in serious injury or fatality. Compliance is mandatory for all personnel.",
+
+    ppe: "PPE Requirements: Mandatory personal protective equipment for different areas and tasks, including correct use, care and replacement of PPE.",
+
+    employee_rights: "Employee Rights & Duties (MHSA): Key rights and duties under the Mine Health and Safety Act 29 of 1996, including the right to refuse dangerous work and the duty to take reasonable care.",
+
+    exleave: "Ex-Leave Induction Overview: Mandatory induction for employees returning from leave. Covers emergency protocols, assembly points, site rules, cell phone policy and critical safety reminders that can save lives.",
+
+    hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) Refresher: Systematic process used to identify hazards, assess risk and implement controls before work starts."
 };
 
 const moduleResources = {
@@ -1131,24 +1169,32 @@ const moduleResources = {
     fire: "Fire monitoring and emergency response.",
     tmm: "TMM regulations MHSA Ch 8 Reg 8.10 + collision avoidance.",
     winders: "Winding plant regulations MHSA Ch 8 Reg 8.13.",
-    community_chat: "Internal community – no external resources.",
+    induction_protocol: "Company induction booklet and house rules. Official DMPR / MHSA Resources above.",
+    company_intro: "Company induction materials and organisational overview.",
+    vision_mission: "Company vision, mission and values statements.",
+    emergency_response: "Site emergency response plan and DMPR Emergency Preparedness resources.",
+    assembly_points: "Site map of assembly points and emergency exits. Follow mine-specific induction.",
+    fire_first_aid: "Location lists and company fire & first-aid procedures. DMPR fire resources above.",
+    life_saving_rules: "Company Life-Saving Rules booklet / COP.",
+    ppe: "Company PPE standard and issue procedure.",
+    employee_rights: "Mine Health and Safety Act 29 of 1996 – DMPR Resource Centre. Section 23 rights.",
     exleave: "Mine-specific Ex-Leave induction booklet and emergency plan.",
-    hirac: "Company HIRAC procedure and risk assessment templates."
+    hirac: "Company HIRAC procedure and risk assessment templates. Official DMPR guidelines available in Resources."
 };
 
 
 
 // ========== Extra modules + presentations ==========
-moduleNames.exleave = "Ex-Leave Induction";
-moduleNames.hirac = "HIRAC Refresher";
-moduleIcons.exleave = "bi-person-walking";
-moduleIcons.hirac = "bi-exclamation-triangle";
+// (moduleNames, icons, descriptions and resources for the new presentation modules are already defined above)
+
 if (!videos) videos = {};
 videos.exleave = videos.exleave || "https://www.youtube.com/embed/dQw4w9WgXcQ";
 videos.hirac = videos.hirac || "https://www.youtube.com/embed/dQw4w9WgXcQ";
 
 // Linked presentations (Google Slides / public presentation links for key modules)
+// Core content now opens these presentation files
 const presentations = {
+    // Original key modules
     hirac: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHIRAC/embed?start=false&loop=false&delayms=3000",
     exleave: "https://docs.google.com/presentation/d/e/2PACX-1vExampleExLeave/embed?start=false&loop=false&delayms=3000",
     handover: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHandover/embed?start=false&loop=false&delayms=3000",
@@ -1156,7 +1202,17 @@ const presentations = {
     evacuation: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEvac/embed?start=false&loop=false&delayms=3000",
     tmm: "https://docs.google.com/presentation/d/e/2PACX-1vExampleTMM/embed?start=false&loop=false&delayms=3000",
     fire: "https://docs.google.com/presentation/d/e/2PACX-1vExampleFire/embed?start=false&loop=false&delayms=3000",
-    blasting: "https://docs.google.com/presentation/d/e/2PACX-1vExampleBlast/embed?start=false&loop=false&delayms=3000"
+    blasting: "https://docs.google.com/presentation/d/e/2PACX-1vExampleBlast/embed?start=false&loop=false&delayms=3000",
+    // New presentation modules (replace Example IDs with real Google Slides / Docs links when available)
+    induction_protocol: "https://docs.google.com/presentation/d/e/2PACX-1vExampleInductionProtocol/embed?start=false&loop=false&delayms=3000",
+    company_intro: "https://docs.google.com/presentation/d/e/2PACX-1vExampleCompanyIntro/embed?start=false&loop=false&delayms=3000",
+    vision_mission: "https://docs.google.com/presentation/d/e/2PACX-1vExampleVisionMission/embed?start=false&loop=false&delayms=3000",
+    emergency_response: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEmergencyResponse/embed?start=false&loop=false&delayms=3000",
+    assembly_points: "https://docs.google.com/presentation/d/e/2PACX-1vExampleAssemblyPoints/embed?start=false&loop=false&delayms=3000",
+    fire_first_aid: "https://docs.google.com/presentation/d/e/2PACX-1vExampleFireFirstAid/embed?start=false&loop=false&delayms=3000",
+    life_saving_rules: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLifeSavingRules/embed?start=false&loop=false&delayms=3000",
+    ppe: "https://docs.google.com/presentation/d/e/2PACX-1vExamplePPE/embed?start=false&loop=false&delayms=3000",
+    employee_rights: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEmployeeRights/embed?start=false&loop=false&delayms=3000"
 };
 
 if (!sampleQuizzes.exleave) {
@@ -1178,11 +1234,6 @@ if (!sampleQuizzes.hirac) {
     {question:"A residual risk is:", options:["The risk before any controls","The risk that remains after controls are applied","A risk that can be ignored","Only financial risk"], correct:1, explanation:"Residual risk is what remains after controls have been implemented."}
   ]};
 }
-
-if (!moduleDescriptions.exleave) moduleDescriptions.exleave = "Mandatory induction for employees returning from leave. Covers emergency protocols, assembly points, site rules, cell phone policy, and critical safety reminders that can save lives. Adapted from industry Ex-Leave Induction structure.";
-if (!moduleDescriptions.hirac) moduleDescriptions.hirac = "Hazard Identification, Risk Assessment and Control. Refresh the systematic process used to identify hazards, assess risk and implement controls before work starts.";
-if (!moduleResources.exleave) moduleResources.exleave = "Follow your mine-specific Ex-Leave induction booklet and emergency plan.";
-if (!moduleResources.hirac) moduleResources.hirac = "Company HIRAC procedure and risk assessment templates. Official DMPR guidelines available in Resources.";
 
 Object.keys(moduleNames).forEach(key => {
   if (!sampleQuizzes[key]) {
@@ -1297,7 +1348,7 @@ function renderModules(filter='all', term='') {
 }
 
 function renderFeatured() {
-  const featured = ['exleave','hirac','handover','lhd','evacuation','fire','tmm','mhsa'];
+  const featured = ['exleave','hirac','induction_protocol','company_intro','emergency_response','assembly_points','ppe','employee_rights','life_saving_rules','mhsa'];
   els.featuredGrid.innerHTML = '';
   featured.forEach(key => {
     if (!moduleNames[key]) return;
@@ -1319,17 +1370,18 @@ function renderFeatured() {
 function loadModule(key) {
   currentModule = key;
   els.moduleTitle.textContent = moduleNames[key] || key;
-  let path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content / Video</small></div>
-    <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
-    <button class="btn btn-sm btn-outline-primary" onclick="startVideo()">Start →</button></div></div>`;
+  // Learning Path: Core content now links to Google presentation files (Assessment row removed as requested)
+  let path = '';
   if (presentations[key]) {
-    path += `<div class="learning-item"><div><div class="title">${moduleNames[key]} Presentation</div><small class="text-muted">Linked presentation slides</small></div>
-      <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Presentation</span>
-      <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Open →</button></div></div>`;
+    path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content • Presentation</small></div>
+      <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
+      <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button></div></div>`;
+  } else {
+    path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content / Video</small></div>
+      <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
+      <button class="btn btn-sm btn-outline-primary" onclick="startVideo()">Start →</button></div></div>`;
   }
-  path += `<div class="learning-item"><div><div class="title">${moduleNames[key]} Assessment</div><small class="text-muted">Self-assessment • 70% pass mark</small></div>
-    <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-assess">Assessment</span>
-    <button class="btn btn-sm btn-primary" onclick="startQuiz()">Start →</button></div></div>`;
+  // Assessment intentionally omitted from Learning Path (removed per design)
   els.learningPath.innerHTML = path;
   showScreen('moduleView');
 }
@@ -1339,6 +1391,11 @@ function openPresentation(key) {
 }
 
 function startVideo() {
+  // Prefer presentation if available, otherwise fall back to video
+  if (presentations[currentModule]) {
+    openPresentation(currentModule);
+    return;
+  }
   const src = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
   els.videoPlayer.src = src + (src.includes('?') ? '&' : '?') + 'rel=0';
   showScreen('videoScreen');
