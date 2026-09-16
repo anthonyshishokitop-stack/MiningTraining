@@ -118,6 +118,11 @@
 <div class="text-center"><button class="btn btn-outline-secondary btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
 </div>
 
+<div id="presentationScreen" class="d-none">
+<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3"><iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe></div>
+<div class="text-center"><button class="btn btn-outline-secondary btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
+</div>
+
 <div id="quizScreen" class="d-none">
 <div class="card border-0 shadow-sm rounded-4"><div class="card-body p-3 p-md-5">
 <h4 class="text-center mb-4 fw-bold" id="questionText"></h4>
@@ -159,29 +164,42 @@
 <div class="card border-0 shadow-sm rounded-4 mb-4">
 <div class="card-header bg-primary text-white py-3"><h5 class="mb-0"><i class="bi bi-shield-check me-2"></i>Official DMPR / Mine Health & Safety Resources</h5></div>
 <div class="card-body">
-<p class="small text-muted">Authoritative guidelines from the Department of Mineral and Petroleum Resources and the Mine Health and Safety Inspectorate.</p>
+<p class="small text-muted">Authoritative guidelines and documents from the Department of Mineral and Petroleum Resources (DMPR) and Mine Health and Safety Inspectorate that align with the competency modules on this platform.</p>
 <div class="row g-3">
-<div class="col-md-6"><h6 class="text-primary">Core Legislation</h6>
+<div class="col-md-6">
+<h6 class="text-primary">Core Legislation</h6>
 <ul class="list-unstyled small">
 <li class="mb-1"><a href="https://www.dmpr.gov.za/Services/Mine-Health-and-Safety/Resource-Centre" target="_blank" rel="noopener">DMPR Resource Centre (MHSA & Regulations)</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Mine Health and Safety Resources</a></li>
+<li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Mine Health and Safety Resources (full list)</a></li>
 </ul>
 <h6 class="text-primary mt-3">Rock Fall / Ground Control</h6>
 <ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=InIIhwTLKPw%3d&portalid=0" target="_blank" rel="noopener">Combat Rock Fall and Rock Burst</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=r3DGewu_TBU%3d&portalid=0" target="_blank" rel="noopener">Combat Roof Fall Accidents (Coal)</a></li>
-</ul></div>
-<div class="col-md-6"><h6 class="text-primary">Emergency, Fire & Rights</h6>
+<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=InIIhwTLKPw%3d&portalid=0" target="_blank" rel="noopener">Combat Rock Fall and Rock Burst (Tabular Metalliferous)</a></li>
+<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=r3DGewu_TBU%3d&portalid=0" target="_blank" rel="noopener">Combat Roof Fall Accidents (Underground Coal)</a></li>
+<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=W3Ps0BryExE%3d&portalid=0" target="_blank" rel="noopener">Ground Vibrations, Noise, Air-blast & Flyrock (2024)</a></li>
+</ul>
+</div>
+<div class="col-md-6">
+<h6 class="text-primary">Mobile Machinery & Traffic</h6>
 <ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=EROfYUsImbg%3d&portalid=0" target="_blank" rel="noopener">Right to Refuse Dangerous Work</a></li>
+<li class="mb-1"><a href="https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf" target="_blank" rel="noopener">Road and Rail Safety Management Guideline (2025)</a></li>
+<li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Trackless Mobile Machinery related guidelines</a></li>
+</ul>
+<h6 class="text-primary mt-3">Emergency, Fire & Rights</h6>
+<ul class="list-unstyled small">
+<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=EROfYUsImbg%3d&portalid=0" target="_blank" rel="noopener">Right to Refuse Dangerous Work & Leave Dangerous Working Places</a></li>
 <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=acRrQ_c4URY%3d&portalid=0" target="_blank" rel="noopener">Emergency Preparedness and Response</a></li>
 <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=nPgvxYylCJ4%3d&portalid=0" target="_blank" rel="noopener">Management of Self-contained Self-rescuers</a></li>
 </ul>
 <h6 class="text-primary mt-3">Occupational Hygiene</h6>
-<ul class="list-unstyled small"><li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=bJMDmdcUcXE%3d&portalid=0" target="_blank" rel="noopener">Personal Exposure to Airborne Pollutants</a></li></ul>
-</div></div>
-<p class="small mt-3 mb-0"><strong>Source:</strong> DMPR Mine Health and Safety Resources • Contact: mhsi@dmpr.gov.za</p>
-</div></div>
+<ul class="list-unstyled small">
+<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=bJMDmdcUcXE%3d&portalid=0" target="_blank" rel="noopener">Personal Exposure to Airborne Pollutants</a></li>
+</ul>
+</div>
+</div>
+<p class="small mt-3 mb-0"><strong>Source:</strong> <a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">DMPR Mine Health and Safety Resources</a> &nbsp;|&nbsp; Contact: mhsi@dmpr.gov.za</p>
+</div>
+</div>
 <div class="card border-0 shadow-sm rounded-4"><div class="card-body p-3 p-md-4"><div id="resourcesAccordion" class="accordion accordion-flush"></div></div></div>
 </div>
 
@@ -328,7 +346,6 @@ const videos = {
             fire: "https://www.youtube.com/embed/x414lRd1aak",
             tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
             winders: "https://www.youtube.com/embed/HkE7m1cdvBU",
-            // New modules – using relevant safety / induction style videos (replace with specific ones when available)
             induction_protocol: "https://www.youtube.com/embed/lMEErpFhzxg",
             company_intro: "https://www.youtube.com/embed/lMEErpFhzxg",
             vision_mission: "https://www.youtube.com/embed/lMEErpFhzxg",
@@ -343,8 +360,6 @@ const videos = {
         };
 
 const sampleQuizzes = {
-
-
 handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
         {question:"Who must attend shift handover?", options:["Only shift boss","All incoming and outgoing crew"], correct:1, explanation:"All incoming and outgoing crew must attend to ensure full transfer of critical information about hazards, equipment status, and workplace conditions."},
         {question:"What must be signed before work starts?", options:["Nothing","Section 23 declaration"], correct:1, explanation:"The Section 23 declaration confirms that workers are fit for duty and understand the risks; it is a legal requirement under MHSA."},
@@ -500,659 +515,166 @@ handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
         {question:"Can you block ventilation?", options:["Yes","Never"], correct:1, explanation:"Blocking airways is a serious offence."},
         {question:"What is 'ventilation on demand'?", options:["Always full","Controlled by need"], correct:1, explanation:"Systems adjust airflow based on occupancy and activity."}
     ]},
-    
     rockfall: {name:"MAJOR ROCK FALL EVENT", q: [
         {question:"First priority after major fall?", options:["Clear rock","Ensure all personnel accounted for"], correct:1, explanation:"Life safety and headcount take absolute priority over rock clearance."},
         {question:"Who leads rock fall recovery?", options:["Shift boss","Appointed rock engineer"], correct:1, explanation:"The rock engineer directs technical recovery and support reinstatement."},
         {question:"Can you enter fall area immediately?", options:["Yes","Only after stability assessment"], correct:1, explanation:"Area must be barricaded and assessed by competent person before entry."},
         {question:"Primary cause of rockfalls?", options:["Blasting","Poor support or geology"], correct:1, explanation:"Inadequate support relative to geological conditions is the root cause."},
-        {question:"Who investigates rock fall?", options:["Safety rep","Formal inquiry team"], correct:1, explanation:"All serious rock falls require formal investigation per MHSA Section 11."},
-        {question:"Support after rock fall?", options:["Same as before","Enhanced standard"], correct:1, explanation:"Support standards are reviewed and upgraded based on failure analysis."},
-        {question:"What is 'barricading'?", options:["Temporary fence","Restricted access control"], correct:1, explanation:"Physical barriers and signs to prevent unauthorised entry."},
-        {question:"Who approves re-entry?", options:["Shift boss","Rock engineer"], correct:1, explanation:"Only the rock engineer may approve safe re-entry after rehabilitation."},
-        {question:"Rock fall reporting time?", options:["24 hours","Immediately"], correct:1, explanation:"Immediate reporting to supervisor and formal report within shift."},
-        {question:"TARP trigger for rock fall?", options:["Noise","Ground movement"], correct:1, explanation:"Seismic events or visible ground deterioration trigger response plans."},
-        {question:"What is 'scaling' after fall?", options:["Cleaning","Removing loose material"], correct:1, explanation:"Mechanical removal of loose rock post-fall."},
-        {question:"Who reviews support design?", options:["Manager","Rock engineer"], correct:1, explanation:"Mandatory review after significant fall."},
-        {question:"Can temporary support be used post-fall?", options:["No","Only as immediate measure"], correct:1, explanation:"Temporary support for safe access only."},
-        {question:"Rock fall training frequency?", options:["Once","Annual refresher"], correct:1, explanation:"All underground personnel require regular rock fall awareness training."},
-        {question:"What is 'fall of ground' statistics?", options:["Minor","Leading cause of fatalities"], correct:1, explanation:"Fall of ground remains a major cause of serious injuries and fatalities."},
-        {question:"Who monitors ground conditions?", options:["Anyone","All personnel"], correct:1, explanation:"Every person has duty to report adverse ground conditions."},
-        {question:"Support installation after fall?", options:["Standard","Increased density"], correct:1, explanation:"Higher support density required in affected area."},
-        {question:"What is 'remote scaling'?", options:["Manual","Mechanical from safe distance"], correct:1, explanation:"Use of long tools or machines to avoid exposure."},
-        {question:"Who signs off rehabilitation?", options:["Supervisor","Rock engineer"], correct:1, explanation:"Formal sign-off required before resumption of work."},
-        {question:"Fall of ground COP required?", options:["Optional","Mandatory"], correct:1, explanation:"Specific code of practice for ground control mandatory."},
-        {question:"What is 'beam building'?", options:["Support type","Preventing roof sag"], correct:1, explanation:"Interconnected support to control large spans."},
-        {question:"Who conducts pull tests post-fall?", options:["Support crew","Independent inspector"], correct:1, explanation:"Increased testing after incidents."},
-        {question:"Rock fall warning signs?", options:["None","Cracking, drumming"], correct:1, explanation:"Audible and visual indicators of stress."},
-        {question:"What is 'pre-conditioning'?", options:["Blasting","Controlled stress release"], correct:1, explanation:"Techniques to reduce stored energy."},
-        {question:"Who updates hazard map after fall?", options:["Geologist","Rock engineer"], correct:1, explanation:"Geotechnical hazard plan updated with new data."},
-        {question:"Can production continue near fall?", options:["Yes","Never until cleared"], correct:1, explanation:"All work stopped until area declared safe."}
+        {question:"Who investigates rock fall?", options:["Safety rep","Formal inquiry team"], correct:1, explanation:"All serious rock falls require formal investigation per MHSA."}
     ]},
-    
     traffic: {name:"TRAFFIC CONFLICT IN SINGLE LANE", q: [
-        {question:"Right of way in single lane decline?", options:["Upgoing vehicle","Loaded vehicle"], correct:1, explanation:"Loaded vehicles have priority to maintain momentum and reduce spillage."},
-        {question:"Communication method in single lane?", options:["Horn only","Two-way radio protocol"], correct:1, explanation:"Mandatory radio call-up before entering single lane sections."},
-        {question:"Speed limit in traffic conflict areas?", options:["20 km/h","As per traffic plan"], correct:1, explanation:"Reduced speed limits apply in high-conflict zones."},
-        {question:"Who controls traffic?", options:["Anyone","Appointed traffic controller"], correct:1, explanation:"Designated controllers manage complex intersections."},
-        {question:"Refuge bay spacing?", options:["50 m","Maximum 30 m"], correct:1, explanation:"Refuge bays must be provided at maximum 30 m intervals in travel ways."},
-        {question:"What is 'call-up point'?", options:["Sign","Radio check-in location"], correct:1, explanation:"Designated points where vehicles must radio position before proceeding."},
-        {question:"Can light vehicles overtake TMM?", options:["Yes","Never"], correct:1, explanation:"Light vehicles must never overtake trackless mobile machinery."},
-        {question:"Signage requirement?", options:["Optional","Mandatory at all changes"], correct:1, explanation:"Clear signage for speed, priority, and hazards is mandatory."},
-        {question:"Who updates traffic plan?", options:["Operator","Engineering"], correct:1, explanation:"The traffic management plan is reviewed by engineering department."},
-        {question:"Collision reporting?", options:["Next shift","Immediately"], correct:1, explanation:"All collisions or near-misses must be reported immediately."},
-        {question:"What is 'separation distance'?", options:["Any","Minimum 50 m"], correct:1, explanation:"Safe following distance between vehicles."},
-        {question:"Who trains drivers in traffic rules?", options:["Anyone","Accredited"], correct:1, explanation:"Formal training and assessment required."},
-        {question:"Light vehicle speed limit?", options:["40 km/h","As per plan"], correct:1, explanation:"Typically lower than TMM."},
-        {question:"What is 'passing bay'?", options:["Parking","Wide section for overtaking"], correct:1, explanation:"Designated areas for safe passing."},
-        {question:"Radio protocol for conflict?", options:["Optional","Mandatory call and response"], correct:1, explanation:"Clear communication to resolve priority."},
-        {question:"Who monitors traffic compliance?", options:["Supervisor","All levels"], correct:1, explanation:"Supervisors enforce rules daily."},
-        {question:"Traffic incident investigation?", options:["Minor","Formal for all"], correct:1, explanation:"All incidents investigated to prevent recurrence."},
-        {question:"What is 'proximity detection'?", options:["Optional","Mandatory on TMM"], correct:1, explanation:"Systems warn of personnel near vehicles."},
-        {question:"Parking on inclines?", options:["Any","With chocks"], correct:1, explanation:"Wheels chocked and brake applied."},
-        {question:"Who approves traffic changes?", options:["Manager","Engineering"], correct:1, explanation:"All layout changes require formal approval."},
-        {question:"Traffic COP required?", options:["No","Yes"], correct:1, explanation:"Mandatory traffic management code of practice."},
-        {question:"What is 'right of way' sign?", options:["Suggestion","Mandatory obedience"], correct:1, explanation:"Signs dictate priority at intersections."},
-        {question:"Can pedestrians walk in haulage ways?", options:["Yes","Only in emergencies"], correct:1, explanation:"Pedestrians must use separate walkways."},
-        {question:"Who records traffic incidents?", options:["Driver","Safety department"], correct:1, explanation:"All incidents logged and analysed."},
-        {question:"Traffic plan review frequency?", options:["Never","Annual or after incident"], correct:1, explanation:"Regular review and update required."},
-        {question:"What is 'collision avoidance'?", options:["Driver skill","Technology + procedures"], correct:1, explanation:"Combination of systems and rules."}
+        {question:"Primary control for single-lane traffic?", options:["Horns only","One-way circuits and passing bays"], correct:1, explanation:"Site-specific traffic management COPs with one-way systems minimise conflicts."},
+        {question:"Speed limit in single-lane haulages is typically?", options:["No limit","As per site COP (often <20 km/h)"], correct:1, explanation:"Speed is restricted according to road width and gradient."}
     ]},
-    
     reentry: {name:"UNSAFE RE-ENTRY ATTEMPT", q: [
-        {question:"Minimum re-entry time after blasting?", options:["15 minutes","30 minutes"], correct:1, explanation:"Minimum 30 minutes for ventilation to clear fumes and dust."},
-        {question:"Who authorises re-entry?", options:["Blaster","Shift boss after examination"], correct:1, explanation:"Only the shift boss may authorise re-entry after face examination."},
-        {question:"What must be checked before re-entry?", options:["Nothing","Misfires, ventilation, support"], correct:1, explanation:"Comprehensive check for misfires, gas levels, and ground conditions."},
-        {question:"Can you re-enter alone?", options:["Yes","Never"], correct:1, explanation:"Re-entry must be in teams with communication."},
-        {question:"Fume clearance measured by?", options:["Smell","Gas monitoring"], correct:1, explanation:"Portable gas detectors confirm safe atmosphere."},
-        {question:"Who examines for misfires?", options:["Anyone","Competent blaster"], correct:1, explanation:"Only competent persons may search for and handle misfires."},
-        {question:"Re-entry log required?", options:["No","Yes, signed by shift boss"], correct:1, explanation:"Re-entry must be recorded in the logbook."},
-        {question:"What is 'blow-over'?", options:["Ventilation term","Fume clearance time"], correct:1, explanation:"Additional time allowed for complete fume dilution."},
-        {question:"Early re-entry penalty?", options:["Warning","Serious offence"], correct:1, explanation:"Premature re-entry is a serious violation with disciplinary action."},
-        {question:"Who monitors re-entry compliance?", options:["Safety rep","All supervisors"], correct:1, explanation:"Supervisors enforce re-entry procedures at all levels."},
-        {question:"What is 'sentinel'?", options:["Guard","Person controlling access"], correct:1, explanation:"Appointed person prevents unauthorised entry."},
-        {question:"Re-entry after secondary blast?", options:["Same time","Extended"], correct:1, explanation:"Additional clearance time required."},
-        {question:"Who declares face safe?", options:["Blaster","Shift boss"], correct:1, explanation:"Shift boss after examination and testing."},
-        {question:"Can re-entry time be reduced?", options:["Yes","Never"], correct:1, explanation:"Fixed minimum times for safety."},
-        {question:"Gas testing instruments?", options:["Any","Calibrated detectors"], correct:1, explanation:"Only approved and calibrated instruments."},
-        {question:"Who records re-entry time?", options:["Anyone","Shift boss"], correct:1, explanation:"Accurate time recorded in logbook."},
-        {question:"What is 'fume class'?", options:["Blasting term","Toxicity rating"], correct:1, explanation:"Determines required clearance time."},
-        {question:"Re-entry training?", options:["Optional","Mandatory"], correct:1, explanation:"All personnel trained in procedures."},
-        {question:"Who investigates early re-entry?", options:["Safety","Formal inquiry"], correct:1, explanation:"Serious incidents require formal investigation."}
+        {question:"Minimum re-entry time after blasting is controlled by?", options:["Fixed 15 minutes","Gas clearance results"], correct:1, explanation:"Re-entry depends on ventilation and multi-gas monitoring results."},
+        {question:"Who authorises re-entry after blasting?", options:["Any miner","Shift boss after examination"], correct:1, explanation:"Only the competent shift boss may authorise re-entry."}
     ]},
-    
     shaft_sinking: {name:"SHAFT SINKING", q: [
-        {question:"Who may work in sinking shaft?", options:["Any miner","Only competent sinkers"], correct:1, explanation:"Only trained and competent shaft sinking crews may work in the shaft."},
-        {question:"Minimum kibble clearance?", options:["1 m","3 m from bottom"], correct:1, explanation:"Kibble must be raised at least 3 m before personnel enter bottom."},
-        {question:"Shaft lining type?", options:["Any","Concrete or steel"], correct:0, explanation:"Permanent lining based on ground conditions."},
-        {question:"What is 'mucking'?", options:["Drilling","Removing broken rock"], correct:1, explanation:"Loading and hoisting blasted rock from shaft bottom."},
-        {question:"Can you ride kibble?", options:["Yes","Only authorised"], correct:1, explanation:"Only for emergency or inspection, with safety devices."},
-        {question:"Shaft inspection frequency?", options:["Daily","Before each shift"], correct:1, explanation:"Full inspection for loose rock and damage."},
-        {question:"What is 'stage'?", options:["Platform","Sinking platform"], correct:1, explanation:"Multi-deck platform for sinking operations."},
-        {question:"Who approves sinking method?", options:["Supervisor","Engineer"], correct:1, explanation:"Detailed method statement approved by shaft engineer."},
-        {question:"Ventilation in sinking shaft?", options:["Natural","Forced auxiliary"], correct:1, explanation:"Auxiliary fans and ducting to shaft bottom."},
-        {question:"What is 'curb ring'?", options:["Support","Concrete form"], correct:0, explanation:"Temporary support ring for lining placement."},
-        {question:"Shaft signals system?", options:["Bell","Two-way radio"], correct:1, explanation:"Reliable communication mandatory."},
-        {question:"Who checks ropes?", options:["Anyone","Rigger"], correct:1, explanation:"Daily inspection by competent rigger."},
-        {question:"What is 'headgear'?", options:["Helmet","Hoisting structure"], correct:1, explanation:"Surface structure for sheaves and kibble."},
-        {question:"Can sinking continue in water?", options:["Yes","Only with control"], correct:1, explanation:"Water inflow must be managed with pumps."},
-        {question:"Shaft bottom barricade?", options:["Optional","Mandatory"], correct:1, explanation:"To prevent falls during mucking."},
-        {question:"Who records sinking advance?", options:["Operator","Shaft supervisor"], correct:1, explanation:"Daily progress and incidents logged."},
-        {question:"What is 'pilot hole'?", options:["Guide","Advance bore"], correct:1, explanation:"For alignment and ground probing."},
-        {question:"Shaft sinking COP?", options:["No","Yes"], correct:1, explanation:"Mandatory code of practice."},
-        {question:"What is 'grout curtain'?", options:["Water control","Sealing injections"], correct:1, explanation:"To reduce water inflow."},
-        {question:"Who trains sinkers?", options:["Anyone","Accredited"], correct:1, explanation:"MQA-accredited training."},
-        {question:"Shaft emergency procedure?", options:["Normal","Specific plan"], correct:1, explanation:"For rescue from bottom."},
-        {question:"What is 'bunton'?", options:["Beam","Shaft divider"], correct:1, explanation:"Horizontal beams for support."},
-        {question:"Shaft survey frequency?", options:["Monthly","After each blast"], correct:1, explanation:"To ensure verticality."},
-        {question:"Who approves explosives use?", options:["Blaster","Shaft blaster"], correct:1, explanation:"Specialised shaft blasting."},
-        {question:"Shaft sinking risk assessment?", options:["Once","Ongoing"], correct:1, explanation:"Updated for each phase."}
+        {question:"Key safety system on shaft sinking winders?", options:["None","Overwind and underspeed protection"], correct:1, explanation:"Mandatory overwind/underspeed devices prevent catastrophic failures."}
     ]},
-    
     raise_drill: {name:"RAISE DRILLING", q: [
-        {question:"Who operates raise drill?", options:["Any driller","Competent operator"], correct:1, explanation:"Only certified raise drill operators."},
-        {question:"Pilot hole diameter?", options:["Any","As per reamer"], correct:1, explanation:"Typically 230-350 mm for alignment."},
-        {question:"What is 'reamer'?", options:["Bit","Enlarging head"], correct:1, explanation:"Cutting head pulled up to enlarge hole."},
-        {question:"Can personnel enter during reaming?", options:["Yes","Never"], correct:1, explanation:"Area below barricaded and guarded."},
-        {question:"Who checks torque?", options:["Operator","Continuous monitoring"], correct:0, explanation:"Operator monitors pressure and torque."},
-        {question:"Raise boring advantage?", options:["Speed","Stability"], correct:0, explanation:"Safer than conventional raise climbing."},
-        {question:"What is 'back reaming'?", options:["Alternative","Not used"], correct:0, explanation:"Standard is bottom-up reaming."},
-        {question:"Who surveys pilot hole?", options:["Operator","Surveyor"], correct:1, explanation:"Accurate surveying for alignment."},
-        {question:"Raise ventilation during reaming?", options:["Natural","Forced"], correct:1, explanation:"Auxiliary ventilation required."},
-        {question:"Who records raise advance?", options:["Operator","Supervisor"], correct:1, explanation:"Daily progress recorded."},
-        {question:"Raise boring COP required?", options:["No","Yes"], correct:1, explanation:"Specific procedures mandatory."},
-        {question:"What is 'stabiliser'?", options:["Support","Drilling component"], correct:1, explanation:"Centralisers in drill string."},
-        {question:"Who approves reamer change?", options:["Operator","Engineering"], correct:1, explanation:"Planned maintenance procedure."},
-        {question:"Raise inspection frequency?", options:["Once","Regular"], correct:1, explanation:"Ongoing ground condition monitoring."},
-        {question:"What is 'breakthrough'?", options:["Completion","Pilot reaching lower level"], correct:1, explanation:"Critical alignment phase."},
-        {question:"Who clears raise after reaming?", options:["Anyone","Dedicated crew"], correct:1, explanation:"Safe mucking procedure."},
-        {question:"Raise ladder installation?", options:["Optional","Mandatory for access"], correct:1, explanation:"Safe access system required."},
-        {question:"Raise boring risk assessment?", options:["Once","Before each raise"], correct:1, explanation:"Site-specific assessment required."}
+        {question:"Primary hazard during raise boring?", options:["Noise only","Deviation and collapse of pilot hole"], correct:1, explanation:"Precise alignment and continuous monitoring prevent deviation and ground failure."}
     ]},
-
-  compressed_air: {name: "Compressed Air and Reticulation",q: [
-      {"question": "Maximum allowable working pressure for standard compressed air reticulation?", "options": ["700 kPa", "1000 kPa"], "correct": 1, "explanation": "DMR limits to 1000 kPa unless specially designed."},
-      {"question": "Valve required at end of every air branch line?", "options": ["Gate valve", "Self-closing dead-man valve"], "correct": 1, "explanation": "Dead-man valve prevents uncontrolled discharge."},
-      {"question": "Primary purpose of moisture separators?", "options": ["Increase pressure", "Remove water/corrosion prevention"], "correct": 1, "explanation": "Prevents corrosion and freezing."},
-      {"question": "Standard colour for compressed air pipelines underground?", "options": ["Red", "Blue"], "correct": 1, "explanation": "Blue is standard for compressed air."},
-      {"question": "What must be fitted to air receivers?", "options": ["Safety valve", "Safety valve, pressure gauge and drain valve"], "correct": 1, "explanation": "All are mandatory per PER."},
-      {"question": "Maximum hose length without support?", "options": ["5 m", "10 m"], "correct": 0, "explanation": "Hoses over 10 m require support."},
-      {"question": "Purpose of aftercooler on compressor?", "options": ["Reduce temperature", "Increase pressure"], "correct": 0, "explanation": "Cools air to condense moisture."},
-      {"question": "What indicates water in air lines?", "options": ["Freezing in winter", "Freezing in winter and rust in tools"], "correct": 1, "explanation": "Water causes freezing and corrosion."},
-      {"question": "Minimum inspection frequency for air receivers?", "options": ["Monthly", "Annually"], "correct": 1, "explanation": "Annual external, 36-month internal per PER."},
-      {"question": "What protects against overpressure in air lines?", "options": ["Relief valve", "Relief valve and pressure switch"], "correct": 1, "explanation": "Both devices required."},
-      {"question": "Standard thread for air hose couplings?", "options": ["BSP", "NPT"], "correct": 0, "explanation": "BSP is standard in South Africa."},
-      {"question": "Purpose of oil/water separator?", "options": ["Remove contaminants", "Increase efficiency"], "correct": 0, "explanation": "Prevents oil pollution."},
-      {"question": "What must be done before opening air line?", "options": ["Depressurise", "Nothing"], "correct": 0, "explanation": "Full depressurisation required."},
-      {"question": "Minimum pipe size for main air header?", "options": ["25 mm", "Depends on flow"], "correct": 1, "explanation": "Sized according to flow and pressure drop."},
-      {"question": "What causes excessive pressure drop in reticulation?", "options": ["Small pipes", "Small pipes and leaks"], "correct": 1, "explanation": "Undersized pipes and leaks reduce efficiency."},
-      {"question": "Who may repair compressed air equipment?", "options": ["Any artisan", "Competent person"], "correct": 1, "explanation": "Requires competent person per regulations."},
-      {"question": "Purpose of air dryer?", "options": ["Remove moisture", "Increase volume"], "correct": 0, "explanation": "Prevents water in system."},
-      {"question": "Maximum allowable leak rate?", "options": ["5%", "10%"], "correct": 1, "explanation": "Typical target <10% leakage."},
-      {"question": "What indicates compressor overload?", "options": ["High temperature", "High temperature and low pressure"], "correct": 1, "explanation": "Overheating and pressure drop."},
-      {"question": "Minimum distance from compressor to receiver?", "options": ["1 m", "3 m"], "correct": 1, "explanation": "Minimum 3 m for cooling."},
-      {"question": "Purpose of automatic drain trap?", "options": ["Remove condensate", "Remove condensate and save energy"], "correct": 1, "explanation": "Removes water automatically."},
-      {"question": "What protects against air line whip?", "options": ["Whipcheck cables", "Whipcheck cables and strong clamps"], "correct": 1, "explanation": "Prevents hose whipping if disconnected."},
-      {"question": "Standard pressure for rock drills?", "options": ["400 kPa", "600 kPa"], "correct": 1, "explanation": "Typically 600 kPa for pneumatic drills."},
-      {"question": "What must be recorded for air receivers?", "options": ["Inspection dates", "Inspection dates and test pressures"], "correct": 1, "explanation": "Full history in register."},
-      {"question": "Maximum temperature for compressed air discharge?", "options": ["60 °C", "80 °C"], "correct": 1, "explanation": "Typically limited to 80 °C."}
+    lifting_operations: {name:"LIFTING OPERATIONS", q: [
+        {question:"Safe working load must be?", options:["Estimated","Clearly marked and never exceeded"], correct:1, explanation:"SWL markings and factors of safety are mandatory under MHSA Chapter 8 Reg 8.5."}
     ]},
-
-  pump_fluid: {name: "Pump and Fluid handling",q:[
-      {"question": "Main cause of cavitation in centrifugal pumps?", "options": ["High discharge", "NPSHa < NPSHr"], "correct": 1, "explanation": "Net Positive Suction Head insufficient."},
-      {"question": "Device to prevent dry running?", "options": ["Pressure switch", "Low level/float switch"], "correct": 1, "explanation": "Protects pump from no-flow damage."},
-      {"question": "Purpose of foot valve in sump pumps?", "options": ["Prevent backflow/keep prime", "Increase pressure"], "correct": 0, "explanation": "Maintains suction prime."},
-      {"question": "Minimum inspection frequency for dewatering pumps?", "options": ["Daily", "Weekly"], "correct": 0, "explanation": "Daily checks per mine regulations."},
-      {"question": "What indicates worn pump impeller?", "options": ["Reduced flow/head", "Reduced flow/head and vibration"], "correct": 1, "explanation": "Erosion reduces performance."},
-      {"question": "Purpose of gland packing?", "options": ["Seal shaft", "Seal shaft and cool shaft"], "correct": 1, "explanation": "Seals and cools."},
-      {"question": "What is 'pump priming'?", "options": ["Filling with fluid", "Increasing speed"], "correct": 0, "explanation": "Removing air for suction."},
-      {"question": "Maximum suction lift for centrifugal pumps?", "options": ["6 m", "8 m"], "correct": 1, "explanation": "Approximately 8 m theoretical max."},
-      {"question": "Purpose of non-return valve?", "options": ["Prevent reverse flow", "Increase pressure"], "correct": 0, "explanation": "Stops backflow on shutdown."},
-      {"question": "What causes seal failure?", "options": ["Dry running", "Dry running and abrasion"], "correct": 1, "explanation": "Common causes of mechanical seal damage."},
-      {"question": "Minimum NPSH margin recommended?", "options": ["1 m", "2 m"], "correct": 1, "explanation": "2 m safety margin typical."},
-      {"question": "Purpose of strainer on suction line?", "options": ["Prevent debris entry", "Increase flow"], "correct": 0, "explanation": "Protects impeller."},
-      {"question": "What is 'vapour locking'?", "options": ["Air in pump", "Air in pump and vapour bubbles"], "correct": 1, "explanation": "Vapour blocks suction."},
-      {"question": "Typical material for acid-resistant pumps?", "options": ["Cast iron", "Stainless steel"], "correct": 1, "explanation": "SS for corrosive fluids."},
-      {"question": "Purpose of balance drum in multistage pump?", "options": ["Reduce axial thrust", "Increase pressure"], "correct": 0, "explanation": "Balances thrust forces."},
-      {"question": "What indicates bearing failure?", "options": ["Noise", "Noise and high temperature"], "correct": 1, "explanation": "Early warning signs."},
-      {"question": "Minimum flow through pump?", "options": ["Zero", "30% of BEP"], "correct": 1, "explanation": "Minimum flow to prevent overheating."},
-      {"question": "Purpose of pump curve?", "options": ["Show performance", "Show performance and calculate power"], "correct": 1, "explanation": "Head, flow, efficiency, power."},
-      {"question": "What causes pump recirculation?", "options": ["Low flow", "High flow"], "correct": 0, "explanation": "Occurs at low flow rates."},
-      {"question": "Who may repair critical pumps?", "options": ["Any artisan", "Competent person"], "correct": 1, "explanation": "Requires competent person."},
-      {"question": "Purpose of lantern ring?", "options": ["Distribute flush water", "Distribute flush water and reduce leakage"], "correct": 1, "explanation": "Cooling and sealing."},
-      {"question": "Maximum temperature for standard centrifugal pump?", "options": ["80 °C", "120 °C"], "correct": 1, "explanation": "Typically 120 °C without cooling."},
-      {"question": "What is 'specific speed'?", "options": ["Pump classification", "Efficiency measure"], "correct": 0, "explanation": "Characterises impeller type."},
-      {"question": "Purpose of vent valve on pump casing?", "options": ["Remove air", "Increase pressure"], "correct": 0, "explanation": "For priming."},
-      {"question": "Minimum clearance for gland adjustment?", "options": ["0.5 mm", "1 mm"], "correct": 1, "explanation": "Typical 1 mm drip rate."}
+    civil_structural: {name:"CIVIL AND STRUCTURAL", q: [
+        {question:"Structural designs for headgears require?", options:["Operator approval","Engineer approval and load calculations"], correct:1, explanation:"All load-bearing structures require competent engineering design and approval."}
     ]},
-
-  lifting_operations: {name: "Lifting Operations", q: [
-      {"question": "What is the statutory factor of safety (FOS) for chain slings used for general lifting?", "options": ["4:1", "5:1"], "correct": 1, "explanation": "Driven Machinery Regulations require 5:1 minimum for chain slings."},
-      {"question": "Who must personally inspect lifting tackle before each use?", "options": ["Operator", "Appointed lifting machinery inspector"], "correct": 1, "explanation": "The appointed competent person must inspect and tag."},
-      {"question": "What colour tag shows lifting tackle is currently safe?", "options": ["Red", "Green"], "correct": 1, "explanation": "Green = inspected and safe; red = defective/out of service."},
-      {"question": "Maximum allowable wear on a chain link before discard?", "options": ["5%", "10%"], "correct": 1, "explanation": "10% reduction in diameter is the statutory limit."},
-      {"question": "Synthetic fibre slings should not be used at angles greater than?", "options": ["45°", "60°"], "correct": 1, "explanation": "Capacity drops dramatically above 60° from vertical."},
-      {"question": "What marking must appear on a wire rope sling thimble?", "options": ["SWL only", "Manufacturer, size, date and SWL"], "correct": 1, "explanation": "Full traceability markings are required."},
-      {"question": "How often must lifting tackle be thoroughly examined?", "options": ["Monthly", "Every 3 months"], "correct": 1, "explanation": "Every 3 months or after any incident."},
-      {"question": "What is the purpose of a bow shackle keeper pin?", "options": ["Prevent unscrewing", "Increase strength"], "correct": 0, "explanation": "Safety pin/bolt prevents accidental opening."},
-      {"question": "Which lifting machine requires a load-radius chart?", "options": ["Overhead crane", "Mobile crane"], "correct": 1, "explanation": "Mobile cranes must display rated capacity at different radii."},
-      {"question": "What must be done if a chain link is elongated?", "options": ["Use until next inspection", "Discard immediately"], "correct": 1, "explanation": "Elongation indicates plastic deformation – discard."},
-      {"question": "Minimum FOS for man-riding tackle?", "options": ["8:1", "10:1"], "correct": 1, "explanation": "10:1 is required for personnel lifting."},
-      {"question": "Who issues a permit to use defective lifting tackle?", "options": ["No one", "Chief inspector"], "correct": 0, "explanation": "Defective tackle may never be used."},
-      {"question": "What is the correct way to store synthetic slings?", "options": ["In sunlight", "In cool, dry, dark place"], "correct": 1, "explanation": "UV and heat degrade synthetic materials."},
-      {"question": "What indicates a wire rope must be discarded?", "options": ["6 broken wires in one lay", "Visible rust only"], "correct": 0, "explanation": "Broken wires in one lay length is a discard criterion."},
-      {"question": "What is the purpose of a spreader beam?", "options": ["Increase lifting height", "Reduce sling angle stress"], "correct": 1, "explanation": "Maintains vertical sling legs to maximise capacity."},
-      {"question": "How should a load be lifted off the ground?", "options": ["Quick jerk", "Slow and steady"], "correct": 1, "explanation": "Sudden jerks cause shock loading."},
-      {"question": "What device prevents load swing on a crane?", "options": ["Tag line", "Anti-two-block"], "correct": 0, "explanation": "Tag lines control swing during travel."},
-      {"question": "Who may operate a mobile crane?", "options": ["Any driver", "Person with valid certificate"], "correct": 1, "explanation": "Driven Machinery Regulations require competency certificate."},
-      {"question": "What is the maximum wind speed for safe crane operation?", "options": ["10 m/s", "15 m/s"], "correct": 1, "explanation": "Typically 15 m/s (54 km/h) is the safe limit."},
-      {"question": "What must be done before lifting personnel?", "options": ["Use man basket only", "Use any cage"], "correct": 0, "explanation": "Approved man-riding basket/cage required."},
-      {"question": "Purpose of load test on new lifting tackle?", "options": ["Prove strength", "Check appearance"], "correct": 0, "explanation": "125% proof load test required before first use."},
-      {"question": "What is a 'soft eye' on a sling?", "options": ["Thimble protected", "No thimble"], "correct": 1, "explanation": "Soft eye = unprotected loop, lower capacity."},
-      {"question": "Minimum age to operate lifting machinery?", "options": ["16", "18"], "correct": 1, "explanation": "18 years minimum per DMR."},
-      {"question": "What indicates overloading of a sling?", "options": ["Permanent elongation", "Colour change"], "correct": 0, "explanation": "Permanent stretch = overload – discard."},
-      {"question": "Who keeps records of lifting tackle inspections?", "options": ["Operator", "Appointed person"], "correct": 1, "explanation": "Appointed competent person maintains register."}
+    conveyor_monorail: {name:"CONVEYOR AND MONORAIL", q: [
+        {question:"Emergency stop on conveyors must be?", options:["At the motor only","Accessible along the entire length"], correct:1, explanation:"Pull-cords or equivalent must run the full length of the conveyor."}
     ]},
-
-  civil_structural: {name: "Civil and Structural Engineering",q: [
-      {"question": "Purpose of movement joints in concrete structures?", "options": ["Increase strength", "Allow thermal expansion/shrinkage"], "correct": 1, "explanation": "Prevents uncontrolled cracking from temperature and shrinkage."},
-      {"question": "Minimum concrete cover for severe exposure (SANS 10400)?", "options": ["25 mm", "50 mm"], "correct": 1, "explanation": "50 mm required in severe conditions to protect rebar."},
-      {"question": "Why are construction joints planned in large pours?", "options": ["Aesthetic", "Control cracking and allow phasing"], "correct": 1, "explanation": "Manage heat and shrinkage cracking."},
-      {"question": "Most common field test for concrete workability?", "options": ["Compressive test", "Slump test"], "correct": 1, "explanation": "Slump test measures consistency."},
-      {"question": "Typical minimum grade for structural columns?", "options": ["C25/30", "C30/37"], "correct": 1, "explanation": "C30/37 commonly specified for columns."},
-      {"question": "What causes concrete spalling?", "options": ["Too much water", "Corrosion of reinforcement"], "correct": 1, "explanation": "Rust expansion cracks cover concrete."},
-      {"question": "Purpose of shear reinforcement in beams?", "options": ["Increase bending strength", "Resist diagonal tension"], "correct": 1, "explanation": "Stirrups resist shear failure."},
-      {"question": "Minimum curing time for structural concrete?", "options": ["3 days", "7 days"], "correct": 1, "explanation": "7 days minimum for most structural elements."},
-      {"question": "What is the slump range for pumped concrete?", "options": ["75–100 mm", "100–150 mm"], "correct": 1, "explanation": "Higher slump (100–150 mm) required for pumping."},
-      {"question": "Maximum allowable crack width in water-retaining structures?", "options": ["0.1 mm", "0.2 mm"], "correct": 1, "explanation": "0.2 mm typical limit to prevent leakage."},
-      {"question": "Purpose of expansion joints in long buildings?", "options": ["Allow movement due to temperature", "Increase load capacity"], "correct": 0, "explanation": "Prevent stress from thermal expansion."},
-      {"question": "What test measures compressive strength?", "options": ["Slump", "Cube test"], "correct": 1, "explanation": "150 mm cubes crushed at 28 days."},
-      {"question": "Minimum grade for foundations in aggressive soil?", "options": ["C30/37", "C40/50"], "correct": 1, "explanation": "Higher grade for durability in sulphate soils."},
-      {"question": "What is 'bleeding' in concrete?", "options": ["Excess water rising", "Cracking"], "correct": 0, "explanation": "Excess water migrates to surface."},
-      {"question": "Purpose of formwork ties?", "options": ["Hold forms together", "Reinforce concrete"], "correct": 0, "explanation": "Resist concrete pressure."},
-      {"question": "Maximum aggregate size for columns?", "options": ["10 mm", "20 mm"], "correct": 1, "explanation": "20 mm typical to avoid congestion."},
-      {"question": "What indicates poor compaction?", "options": ["Honeycombing", "Smooth finish"], "correct": 0, "explanation": "Voids from inadequate vibration."},
-      {"question": "Minimum lap length for rebar (SANS)?", "options": ["30 × diameter", "40 × diameter"], "correct": 1, "explanation": "Typically 40d for tension laps."},
-      {"question": "Purpose of waterstops in joints?", "options": ["Prevent water leakage", "Increase strength"], "correct": 0, "explanation": "Seal construction joints in water tanks."},
-      {"question": "What is 'carbonation'?", "options": ["Chloride attack", "CO₂ reduces alkalinity"], "correct": 1, "explanation": "Lowers pH, initiates rebar corrosion."},
-      {"question": "Minimum concrete temperature for placing?", "options": ["0 °C", "5 °C"], "correct": 1, "explanation": "5 °C minimum to prevent freezing."},
-      {"question": "What causes honeycombing?", "options": ["Poor vibration", "Too much water"], "correct": 0, "explanation": "Inadequate consolidation."},
-      {"question": "Purpose of construction sequence planning?", "options": ["Speed up work", "Control shrinkage stresses"], "correct": 1, "explanation": "Phased pours reduce restraint cracking."},
-      {"question": "Maximum w/c ratio for durability?", "options": ["0.40", "0.50"], "correct": 1, "explanation": "0.50 maximum for most structural concrete."},
-      {"question": "Who approves concrete mix design?", "options": ["Contractor", "Engineer"], "correct": 1, "explanation": "Structural engineer approves."}
+    compressed_air: {name:"COMPRESSED AIR", q: [
+        {question:"Pressure vessels require?", options:["No inspection","Statutory internal/external examinations"], correct:1, explanation:"Receivers must be examined at defined intervals under pressure equipment regulations."}
     ]},
-
-  conveyor_monorail: {name: "Conveyor Belt and Monorail",q: [
-      {"question": "What is the statutory requirement for guarding conveyor nip points?", "options": ["Optional", "Fixed guards where accessible"], "correct": 1, "explanation": "DMR Regulation 8 mandates secure guarding of all nip points."},
-      {"question": "Device required to prevent run-back on inclined conveyors?", "options": ["Anti-runback idler", "Backstop or holdback"], "correct": 1, "explanation": "Backstop prevents reverse movement during power failure."},
-      {"question": "Maximum allowable sag between idlers on loaded belt?", "options": ["1%", "2.5%"], "correct": 1, "explanation": "Sag >2.5% causes spillage and high power use."},
-      {"question": "Minimum FOS for monorail load chain/rope?", "options": ["5:1", "6:1"], "correct": 1, "explanation": "DMR requires 6:1 for monorail hoisting elements."},
-      {"question": "Immediate action on longitudinal belt tear?", "options": ["Continue slowly", "Stop and isolate"], "correct": 1, "explanation": "Immediate stop prevents catastrophic failure."},
-      {"question": "What must be installed at conveyor transfer points?", "options": ["Skirt boards and seals", "Extra idlers only"], "correct": 0, "explanation": "Skirts reduce spillage and dust."},
-      {"question": "Purpose of belt training idlers?", "options": ["Increase speed", "Keep belt centred"], "correct": 1, "explanation": "Self-aligning idlers correct belt tracking."},
-      {"question": "Maximum permissible belt speed in underground mines?", "options": ["3 m/s", "4 m/s"], "correct": 1, "explanation": "Typically limited to 4 m/s for safety."},
-      {"question": "What device detects belt slip?", "options": ["Slip switch", "Load cell"], "correct": 0, "explanation": "Slip switch trips on excessive pulley-belt slip."},
-      {"question": "Minimum clearance under conveyor belt?", "options": ["500 mm", "750 mm"], "correct": 1, "explanation": "750 mm minimum for safe crossing/maintenance."},
-      {"question": "What colour coding is used for conveyor emergency stop cords?", "options": ["Red", "Yellow"], "correct": 0, "explanation": "Red pull-cords are standard for emergency stops."},
-      {"question": "Purpose of take-up device on conveyor?", "options": ["Adjust belt tension", "Adjust belt tension and reduce sag"], "correct": 1, "explanation": "Maintains proper tension and controls sag."},
-      {"question": "How often must conveyor belt splices be inspected?", "options": ["Daily", "Weekly"], "correct": 0, "explanation": "Daily visual checks required for splices."},
-      {"question": "What indicates a worn drive pulley lagging?", "options": ["Belt slip", "Belt slip, noise increase and vibration"], "correct": 1, "explanation": "Poor lagging causes slip, noise and vibration."},
-      {"question": "Minimum distance between conveyor and walkway?", "options": ["500 mm", "750 mm"], "correct": 1, "explanation": "750 mm clearance for safe access."},
-      {"question": "What protects against belt tear propagation?", "options": ["Rip detectors", "Edge sensors"], "correct": 0, "explanation": "Rip detectors stop belt on longitudinal tear."},
-      {"question": "Purpose of impact idlers at loading points?", "options": ["Absorb shock", "Increase speed"], "correct": 0, "explanation": "Cushion heavy material drop impact."},
-      {"question": "Who may operate a monorail locomotive?", "options": ["Any person", "Competent certificate holder"], "correct": 1, "explanation": "Requires valid competency certificate."},
-      {"question": "What is mandatory on monorail tracks?", "options": ["Derailment prevention", "Derailment prevention and speed limit signs"], "correct": 1, "explanation": "Derailment guards and signage required."},
-      {"question": "Maximum gradient for monorail track?", "options": ["1:10", "1:20"], "correct": 1, "explanation": "Typically 1:20 maximum for safe operation."},
-      {"question": "What must be done before conveyor maintenance?", "options": ["Lockout/tagout", "Speed reduction only"], "correct": 0, "explanation": "Full LOTO required for safety."},
-      {"question": "Purpose of belt weigher?", "options": ["Measure tonnage", "Measure tonnage and detect overload"], "correct": 1, "explanation": "Continuous mass measurement."},
-      {"question": "What indicates misalignment?", "options": ["Edge wear", "Edge wear and spillage"], "correct": 1, "explanation": "Misalignment causes edge damage and spillage."},
-      {"question": "Minimum pulley diameter ratio to belt thickness?", "options": ["100:1", "150:1"], "correct": 1, "explanation": "Typical minimum 150:1 for bend fatigue."},
-      {"question": "Emergency stop pull cord spacing?", "options": ["Every 10 m", "Every 30 m"], "correct": 1, "explanation": "Maximum 30 m spacing per regulations."}
+    pump_fluid: {name:"FLUID HANDLING", q: [
+        {question:"Flood alarms on sumps are?", options:["Optional","Mandatory for critical dewatering systems"], correct:1, explanation:"Auto-level controls and flood alarms prevent inundation."}
     ]},
-
- steam_pressure: {name: "Steam Generations and Pressure Vessels",q: [
-      {"question": "Who is legally responsible for safe boiler operation?", "options": ["Operator", "Appointed competent person"], "correct": 1, "explanation": "PER requires appointed competent person."},
-      {"question": "Minimum frequency for internal inspection of steam receiver?", "options": ["12 months", "36 months"], "correct": 1, "explanation": "36 months per Pressure Equipment Regulations."},
-      {"question": "Mandatory device to prevent boiler overpressure?", "options": ["Pressure gauge", "Safety valve"], "correct": 1, "explanation": "Safety valve is essential."},
-      {"question": "Procedure before entering pressure vessel?", "options": ["Permit-to-work + isolation", "Drain only"], "correct": 0, "explanation": "Full PTW and gas-free required."},
-      {"question": "Purpose of boiler blowdown?", "options": ["Remove sludge/TDS", "Increase pressure"], "correct": 0, "explanation": "Controls scaling and corrosion."},
-      {"question": "What indicates low water in boiler?", "options": ["Low level alarm", "High steam pressure"], "correct": 0, "explanation": "Critical safety alarm."},
-      {"question": "Minimum water level gauge requirement?", "options": ["One", "Two independent"], "correct": 1, "explanation": "Two independent gauges mandatory."},
-      {"question": "Purpose of superheater?", "options": ["Increase steam temperature", "Reduce pressure"], "correct": 0, "explanation": "Produces dry superheated steam."},
-      {"question": "What is 'carryover' in boilers?", "options": ["Water in steam", "Steam in water"], "correct": 0, "explanation": "Contaminates steam system."},
-      {"question": "Maximum allowable TDS in boiler water?", "options": ["2000 ppm", "Depends on boiler"], "correct": 1, "explanation": "Controlled by blowdown."},
-      {"question": "Purpose of economiser?", "options": ["Preheat feedwater", "Superheat steam"], "correct": 0, "explanation": "Recovers heat from flue gas."},
-      {"question": "Who may operate a steam boiler?", "options": ["Any person", "Boiler attendant certificate holder"], "correct": 1, "explanation": "Requires valid certificate."},
-      {"question": "What protects against furnace explosion?", "options": ["Flame scanner", "Flame scanner and purge cycle"], "correct": 1, "explanation": "Prevents fuel accumulation."},
-      {"question": "Minimum pressure test frequency for boilers?", "options": ["Annually", "After repair"], "correct": 1, "explanation": "After major repair or as required."},
-      {"question": "Purpose of fusible plug?", "options": ["Low water protection", "Overpressure"], "correct": 0, "explanation": "Melts on low water exposure."},
-      {"question": "What is 'priming' in boilers?", "options": ["Sudden water carryover", "Slow steam rise"], "correct": 0, "explanation": "Caused by high water level."},
-      {"question": "Material for high-pressure steam pipes?", "options": ["Mild steel", "Carbon steel"], "correct": 1, "explanation": "Carbon steel standard for high temp."},
-      {"question": "Purpose of steam trap?", "options": ["Remove condensate", "Remove condensate and allow steam pass"], "correct": 1, "explanation": "Efficient condensate removal."},
-      {"question": "What indicates scale buildup?", "options": ["High fuel use", "High fuel use and overheating tubes"], "correct": 1, "explanation": "Reduces heat transfer."},
-      {"question": "Minimum safety valve capacity?", "options": ["Evaporation rate", "1.5 × evaporation"], "correct": 1, "explanation": "Must exceed boiler capacity."},
-      {"question": "Who approves boiler repairs?", "options": ["Operator", "Authorized inspector"], "correct": 1, "explanation": "Authorized person required."},
-      {"question": "Purpose of feedwater treatment?", "options": ["Remove oxygen/scale", "Remove oxygen/scale and increase pH"], "correct": 1, "explanation": "Prevents corrosion and scaling."},
-      {"question": "Maximum allowable CO in boiler flue?", "options": ["100 ppm", "200 ppm"], "correct": 1, "explanation": "Typical limit for efficiency/safety."},
-      {"question": "What is 'water hammer'?", "options": ["Sudden pressure surge", "Slow flow"], "correct": 0, "explanation": "Caused by condensate slugs."},
-      {"question": "Minimum logbook entries for boiler?", "options": ["Pressure, water level, blowdown", "Only pressure"], "correct": 0, "explanation": "Full operating parameters."}
-    ]}, 
-
-    electrical: {name:"UNDERGROUND ELECTRICAL SAFETY", q: [
-        {question:"Who may perform work on electrical apparatus?", options:["Any miner","Only competent authorized person"], correct:1, explanation:"Only persons registered and authorised under the regulations may work on electrical apparatus."},
-        {question:"What is the main hazard of trailing cables?", options:["Tripping","Damage leading to shock or fire"], correct:1, explanation:"Mechanical damage to insulation can expose live conductors, causing shock or methane ignition."},
-        {question:"Can you work on live electrical equipment?", options:["Yes, if quick","Never, must be isolated"], correct:1, explanation:"All work on electrical apparatus must be done dead; live work is strictly prohibited underground."},
-        {question:"What must be done before working on electrical machinery?", options:["Nothing","Lockout and tagout"], correct:1, explanation:"Isolation, lockout, tagout, and testing for dead are mandatory steps."},
-        {question:"Flameproof equipment is required underground to prevent?", options:["Dust","Ignition of methane"], correct:1, explanation:"Flameproof enclosures contain internal explosions without igniting surrounding methane."},
-        {question:"What is an arc flash?", options:["Short circuit","Uncontrolled electrical discharge"], correct:1, explanation:"Arc flash is a violent release of energy from an electrical fault, causing severe burns and blast."},
-        {question:"Helmet light assemblies must comply with?", options:["Any standard","SANS 1438"], correct:1, explanation:"Cap lamps must meet SANS 1438 for flameproof construction and battery safety."},
-        {question:"Who approves electrical reticulation design?", options:["Shift boss","Competent professional engineer"], correct:1, explanation:"Designs must be approved by a registered professional electrical engineer."},
-        {question:"Trailing cables must be protected from?", options:["Dust only","Mechanical damage"], correct:1, explanation:"Cables must be hung or protected to prevent vehicle damage."},
-        {question:"What gas is produced when charging batteries?", options:["Oxygen","Hydrogen"], correct:1, explanation:"Hydrogen gas evolved during charging is highly explosive in confined spaces."},
-        {question:"Battery charging stations must have?", options:["Nothing special","Ventilation and no smoking"], correct:1, explanation:"Forced ventilation and no ignition sources are required to disperse hydrogen."},
-        {question:"Can water be used on electrical fires?", options:["Always","No, use dry extinguisher"], correct:1, explanation:"Water conducts electricity; only CO₂ or dry powder extinguishers may be used."},
-        {question:"What is required for portable electrical tools underground?", options:["Normal plugs","Flameproof and earth leakage"], correct:1, explanation:"Tools must be flameproof with 30 mA earth leakage protection."},
-        {question:"Earth leakage protection is mandatory on?", options:["High voltage only","All electrical apparatus"], correct:1, explanation:"Earth leakage relays are required on all underground electrical supplies."},
-        {question:"Who tests electrical installations?", options:["Anyone","Competent person"], correct:1, explanation:"Only competent authorised persons may test and certify installations."},
-        {question:"Overhead power lines underground must have?", options:["No protection","Guards or barriers"], correct:1, explanation:"Physical guards or warning signs must prevent contact by vehicles."},
-        {question:"What is a 'competent person' for electrical work?", options:["Trained miner","Registered and experienced"], correct:1, explanation:"Competent persons must hold formal electrical qualification and mine authorisation."},
-        {question:"Can flexible cables be repaired with tape?", options:["Yes","Only with proper vulcanizing"], correct:1, explanation:"Temporary tape repairs are not permitted; proper vulcanised joints are required."},
-        {question:"What causes most electrical accidents underground?", options:["Water","Improper isolation"], correct:1, explanation:"Failure to properly isolate and test for dead is the leading cause."},
-        {question:"Substations underground must be?", options:["Open","Enclosed and locked"], correct:1, explanation:"Substations must be flameproof, locked, and access-controlled."},
-        {question:"What is the purpose of earthing?", options:["Grounding current","Prevent shock"], correct:1, explanation:"Earthing provides a low-resistance path for fault current to trip protection."},
-        {question:"Can you overload electrical circuits?", options:["Yes","Never"], correct:1, explanation:"Overloading causes overheating and potential ignition of methane."},
-        {question:"Portable transformers must be?", options:["Any type","Flameproof"], correct:1, explanation:"All transformers underground must be flameproof certified."},
-        {question:"What is required after electrical maintenance?", options:["Nothing","Testing and certification"], correct:1, explanation:"Post-maintenance testing and sign-off by authorised person is mandatory."},
-        {question:"Electrical tools must be inspected?", options:["Monthly","Before each use"], correct:1, explanation:"Pre-use visual inspection of cables and plugs is required."},
-        {question:"What is a 'dead' circuit?", options:["Switched off","Tested and proven no voltage"], correct:1, explanation:"Dead means isolated, locked, and tested with an approved voltage indicator."},
-        {question:"Who issues permit to work on electrical?", options:["Supervisor","Authorized person"], correct:1, explanation:"Only an authorised electrical person may issue the permit."},
-        {question:"Cable joints underground must be?", options:["Taped","Flameproof"], correct:1, explanation:"All joints must be made in flameproof joint boxes."},
-        {question:"What is the risk of damaged insulation?", options:["Minor","Electric shock"], correct:1, explanation:"Damaged insulation exposes live conductors, risking shock or arc flash."},
-        {question:"Lightning arrestors are required on?", options:["Surface only","Surface power lines"], correct:1, explanation:"Surge arrestors protect surface supply from lightning strikes."},
-        {question:"Can non-flameproof equipment be used underground?", options:["Yes","Never"], correct:1, explanation:"All electrical equipment underground must be flameproof or intrinsically safe."},
-        {question:"What must be displayed on electrical panels?", options:["Nothing","Warnings and ratings"], correct:1, explanation:"Danger notices, voltage ratings, and responsible person details must be displayed."},
-        {question:"Electrical records must be kept for?", options:["1 year","As required by COP"], correct:1, explanation:"Examination and test records must be retained per the mine's Code of Practice."},
-        {question:"Who reports electrical defects?", options:["Only electrician","All employees"], correct:1, explanation:"Every employee has a duty to report defects immediately."},
-        {question:"What is 'intrinsically safe' equipment?", options:["Low power","Cannot cause ignition"], correct:1, explanation:"Intrinsically safe circuits limit energy to prevent spark ignition of methane."},
-        {question:"Power must be isolated during?", options:["Blasting","Blasting nearby"], correct:0, explanation:"Power must be cut in the blasting zone to prevent stray currents detonating explosives."},
-        {question:"What is a 'switch handle lock' for?", options:["Security","Lockout"], correct:1, explanation:"Padlocks on switch handles prevent unauthorised re-energisation."},
-        {question:"Can you touch exposed wires?", options:["If insulated","Never"], correct:1, explanation:"Exposed conductors must always be treated as live."},
-        {question:"Electrical safety is part of?", options:["Optional training","Mandatory induction"], correct:1, explanation:"Electrical safety forms part of compulsory induction and refresher training."},
-        {question:"What is the voltage limit for handheld tools?", options:["220V","110V or less"], correct:1, explanation:"Handheld tools are limited to 110 V for reduced shock severity."},
-        {question:"Cables must not lie in?", options:["Dry areas","Water"], correct:1, explanation:"Water reduces insulation resistance and increases shock risk."},
-        {question:"Who approves electrical COP?", options:["Manager","Inspector"], correct:1, explanation:"The Principal Inspector of Mines approves the electrical Code of Practice."},
-        {question:"Electrical fires produce?", options:["Smoke only","Toxic fumes"], correct:1, explanation:"Burning insulation releases highly toxic fumes including dioxins."},
-        {question:"What is 'double insulation'?", options:["Extra protection","No earth needed"], correct:0, explanation:"Double-insulated tools have two independent insulation layers and do not require earthing."},
-        {question:"Can you use damaged plugs?", options:["Yes","Never"], correct:1, explanation:"Damaged plugs must be replaced immediately."},
-        {question:"Electrical apparatus must be examined?", options:["Annually","Regularly as per plan"], correct:1, explanation:"Statutory examinations follow schedules in the COP."},
-        {question:"What is a 'ground fault'?", options:["Normal","Leakage to earth"], correct:1, explanation:"Ground fault is unintended current flow to earth, detected by earth leakage relays."},
-        {question:"All electrical work requires?", options:["Nothing","Risk assessment"], correct:1, explanation:"Formal risk assessment is mandatory before any electrical task."},
-        {question:"Who trains electrical workers?", options:["Anyone","Accredited"], correct:1, explanation:"Training must be provided by MQA-accredited providers."},
-        {question:"Electrical safety rules are in?", options:["MHSA only","Chapter 3 regulations"], correct:1, explanation:"Detailed electrical regulations are contained in Chapter 3 of the MHSA regulations."}
+    steam_pressure: {name:"STEAM GENERATION", q: [
+        {question:"Boilers must have?", options:["Single safety valve","Dual independent safety valves"], correct:1, explanation:"Redundant safety valves tested at defined intervals are required."}
     ]},
-    
-    mhsa: {name:"MHSA 1996 REGULATIONS", q: [
-        {question:"What is the main purpose of MHSA 1996?", options:["Production","Health and safety of miners"], correct:1, explanation:"The primary objective is to protect the health and safety of persons at mines."},
-        {question:"Who must ensure safety at the mine?", options:["Employees","Employer"], correct:1, explanation:"Section 5 places the duty on the employer (owner) to ensure safety."},
-        {question:"Can employees refuse dangerous work?", options:["No","Yes, right to leave"], correct:1, explanation:"Section 23 allows employees to withdraw from unsafe areas without fear of dismissal."},
-        {question:"Who appoints the mine manager?", options:["Inspector","Employer"], correct:1, explanation:"The employer appoints a competent manager with the required certificate."},
-        {question:"What must employer provide for training?", options:["Nothing","Health and safety training"], correct:1, explanation:"Adequate health and safety training must be provided free of charge."},
-        {question:"Employees must report?", options:["Production","Unsafe conditions"], correct:1, explanation:"Employees have a duty to report any unsafe situation immediately."},
-        {question:"What is a health and safety representative?", options:["Supervisor","Elected employee"], correct:1, explanation:"Health and safety reps are elected by employees in defined areas."},
-        {question:"Can employer charge for PPE?", options:["Yes","No"], correct:1, explanation:"PPE must be provided free of charge and maintained by the employer."},
-        {question:"What is the role of MHSC?", options:["Production","Advise on health and safety"], correct:1, explanation:"The Mine Health and Safety Council advises the Minister on policy and standards."},
-        {question:"Employer must prepare?", options:["Nothing","Code of Practice"], correct:1, explanation:"Codes of Practice must be drawn up for significant risks."},
-        {question:"Who conducts inquiries into accidents?", options:["Employer only","Inspector"], correct:1, explanation:"Formal inquiries into serious accidents are presided over by the Inspectorate."},
-        {question:"What is tripartite structure?", options:["One party","Government, employer, unions"], correct:1, explanation:"Decisions are made with input from state, employers, and organised labour."},
-        {question:"Juveniles underground prohibited under?", options:["18","Specific age"], correct:0, explanation:"Persons under 18 may not work underground."},
-        {question:"Employer must conduct?", options:["Risk assessments","Work Hazard Identification"], correct:0, explanation:"Continuous risk assessment is a cornerstone of the Act."},
-        {question:"What is mandatory COP for?", options:["All hazards","Significant risks"], correct:1, explanation:"COPs are mandatory for risks identified as significant."},
-        {question:"Employees must cooperate with?", options:["Production","Safety duties"], correct:1, explanation:"Employees must cooperate in fulfilling safety obligations."},
-        {question:"What is the right to withdraw?", options:["For pay","Dangerous place"], correct:1, explanation:"Employees may leave a workplace they reasonably believe is dangerous."},
-        {question:"Who pays health and safety reps?", options:["Union","Employer"], correct:1, explanation:"Reps must be paid normal wages while performing safety duties."},
-        {question:"Medical surveillance is?", options:["Optional","Mandatory"], correct:1, explanation:"Mandatory for employees exposed to health hazards."},
-        {question:"What is the inspectorate for?", options:["Enforcement","Entitlement"], correct:0, explanation:"The Inspectorate enforces compliance and investigates incidents."},
-        {question:"Offences under MHSA can lead to?", options:["Warning","Fines or imprisonment"], correct:1, explanation:"Serious contraventions carry criminal penalties including jail."},
-        {question:"Employer must supply?", options:["Tools only","PPE free"], correct:1, explanation:"Suitable PPE must be provided at no cost to employees."},
-        {question:"What is occupational hygiene?", options:["Cleaning","Measuring hazards"], correct:1, explanation:"Systematic measurement and control of workplace stressors."},
-        {question:"Who establishes MQA?", options:["MHSA","TARP"], correct:0, explanation:"The Mining Qualifications Authority is established under the Act."},
-        {question:"Employees must take care of?", options:["Production","Own and others safety"], correct:1, explanation:"Section 22 requires reasonable care for own and fellow workers’ safety."},
-        {question:"What is a serious injury?", options:["Minor","Reportable"], correct:1, explanation:"Injuries causing unconsciousness, amputation, or likely permanent disability."},
-        {question:"Employer must investigate?", options:["All incidents","Accidents"], correct:1, explanation:"All reportable accidents and dangerous occurrences must be investigated."},
-        {question:"What is the annual report for?", options:["Production","Health and safety"], correct:1, explanation:"Annual report to the Inspectorate on health and safety performance."},
-        {question:"No discrimination for?", options:["Reporting hazards","Leaving early"], correct:0, explanation:"Protection against victimisation for raising safety concerns."},
-        {question:"What is a refuge bay?", options:["Rest area","Emergency shelter"], correct:1, explanation:"Permanent place of safety in case of fire or irrespirable atmosphere."},
-        {question:"Ventilation is regulated under?", options:["MHSA","TARP"], correct:0, explanation:"Detailed ventilation requirements are in Chapter 8 of the regulations."},
-        {question:"Who approves plans?", options:["Manager","Inspector"], correct:1, explanation:"Significant mine plans must be approved by the Principal Inspector."},
-        {question:"What is lead exposure limit?", options:["None","Regulated"], correct:1, explanation:"Lead in air and blood levels are strictly regulated."},
-        {question:"Noise limits are?", options:["100 dB","Regulated"], correct:1, explanation:"Maximum 85 dB(A) 8-hour exposure; higher requires specific controls."},
-        {question:"What is the duty of CEO?", options:["None","Overall responsibility"], correct:1, explanation:"Section 2A places ultimate responsibility on the CEO."},
-        {question:"Health and safety committees are?", options:["Optional","Mandatory"], correct:1, explanation:"Required at mines with more than 20 employees."},
-        {question:"What is exit from mine?", options:["One way","Multiple"], correct:1, explanation:"Every underground mine must have at least two separate exits."},
-        {question:"Emergency procedures must be?", options:["Written","Practiced"], correct:1, explanation:"Written procedures must be regularly practiced through drills."},
-        {question:"Who can stop operations?", options:["Only manager","Inspector"], correct:1, explanation:"Inspectors have the power to halt dangerous operations."},
-        {question:"What is hazardous substance?", options:["All chemicals","Defined"], correct:1, explanation:"Substances listed or meeting criteria in the Hazardous Chemical Substances Regulations."},
-        {question:"Training records must be kept?", options:["No","Yes"], correct:1, explanation:"Records of all safety training must be maintained."},
-        {question:"What is the role of unions?", options:["Production","Safety input"], correct:1, explanation:"Unions appoint members to the MHSC and safety committees."},
-        {question:"MHSA applies to?", options:["Surface only","All mines"], correct:1, explanation:"Applies to all mines, works, and machinery as defined."},
-        {question:"What is risk management?", options:["Optional","Mandatory"], correct:1, explanation:"Continuous identification, assessment, and control of risks."},
-        {question:"Employees must use?", options:["Tools","PPE correctly"], correct:1, explanation:"Employees must use provided PPE and follow safe procedures."},
-        {question:"What is investigation report?", options:["Internal","Submitted to inspector"], correct:1, explanation:"Formal accident investigation reports must be submitted to the DMRE."},
-        {question:"Penalties for non-compliance?", options:["Minor","Severe"], correct:1, explanation:"Contraventions can result in fines up to R1 million or imprisonment."},
-        {question:"What is continuous risk assessment?", options:["Once","Ongoing"], correct:1, explanation:"Risk assessment is a dynamic process that must be repeated regularly."},
-        {question:"Employer must monitor?", options:["Production","Health"], correct:1, explanation:"Occupational health monitoring for noise, dust, etc. is mandatory."},
-        {question:"What is the MHSA objective?", options:["Profit","Zero harm"], correct:1, explanation:"The ultimate goal is the elimination of fatalities and harm."},
-        {question:"Who chairs health and safety committee?", options:["Manager","Elected chairperson"], correct:1, explanation:"Alternating employer and employee representatives."}
+    electrical: {name:"ELECTRICAL SYSTEMS", q: [
+        {question:"In gassy areas electrical equipment must be?", options:["Standard","Flameproof or intrinsically safe"], correct:1, explanation:"Flameproof enclosures or IS circuits prevent ignition of methane."}
     ]},
-
-    
-    tmm: {name:"TRACKLESS MOBILE MACHINERY", q: [
-        {question:"What is TMM?", options:["Any vehicle","Trackless Mobile Machinery"], correct:1, explanation:"TMM refers to all self-propelled mobile machines without tracks used underground."},
-        {question:"Who may operate TMM?", options:["Anyone trained","Only competent operator"], correct:1, explanation:"Only operators holding valid competency certificates may operate TMM."},
-        {question:"What is a 'collision avoidance system'?", options:["Optional","Mandatory on new TMM"], correct:1, explanation:"Collision avoidance/proximity detection systems are mandatory on new and retrofitted machines."},
-        {question:"Can you reverse without guide?", options:["Yes","Only with camera"], correct:1, explanation:"Reversing requires functional reverse camera or a banksman/guide."},
-        {question:"What is a 'proximity detection'?", options:["Radar","Personnel warning"], correct:1, explanation:"PDS warns or intervenes when personnel enter dangerous zones around TMM."},
-        {question:"Who checks TMM daily?", options:["Anyone","Operator"], correct:1, explanation:"The operator must conduct and record a pre-use inspection daily."},
-        {question:"What is a 'rollover protection'?", options:["ROPS","Safety cage"], correct:0, explanation:"ROPS (Roll-Over Protective Structure) protects the operator in case of rollover."},
-        {question:"Can you carry passengers?", options:["Yes","Only in designated seats"], correct:1, explanation:"Passengers only in certified passenger compartments or seats."},
-        {question:"What is a 'brake test'?", options:["Daily check","Mandatory"], correct:1, explanation:"Service and parking brake performance must be tested daily."},
-        {question:"Who approves TMM modifications?", options:["Anyone","Engineering"], correct:1, explanation:"All modifications must be approved by the mine’s engineering authority."},
-        {question:"What is a 'load haul dumper'?", options:["LHD","Ore carrier"], correct:0, explanation:"LHD is the common term for load-haul-dump machines."},
-        {question:"Can you exceed speed limit?", options:["Yes","Never"], correct:1, explanation:"Speed limits are set based on roadway conditions and must never be exceeded."},
-        {question:"What is a 'traffic management plan'?", options:["Map","Legal requirement"], correct:1, explanation:"A formal traffic management plan is mandatory under the TMM regulations."},
-        {question:"Who trains TMM operators?", options:["Anyone","Only accredited"], correct:1, explanation:"Training must be conducted by MQA-accredited training providers."},
-        {question:"What is a 'derailment'?", options:["Accident","Off road"], correct:0, explanation:"When a TMM leaves the designated roadway."},
-        {question:"Can you park on incline?", options:["Yes","Only with chocks"], correct:1, explanation:"Wheels must be chocked and brake engaged on inclines."},
-        {question:"What is a 'light vehicle'?", options:["Bakkie","Underground utility"], correct:1, explanation:"Light diesel or battery utility vehicles used underground."},
-        {question:"Who checks TMM lights?", options:["Anyone","Operator"], correct:1, explanation:"Operator must verify all lights are functional during pre-use check."},
-        {question:"What is a 'fatigue monitor'?", options:["Camera","Driver alertness"], correct:1, explanation:"Systems monitor operator eye closure and head position to detect fatigue."},
-        {question:"Can you use phone while driving?", options:["Yes","Never"], correct:1, explanation:"Hand-held communication while operating TMM is prohibited."},
-        {question:"What is a 'TMM register'?", options:["List","All machines"], correct:1, explanation:"A register of all TMM with unique IDs and maintenance records."},
-        {question:"Who reports TMM incidents?", options:["Anyone","Operator"], correct:0, explanation:"All persons witnessing an incident must report it immediately."},
-        {question:"What is a 'service brake'?", options:["Main brake","Emergency brake"], correct:0, explanation:"The service brake is the primary foot brake for normal stopping."},
-        {question:"Can you modify TMM?", options:["Yes","Only with approval"], correct:1, explanation:"Modifications require engineering approval and risk assessment."},
-        {question:"What is a 'TMM code of practice'?", options:["Guideline","Legal document"], correct:1, explanation:"The TMM COP is a mandatory standard under MHSA Chapter 8."},
-        {question:"What is 'level 9 intervention'?", options:["Warning","Automatic stop"], correct:1, explanation:"Highest level PDS intervention stops machine."},
-        {question:"TMM maintenance by?", options:["Operator","Qualified mechanics"], correct:1, explanation:"Only competent persons may perform maintenance."}
-    ]},
-    winders: {name:"WINDERS & HOISTING SYSTEMS", q: [
-        {question:"Who may operate a mine winder?", options:["Any driver","Only competent winder driver"], correct:1, explanation:"Only persons holding a valid winder driver certificate of competency may operate."},
-        {question:"What is the emergency stop signal?", options:["3 bells","7 bells repeated"], correct:1, explanation:"Seven bells repeated is the universal emergency stop signal."},
-        {question:"What is a 'double drum winder'?", options:["Two ropes","Two drums"], correct:1, explanation:"Double drum winders use two drums for balance rope systems."},
-        {question:"Who checks the rope condition daily?", options:["Anyone","Only winder driver"], correct:1, explanation:"The winder driver must perform and record daily rope inspections."},
-        {question:"What is a 'lily controller'?", options:["Speed control","Safety device"], correct:1, explanation:"The lily controller limits speed and prevents over-wind."},
-        {question:"Can you ride the kibble?", options:["Yes","Only authorized personnel"], correct:1, explanation:"Only authorised persons with proper training may ride material conveyances."},
-        {question:"What is a 'safety catch'?", options:["Brake","Emergency arrestor"], correct:1, explanation:"Safety catches arrest the conveyance in case of over-wind."},
-        {question:"Who approves winder modifications?", options:["Shift boss","Mechanical Engineer"], correct:1, explanation:"Modifications require approval by the appointed engineer (16.1)."},
-        {question:"What is a 'rope test'?", options:["Pull test","Non-destructive"], correct:1, explanation:"Regular electromagnetic non-destructive testing plus sample destructive tests."},
-        {question:"Can you overload the cage?", options:["Yes","Never"], correct:1, explanation:"Overloading compromises braking and rope safety factors."},
-        {question:"What is a 'headgear'?", options:["Helmet","Shaft top structure"], correct:1, explanation:"The headgear/sheave wheel structure at the top of the shaft."},
-        {question:"Who checks brakes before shift?", options:["Anyone","Winder driver"], correct:1, explanation:"The driver must perform brake tests before commencing winding."},
-        {question:"What is a 'suicide circuit'?", options:["Emergency stop","Field reversal"], correct:1, explanation:"Direct field reversal for emergency dynamic braking."},
-        {question:"Can you talk on phone in winder house?", options:["Yes","Never"], correct:1, explanation:"No unauthorised communication to avoid distraction during critical operations."},
-        {question:"What is a 'depth indicator'?", options:["Gauge","Position display"], correct:1, explanation:"Shows exact position of the conveyance in the shaft."},
-        {question:"Who records winder logbook?", options:["Anyone","Only driver"], correct:1, explanation:"The winder driver must complete all statutory entries."},
-        {question:"What is a 'slack rope'?", options:["Normal","Dangerous condition"], correct:1, explanation:"Slack rope can cause rope slip or derailment on drums."},
-        {question:"Can you wind during storm?", options:["Yes","Only if safe"], correct:1, explanation:"Winding must stop during electrical storms to prevent lightning damage."},
-        {question:"What is a 'cage gate interlock'?", options:["Safety switch","Prevents movement"], correct:1, explanation:"Interlocks prevent winding unless all gates are closed."},
-        {question:"Who tests emergency brakes?", options:["Anyone","Only weekly by driver"], correct:1, explanation:"Weekly emergency brake drop tests are mandatory."},
-        {question:"What is a 'winder house'?", options:["Office","Control room"], correct:1, explanation:"The secure control room housing winder controls and driver."},
-        {question:"Can you leave winder unattended?", options:["Yes","Never"], correct:1, explanation:"The winder must never be left unattended while energised."},
-        {question:"What is a 'drum brake'?", options:["Main brake","Emergency brake"], correct:0, explanation:"Mechanical brakes applied directly to the drum."},
-        {question:"Who calibrates depth indicator?", options:["Anyone","Only specialist"], correct:1, explanation:"Calibration is done by competent instrumentation personnel."},
-        {question:"What is a 'man-winding'?", options:["Material only","Personnel transport"], correct:1, explanation:"Winding of persons requires higher safety factors and controls."},
-        {question:"What is 'overwind prevention'?", options:["Speed limit","Safety devices"], correct:1, explanation:"Multiple layers of protection including lily controller."},
-        {question:"Winder driver medicals?", options:["Annual","Every 6 months"], correct:1, explanation:"Frequent medical examinations required."}
+    mhsa: {name:"MHSA 1996", q: [
+        {question:"The Mine Health and Safety Act is?", options:["Act 50 of 1991","Act 29 of 1996"], correct:1, explanation:"MHSA is Act 29 of 1996."},
+        {question:"Employees have the right to?", options:["Ignore procedures","Refuse dangerous work and leave a dangerous workplace"], correct:1, explanation:"These rights are protected under Section 23 of MHSA."}
     ]},
     seismicity: {name:"SEISMICITY & ROCKBURSTS", q: [
-        {question:"Primary control for rockbursts?", options:["Mining rate","Support systems and sequencing"], correct:1, explanation:"Engineered support and controlled mining sequences are primary controls."},
-        {question:"Who monitors seismic activity?", options:["Shift boss","Seismic department"], correct:1, explanation:"Dedicated seismic monitoring with real-time analysis."},
-        {question:"Re-entry after seismic event?", options:["Immediately","After risk assessment"], correct:1, explanation:"Re-entry only after ground stability confirmed by rock engineer."},
-        {question:"What is 'bracket pillar'?", options:["Support","Seismic energy absorption"], correct:1, explanation:"Designed pillars to absorb and contain seismic energy."},
-        {question:"Seismic warning triggers?", options:["Noise","Micro-seismic events"], correct:1, explanation:"Pre-defined magnitude thresholds trigger TARP responses."},
-        {question:"Who designs destress blasting?", options:["Blaster","Rock engineer"], correct:1, explanation:"Destress patterns designed by geotechnical specialists."},
-        {question:"Netting for rockburst protection?", options:["Optional","Mandatory in high-risk"], correct:1, explanation:"Dynamic support with energy-absorbing nets and bolts."},
-        {question:"Seismic data recording?", options:["Voluntary","Mandatory"], correct:1, explanation:"Continuous seismic monitoring and data retention required."},
-        {question:"Who declares area safe post-event?", options:["Supervisor","Rock engineer"], correct:1, explanation:"Only rock engineer may declare area safe after inspection."},
-        {question:"Rockburst COP required?", options:["No","Yes, mandatory"], correct:1, explanation:"Specific code of practice for seismic risk management."},
-        {question:"What is 'preconditioning'?", options:["Blasting","Stress reduction"], correct:0, explanation:"Controlled blasting to reduce stored energy."},
-        {question:"Seismic hazard assessment?", options:["Once","Continuous"], correct:1, explanation:"Ongoing monitoring and modelling."},
-        {question:"What is 'energy release rate'?", options:["Production","Seismic risk indicator"], correct:1, explanation:"Measures potential seismic energy per tonne mined."},
-        {question:"Who interprets seismic data?", options:["Anyone","Seismologist"], correct:1, explanation:"Qualified personnel only."},
-        {question:"Support for seismic areas?", options:["Standard","Dynamic capable"], correct:1, explanation:"Tendons and mesh that can absorb energy."},
-        {question:"What is 'backfill' role?", options:["Waste","Seismic control"], correct:1, explanation:"Filled stopes reduce seismic risk."},
-        {question:"Seismic training for workers?", options:["Optional","Mandatory"], correct:1, explanation:"All personnel trained in response procedures."},
-        {question:"Who updates seismic plan?", options:["Manager","Rock engineer"], correct:1, explanation:"Regular review based on new data."},
-        {question:"What is 'time-dependent behaviour'?", options:["Immediate","Delayed rock failure"], correct:1, explanation:"Rock can fail hours or days after stress change."},
-        {question:"Seismic monitoring network?", options:["Few sensors","Dense array"], correct:1, explanation:"Comprehensive coverage required."},
-        {question:"What is 'local magnitude'?", options:["Global","Mine-specific scale"], correct:1, explanation:"Calibrated for local conditions."},
-        {question:"Who responds to seismic alert?", options:["Anyone","Designated team"], correct:1, explanation:"Coordinated response per TARP."},
-        {question:"Seismic risk in pillar extraction?", options:["Low","High"], correct:1, explanation:"Highest risk during final pillar recovery."},
-        {question:"What is 'stope closure'?", options:["Normal","Seismic indicator"], correct:1, explanation:"Measured convergence indicates stress."},
-        {question:"Who approves mining sequence?", options:["Manager","Rock engineer"], correct:1, explanation:"Seismically safe sequence mandatory."},
-        {question:"Seismic event reporting?", options:["Next day","Immediate"], correct:1, explanation:"All events above threshold reported immediately."},
-        {question:"What is 'yield pillar'?", options:["Solid","Designed to crush"], correct:1, explanation:"Controlled failure to absorb energy."}
+        {question:"Energy-absorbing support is used for?", options:["Normal ground","Rockburst-prone areas"], correct:1, explanation:"Yieldable systems absorb seismic energy and reduce damage."}
     ]},
     blasting: {name:"BLASTING & EXPLOSIVES", q: [
-        {question:"Who may handle explosives?", options:["Any miner","Only competent blaster"], correct:1, explanation:"Only persons holding a valid blasting certificate may handle explosives."},
-        {question:"Re-entry time after blasting?", options:["15 min","30 min minimum"], correct:1, explanation:"Minimum 30 minutes for ventilation clearance and fume dissipation."},
-        {question:"Who guards blast site?", options:["Anyone","Appointed sentries"], correct:1, explanation:"Trained sentries control access during charging and guarding."},
-        {question:"Misfire procedure?", options:["Wait 10 min","Wait 30 min + report"], correct:1, explanation:"30-minute wait, then competent person investigates."},
-        {question:"Explosives transport?", options:["Any vehicle","Designated explosive vehicle"], correct:1, explanation:"Dedicated, marked vehicles with fire suppression."},
-        {question:"Who approves blast design?", options:["Blaster","Rock engineer"], correct:1, explanation:"Blast patterns require rock engineer approval."},
-        {question:"Initiation system?", options:["Fuse","Electronic or shock tube"], correct:1, explanation:"Safety fuse prohibited underground; non-electronic preferred."},
-        {question:"Blast clearance radius?", options:["100 m","500 m minimum"], correct:1, explanation:"Minimum 500 m clearance for underground blasts."},
-        {question:"Who records blast details?", options:["Operator","Blasting officer"], correct:1, explanation:"Full details in statutory blast log."},
-        {question:"Secondary breaking method?", options:["Any","Controlled with explosives"], correct:1, explanation:"Secondary breaking requires specific procedures."},
-        {question:"What is 'priming'?", options:["Charging","Inserting detonator"], correct:1, explanation:"Placing initiator in cartridge."},
-        {question:"Who issues blasting permit?", options:["Blaster","Shift boss"], correct:1, explanation:"Formal permit system required."},
-        {question:"Explosives storage?", options:["Any","Approved magazine"], correct:1, explanation:"Secure, ventilated magazines only."},
-        {question:"What is 'sleeping charges'?", options:["Normal","Prohibited"], correct:1, explanation:"Leaving charged holes overnight forbidden."},
-        {question:"Who examines face post-blast?", options:["Anyone","Competent person"], correct:1, explanation:"Thorough examination for misfires and sockets."},
-        {question:"Blast fume monitoring?", options:["Optional","Mandatory"], correct:1, explanation:"Gas testing before re-entry."},
-        {question:"What is 'stemming'?", options:["Packing","Material in hole"], correct:1, explanation:"Material to confine explosion."},
-        {question:"Who trains blasters?", options:["Anyone","Accredited"], correct:1, explanation:"MQA-accredited training."},
-        {question:"Blasting during shift change?", options:["Allowed","Prohibited"], correct:1, explanation:"To avoid personnel movement."},
-        {question:"What is 'cut-off'?", options:["Design","Unintended early detonation"], correct:1, explanation:"Prevention critical."},
-        {question:"Who accounts for explosives?", options:["Blaster","Magazine master"], correct:1, explanation:"Strict stock control."},
-        {question:"Blast warning signal?", options:["Any","Standard siren"], correct:1, explanation:"Clear audible warning."},
-        {question:"What is 'shock tube'?", options:["Electric","Non-electric initiation"], correct:1, explanation:"Safer in stray current areas."},
-        {question:"Who investigates misfires?", options:["Blaster","Senior blaster"], correct:1, explanation:"Formal procedure."},
-        {question:"Blasting COP required?", options:["No","Yes"], correct:1, explanation:"Mandatory code of practice."},
-        {question:"What is 'flyrock control'?", options:["Optional","Critical"], correct:1, explanation:"Stemming and guarding essential."}
+        {question:"Re-entry after blasting is controlled by?", options:["Fixed time only","Ventilation and gas monitoring results"], correct:1, explanation:"Clearance depends on measured gas concentrations and airflow."}
     ]},
     evacuation: {name:"EMERGENCY EVACUATION", q: [
-        {question:"Primary evacuation signal?", options:["Siren","Stench gas"], correct:1, explanation:"Stench gas release is the primary underground evacuation trigger."},
-        {question:"Who activates evacuation?", options:["Anyone","Control room or manager"], correct:1, explanation:"Only authorised personnel may initiate full evacuation."},
-        {question:"Evacuation route marking?", options:["Optional","Reflective signage"], correct:1, explanation:"Clear, illuminated primary and secondary routes."},
-        {question:"SCSR cache locations?", options:["Work areas","Every 500 m"], correct:0, explanation:"Additional SCSRs cached along escape routes."},
-        {question:"Who accounts for personnel?", options:["Supervisor","Section leaders"], correct:1, explanation:"Roll call at refuge chambers and surface assembly points."},
-        {question:"Evacuation drill frequency?", options:["Annually","Quarterly"], correct:1, explanation:"Full evacuation drills at least quarterly."},
-        {question:"Self-escape philosophy?", options:["Wait for rescue","Immediate self-escape"], correct:1, explanation:"Personnel trained to self-escape using SCSRs."},
-        {question:"Refuge chamber duration?", options:["24 hours","36 hours minimum"], correct:1, explanation:"Refuge chambers designed for 36-hour occupation."},
-        {question:"Who updates evacuation plan?", options:["Safety officer","Emergency team"], correct:0, explanation:"Plan reviewed after incidents or layout changes."},
-        {question:"Communication during evacuation?", options:["Radio","Tagging system"], correct:1, explanation:"Pedestrian tagging and radio check-in protocols."},
-        {question:"What is 'secondary escape route'?", options:["Optional","Mandatory"], correct:1, explanation:"Alternative route in case primary blocked."},
-        {question:"Who trains in evacuation?", options:["Anyone","Competent person"], correct:1, explanation:"Regular training for all personnel."},
-        {question:"Assembly point marking?", options:["Optional","Clear signage"], correct:1, explanation:"Designated surface muster points."},
-        {question:"What is 'PPE for evacuation'?", options:["Normal","SCSR mandatory"], correct:1, explanation:"Self-contained self-rescuer carried at all times."},
-        {question:"Who declares all clear?", options:["Supervisor","Incident commander"], correct:1, explanation:"Formal all-clear after headcount."},
-        {question:"Evacuation during shift change?", options:["Normal","Special procedure"], correct:1, explanation:"Coordinated to avoid confusion."},
-        {question:"What is 'refuge chamber entry'?", options:["Last resort","When escape impossible"], correct:0, explanation:"Used when surface escape not possible."},
-        {question:"Who maintains refuge chambers?", options:["Anyone","Dedicated team"], correct:1, explanation:"Regular checks and servicing."},
-        {question:"Evacuation plan review?", options:["Annual","After incidents"], correct:1, explanation:"Updated based on lessons learned."},
-        {question:"What is 'stench gas system'?", options:["Optional","Mandatory"], correct:1, explanation:"Primary warning system."},
-        {question:"Who coordinates rescue?", options:["Manager","Proto team"], correct:1, explanation:"Professional rescue brigade."},
-        {question:"Evacuation signage illumination?", options:["Optional","Self-luminous"], correct:1, explanation:"Visible in smoke and power failure."},
-        {question:"What is 'tagging system'?", options:["Optional","Mandatory"], correct:1, explanation:"Personnel accountability system."},
-        {question:"Who drills evacuation?", options:["Safety","All sections"], correct:1, explanation:"Section-specific and full mine drills."},
-        {question:"Emergency evacuation COP?", options:["No","Yes"], correct:1, explanation:"Mandatory detailed plan."},
-        {question:"What is 'safe haven'?", options:["Refuge","Alternative term"], correct:0, explanation:"Same as refuge chamber."}
+        {question:"First action in an emergency is usually to?", options:["Continue working","Raise the alarm and follow the emergency procedure"], correct:1, explanation:"Raise the alarm and follow established procedures."},
+        {question:"Refuge bays must contain?", options:["Only water","SCSRs, water, first aid and communication"], correct:1, explanation:"Refuge bays are life-saving facilities and must be fully stocked."}
     ]},
-
-
-fire: {name:"FIRE UNDERGROUND", q: [
-        {question:"First action on discovering fire?", options:["Fight fire","Report and evacuate"], correct:1, explanation:"Immediate reporting via radio and activation of evacuation if required."},
-        {question:"Who leads fire fighting?", options:["Anyone","Proto team"], correct:1, explanation:"Trained proto (rescue) teams handle underground fire response."},
-        {question:"Fire suppression on vehicles?", options:["Optional","Mandatory"], correct:1, explanation:"All diesel vehicles require automatic fire suppression systems."},
-        {question:"What is 'fire round'?", options:["Inspection","Designated fire patrol"], correct:1, explanation:"Regular fire risk inspections by appointed persons."},
-        {question:"Conveyor belt fire protection?", options:["None","CO sensors and suppression"], correct:1, explanation:"CO monitoring and water deluge systems."},
-        {question:"Who declares fire emergency?", options:["Supervisor","Mine manager"], correct:1, explanation:"Incident command structure activated by manager."},
-        {question:"Refuge chamber fire rating?", options:["1 hour","4 hours"], correct:1, explanation:"Chambers must withstand external fire for minimum 4 hours."},
-        {question:"Fire extinguisher inspection?", options:["Monthly","By competent person"], correct:0, explanation:"Monthly checks recorded in fire equipment register."},
-        {question:"Hydraulic fluid requirement?", options:["Water-based","Fire-resistant"], correct:1, explanation:"Only fire-resistant fluids permitted underground."},
-        {question:"Post-fire re-entry?", options:["Immediately","After air quality clearance"], correct:1, explanation:"Re-entry only after full atmospheric testing and structural assessment."},
-        {question:"What is primary fire risk underground?", options:["Electrical","Diesel equipment"], correct:1, explanation:"Diesel-powered machinery is the leading cause of underground fires."},
-        {question:"Smoking underground?", options:["Allowed in areas","Strictly prohibited"], correct:1, explanation:"No smoking or open flames permitted underground."},
-        {question:"Fire door purpose?", options:["Privacy","Contain fire and smoke"], correct:1, explanation:"Fire doors prevent spread of fire and toxic gases."},
-        {question:"Who trains fire fighting?", options:["Anyone","Proto team"], correct:1, explanation:"Specialised training for rescue brigade."},
-        {question:"What is 'fire break'?", options:["Gap","Sealed area"], correct:1, explanation:"Bulkhead to isolate fire."},
-        {question:"Can you use foam on oil fire?", options:["Yes","Only Class B"], correct:1, explanation:"Specific foam for hydrocarbon fires."},
-        {question:"What is 'fire load'?", options:["Heat","Fuel amount"], correct:1, explanation:"Quantity of combustible material."},
-        {question:"Who records fire incidents?", options:["Anyone","Safety department"], correct:1, explanation:"Formal investigation required."},
-        {question:"What is 'fire drill'?", options:["Practice","Mandatory monthly"], correct:1, explanation:"Regular fire response exercises."},
-        {question:"Fire detection systems?", options:["Optional","Mandatory in key areas"], correct:1, explanation:"Early warning critical."},
-        {question:"What is 'hot work permit'?", options:["Any work","For welding/cutting"], correct:1, explanation:"Hot work (welding, cutting, grinding) requires a formal hot work permit, risk assessment, and fire watch."},
-        {question:"Who approves fire equipment?", options:["Manager","Safety officer"], correct:1, explanation:"Firefighting equipment must be approved and maintained by competent safety personnel."},
-        {question:"Fire refuge sealing?", options:["Manual","Automatic"], correct:0, explanation:"Many modern refuge chambers have automatic sealing and positive pressure systems."},
-        {question:"What is 'smoke tube test'?", options:["Ventilation","Fire indicator"], correct:1, explanation:"Smoke tubes are used for early detection of ventilation changes and possible fire."},
-        {question:"Who maintains fire pumps?", options:["Anyone","Engineering"], correct:1, explanation:"Fire pumps and water supply systems are maintained by the engineering department."},
-        {question:"Fire COP required?", options:["No","Yes"], correct:1, explanation:"A mandatory Code of Practice for fire risk management is required under MHSA."}
+    fire: {name:"FIRE MONITORING", q: [
+        {question:"Hot work permits are required for?", options:["Any work involving open flame or spark potential","Only surface welding"], correct:0, explanation:"Hot work controls prevent ignition of flammable materials."}
+    ]},
+    tmm: {name:"TMM", q: [
+        {question:"Level 9 collision avoidance means?", options:["Warning only","Full automatic intervention (braking) without operator input"], correct:1, explanation:"Level 9 provides automatic intervention to prevent collisions."},
+        {question:"TMM operators must hold?", options:["Any drivers licence","A valid competency certificate for the specific machine"], correct:1, explanation:"Competency certification is mandatory for TMM operation."}
+    ]},
+    winders: {name:"WINDING PLANT", q: [
+        {question:"Winder ropes require?", options:["Visual check only","Non-destructive testing at defined intervals"], correct:1, explanation:"NDT of winding ropes is a statutory requirement."}
+    ]},
+    induction_protocol: {name:"INDUCTION PROTOCOL", q: [
+        {question:"During induction, cell phones should be?", options:["On silent","Switched off"], correct:1, explanation:"Cell phones must be switched off so they do not distract the facilitator or other attendees."},
+        {question:"If you have a question you should?", options:["Shout it out","Put your hand in the air"], correct:1, explanation:"Raise your hand so the facilitator can address the question without disruption."},
+        {question:"This induction contains information that could?", options:["Only help with production","Save your life"], correct:1, explanation:"The induction contains critical safety information that could save your life."},
+        {question:"Key items discussed include?", options:["Emergency response, assembly points, fire equipment and first aid locations","Only the canteen menu"], correct:0, explanation:"Emergency response strategy, assembly points, exits, fire-fighting and first-aid equipment locations are all covered."},
+        {question:"Who discusses the induction protocol?", options:["Any colleague","The facilitator"], correct:1, explanation:"The facilitator covers the full induction protocol with the group."},
+        {question:"Assembly points and emergency exits must be known by?", options:["Only supervisors","Every person on site"], correct:1, explanation:"Every person must know the location of assembly points and emergency exits."}
+    ]},
+    company_intro: {name:"COMPANY INTRODUCTION", q: [
+        {question:"Company induction provides an overview of?", options:["Only pay rates","The organisation, operations and structure"], correct:1, explanation:"New and returning employees need to understand how they fit into the broader mining house."}
+    ]},
+    vision_mission: {name:"VISION, MISSION & VALUES", q: [
+        {question:"Vision, mission and values guide?", options:["Only production targets","Safe and responsible mining behaviour"], correct:1, explanation:"These statements set the expected culture and behaviour standards."}
+    ]},
+    emergency_response: {name:"EMERGENCY RESPONSE", q: [
+        {question:"When an emergency is declared you must?", options:["Continue working","Follow the site-specific emergency response strategy"], correct:1, explanation:"Immediate actions are defined in the site emergency plan."}
+    ]},
+    assembly_points: {name:"ASSEMBLY POINTS", q: [
+        {question:"Every person on site must know?", options:["Only the canteen","Location and use of designated assembly points and emergency exits"], correct:1, explanation:"Knowledge of assembly points and exits is critical for safe evacuation."}
+    ]},
+    fire_first_aid: {name:"FIRE & FIRST AID", q: [
+        {question:"You must know the location of?", options:["Only the change house","Fire-fighting equipment and first-aid stations"], correct:1, explanation:"Quick access to equipment and first-aid facilities saves lives."}
+    ]},
+    life_saving_rules: {name:"LIFE-SAVING RULES", q: [
+        {question:"Life-Saving Rules are?", options:["Optional guidelines","Non-negotiable critical rules"], correct:1, explanation:"Violation of Life-Saving Rules can result in serious injury or fatality; compliance is mandatory."}
+    ]},
+    ppe: {name:"PPE REQUIREMENTS", q: [
+        {question:"PPE must be?", options:["Worn only when convenient","Correct for the task, properly used, cared for and replaced when defective"], correct:1, explanation:"Correct PPE is a fundamental control under MHSA."}
+    ]},
+    employee_rights: {name:"EMPLOYEE RIGHTS & DUTIES", q: [
+        {question:"Under MHSA employees have the right to?", options:["Ignore procedures","Refuse to do dangerous work and leave a dangerous workplace"], correct:1, explanation:"These rights are protected under the Mine Health and Safety Act 29 of 1996."}
+    ]},
+    exleave: {name:"EX-LEAVE INDUCTION", q: [
+        {question:"During the induction protocol, what should you do with your cell phone?", options:["Keep it on silent","Switch it off","Use it only for emergencies","Leave it at home"], correct:1, explanation:"Cell phones must be switched off so they do not distract the facilitator or other attendees."},
+        {question:"If you have a question during the induction, you should:", options:["Shout it out","Put your hand in the air","Ask a colleague quietly","Wait until the end and leave"], correct:1, explanation:"Raise your hand so the facilitator can address the question without disruption."},
+        {question:"This induction contains information that could:", options:["Only help with production","Save your life","Be ignored if you are experienced","Only apply to new employees"], correct:1, explanation:"The induction contains critical safety information that could save your life."},
+        {question:"Key items discussed in the induction protocol include:", options:["Emergency response, assembly points, fire equipment and first aid locations","Only the canteen menu","Shift times only","Pay rates"], correct:0, explanation:"Emergency response strategy, assembly points, exits, fire-fighting and first-aid equipment locations are all covered."},
+        {question:"Who discusses the induction protocol?", options:["Any colleague","The facilitator","Security only","HR only"], correct:1, explanation:"The facilitator covers the full induction protocol with the group."},
+        {question:"Assembly points and emergency exits must be known by:", options:["Only supervisors","Every person on site","Only new employees","Security staff only"], correct:1, explanation:"Every person must know the location of assembly points and emergency exits."}
+    ]},
+    hirac: {name:"HIRAC REFRESHER", q: [
+        {question:"What does HIRAC stand for?", options:["Hazard Identification, Risk Assessment and Control","Health Inspection, Risk Analysis and Compliance","Hazard Isolation, Risk Action and Control","High Impact Risk Assessment Checklist"], correct:0, explanation:"HIRAC is the systematic process of identifying hazards, assessing the risk and implementing controls."},
+        {question:"When should a HIRAC be performed?", options:["Only after an incident","Before starting any task that has potential hazards","Once a year during the annual audit","Only by the safety officer"], correct:1, explanation:"HIRAC must be done before work starts so controls can be put in place."},
+        {question:"The preferred hierarchy of control starts with:", options:["PPE","Administrative controls","Elimination","Engineering controls"], correct:2, explanation:"Elimination of the hazard is the most effective control."},
+        {question:"Who is responsible for participating in HIRAC?", options:["Only the safety officer","Every member of the work team","Only supervisors","Only the mine manager"], correct:1, explanation:"Everyone involved in the task should participate in identifying hazards and controls."},
+        {question:"A residual risk is:", options:["The risk before any controls","The risk that remains after controls are applied","A risk that can be ignored","Only financial risk"], correct:1, explanation:"Residual risk is what remains after controls have been implemented."}
     ]}
-
-
-
 };
 
+Object.keys(moduleNames).forEach(key => {
+  if (!sampleQuizzes[key]) {
+    sampleQuizzes[key] = {name: (moduleNames[key]||key).toUpperCase(), q:[
+      {question:`What is the main focus of the "${moduleNames[key]}" module?`, options:["Safety and compliance requirements for this topic","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
+      {question:"A minimum score of ___ is required to pass any module assessment.", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark used on this platform."},
+      {question:"Who is ultimately responsible for your safety on the mine?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care for their own safety and the safety of others."}
+    ]};
+  }
+});
+
 const moduleDescriptions = {
-    handover: "Shift handover and pre-shift checks ensure seamless, safe operations by bridging information gaps between teams.\n\nDetailed requirements:\n- Formal handover protocol: Documented exchange of equipment status, defects, hazards (e.g., geotechnical instability, gas levels, ventilation issues), ongoing maintenance, production updates, incidents/near-misses, and any permit or procedure changes.\n- Inspection and documentation: Statutory checks (daily for high-risk machinery, weekly/monthly for others), declarations of fitness for duty/equipment, comprehensive defect logbooks with timestamps and signatures, early morning examinations for critical plant like winders or fans.\n- MHSA compliance: Aligns with Chapter 2 (employer duties on risk management, safe systems) and Chapter 8 (Machinery & Equipment – e.g., pre-start checks, lock-outs), emphasizing risk assessments to prevent miscommunication-led accidents.\n- Practical tips: Use standardized digital checklists for traceability, include verbal walkthroughs, and train on handover COPs to reduce shift-start errors.",
-
-    lhd: "LHD tramming in declines mandates advanced safety under MHSA Chapter 8 Reg 8.10 (TMM regulations, 2015 amendment; fail-to-safe collision systems enforced ~2022).\n\nCore controls and insights:\n- Pre-operational inspections: Thorough checks of braking systems (service, park, emergency – must be fail-safe), lighting/horns/reflectors, automatic fire suppression activation, hydraulic integrity, tyre condition/pressures, visibility aids like cameras/mirrors – all logged daily.\n- Operational practices: Gradient-specific controls (e.g., no free-wheeling, use of retarders), load limits to prevent tipping, speed restrictions based on decline angle/road conditions.\n- Hazard mitigation: Pedestrian exclusion zones with barriers, radio-based traffic coordination, automatic fire extinguishers for engine/hot surfaces.\n- Collision avoidance: Mandatory proximity detection (pedestrian/machine warnings, speed retardation, full auto-braking without operator input per Reg 8.10.1.2(b)), machine-to-machine interfacing in congested areas.\n- Additional: Runaway prevention via incline-specific brakes, rollover protective structures (ROPS) if risk-assessed; integrates with SAMRASS reporting for any incidents.\n- Why critical: TMM incidents account for ~30% of mine fatalities – prioritize engineering controls like auto-braking over reliance on operator vigilance.",
-
-    drill: "Face drilling with jumbo rigs (hydraulic/pneumatic) requires precise safety measures under MHSA Chapter 8 Reg 8.8 (general machinery safeguards).\n\nExpanded elements:\n- Competency and setup: Certified operator training on rig controls/stability; mandatory dust suppression (wet methods, vacuum extractors) to comply with occupational exposure limits (OELs) for silica dust.\n- Pre-drilling protocols: Install temporary roof/rib support; conduct detailed face examinations for fractures, water ingress, or unstable strata using barring tools.\n- Drilling execution: Accurate hole patterning/marking to optimize blast efficiency and minimize misfires; collaring techniques to ensure alignment/depth control.\n- Safety features: Full guarding of rotating drill steels/rods, interlocked barriers, lock-out/tag-out during maintenance, pre-start audible/visual warnings (minimum 10-second delay per site risk assessment).\n- Emergency and compliance: Accessible emergency stops, no loose attire near moving parts; links to explosives regs for safe proximity; report any drill-related incidents via SAMRASS.\n- Learning point: Inadequate support or poor patterning often causes flyrock or ground failure – regular audits essential.",
-
-    support: "Installation of support systems (mesh, bolts, cables, shotcrete) is guided by rock engineering to counter ground instability.\n\nDetailed practices:\n- System selection: Temporary (e.g., friction bolts, split sets) for immediate stability vs. permanent (grouted rock bolts, mesh reinforcement) based on geotechnical strata analysis.\n- Installation techniques: Precise drilling depths, bolt torque/tensioning to manufacturer specs, resin/grout mixing/curing, washer/plate securing for load distribution.\n- Quality assurance: Routine pull testing (e.g., 10-20% of installations to verify holding capacity), corrosion protection (galvanized coatings in wet environments), density mapping per rock quality designation (RQD).\n- Advanced applications: Yielding/dynamic bolts in seismic-prone areas to absorb energy; ongoing monitoring with extensometers or visual inspections.\n- MHSA alignment: Complies with geotechnical regulations (Chapter 16 equivalent) and Chapter 8 for machinery used in installation; incident reporting through SAMRASS if failures occur.\n- Risk focus: Falls of ground (FOG) are a leading hazard – integrate with site COPs for proactive re-support.",
-
-    vent: "Main ventilation failure procedures are vital under MHSA Chapter 9 (environmental engineering) and emergency regulations.\n\nStep-by-step response:\n- Immediate actions: Fan failure alarms trigger evacuation to designated fresh air bases or refuge bays; all personnel don self-contained self-rescuers (SCSRs) for at least 30-60 minutes of breathable air.\n- Refuge protocols: Bays equipped with compressed air lines, CO2 scrubbers, potable water, communications (telephones/leaky feeders), and sustainment for 36-96 hours depending on mine depth.\n- Recovery phase: Post-fan restart, conduct multi-point gas monitoring (methane <1%, CO <50ppm, O2 >19.5%, NOx/dust levels); stepwise re-entry with competent supervision and barring of loose ground.\n- Reporting and drills: Log incidents via SAMRASS (immediate for serious events); mandatory quarterly evacuation drills to test response times.\n- Integration: Links to overall emergency preparedness COPs; prevents asphyxiation/explosions by ensuring auxiliary ventilation backups.",
-
-    rockfall: "Major rock fall event management prioritizes prevention and rapid response to falls of ground (FOG).\n\nComprehensive strategies:\n- Risk identification: Geotechnical assessments including seismic monitoring, stress mapping, and daily face/ground inspections for precursors like cracking or spalling.\n- Preventive measures: Proactive scaling/barring-down using mechanized scalers or hand tools; installation of additional supports like nets or straps in high-risk zones.\n- Post-event protocols: Immediate area evacuation/barricading; re-entry only after waiting periods (e.g., 4-8 hours), gas clearance, and re-inspection by rock engineer.\n- Investigation: Root-cause analysis (e.g., blasting-induced or natural), SAMRASS reporting for fatalities/injuries, and updates to ground control COPs.\n- MHSA compliance: Aligns with geotechnical regs and Chapter 8 for safe equipment use in response; emphasizes hierarchy of controls (eliminate via design, then engineer supports).",
-
-    traffic: "Single-lane traffic management for TMM under MHSA Chapter 8 Reg 8.10 minimizes conflicts in confined spaces.\n\nKey controls:\n- Planning: Develop site-specific traffic management COPs with one-way circuits, designated passing bays equipped with visibility aids (mirrors, lights, sensors).\n- Rules enforcement: Clear priorities (e.g., loaded vehicles uphill), speed limits tailored to road width/gradient (e.g., <20km/h in singles), pedestrian-free zones with physical barriers.\n- Communication: Mandatory two-way radios for coordination, proximity alerts integrated with collision systems.\n- Monitoring: Fleet tracking via GPS/dispatch centers; incident logging through SAMRASS for any collisions.\n- Risk reduction: Enhanced lighting/signage, training on right-of-way; prevents ~20% of TMM-related incidents in narrow haulages.",
-
-    reentry: "Unsafe re-entry prevention after blasting follows MHSA explosives regulations (Chapter 21 equivalent) and ventilation standards.\n\nStructured protocols:\n- Waiting periods: Minimum ventilation times (e.g., 30-60 minutes) for fume dispersal based on blast size/airflow rates.\n- Testing: Systematic multi-gas detection (NOx <25ppm, CO <50ppm, SO2 <2ppm) using calibrated instruments; check for irrespirable zones.\n- Misfire handling: Visual inspection for unexploded charges; safe disposal methods (re-firing or water flushing) by certified blasters.\n- Re-examination: Full face/ground assessment for instability, flyrock remnants; only authorized entry post-clearance.\n- Reporting: SAMRASS submission for any misfires or fume incidents; integrates with Chapter 8 for machinery re-start safety.\n- Emphasis: Toxic fumes cause acute health issues – rigorous testing mandatory.",
-
-    shaft_sinking: "Vertical shaft sinking is regulated under MHSA Chapter 8 Reg 8.13 (2025 amendments via GN 6054/52388 and GN 6267/52781, repealing Minerals Act Chapter 16).\n\nOperational details:\n- Methods: Controlled drill-blast-muck cycles or raise-boring; equipping with steel sets, guides, piping for services.\n- Safety systems: Overwind/underspeed protection on hoists, automatic shaft gates/doors, falling object arrestors.\n- Hoisting: Kibble or stage management with load limits; emergency man-riding/escape ladders or capsules.\n- Personnel: Competency certification for banksman (surface signaling), onsetter (underground loading), and winder drivers; training on emergency signals.\n- Compliance: Design approvals by DMRE, daily inspections/records, SAMRASS reporting for incidents like inrushes or falls; focuses on preventing catastrophic hoisting failures.",
-
-    raise_drill: "Raise drilling (boring) for vertical/inclined raises adheres to MHSA Chapter 8 Reg 8.8 general machinery rules.\n\nSafety breakdown:\n- Setup: Secure machine anchoring on stable platforms; pilot hole drilling with laser-guided alignment surveys to prevent deviation.\n- Reaming: Controlled upward/downward reaming with efficient cuttings removal via mud/flushing systems.\n- Monitoring: Remote operation/video feeds for hazardous zones; real-time dust/fume extraction to meet OELs.\n- Protections: Exclusion zones around rotating components, full guarding of drill strings/rods, lock-out/tag-out for maintenance/changes.\n- Incident management: SAMRASS reporting for any collapses or entanglements; emphasizes precision to avoid costly re-drills.",
-
-    lifting_operations: "Lifting operations (cranes, forklifts) are governed by MHSA Chapter 8 Reg 8.5 (lifting equipment and tackle).\n\nRigorous standards:\n- Inspections: Daily pre-use checks of wires, hooks, slings, limit switches; statutory thorough examinations every 6-12 months with proof load testing.\n- Planning: Competent rigger develops lift plans including weight estimates, center of gravity, wind/ground stability factors, sling configurations.\n- Execution: Use of tag lines for load control, exclusion zones below lifts, standardized hand/radio signals.\n- Compliance: Safe working load (SWL) markings, factors of safety (e.g., 5:1 for wire ropes); SAMRASS for dropped load incidents.\n- Focus: Prevents structural failures – mandatory for all surface/underground handling.",
-
-    civil_structural: "Civil and structural engineering maintains mine infrastructure integrity under MHSA structural regulations.\n\nKey aspects:\n- Design: Engineer approvals for load-bearing elements (e.g., headgears, dams) considering seismic/ground loads.\n- Construction: Quality controls like concrete compressive testing, steel welding NDT (non-destructive testing).\n- Maintenance: Corrosion protection (e.g., epoxy, cathodic); periodic inspections (visual, ultrasonic) every 1-5 years.\n- Monitoring: Strain gauges for deformation; SAMRASS reporting for collapses.\n- Compliance: Ensures resilience against environmental degradation or overloading.",
-
-    conveyor_monorail: "Conveyor belt and monorail systems fall under MHSA Chapter 8 general machinery and materials handling regs.\n\nControls:\n- Installation: Proper belt alignment/tensioning, idler spacing; guarding at all pinch points/tail ends.\n- Operation: Emergency pull-cords along entire length, automatic fire detection/suppression (e.g., infrared sensors, water deluge).\n- Maintenance: Splicing to SANS standards, idler/bearing replacements; lock-out/tag-out procedures.\n- Special: Man-riding rules (speed <2.5m/s, emergency stops); spillage controls with scrapers.\n- Reporting: SAMRASS for fires/entanglements; prevents belt-related incidents.",
-
-    compressed_air: "Compressed air reticulation under MHSA Chapter 8 Reg 8.1 (compressors and pressure vessels).\n\nEssentials:\n- Operation: Interlocked compressors with auto-shutdowns, pressure relief valves set to 110% of max.\n- Inspections: Statutory internal/external exams of receivers (every 24-36 months), thickness gauging.\n- Distribution: Leak detection programs, pressure-regulated reticulation; hose fittings with whip restraints/safety clips.\n- Safety: Lock-out for repairs; SAMRASS for bursts/explosions.\n- Risk: High-pressure hazards – mandatory training.",
-
-    pump_fluid: "Pump and fluid handling systems under MHSA Chapter 8 general machinery regulations.\n\nDetails:\n- Selection/Maintenance: Multistage pumps for high-head dewatering, submersibles for sumps; routine impeller/seal checks.\n- Systems: Pipeline integrity testing (pressure/hydro), sump auto-level controls with flood alarms.\n- Treatment: Water neutralization/settling to prevent corrosion; sludge handling with safe disposal.\n- Protections: Guarding on rotating shafts/couplings, lock-out procedures.\n- Compliance: SAMRASS for flooding incidents; critical in wet mines to avoid inundations.",
-
-    steam_pressure: "Steam generation and pressure vessels linked to MHSA Chapter 8 pressure equipment rules.\n\nProtocols:\n- Operation: Boiler feedwater treatment, low-water cut-offs, pressure/temperature monitoring.\n- Safety devices: Dual safety valves (tested quarterly), blowdown valves for sediment removal.\n- Inspections: Statutory exams (internal every 24 months), calibration of gauges.\n- Maintenance: Scheduled shutdowns for cleaning; SAMRASS for ruptures/explosions.\n- Focus: Scalding/explosion prevention in surface plants.",
-
-    electrical: "Underground electrical systems safety under MHSA Chapter 3 (electrical installations) cross-referenced with Chapter 8 guarding.\n\nFeatures:\n- Equipment: Flameproof enclosures in gassy areas, intrinsically safe circuits for instruments.\n- Protections: Earth leakage relays (<500mA trip), overload/short-circuit devices.\n- Maintenance: Cable insulation testing, switchgear/transformer bunding for oil leaks.\n- Procedures: Lockout/tagout for isolations; SAMRASS for shocks/arcs.\n- Hazard: Ignition risks in methane-prone zones – rigorous compliance essential.",
-
-    mhsa: "The Mine Health and Safety Act 1996 (MHSA) and Regulations form South Africa's comprehensive legal framework for zero-harm mining.\n\nExpanded overview:\n- Core duties: Employers conduct baseline/ongoing risk assessments, provide training/PPE, develop mandatory Codes of Practice (COPs) for high-risk areas like TMM or falls of ground.\n- Employee rights: Right to refuse dangerous work, access to health/safety info, participation in tripartite committees (mine, regional, national).\n- Structures: Mine Health and Safety Council (MHSC) advises on policy; tripartite forums for stakeholder input.\n- Incident reporting via SAMRASS (South African Mines Reportable Accidents Statistical System): Mandatory electronic submission within specified timelines (e.g., immediate for fatalities, 7 days for reportables); covers accidents, dangerous occurrences, occupational diseases; data used for national statistics, trend analysis, and DMRE investigations.\n- Enforcement: DMRE inspectors have stop-work powers, issue prohibitions/notices; penalties up to R3 million or imprisonment for non-compliance.\n- Continuous improvement: Annual health/safety programs, audits; covers all chapters from occupational health (Ch 11) to explosives (Ch 21).",
-
-    seismicity: "Seismicity and rockbursts management in high-stress/deep-level mining under MHSA geotechnical regulations.\n\nStrategies:\n- Monitoring: Real-time seismic networks with event localization, magnitude calculation, aftershock predictions.\n- Analysis: Rock mass stress modeling using numerical software; identification of burst-prone zones.\n- Controls: Energy-absorbing support (e.g., cone bolts, mesh straps); de-stressing techniques like preconditioning blasts.\n- Protocols: Automated warning systems, exclusion periods post-events, controlled re-entry with inspections.\n- Reporting: SAMRASS for bursts causing injury/damage; integrates with COPs for seismic risk.",
-
-    blasting: "Blasting and explosives handling under MHSA explosives regulations (linked to Chapter 8 machinery).\n\nDetailed processes:\n- Design: Optimized patterns (burden, spacing, delays) for fragmentation while controlling vibration/flyrock.\n- Handling: Secure storage/magazines, charging with approved primers/boosters, electronic initiation for precision.\n- Safety: Misfire procedures (wait 30 mins, then inspect/dispose); fume management via ventilation modeling.\n- Controls: Perimeter guarding, siren warnings, post-blast inspections.\n- Compliance: Blaster certification; SAMRASS reporting for premature detonations or overbreaks.",
-
-    evacuation: "Emergency evacuation procedures under MHSA emergency preparedness regulations.\n\nKey components:\n- Activation: Stench gas systems for underground alerts; self-escape routes marked with reflective signage.\n- Equipment: SCSRs for all personnel (training on donning/use); refuge chambers with air, water, first aid.\n- Execution: Designated assembly points, headcount verification via tags or electronic systems.\n- Drills: Quarterly simulations; SAMRASS for actual events like fires or outbursts.\n- Integration: Coordinated with ventilation/fire COPs for organized withdrawal.",
-
-    fire: "Fire prevention, detection, and suppression under MHSA fire regulations.\n\nMulti-layered approach:\n- Prevention: Fuel source controls, hot work permits with fire watches, no-smoking zones.\n- Detection: Heat/smoke sensors, routine patrols in high-risk areas like conveyors.\n- Suppression: Fixed systems (deluge sprinklers, foam for flammable liquids), portable extinguishers classified by fire type.\n- Response: Trained firefighting teams, ventilation shutdown/isolation to contain smoke.\n- Reporting: SAMRASS for all fires; emphasis on minimizing secondary explosions in gassy mines.",
-
-    tmm: "Trackless Mobile Machinery (TMM) operations under MHSA Chapter 8 Reg 8.10 (comprehensive TMM framework).\n\nBroad requirements:\n- Competency: Operator licensing with medical fitness, simulator/practical training.\n- Maintenance: Scheduled servicing (e.g., brakes weekly), defect reporting systems.\n- Technology: Level 9 collision avoidance (full intervention in high-risk); fleet management with fatigue detection.\n- Standards: Braking (fail-safe), visibility (360° cameras), ROPS/FOPS where needed.\n- Oversight: SAMRASS for accidents; mandatory TMM COPs to address ~30% of fatalities.",
-
-    winders: "Winding plant, shafts, and headgears under MHSA Chapter 8 Reg 8.13 (2025 amendments, detailed up to Reg 8.13.139).\n\nIn-depth regulations:\n- Design/Installation: Approved engineering drawings, capacity limits, headgear stability assessments.\n- Operation: Winder controls with depth/speed indicators, overwind/underspeed prevention devices.\n- Components: Rope selection/inspections (non-destructive testing every 6 months), drum grooving, brake systems (dual independent).\n- Safety: Arrestors for falling conveyances, emergency power backups, signaling codes (bells/lights).\n- Personnel: Certified winder drivers, banksman/onsetter training; daily logbooks for operations.\n- Emergency: Procedures for rope severance, stuck conveyances; SAMRASS reporting for malfunctions.\n- Compliance: Replaces outdated Minerals Act Ch 16; focuses on preventing vertical transport failures.",
-
+    handover: "Shift handover and pre-use checks are critical under MHSA to ensure continuity of safe operations. All incoming and outgoing crew must attend. Key elements include Section 23 fitness declarations, defect logging, early examination of workplaces, and transfer of critical hazard information. Red tags indicate locked-out equipment that must never be operated. Refuge bays must be stocked with SCSRs, water, first aid and communication. Only competent persons may declare a workplace safe.",
+    lhd: "LHD operations in declines require strict adherence to exclusion zones (minimum 2 m), speed limits (typically 15 km/h), low bucket carry height, mandatory horn signals before reversing, and seatbelt use. Only competent certificate holders may operate. Fire suppression systems are mandatory. Pedestrians must use designated refuge bays. Pre-use inspections cover brakes, lights, horn, fire suppression and visibility aids.",
+    drill: "Jumbo (face) drilling requires competent operators, continuous water flush for dust suppression (minimum 7 bar), hearing and respiratory protection, and face examination for misfires before charging. Personnel must remain behind the operator. Dry drilling is prohibited. Temporary support must be adequate before drilling proceeds. Fire suppression systems are mandatory on electro-hydraulic jumbos.",
+    support: "Permanent support (mesh, bolts, cables, shotcrete) may only be installed by competent crews according to rock-engineer-approved standards. Never stand under unsupported ground. Mesh overlap minimum 300 mm. Pull testing verifies anchorage. Temporary support must be replaced by permanent support within specified time. Yieldable systems are used in seismic areas.",
+    vent: "Main ventilation failure requires immediate evacuation using SCSRs to refuge bays or surface. Only the ventilation officer or manager may declare the emergency. Re-entry is permitted only after multi-point gas testing and clearance. Stench gas triggers evacuation. Auxiliary fans and independent air supplies in refuge chambers are critical controls. Blocking airways is prohibited.",
+    rockfall: "Major rock-fall events prioritise life safety and headcount. Areas must be barricaded and assessed by a rock engineer before entry. Inadequate support relative to geology is the primary cause. Formal investigation and SAMRASS reporting are mandatory. Proactive scaling and additional support in high-risk zones prevent falls of ground.",
+    traffic: "Single-lane traffic management under MHSA Chapter 8 Reg 8.10 uses one-way circuits, designated passing bays, speed limits, and mandatory two-way communication. Pedestrian-free zones with physical barriers reduce conflict. Fleet tracking and incident logging via SAMRASS support continuous improvement.",
+    reentry: "Unsafe re-entry after blasting is prevented by mandatory waiting periods for fume dispersal, multi-gas testing (NOx, CO, SO2), misfire inspection by certified blasters, and authorisation only by the competent shift boss after examination. SAMRASS reporting applies to misfires and fume incidents.",
+    shaft_sinking: "Vertical shaft sinking is regulated under MHSA Chapter 8 Reg 8.13. Safety systems include overwind/underspeed protection, shaft gates, falling-object arrestors, and competency certification for banksmen, onsetters and winder drivers. Design approvals, daily inspections and SAMRASS reporting are mandatory.",
+    raise_drill: "Raise boring requires secure machine anchoring, laser-guided pilot holes, continuous cuttings removal, remote monitoring, exclusion zones around rotating components, and lock-out/tag-out during maintenance. Precision prevents costly re-drills and ground collapses.",
+    lifting_operations: "Lifting operations (cranes, forklifts, tackle) fall under MHSA Chapter 8 Reg 8.5. Daily pre-use checks, statutory thorough examinations, competent lift plans, tag lines, exclusion zones and clear SWL markings are required. Dropped-load incidents are reportable via SAMRASS.",
+    civil_structural: "Civil and structural integrity of mine infrastructure (headgears, dams, etc.) requires engineer-approved designs, quality control during construction, corrosion protection, periodic inspections and monitoring. SAMRASS reporting applies to structural failures.",
+    conveyor_monorail: "Conveyor belts and monorails require proper guarding at pinch points, emergency pull-cords along the full length, automatic fire detection/suppression, lock-out/tag-out, and controlled man-riding rules. Spillage control and SAMRASS reporting for fires or entanglements are mandatory.",
+    compressed_air: "Compressed air systems under MHSA Chapter 8 Reg 8.1 require interlocked compressors, pressure relief valves, statutory vessel examinations, leak detection, whip restraints on hoses, and lock-out for repairs. High-pressure hazards demand rigorous training.",
+    pump_fluid: "Pump and fluid handling systems require multistage or submersible pumps suited to head, pipeline integrity testing, auto-level controls with flood alarms, guarding of rotating parts, and lock-out procedures. Critical for preventing inundation in wet mines.",
+    steam_pressure: "Steam generation and pressure vessels require feedwater treatment, dual safety valves, low-water cut-offs, statutory examinations, gauge calibration and scheduled maintenance. Explosion and scalding risks are controlled by these measures.",
+    electrical: "Underground electrical systems must use flameproof enclosures or intrinsically safe circuits in gassy areas, earth-leakage protection, lock-out/tag-out, and regular insulation testing. Ignition risks in methane zones demand strict compliance with MHSA Chapter 3.",
+    mhsa: "The Mine Health and Safety Act 29 of 1996 is South Africa’s primary legal framework for zero-harm mining. Employers must conduct risk assessments, provide training and PPE, and develop mandatory Codes of Practice. Employees have the right to refuse dangerous work. Incident reporting via SAMRASS is compulsory. DMRE inspectors hold stop-work powers.",
+    seismicity: "Seismicity and rockburst management uses real-time seismic networks, stress modelling, energy-absorbing support (cone bolts, mesh straps), de-stressing techniques, automated warnings and controlled re-entry. SAMRASS reporting applies to events causing injury or damage.",
+    blasting: "Blasting and explosives handling require optimised patterns, secure storage, certified blasters, misfire procedures, fume management via ventilation, perimeter control and post-blast inspections. Premature detonations and overbreaks are reportable.",
+    evacuation: "Emergency evacuation relies on stench-gas alerts, marked self-escape routes, SCSRs for all personnel, stocked refuge chambers, designated assembly points and quarterly drills. Coordination with ventilation and fire COPs is essential.",
+    fire: "Fire prevention, detection and suppression include fuel-source controls, hot-work permits, heat/smoke sensors, fixed deluge or foam systems, portable extinguishers matched to fire class, and trained response teams. Ventilation isolation contains smoke. All fires are SAMRASS-reportable.",
+    tmm: "Trackless Mobile Machinery under MHSA Chapter 8 Reg 8.10 requires operator competency certification, medical fitness, scheduled maintenance, Level 9 collision avoidance in high-risk areas, fail-safe braking, 360° visibility aids and site-specific TMM Codes of Practice. TMM incidents account for a significant proportion of fatalities.",
+    winders: "Winding plant, shafts and headgears are governed by MHSA Chapter 8 Reg 8.13 (2025 amendments). Requirements include approved designs, overwind/underspeed protection, dual independent brakes, rope NDT, certified drivers, banksmen and onsetters, emergency procedures and daily logbooks. The regulations replace outdated Minerals Act Chapter 16 provisions.",
     induction_protocol: "Induction Protocol & House Rules: Mandatory site induction covering house rules, expected behaviour, cell phone policy, questioning protocol and critical life-saving information presented by the facilitator.",
-
     company_intro: "Company Introduction – Implats: Overview of the organisation, its operations, structure and how new or returning employees fit into the broader mining house.",
-
     vision_mission: "Vision, Mission & Values: The organisation’s vision, mission statement and core values that guide safe and responsible mining behaviour.",
-
     emergency_response: "Emergency Response Protocol: Site-specific emergency response strategy, alarm types, roles and immediate actions required when an emergency is declared.",
-
     assembly_points: "Assembly Points & Emergency Exits: Location and use of designated assembly points and emergency exits that every person on site must know.",
-
     fire_first_aid: "Fire Fighting & First Aid Equipment: Location, identification and basic use of fire-fighting equipment and first-aid stations across the workplace.",
-
     life_saving_rules: "Life-Saving Rules: Non-negotiable critical rules that, if violated, can result in serious injury or fatality. Compliance is mandatory for all personnel.",
-
     ppe: "PPE Requirements: Mandatory personal protective equipment for different areas and tasks, including correct use, care and replacement of PPE.",
-
     employee_rights: "Employee Rights & Duties (MHSA): Key rights and duties under the Mine Health and Safety Act 29 of 1996, including the right to refuse dangerous work and the duty to take reasonable care.",
-
     exleave: "Ex-Leave Induction Overview: Mandatory induction for employees returning from leave. Covers emergency protocols, assembly points, site rules, cell phone policy and critical safety reminders that can save lives.",
-
     hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) Refresher: Systematic process used to identify hazards, assess risk and implement controls before work starts."
 };
 
@@ -1194,11 +716,7 @@ const moduleResources = {
     hirac: "Company HIRAC procedure and risk assessment templates. Official DMPR guidelines available in Resources."
 };
 
-
-
-// ========== Presentations (Google Slides / Docs) – linked from Learning Path ==========
 const presentations = {
-    // All modules have a Google presentation link (replace Example IDs with real public Google Slides / Docs links)
     handover: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHandover/embed?start=false&loop=false&delayms=3000",
     lhd: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLHD/embed?start=false&loop=false&delayms=3000",
     drill: "https://docs.google.com/presentation/d/e/2PACX-1vExampleDrill/embed?start=false&loop=false&delayms=3000",
@@ -1236,39 +754,6 @@ const presentations = {
     hirac: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHIRAC/embed?start=false&loop=false&delayms=3000"
 };
 
-if (!sampleQuizzes.exleave) {
-  sampleQuizzes.exleave = {name:"EX-LEAVE INDUCTION", q:[
-    {question:"During the induction protocol, what should you do with your cell phone?", options:["Keep it on silent","Switch it off","Use it only for emergencies","Leave it at home"], correct:1, explanation:"Cell phones must be switched off so they do not distract the facilitator or other attendees."},
-    {question:"If you have a question during the induction, you should:", options:["Shout it out","Put your hand in the air","Ask a colleague quietly","Wait until the end and leave"], correct:1, explanation:"Raise your hand so the facilitator can address the question without disruption."},
-    {question:"This induction contains information that could:", options:["Only help with production","Save your life","Be ignored if you are experienced","Only apply to new employees"], correct:1, explanation:"The induction contains critical safety information that could save your life."},
-    {question:"Key items discussed in the induction protocol include:", options:["Emergency response, assembly points, fire equipment and first aid locations","Only the canteen menu","Shift times only","Pay rates"], correct:0, explanation:"Emergency response strategy, assembly points, exits, fire-fighting and first-aid equipment locations are all covered."},
-    {question:"Who discusses the induction protocol?", options:["Any colleague","The facilitator","Security only","HR only"], correct:1, explanation:"The facilitator covers the full induction protocol with the group."},
-    {question:"Assembly points and emergency exits must be known by:", options:["Only supervisors","Every person on site","Only new employees","Security staff only"], correct:1, explanation:"Every person must know the location of assembly points and emergency exits."}
-  ]};
-}
-if (!sampleQuizzes.hirac) {
-  sampleQuizzes.hirac = {name:"HIRAC REFRESHER", q:[
-    {question:"What does HIRAC stand for?", options:["Hazard Identification, Risk Assessment and Control","Health Inspection, Risk Analysis and Compliance","Hazard Isolation, Risk Action and Control","High Impact Risk Assessment Checklist"], correct:0, explanation:"HIRAC is the systematic process of identifying hazards, assessing the risk and implementing controls."},
-    {question:"When should a HIRAC be performed?", options:["Only after an incident","Before starting any task that has potential hazards","Once a year during the annual audit","Only by the safety officer"], correct:1, explanation:"HIRAC must be done before work starts so controls can be put in place."},
-    {question:"The preferred hierarchy of control starts with:", options:["PPE","Administrative controls","Elimination","Engineering controls"], correct:2, explanation:"Elimination of the hazard is the most effective control."},
-    {question:"Who is responsible for participating in HIRAC?", options:["Only the safety officer","Every member of the work team","Only supervisors","Only the mine manager"], correct:1, explanation:"Everyone involved in the task should participate in identifying hazards and controls."},
-    {question:"A residual risk is:", options:["The risk before any controls","The risk that remains after controls are applied","A risk that can be ignored","Only financial risk"], correct:1, explanation:"Residual risk is what remains after controls have been implemented."}
-  ]};
-}
-
-Object.keys(moduleNames).forEach(key => {
-  if (!sampleQuizzes[key]) {
-    sampleQuizzes[key] = {name: (moduleNames[key]||key).toUpperCase(), q:[
-      {question:`What is the main focus of the "${moduleNames[key]}" module?`, options:["Safety and compliance requirements for this topic","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
-      {question:"A minimum score of ___ is required to pass any module assessment.", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark used on this platform."},
-      {question:"Who is ultimately responsible for your safety on the mine?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care for their own safety and the safety of others."}
-    ]};
-  }
-  if (!moduleDescriptions[key]) moduleDescriptions[key] = "Description not available. Consult your mine-specific procedures and official DMPR / MHSA resources.";
-  if (!moduleResources[key]) moduleResources[key] = "See the Official DMPR / MHSA Resources section above. Always consult your mine-specific procedures.";
-});
-
-// ========== STATE & LOGIC ==========
 let currentModule = null, currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
 let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
 
@@ -1284,6 +769,7 @@ const els = {
   completedModulesList: document.getElementById('completedModulesList'),
   moduleTitle: document.getElementById('moduleTitle'),
   videoPlayer: document.getElementById('videoPlayer'),
+  presentationPlayer: document.getElementById('presentationPlayer'),
   questionText: document.getElementById('questionText'),
   optionsContainer: document.getElementById('optionsContainer'),
   feedback: document.getElementById('feedback'),
@@ -1311,7 +797,7 @@ function shuffleArray(arr) {
 }
 
 function showScreen(id) {
-  ['welcomeScreen','modulesContainer','moduleView','videoScreen','quizScreen','resultsScreen',
+  ['welcomeScreen','modulesContainer','moduleView','videoScreen','presentationScreen','quizScreen','resultsScreen',
    'descriptionsScreen','resourcesScreen','dashboardScreen','certificatesScreen','aboutScreen','contactScreen']
     .forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle('d-none', s !== id); });
   updateBreadcrumb(id);
@@ -1319,11 +805,11 @@ function showScreen(id) {
 }
 
 function updateBreadcrumb(screen) {
-  const map = {modulesContainer:'Modules', moduleView: moduleNames[currentModule]||'Module', videoScreen:'Lesson', quizScreen:'Assessment', resultsScreen:'Results', descriptionsScreen:'Descriptions', resourcesScreen:'Resources', dashboardScreen:'Dashboard', certificatesScreen:'Certificates', aboutScreen:'About', contactScreen:'Contact'};
+  const map = {modulesContainer:'Modules', moduleView: moduleNames[currentModule]||'Module', videoScreen:'Lesson', presentationScreen:'Presentation', quizScreen:'Assessment', resultsScreen:'Results', descriptionsScreen:'Descriptions', resourcesScreen:'Resources', dashboardScreen:'Dashboard', certificatesScreen:'Certificates', aboutScreen:'About', contactScreen:'Contact'};
   if (!map[screen] || screen === 'welcomeScreen') { els.breadcrumbNav.classList.add('d-none'); return; }
   els.breadcrumbNav.classList.remove('d-none');
   let html = '<li class="breadcrumb-item"><a href="#" onclick="showHome();return false;">Home</a></li>';
-  if (['moduleView','videoScreen','quizScreen','resultsScreen'].includes(screen)) {
+  if (['moduleView','videoScreen','presentationScreen','quizScreen','resultsScreen'].includes(screen)) {
     html += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList();return false;">Modules</a></li>';
     if (screen !== 'moduleView') html += `<li class="breadcrumb-item"><a href="#" onclick="loadModule('${currentModule}');return false;">${moduleNames[currentModule]||'Module'}</a></li>`;
   }
@@ -1391,8 +877,6 @@ function renderFeatured() {
 function loadModule(key) {
   currentModule = key;
   els.moduleTitle.textContent = moduleNames[key] || key;
-  // Learning Path → always links to Google Doc / Slides presentation
-  // (Assessment row removed from Learning Path as previously requested)
   const path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content • Presentation</small></div>
     <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
     <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button></div></div>`;
@@ -1402,11 +886,11 @@ function loadModule(key) {
 
 function openPresentation(key) {
   const url = presentations[key] || presentations.mhsa || "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000";
-  window.open(url, '_blank');
+  els.presentationPlayer.src = url;
+  showScreen('presentationScreen');
 }
 
 function startVideo() {
-  // Watch / Review Lesson → always plays the YouTube video for the module
   const src = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
   els.videoPlayer.src = src + (src.includes('?') ? '&' : '?') + 'rel=0';
   showScreen('videoScreen');
@@ -1577,7 +1061,7 @@ function showModulesList(){
 function showDashboard(){ renderCompletedModules(); showScreen('dashboardScreen'); }
 function showAbout(){ showScreen('aboutScreen'); }
 function showContact(){ showScreen('contactScreen'); }
-function backToModule(){ els.videoPlayer.src=''; loadModule(currentModule); }
+function backToModule(){ els.videoPlayer.src=''; els.presentationPlayer.src=''; loadModule(currentModule); }
 
 document.getElementById('watchVideo')?.addEventListener('click', startVideo);
 document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
@@ -1608,66 +1092,6 @@ document.querySelector('.contact-form')?.addEventListener('submit', e => {
   e.target.reset();
 });
 
-
-/* ========== EXPANDED ASSESSMENT BANKS & PRESENTATION NOTES ==========
-   These additional questions and guidance are available for modules
-   that need deeper coverage. They are automatically merged at runtime
-   when a module has fewer than 8 questions.
-====================================================================== */
-
-const expandedQuestionBanks = {
-  handover: [
-    {question:"What must be included in a formal shift handover?", options:["Only production figures","Equipment status, hazards, defects, ongoing work and permits","Only clock-in times","Canteen menu"], correct:1, explanation:"A complete handover covers all critical safety and operational information."},
-    {question:"Section 23 of MHSA relates to:", options:["Leave days","Fitness for duty and right to refuse dangerous work","Bonus calculations","Shift patterns"], correct:1, explanation:"Section 23 covers employee rights regarding fitness and refusal of dangerous work."}
-  ],
-  lhd: [
-    {question:"What is the primary purpose of collision avoidance systems on LHDs?", options:["Increase speed","Prevent machine-to-person and machine-to-machine collisions","Improve fuel efficiency","Reduce noise"], correct:1, explanation:"Collision avoidance is a critical engineering control under TMM regulations."},
-    {question:"Pre-use checks on an LHD must include:", options:["Only fuel level","Brakes, lights, horn, fire suppression, tyres and visibility aids","Only the radio","Only the bucket"], correct:1, explanation:"Comprehensive pre-use inspection is mandatory."}
-  ],
-  evacuation: [
-    {question:"In an emergency, the first action is usually to:", options:["Continue working","Raise the alarm and follow the emergency procedure","Wait for instructions only","Leave equipment running"], correct:1, explanation:"Raise the alarm and follow the established emergency procedure."},
-    {question:"Refuge bays must contain:", options:["Only water","SCSRs, water, first aid and communication","Only a telephone","Nothing specific"], correct:1, explanation:"Refuge bays are life-saving facilities and must be fully stocked."}
-  ],
-  fire: [
-    {question:"The most common class of fire in underground mining involving electrical equipment is:", options:["Class A","Class B","Class C / Electrical","Class D"], correct:2, explanation:"Electrical fires require specific extinguishing agents."},
-    {question:"Hot work permits are required for:", options:["Any work involving open flame or spark potential","Only welding on surface","Only night shift","Never underground"], correct:0, explanation:"Hot work controls prevent ignition of flammable materials."}
-  ],
-  blasting: [
-    {question:"Minimum re-entry time after blasting is typically:", options:["5 minutes","15 minutes","30 minutes or as determined by gas clearance","1 hour fixed"], correct:2, explanation:"Re-entry is controlled by ventilation and gas monitoring results."},
-    {question:"Who may authorise re-entry after blasting?", options:["Any miner","The blaster alone","The shift boss after examination","The first person to arrive"], correct:2, explanation:"Only the competent shift boss may authorise re-entry after proper examination."}
-  ],
-  tmm: [
-    {question:"Level 9 collision avoidance means:", options:["Warning only","Full automatic intervention (braking) without operator input","Camera only","Radio communication only"], correct:1, explanation:"Level 9 provides automatic intervention to prevent collisions."},
-    {question:"TMM operators must hold:", options:["Any drivers licence","A valid competency certificate for the specific machine","No special certificate","Only a first-aid certificate"], correct:1, explanation:"Competency certification is mandatory for TMM operation."}
-  ],
-  mhsa: [
-    {question:"The Mine Health and Safety Act is Act number:", options:["Act 50 of 1991","Act 29 of 1996","Act 100 of 1998","Act 15 of 2002"], correct:1, explanation:"MHSA is Act 29 of 1996."},
-    {question:"Every employee has the right to:", options:["Ignore procedures if experienced","Refuse to do dangerous work and leave a dangerous workplace","Work without PPE if uncomfortable","Override lockouts"], correct:1, explanation:"These rights are protected under MHSA."}
-  ]
-};
-
-// Merge expanded banks into sampleQuizzes where helpful
-Object.keys(expandedQuestionBanks).forEach(key => {
-  if (sampleQuizzes[key] && sampleQuizzes[key].q) {
-    const existing = sampleQuizzes[key].q.length;
-    if (existing < 10) {
-      sampleQuizzes[key].q = sampleQuizzes[key].q.concat(expandedQuestionBanks[key]);
-    }
-  }
-});
-
-// Presentation notes (displayed as guidance)
-const presentationNotes = {
-  hirac: "HIRAC Refresher presentation covers: hierarchy of controls, risk matrix, team participation, residual risk and practical workplace examples.",
-  exleave: "Ex-Leave Induction presentation covers: emergency response, assembly points, fire & first-aid equipment locations, site rules and critical life-saving information.",
-  handover: "Shift Handover presentation covers: formal handover protocol, Section 23 declaration, defect logging and early examination requirements.",
-  mhsa: "MHSA presentation covers: key duties of employers and employees, rights under the Act, and the role of the Mine Health and Safety Inspectorate.",
-  evacuation: "Emergency Evacuation presentation covers: alarm types, escape routes, refuge bays, SCSR use and assembly point procedures.",
-  tmm: "TMM presentation covers: pre-use inspections, collision avoidance levels, pedestrian interaction and regulatory requirements.",
-  fire: "Fire Awareness presentation covers: classes of fire, extinguisher selection, hot-work permits and emergency response.",
-  blasting: "Blasting presentation covers: warning signals, exclusion zones, re-entry procedures and misfire management."
-};
-
 window.addEventListener('DOMContentLoaded', () => {
   showHome();
   renderModules();
@@ -1676,7 +1100,6 @@ window.addEventListener('DOMContentLoaded', () => {
   updateProgress();
   document.querySelector('[data-filter="all"]')?.classList.add('active');
 });
-
 </script>
 </body>
 </html>
