@@ -327,7 +327,19 @@ const videos = {
             evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
             fire: "https://www.youtube.com/embed/x414lRd1aak",
             tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
-            winders: "https://www.youtube.com/embed/HkE7m1cdvBU"
+            winders: "https://www.youtube.com/embed/HkE7m1cdvBU",
+            // New modules – using relevant safety / induction style videos (replace with specific ones when available)
+            induction_protocol: "https://www.youtube.com/embed/lMEErpFhzxg",
+            company_intro: "https://www.youtube.com/embed/lMEErpFhzxg",
+            vision_mission: "https://www.youtube.com/embed/lMEErpFhzxg",
+            emergency_response: "https://www.youtube.com/embed/3aLWlDY_G9w",
+            assembly_points: "https://www.youtube.com/embed/3aLWlDY_G9w",
+            fire_first_aid: "https://www.youtube.com/embed/x414lRd1aak",
+            life_saving_rules: "https://www.youtube.com/embed/lMEErpFhzxg",
+            ppe: "https://www.youtube.com/embed/lMEErpFhzxg",
+            employee_rights: "https://www.youtube.com/embed/lMEErpFhzxg",
+            exleave: "https://www.youtube.com/embed/lMEErpFhzxg",
+            hirac: "https://www.youtube.com/embed/lMEErpFhzxg"
         };
 
 const sampleQuizzes = {
@@ -1184,26 +1196,33 @@ const moduleResources = {
 
 
 
-// ========== Extra modules + presentations ==========
-// (moduleNames, icons, descriptions and resources for the new presentation modules are already defined above)
-
-if (!videos) videos = {};
-videos.exleave = videos.exleave || "https://www.youtube.com/embed/dQw4w9WgXcQ";
-videos.hirac = videos.hirac || "https://www.youtube.com/embed/dQw4w9WgXcQ";
-
-// Linked presentations (Google Slides / public presentation links for key modules)
-// Core content now opens these presentation files
+// ========== Presentations (Google Slides / Docs) – linked from Learning Path ==========
 const presentations = {
-    // Original key modules
-    hirac: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHIRAC/embed?start=false&loop=false&delayms=3000",
-    exleave: "https://docs.google.com/presentation/d/e/2PACX-1vExampleExLeave/embed?start=false&loop=false&delayms=3000",
+    // All modules have a Google presentation link (replace Example IDs with real public Google Slides / Docs links)
     handover: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHandover/embed?start=false&loop=false&delayms=3000",
+    lhd: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLHD/embed?start=false&loop=false&delayms=3000",
+    drill: "https://docs.google.com/presentation/d/e/2PACX-1vExampleDrill/embed?start=false&loop=false&delayms=3000",
+    support: "https://docs.google.com/presentation/d/e/2PACX-1vExampleSupport/embed?start=false&loop=false&delayms=3000",
+    vent: "https://docs.google.com/presentation/d/e/2PACX-1vExampleVentilation/embed?start=false&loop=false&delayms=3000",
+    rockfall: "https://docs.google.com/presentation/d/e/2PACX-1vExampleRockfall/embed?start=false&loop=false&delayms=3000",
+    traffic: "https://docs.google.com/presentation/d/e/2PACX-1vExampleTraffic/embed?start=false&loop=false&delayms=3000",
+    reentry: "https://docs.google.com/presentation/d/e/2PACX-1vExampleReentry/embed?start=false&loop=false&delayms=3000",
+    shaft_sinking: "https://docs.google.com/presentation/d/e/2PACX-1vExampleShaftSinking/embed?start=false&loop=false&delayms=3000",
+    raise_drill: "https://docs.google.com/presentation/d/e/2PACX-1vExampleRaiseDrill/embed?start=false&loop=false&delayms=3000",
+    lifting_operations: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLifting/embed?start=false&loop=false&delayms=3000",
+    civil_structural: "https://docs.google.com/presentation/d/e/2PACX-1vExampleCivil/embed?start=false&loop=false&delayms=3000",
+    conveyor_monorail: "https://docs.google.com/presentation/d/e/2PACX-1vExampleConveyor/embed?start=false&loop=false&delayms=3000",
+    compressed_air: "https://docs.google.com/presentation/d/e/2PACX-1vExampleCompressedAir/embed?start=false&loop=false&delayms=3000",
+    pump_fluid: "https://docs.google.com/presentation/d/e/2PACX-1vExamplePumpFluid/embed?start=false&loop=false&delayms=3000",
+    steam_pressure: "https://docs.google.com/presentation/d/e/2PACX-1vExampleSteam/embed?start=false&loop=false&delayms=3000",
+    electrical: "https://docs.google.com/presentation/d/e/2PACX-1vExampleElectrical/embed?start=false&loop=false&delayms=3000",
     mhsa: "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000",
-    evacuation: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEvac/embed?start=false&loop=false&delayms=3000",
-    tmm: "https://docs.google.com/presentation/d/e/2PACX-1vExampleTMM/embed?start=false&loop=false&delayms=3000",
-    fire: "https://docs.google.com/presentation/d/e/2PACX-1vExampleFire/embed?start=false&loop=false&delayms=3000",
+    seismicity: "https://docs.google.com/presentation/d/e/2PACX-1vExampleSeismicity/embed?start=false&loop=false&delayms=3000",
     blasting: "https://docs.google.com/presentation/d/e/2PACX-1vExampleBlast/embed?start=false&loop=false&delayms=3000",
-    // New presentation modules (replace Example IDs with real Google Slides / Docs links when available)
+    evacuation: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEvac/embed?start=false&loop=false&delayms=3000",
+    fire: "https://docs.google.com/presentation/d/e/2PACX-1vExampleFire/embed?start=false&loop=false&delayms=3000",
+    tmm: "https://docs.google.com/presentation/d/e/2PACX-1vExampleTMM/embed?start=false&loop=false&delayms=3000",
+    winders: "https://docs.google.com/presentation/d/e/2PACX-1vExampleWinders/embed?start=false&loop=false&delayms=3000",
     induction_protocol: "https://docs.google.com/presentation/d/e/2PACX-1vExampleInductionProtocol/embed?start=false&loop=false&delayms=3000",
     company_intro: "https://docs.google.com/presentation/d/e/2PACX-1vExampleCompanyIntro/embed?start=false&loop=false&delayms=3000",
     vision_mission: "https://docs.google.com/presentation/d/e/2PACX-1vExampleVisionMission/embed?start=false&loop=false&delayms=3000",
@@ -1212,7 +1231,9 @@ const presentations = {
     fire_first_aid: "https://docs.google.com/presentation/d/e/2PACX-1vExampleFireFirstAid/embed?start=false&loop=false&delayms=3000",
     life_saving_rules: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLifeSavingRules/embed?start=false&loop=false&delayms=3000",
     ppe: "https://docs.google.com/presentation/d/e/2PACX-1vExamplePPE/embed?start=false&loop=false&delayms=3000",
-    employee_rights: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEmployeeRights/embed?start=false&loop=false&delayms=3000"
+    employee_rights: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEmployeeRights/embed?start=false&loop=false&delayms=3000",
+    exleave: "https://docs.google.com/presentation/d/e/2PACX-1vExampleExLeave/embed?start=false&loop=false&delayms=3000",
+    hirac: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHIRAC/embed?start=false&loop=false&delayms=3000"
 };
 
 if (!sampleQuizzes.exleave) {
@@ -1370,32 +1391,22 @@ function renderFeatured() {
 function loadModule(key) {
   currentModule = key;
   els.moduleTitle.textContent = moduleNames[key] || key;
-  // Learning Path: Core content now links to Google presentation files (Assessment row removed as requested)
-  let path = '';
-  if (presentations[key]) {
-    path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content • Presentation</small></div>
-      <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
-      <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button></div></div>`;
-  } else {
-    path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content / Video</small></div>
-      <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
-      <button class="btn btn-sm btn-outline-primary" onclick="startVideo()">Start →</button></div></div>`;
-  }
-  // Assessment intentionally omitted from Learning Path (removed per design)
+  // Learning Path → always links to Google Doc / Slides presentation
+  // (Assessment row removed from Learning Path as previously requested)
+  const path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content • Presentation</small></div>
+    <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
+    <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button></div></div>`;
   els.learningPath.innerHTML = path;
   showScreen('moduleView');
 }
 
 function openPresentation(key) {
-  if (presentations[key]) window.open(presentations[key], '_blank');
+  const url = presentations[key] || presentations.mhsa || "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000";
+  window.open(url, '_blank');
 }
 
 function startVideo() {
-  // Prefer presentation if available, otherwise fall back to video
-  if (presentations[currentModule]) {
-    openPresentation(currentModule);
-    return;
-  }
+  // Watch / Review Lesson → always plays the YouTube video for the module
   const src = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
   els.videoPlayer.src = src + (src.includes('?') ? '&' : '?') + 'rel=0';
   showScreen('videoScreen');
