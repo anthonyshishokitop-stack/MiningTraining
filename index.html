@@ -183,10 +183,17 @@ body {
   border: 3px solid var(--primary);
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   border-radius: 12px;
+  background: #000;
 }
-/* Hide as much YouTube chrome as possible inside the player */
-#videoPlayer {
+#videoPlayer, #presentationPlayer {
   border: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Smooth screen transitions */
+#content-area > div {
+  transition: opacity 0.2s ease;
 }
 @media (max-width: 767.98px) {
   body { padding-top: 56px; }
@@ -271,7 +278,9 @@ body {
 </div>
 
 <div id="presentationScreen" class="d-none">
-<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3"><iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe></div>
+<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3">
+  <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe>
+</div>
 <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
 </div>
 
@@ -908,10 +917,33 @@ function shuffleArray(arr) {
   return a;
 }
 
+/* ========== MEDIA CONTROL ========== */
+function stopAllMedia() {
+  // Immediately stop YouTube video (kills audio)
+  if (els.videoPlayer) {
+    els.videoPlayer.src = '';
+  }
+  // Clear presentation so previous slide does not flash
+  if (els.presentationPlayer) {
+    els.presentationPlayer.src = '';
+  }
+}
+
 function showScreen(id) {
+  // Always stop media when leaving video or presentation screens
+  if (id !== 'videoScreen') {
+    if (els.videoPlayer) els.videoPlayer.src = '';
+  }
+  if (id !== 'presentationScreen') {
+    if (els.presentationPlayer) els.presentationPlayer.src = '';
+  }
+
   ['welcomeScreen','modulesContainer','moduleView','videoScreen','presentationScreen','quizScreen','resultsScreen',
    'descriptionsScreen','resourcesScreen','dashboardScreen','certificatesScreen','aboutScreen','contactScreen']
-    .forEach(s => { const el = document.getElementById(s); if (el) el.classList.toggle('d-none', s !== id); });
+    .forEach(s => {
+      const el = document.getElementById(s);
+      if (el) el.classList.toggle('d-none', s !== id);
+    });
   updateBreadcrumb(id);
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -977,18 +1009,31 @@ function loadModule(key) {
 }
 
 function openPresentation(key) {
+  // Clear previous presentation first to avoid flash of old content
+  els.presentationPlayer.src = '';
+  
   const url = presentations[key] || presentations.mhsa || "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000";
-  els.presentationPlayer.src = url;
+  
+  // Small delay ensures the previous iframe is fully unloaded before loading the new one
+  setTimeout(() => {
+    els.presentationPlayer.src = url;
+  }, 80);
+  
   showScreen('presentationScreen');
 }
 
 function startVideo() {
-  // Clean embed: reduce YouTube branding, hide annotations, enable sound (user-initiated)
-  // modestbranding=1, iv_load_policy=3, rel=0, playsinline=1
-  // No mute so audio works when the user presses play
+  // Clear any previous video first
+  els.videoPlayer.src = '';
+  
   const base = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
+  // Clean parameters – reduce branding, hide annotations, enable sound when user presses play
   const params = "rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1&disablekb=0&cc_load_policy=0";
-  els.videoPlayer.src = base + (base.includes("?") ? "&" : "?") + params;
+  
+  setTimeout(() => {
+    els.videoPlayer.src = base + (base.includes("?") ? "&" : "?") + params;
+  }, 50);
+  
   showScreen("videoScreen");
 }
 
@@ -996,7 +1041,7 @@ function startQuiz() {
   const nameInput = document.getElementById('userFullName');
   const userName = nameInput?.value.trim();
   if (!userName) {
-    alert('Please enter your full name before starting the assessment.\\nThis name will appear on your certificate.');
+    alert('Please enter your full name before starting the assessment.\nThis name will appear on your certificate.');
     nameInput?.focus();
     return;
   }
@@ -1094,7 +1139,7 @@ function downloadCertificate() {
   doc.setFontSize(13); doc.setTextColor(0); doc.text(`Score: ${scores[currentModule].percentage}%`, 105, 135, {align:'center'});
   doc.setFontSize(11); doc.setTextColor(80); doc.text(`Completed on: ${scores[currentModule].timestamp}`, 105, 150, {align:'center'});
   doc.setFontSize(9); doc.setTextColor(120); doc.text('Act 29 Mining Training Platform • MHSA Compliant • Issued ' + new Date().toLocaleDateString('en-ZA'), 105, 170, {align:'center'});
-  doc.save(`Certificate_${(moduleNames[currentModule]||currentModule).replace(/\\s+/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
+  doc.save(`Certificate_${(moduleNames[currentModule]||currentModule).replace(/\s+/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
 function showCertificates() {
@@ -1123,7 +1168,7 @@ function showDescriptions() {
   const accordion = document.getElementById('moduleAccordion');
   accordion.innerHTML = '';
   Object.entries(moduleNames).forEach(([key,name],i) => {
-    const desc = (moduleDescriptions[key]||'Description not available.').replace(/\\n/g,'<br>');
+    const desc = (moduleDescriptions[key]||'Description not available.').replace(/\n/g,'<br>');
     const item = document.createElement('div');
     item.className = 'accordion-item';
     item.innerHTML = `<h2 class="accordion-header"><button class="accordion-button ${i?'collapsed':''}" type="button" data-bs-toggle="collapse" data-bs-target="#desc${i}">${name}</button></h2>
@@ -1147,7 +1192,11 @@ function showModulesList(){
 function showDashboard(){ renderCompletedModules(); showScreen('dashboardScreen'); }
 function showAbout(){ showScreen('aboutScreen'); }
 function showContact(){ showScreen('contactScreen'); }
-function backToModule(){ els.videoPlayer.src=''; els.presentationPlayer.src=''; loadModule(currentModule); }
+
+function backToModule(){
+  stopAllMedia();          // ← forces immediate stop of video audio + clears presentation
+  loadModule(currentModule);
+}
 
 document.getElementById('watchVideo')?.addEventListener('click', startVideo);
 document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
