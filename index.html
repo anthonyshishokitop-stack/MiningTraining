@@ -4,71 +4,203 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Act 29 Mining Training | MHSA Compliant Induction & Competency Platform</title>
-<meta name="description" content="Industry-ready Mining Health & Safety training and induction platform. MHSA compliant modules, assessments and certificates for mining companies.">
+<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform. Audit-ready certificates, structured assessments and Zero Harm training for mining companies and contractors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root {
-  --primary: #0d6efd;
-  --primary-dark: #0b5ed7;
-  --success: #198754;
-  --warning: #fd7e14;
-  --danger: #dc3545;
-  --dark: #0f172a;
-  --muted: #94a3b8;
-  --card-bg: rgba(255,255,255,0.95);
-  --border: rgba(13,110,253,0.25);
+  --bg-deep: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-card: #ffffff;
+  --bg-card-soft: rgba(255,255,255,0.97);
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --primary-soft: #dbeafe;
+  --accent: #f59e0b;
+  --accent-dark: #d97706;
+  --success: #059669;
+  --danger: #dc2626;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border: rgba(29,78,216,0.18);
+  --radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,0.18);
 }
+
 * { box-sizing: border-box; }
+
 body {
-  background-color: #0a0a0a;
+  background-color: var(--bg-deep);
   background-image:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+    linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.95) 100%),
     url('bg-miners.png');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  padding-top: 64px;
-  color: #fff;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding-top: 68px;
+  color: #f8fafc;
+  line-height: 1.55;
+  font-size: 15.5px;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ===== NAVBAR ===== */
 .navbar {
-  background: #fff !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  height: 64px;
+  background: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(15,23,42,0.12);
+  height: 68px;
+  border-bottom: 1px solid #e2e8f0;
 }
-.logo-title { font-weight: 800; color: var(--primary); font-size: 1.35rem; }
-.nav-link { font-weight: 500; color: #334155 !important; padding: .5rem .85rem !important; border-radius: 8px; }
-.nav-link:hover, .nav-link.active { color: var(--primary) !important; background: #e9f1ff; }
+.logo-title {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.28rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.logo-sub {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: -2px;
+}
+.nav-link {
+  font-weight: 500;
+  color: #334155 !important;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  transition: all 0.18s ease;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--primary) !important;
+  background: var(--primary-soft);
+}
+
+/* ===== CONTENT AREA ===== */
 #content-area {
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 1.25rem 1rem 3rem;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  min-height: calc(100vh - 100px);
+  padding: 1.5rem 1.1rem 3.5rem;
+  min-height: calc(100vh - 110px);
 }
+
+/* ===== HERO ===== */
 .welcome-hero {
-  background: rgba(0,0,0,0.45);
-  border-radius: 20px;
-  padding: 3rem 2rem;
-  color: #fff;
+  background: linear-gradient(145deg, rgba(30,41,59,0.92), rgba(15,23,42,0.95));
+  border: 1px solid rgba(148,163,184,0.12);
+  border-radius: 18px;
+  padding: 3.2rem 2.2rem;
+  color: #f8fafc;
   text-align: center;
-  margin-bottom: 2rem;
-  backdrop-filter: blur(4px);
+  margin-bottom: 2.25rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
 }
-.welcome-hero h1 { font-weight: 800; font-size: clamp(1.8rem,5vw,2.75rem); margin-bottom: .5rem; color: #60a5fa; }
+.welcome-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(29,78,216,0.18), transparent 55%);
+  pointer-events: none;
+}
+.welcome-hero h1 {
+  font-weight: 800;
+  font-size: clamp(1.85rem, 4.8vw, 2.65rem);
+  margin-bottom: 0.6rem;
+  color: #f8fafc;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+.welcome-hero .lead {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+.welcome-hero .sub {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+.zero-harm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.35);
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+.trust-badge {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #e2e8f0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}
+
+/* ===== MODULE CARDS ===== */
+.modules-header {
+  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+  color: #fff;
+  padding: 1.85rem 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.75rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.modules-header h2 {
+  font-weight: 800;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+.stat-badge {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.42rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
 .module-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  border: 2px solid var(--border);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: all .25s;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.22s ease;
   height: 100%;
   cursor: pointer;
   overflow: hidden;
@@ -76,114 +208,206 @@ body {
   flex-direction: column;
 }
 .module-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(13,110,253,0.25);
-  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: #93c5fd;
 }
 .module-card .card-top {
-  height: 90px;
-  background: linear-gradient(135deg,#e9f1ff,#bfdbfe);
+  height: 86px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.module-card.advanced .card-top { background: linear-gradient(135deg,#fff0e6,#fed7aa); }
-.module-card .card-top i { font-size: 2.25rem; color: #2563eb; }
-.module-card.advanced .card-top i { color: #e65c00; }
+.module-card.advanced .card-top {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+}
+.module-card .card-top i {
+  font-size: 2.1rem;
+  color: #1d4ed8;
+}
+.module-card.advanced .card-top i {
+  color: #c2410c;
+}
 .module-card .card-body {
-  padding: 1.15rem 1.25rem 1.35rem;
+  padding: 1.1rem 1.2rem 1.3rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  color: #0f172a;
+  color: var(--text-primary);
 }
-.module-name { font-weight: 700; font-size: 1.05rem; color: #0f172a; margin-bottom: .35rem; line-height: 1.35; }
-.module-meta { font-size: .8rem; color: #64748b; margin-bottom: .75rem; }
-.progress-wrap { margin-top: auto; }
-.progress { height: 6px; border-radius: 99px; background: #e2e8f0; }
-.progress-bar { background: var(--primary); border-radius: 99px; }
-.progress-text { font-size: .78rem; color: #64748b; margin-top: .35rem; display: flex; justify-content: space-between; }
-.modules-header {
-  background: linear-gradient(135deg,#1e40af,#3b82f6);
-  color: #fff;
-  padding: 2rem 1.5rem;
-  border-radius: 16px;
-  margin-bottom: 1.75rem;
-  text-align: center;
+.module-name {
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
-.stat-badge {
-  background: rgba(255,255,255,.2);
-  border: 1px solid rgba(255,255,255,.25);
-  color: #fff;
-  border-radius: 999px;
-  padding: .45rem 1rem;
-  font-size: .9rem;
+.module-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.7rem;
   font-weight: 500;
 }
+.progress {
+  height: 6px;
+  border-radius: 99px;
+  background: #e2e8f0;
+}
+.progress-bar {
+  background: var(--primary);
+  border-radius: 99px;
+}
+.progress-text {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+/* ===== ACTION CARDS ===== */
 .action-card {
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 1.85rem 1.4rem;
   text-align: center;
-  transition: all .25s;
+  transition: all 0.22s ease;
   cursor: pointer;
   height: 100%;
-  color: #0f172a;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
 }
 .action-card:hover {
-  border-color: var(--primary);
-  box-shadow: 0 12px 32px rgba(13,110,253,0.2);
-  transform: translateY(-6px);
+  border-color: #93c5fd;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
 }
-.action-card i { font-size: 2.75rem; margin-bottom: .75rem; }
+.action-card i {
+  font-size: 2.5rem;
+  margin-bottom: 0.65rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.6rem 1.35rem;
+  letter-spacing: -0.01em;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+.btn-accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1c1917;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.6rem 1.35rem;
+}
+.btn-accent:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #fff;
+}
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+  border-radius: 10px;
+  font-weight: 600;
+}
+.btn-outline-primary:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.btn-outline-light {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ===== LEARNING PATH ===== */
 .learning-item {
   background: #fff;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: .75rem;
-  color: #0f172a;
+  margin-bottom: 0.7rem;
+  color: var(--text-primary);
+  transition: border-color 0.15s;
 }
-.learning-item:hover { border-color: #93c5fd; background: #f8fafc; }
-.learning-item .title { font-weight: 600; color: var(--primary); font-size: 1rem; }
-.badge-type { font-size: .75rem; padding: .3em .7em; border-radius: 999px; font-weight: 600; }
-.badge-lesson { background: #dcfce7; color: #166534; }
-.btn-primary { background: var(--primary); border-color: var(--primary); font-weight: 600; border-radius: 10px; padding: .55rem 1.25rem; }
-.btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
-.btn-outline-primary { color: var(--primary); border-color: var(--primary); border-radius: 10px; font-weight: 600; }
-.btn-outline-primary:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
-.quiz-option { border-radius: 12px !important; padding: .9rem 1.1rem !important; text-align: left !important; font-weight: 500; border-width: 1.5px !important; }
+.learning-item:hover {
+  border-color: #93c5fd;
+  background: #f8fafc;
+}
+.learning-item .title {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.98rem;
+}
+.badge-type {
+  font-size: 0.72rem;
+  padding: 0.28em 0.7em;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.badge-lesson {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* ===== QUIZ & RESULTS ===== */
+.quiz-option {
+  border-radius: 10px !important;
+  padding: 0.9rem 1.1rem !important;
+  text-align: left !important;
+  font-weight: 500;
+  border-width: 1.5px !important;
+  font-size: 0.95rem;
+}
 .result-card {
   background: #fff;
-  border-radius: 20px;
+  border-radius: 16px;
   border: 1px solid #e2e8f0;
-  padding: 2rem;
+  padding: 2.2rem 1.8rem;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,.08);
-  color: #0f172a;
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
 }
-.footer {
-  background: #0f172a;
-  color: #94a3b8;
-  padding: 2.5rem 1rem;
-  margin-top: 3rem;
-  text-align: center;
-  font-size: .9rem;
+
+/* ===== GENERAL CARDS ===== */
+.card {
+  background: var(--bg-card-soft);
+  color: var(--text-primary);
+  border-radius: var(--radius);
+  border: 1px solid #e2e8f0;
 }
-.breadcrumb { background: transparent; padding: 0; margin-bottom: 1.25rem; font-size: .9rem; }
-.breadcrumb a { color: #93c5fd; }
-.section-title { font-weight: 800; font-size: 1.5rem; margin-bottom: 1.25rem; color: #fff; }
-.card { background: var(--card-bg); color: #0f172a; }
+.section-title {
+  font-weight: 800;
+  font-size: 1.45rem;
+  margin-bottom: 1.25rem;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+}
+
+/* ===== VIDEO / PRESENTATION ===== */
 .ratio.ratio-16x9 {
-  border: 3px solid var(--primary);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  border: 2px solid rgba(29,78,216,0.45);
+  box-shadow: var(--shadow-lg);
   border-radius: 12px;
   background: #000;
+  overflow: hidden;
 }
 #videoPlayer, #presentationPlayer {
   border: none;
@@ -191,14 +415,64 @@ body {
   height: 100%;
   display: block;
 }
-/* Mobile navbar – clean collapse */
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0b1220;
+  color: #94a3b8;
+  padding: 2.4rem 1rem;
+  margin-top: 3.5rem;
+  text-align: center;
+  font-size: 0.88rem;
+  border-top: 1px solid rgba(148,163,184,0.08);
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1.15rem;
+  font-size: 0.88rem;
+}
+.breadcrumb a { color: #93c5fd; }
+.breadcrumb-item.active { color: #cbd5e1; }
+
+/* ===== DASHBOARD STATS ===== */
+.stat-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+}
+.stat-card .value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.stat-card .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+/* ===== RESOURCES ===== */
+.resources-card .card-header {
+  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background: #fff;
     border-radius: 0 0 12px 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    padding: 0.75rem 1rem 1rem;
-    margin-top: 0;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+    padding: 0.7rem 1rem 1.1rem;
   }
   .navbar-nav .nav-link {
     padding: 0.7rem 1rem !important;
@@ -207,216 +481,376 @@ body {
   }
   .navbar-nav .nav-link:hover,
   .navbar-nav .nav-link:active {
-    background: #e9f1ff;
+    background: var(--primary-soft);
   }
 }
 @media (max-width: 767.98px) {
-  body { padding-top: 56px; }
-  #content-area { padding: 1rem .75rem 2.5rem; }
-  .welcome-hero { padding: 2rem 1.25rem; border-radius: 16px; }
-  .modules-header { padding: 1.5rem 1rem; }
-  .module-card .card-top { height: 80px; }
-  .learning-item { flex-direction: column; align-items: flex-start; gap: .75rem; }
-  .learning-item .actions { width: 100%; display: flex; justify-content: flex-end; }
+  body { padding-top: 60px; }
+  #content-area { padding: 1.1rem 0.8rem 2.8rem; }
+  .welcome-hero { padding: 2.2rem 1.3rem; border-radius: 14px; }
+  .modules-header { padding: 1.4rem 1.1rem; }
+  .module-card .card-top { height: 76px; }
+  .learning-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+  .learning-item .actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .logo-sub { display: none; }
 }
 </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top">
-<div class="container-fluid px-3 px-lg-4">
-<a class="navbar-brand logo-title" href="#" onclick="showHome();return false;"><i class="bi bi-shield-check me-1"></i> Act 29 Mining</a>
-<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarContent">
-<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-<li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="descriptions">Descriptions</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="resources">Resources</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
-<li class="nav-item"><a class="nav-link" href="#" data-screen="contact">Contact</a></li>
-</ul>
-</div>
-</div>
+  <div class="container-fluid px-3 px-lg-4">
+    <a class="navbar-brand logo-title" href="#" onclick="showHome();return false;">
+      <i class="bi bi-shield-check"></i>
+      <span>
+        Act 29 Mining
+        <span class="logo-sub">MHSA Compliant Platform</span>
+      </span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="descriptions">Descriptions</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="resources">Resources</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-screen="contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <div id="content-area">
-<nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none"><ol class="breadcrumb" id="breadcrumbItems"></ol></nav>
+  <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
+    <ol class="breadcrumb" id="breadcrumbItems"></ol>
+  </nav>
 
-<div id="welcomeScreen">
-<div class="welcome-hero">
-<h1>Mining Training Platform</h1>
-<p class="lead mb-2">MHSA Compliant • Workplace Safety Induction & Competency</p>
-<p class="mb-4 opacity-90">Professional e-learning for mining companies and contractors</p>
-<button class="btn btn-primary btn-lg px-4" onclick="showModulesList()"><i class="bi bi-grid-3x3-gap me-2"></i>View All Modules</button>
-</div>
+  <!-- HOME -->
+  <div id="welcomeScreen">
+    <div class="welcome-hero">
+      <div class="zero-harm-badge">
+        <i class="bi bi-shield-exclamation"></i> Zero Harm Commitment
+      </div>
+      <h1>Mining Induction &amp; Competency Platform</h1>
+      <p class="lead">MHSA Act 29 of 1996 Compliant • Structured Workplace Safety Training</p>
+      <p class="sub">Enterprise-grade e-learning for mining houses and contractors. Audit-ready certificates, competency tracking and Section 10 alignment.</p>
+      <button class="btn btn-accent btn-lg px-4 me-2" onclick="showModulesList()">
+        <i class="bi bi-grid-3x3-gap me-2"></i>View All Modules
+      </button>
+      <button class="btn btn-outline-light btn-lg px-4" onclick="showDashboard()">
+        <i class="bi bi-speedometer2 me-2"></i>My Dashboard
+      </button>
+      <div class="trust-row">
+        <span class="trust-badge"><i class="bi bi-check2-circle me-1"></i> MHSA Aligned</span>
+        <span class="trust-badge"><i class="bi bi-building me-1"></i> DMPR Referenced</span>
+        <span class="trust-badge"><i class="bi bi-file-earmark-lock me-1"></i> Audit-Ready Records</span>
+        <span class="trust-badge"><i class="bi bi-phone me-1"></i> Mobile First</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULES LIST -->
+  <div id="modulesContainer" class="d-none">
+    <div class="modules-header">
+      <h2>Competency Modules</h2>
+      <p class="mb-3 opacity-90" style="font-size:0.95rem;">Critical safety and operational modules • Minimum 70% pass mark</p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <div class="dropdown">
+          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="basic">Core</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li>
+          </ul>
+        </div>
+        <input type="search" class="form-control form-control-sm" id="searchInput" placeholder="Search modules…" style="max-width:220px;border-radius:999px;border:none;">
+        <div class="dropdown">
+          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="sortLabel">Sort: Name A–Z</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li>
+            <li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li>
+            <li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="moduleGrid" class="row g-3 g-md-4"></div>
+    <div class="card mt-4 border-0 shadow-sm">
+      <div class="card-body text-center py-3 text-dark">
+        <strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">35</span>
+        &nbsp;•&nbsp; <strong>Pass rate:</strong> <span id="overallPass">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE VIEW -->
+  <div id="moduleView" class="d-none">
+    <h2 class="section-title text-center mb-2" id="moduleTitle"></h2>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Complete the lesson and assessment to demonstrate competency and generate your certificate</p>
+    <div class="mb-4 text-center">
+      <label for="userFullName" class="form-label fw-semibold text-white">Full Name (appears on certificate)</label>
+      <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" placeholder="Enter your full legal name" style="max-width:420px;background:rgba(255,255,255,0.97);border-radius:10px;">
+    </div>
+    <div class="row g-3 g-md-4 justify-content-center mb-4">
+      <div class="col-md-5">
+        <div class="action-card" id="watchVideo">
+          <i class="bi bi-play-circle-fill text-primary"></i>
+          <h5 class="fw-bold mb-1">Watch / Review Lesson</h5>
+          <p class="text-muted small mb-0">Training content and key safety controls</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="action-card" id="startQuiz">
+          <i class="bi bi-check2-circle text-success"></i>
+          <h5 class="fw-bold mb-1">Take Assessment</h5>
+          <p class="text-muted small mb-0">Demonstrate knowledge (70% pass mark)</p>
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-3 p-md-4">
+        <h5 class="fw-bold mb-3 text-dark">Learning Path</h5>
+        <div id="learningPath"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div id="videoScreen" class="d-none">
+    <div class="ratio ratio-16x9 mb-3">
+      <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button>
+    </div>
+  </div>
+
+  <!-- PRESENTATION -->
+  <div id="presentationScreen" class="d-none">
+    <div class="ratio ratio-16x9 mb-3">
+      <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quizScreen" class="d-none">
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-3 p-md-5">
+        <h4 class="text-center mb-4 fw-bold text-dark" id="questionText"></h4>
+        <div id="optionsContainer" class="row g-2 g-md-3"></div>
+        <div id="feedback" class="mt-4 text-center fw-semibold fs-5"></div>
+        <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-outline-light" onclick="backToModule()">Exit Assessment</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="resultsScreen" class="d-none">
+    <div class="result-card">
+      <h2 id="resultTitle" class="display-6 fw-bold mb-3"></h2>
+      <div class="progress mb-4 mx-auto" style="height:14px;max-width:320px">
+        <div id="progressBar" class="progress-bar" style="width:0%"></div>
+      </div>
+      <div class="row g-3 mb-4 justify-content-center">
+        <div class="col-4 col-md-3">
+          <div class="p-3 bg-light rounded-3">
+            <div class="fs-4 fw-bold text-primary" id="scorePercent">0%</div>
+            <small class="text-muted">Score</small>
+          </div>
+        </div>
+        <div class="col-4 col-md-3">
+          <div class="p-3 bg-light rounded-3">
+            <div class="fs-4 fw-bold text-success" id="correctCount">0</div>
+            <small class="text-muted">Correct</small>
+          </div>
+        </div>
+        <div class="col-4 col-md-3">
+          <div class="p-3 bg-light rounded-3">
+            <div class="fs-4 fw-bold" id="timeDisplay">0:00</div>
+            <small class="text-muted">Time</small>
+          </div>
+        </div>
+      </div>
+      <p id="passMessage" class="lead fw-semibold mb-2"></p>
+      <p id="completionTimestamp" class="text-muted small mb-4"></p>
+      <div id="certificateSection" class="border border-success rounded-3 p-4 bg-success-subtle d-none">
+        <h5 class="text-success mb-2"><i class="bi bi-award me-2"></i>Certificate Ready</h5>
+        <p class="mb-3">You have successfully demonstrated competency in this module.</p>
+        <button onclick="downloadCertificate()" class="btn btn-success btn-lg">
+          <i class="bi bi-download me-2"></i>Download Certificate (PDF)
+        </button>
+      </div>
+      <div class="mt-4">
+        <button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry Assessment</button>
+        <button class="btn btn-primary" onclick="showModulesList()">Back to Modules</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTIONS -->
+  <div id="descriptionsScreen" class="d-none">
+    <h2 class="section-title text-center">Module Descriptions</h2>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Authoritative summaries aligned to MHSA requirements and operational practice</p>
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-3 p-md-4">
+        <div id="moduleAccordion" class="accordion accordion-flush"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div id="resourcesScreen" class="d-none">
+    <h2 class="section-title text-center">Official Resources</h2>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Authoritative DMPR / Mine Health and Safety Inspectorate guidelines that support the competency modules on this platform</p>
+    <div class="card border-0 shadow-sm rounded-4 mb-4 resources-card">
+      <div class="card-header text-white py-3">
+        <h5 class="mb-0"><i class="bi bi-shield-check me-2"></i>DMPR / MHSA Resource Centre</h5>
+      </div>
+      <div class="card-body text-dark">
+        <p class="small text-muted mb-3">These documents form the regulatory backbone of the training content. Always refer to the latest published versions on the official DMPR site.</p>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h6 class="text-primary fw-bold">Core Legislation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/Services/Mine-Health-and-Safety/Resource-Centre" target="_blank" rel="noopener">DMPR Resource Centre (MHSA &amp; Regulations)</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Mine Health and Safety Resources (full list)</a></li>
+            </ul>
+            <h6 class="text-primary fw-bold mt-3">Rock Fall / Ground Control</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=InIIhwTLKPw%3d&portalid=0" target="_blank" rel="noopener">Combat Rock Fall and Rock Burst (Tabular Metalliferous)</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=r3DGewu_TBU%3d&portalid=0" target="_blank" rel="noopener">Combat Roof Fall Accidents (Underground Coal)</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=W3Ps0BryExE%3d&portalid=0" target="_blank" rel="noopener">Ground Vibrations, Noise, Air-blast &amp; Flyrock (2024)</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6 class="text-primary fw-bold">Mobile Machinery &amp; Traffic</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf" target="_blank" rel="noopener">Road and Rail Safety Management Guideline (2025)</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Trackless Mobile Machinery related guidelines</a></li>
+            </ul>
+            <h6 class="text-primary fw-bold mt-3">Emergency, Fire &amp; Rights</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=EROfYUsImbg%3d&portalid=0" target="_blank" rel="noopener">Right to Refuse Dangerous Work &amp; Leave Dangerous Working Places</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=acRrQ_c4URY%3d&portalid=0" target="_blank" rel="noopener">Emergency Preparedness and Response</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=nPgvxYylCJ4%3d&portalid=0" target="_blank" rel="noopener">Management of Self-contained Self-rescuers</a></li>
+            </ul>
+            <h6 class="text-primary fw-bold mt-3">Occupational Hygiene</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=bJMDmdcUcXE%3d&portalid=0" target="_blank" rel="noopener">Personal Exposure to Airborne Pollutants</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="small mt-3 mb-0"><strong>Source:</strong> <a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">DMPR Mine Health and Safety Resources</a> &nbsp;|&nbsp; Contact: mhsi@dmpr.gov.za</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboardScreen" class="d-none">
+    <h2 class="section-title text-center">My Dashboard</h2>
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="value text-primary" id="dashCompleted">0/35</div>
+          <div class="label">Completed</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="value text-success" id="dashPassRate">0%</div>
+          <div class="label">Pass Rate</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="value text-primary" id="dashCertificates">0</div>
+          <div class="label">Certificates</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="value" id="dashTotal">35</div>
+          <div class="label">Total Modules</div>
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white fw-bold text-dark">Recently Completed</div>
+      <ul class="list-group list-group-flush" id="completedModulesList"></ul>
+    </div>
+  </div>
+
+  <!-- CERTIFICATES -->
+  <div id="certificatesScreen" class="d-none">
+    <h2 class="section-title text-center">My Certificates</h2>
+    <div id="certList" class="list-group list-group-flush"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="aboutScreen" class="d-none">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
+      <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
+      <p class="mb-3">This platform delivers structured, MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for mining houses and contractors that require a reliable, mobile-friendly method to induct employees, demonstrate competency and maintain audit-ready records.</p>
+      <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require a minimum 70% pass mark. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
+      <p class="mb-0"><strong>Zero Harm</strong> is the guiding principle. The platform exists to reduce incidents through consistent, high-quality safety education that is practical, measurable and scalable across sites and contractors.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contactScreen" class="d-none">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
+      <h2 class="fw-bold mb-3">Contact</h2>
+      <p class="text-muted mb-4">For deployment enquiries, enterprise licensing or technical support, please complete the form below.</p>
+      <form class="contact-form" style="max-width:520px">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Name</label>
+          <input type="text" class="form-control" required style="border-radius:8px;">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Email</label>
+          <input type="email" class="form-control" required style="border-radius:8px;">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Message</label>
+          <textarea class="form-control" rows="4" required style="border-radius:8px;"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </div>
 </div>
 
-<div id="modulesContainer" class="d-none">
-<div class="modules-header">
-<h2>Modules Overview</h2>
-<p class="mb-3 opacity-90">Critical Competency Modules • MHSA Compliant</p>
-<div class="d-flex flex-wrap justify-content-center gap-2">
-<div class="dropdown"><button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
-<ul class="dropdown-menu"><li><a class="dropdown-item" href="#" data-filter="all">All</a></li><li><a class="dropdown-item" href="#" data-filter="basic">Basic</a></li><li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li></ul></div>
-<input type="search" class="form-control form-control-sm" id="searchInput" placeholder="Search modules…" style="max-width:220px;border-radius:999px">
-<div class="dropdown"><button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="sortLabel">Sort: Name A–Z</button>
-<ul class="dropdown-menu"><li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li><li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li><li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li></ul></div>
-</div></div>
-<div id="moduleGrid" class="row g-3 g-md-4"></div>
-<div class="card mt-4 border-0 shadow-sm"><div class="card-body text-center py-3 text-dark"><strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">35</span> &nbsp;•&nbsp; <strong>Pass rate:</strong> <span id="overallPass">0%</span></div></div>
-</div>
-
-<div id="moduleView" class="d-none">
-<h2 class="section-title text-center mb-2" id="moduleTitle"></h2>
-<p class="text-center text-white-50 mb-4">Complete the lesson and assessment to earn your certificate</p>
-<div class="mb-4 text-center"><label for="userFullName" class="form-label fw-semibold text-white">Your Full Name (for certificate)</label>
-<input type="text" class="form-control form-control-lg mx-auto" id="userFullName" placeholder="Enter your full name" style="max-width:420px;background:rgba(255,255,255,0.95)"></div>
-<div class="row g-3 g-md-4 justify-content-center mb-4">
-<div class="col-md-5"><div class="action-card" id="watchVideo"><i class="bi bi-play-circle-fill text-primary"></i><h5 class="fw-bold mb-1">Watch / Review Lesson</h5><p class="text-muted small mb-0">Training content & key safety points</p></div></div>
-<div class="col-md-5"><div class="action-card" id="startQuiz"><i class="bi bi-check2-circle text-success"></i><h5 class="fw-bold mb-1">Take Assessment</h5><p class="text-muted small mb-0">Demonstrate knowledge (70% pass mark)</p></div></div>
-</div>
-<div class="card border-0 shadow-sm"><div class="card-body p-3 p-md-4"><h5 class="fw-bold mb-3 text-dark">Learning Path</h5><div id="learningPath"></div></div></div>
-</div>
-
-<div id="videoScreen" class="d-none">
-<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3">
-  <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"></iframe>
-</div>
-<div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
-</div>
-
-<div id="presentationScreen" class="d-none">
-<div class="ratio ratio-16x9 bg-dark rounded-4 overflow-hidden shadow mb-3">
-  <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe>
-</div>
-<div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
-</div>
-
-<div id="quizScreen" class="d-none">
-<div class="card border-0 shadow-sm rounded-4"><div class="card-body p-3 p-md-5">
-<h4 class="text-center mb-4 fw-bold text-dark" id="questionText"></h4>
-<div id="optionsContainer" class="row g-2 g-md-3"></div>
-<div id="feedback" class="mt-4 text-center fw-semibold fs-5"></div>
-<button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
-</div></div>
-<div class="text-center mt-3"><button class="btn btn-outline-light" onclick="backToModule()">Exit Assessment</button></div>
-</div>
-
-<div id="resultsScreen" class="d-none">
-<div class="result-card">
-<h2 id="resultTitle" class="display-6 fw-bold mb-3"></h2>
-<div class="progress mb-4 mx-auto" style="height:14px;max-width:320px"><div id="progressBar" class="progress-bar" style="width:0%"></div></div>
-<div class="row g-3 mb-4 justify-content-center">
-<div class="col-4 col-md-3"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-primary" id="scorePercent">0%</div><small class="text-muted">Score</small></div></div>
-<div class="col-4 col-md-3"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-success" id="correctCount">0</div><small class="text-muted">Correct</small></div></div>
-<div class="col-4 col-md-3"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold" id="timeDisplay">0:00</div><small class="text-muted">Time</small></div></div>
-</div>
-<p id="passMessage" class="lead fw-semibold mb-2"></p>
-<p id="completionTimestamp" class="text-muted small mb-4"></p>
-<div id="certificateSection" class="border border-success rounded-3 p-4 bg-success-soft d-none">
-<h5 class="text-success mb-2"><i class="bi bi-award me-2"></i>Certificate Ready</h5>
-<p class="mb-3">You have successfully demonstrated competency in this module.</p>
-<button onclick="downloadCertificate()" class="btn btn-success btn-lg"><i class="bi bi-download me-2"></i>Download Certificate (PDF)</button>
-</div>
-<div class="mt-4"><button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry Assessment</button>
-<button class="btn btn-primary" onclick="showModulesList()">Back to Modules</button></div>
-</div></div>
-
-<div id="descriptionsScreen" class="d-none">
-<h2 class="section-title text-center">Module Descriptions</h2>
-<div class="card border-0 shadow-sm rounded-4"><div class="card-body p-3 p-md-4"><div id="moduleAccordion" class="accordion accordion-flush"></div></div></div>
-</div>
-
-<div id="resourcesScreen" class="d-none">
-<h2 class="section-title text-center">Additional Resources</h2>
-<p class="text-center text-white-50 mb-4">Official DMPR / MHSA guidelines aligned to this training platform</p>
-<div class="card border-0 shadow-sm rounded-4 mb-4">
-<div class="card-header bg-primary text-white py-3"><h5 class="mb-0"><i class="bi bi-shield-check me-2"></i>Official DMPR / Mine Health & Safety Resources</h5></div>
-<div class="card-body text-dark">
-<p class="small text-muted">Authoritative guidelines and documents from the Department of Mineral and Petroleum Resources (DMPR) and Mine Health and Safety Inspectorate that align with the competency modules on this platform.</p>
-<div class="row g-3">
-<div class="col-md-6">
-<h6 class="text-primary">Core Legislation</h6>
-<ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.dmpr.gov.za/Services/Mine-Health-and-Safety/Resource-Centre" target="_blank" rel="noopener">DMPR Resource Centre (MHSA & Regulations)</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Mine Health and Safety Resources (full list)</a></li>
-</ul>
-<h6 class="text-primary mt-3">Rock Fall / Ground Control</h6>
-<ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=InIIhwTLKPw%3d&portalid=0" target="_blank" rel="noopener">Combat Rock Fall and Rock Burst (Tabular Metalliferous)</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=r3DGewu_TBU%3d&portalid=0" target="_blank" rel="noopener">Combat Roof Fall Accidents (Underground Coal)</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=W3Ps0BryExE%3d&portalid=0" target="_blank" rel="noopener">Ground Vibrations, Noise, Air-blast & Flyrock (2024)</a></li>
-</ul>
-</div>
-<div class="col-md-6">
-<h6 class="text-primary">Mobile Machinery & Traffic</h6>
-<ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf" target="_blank" rel="noopener">Road and Rail Safety Management Guideline (2025)</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Trackless Mobile Machinery related guidelines</a></li>
-</ul>
-<h6 class="text-primary mt-3">Emergency, Fire & Rights</h6>
-<ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=EROfYUsImbg%3d&portalid=0" target="_blank" rel="noopener">Right to Refuse Dangerous Work & Leave Dangerous Working Places</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=acRrQ_c4URY%3d&portalid=0" target="_blank" rel="noopener">Emergency Preparedness and Response</a></li>
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=nPgvxYylCJ4%3d&portalid=0" target="_blank" rel="noopener">Management of Self-contained Self-rescuers</a></li>
-</ul>
-<h6 class="text-primary mt-3">Occupational Hygiene</h6>
-<ul class="list-unstyled small">
-<li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=bJMDmdcUcXE%3d&portalid=0" target="_blank" rel="noopener">Personal Exposure to Airborne Pollutants</a></li>
-</ul>
-</div>
-</div>
-<p class="small mt-3 mb-0"><strong>Source:</strong> <a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">DMPR Mine Health and Safety Resources</a> &nbsp;|&nbsp; Contact: mhsi@dmpr.gov.za</p>
-</div>
-</div>
-</div>
-
-<div id="dashboardScreen" class="d-none">
-<h2 class="section-title text-center">My Dashboard</h2>
-<div class="row g-3 mb-4">
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-primary" id="dashCompleted">0/35</div><div class="small text-muted">Completed</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-success" id="dashPassRate">0%</div><div class="small text-muted">Pass Rate</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold text-primary" id="dashCertificates">0</div><div class="small text-muted">Certificates</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm text-center p-3"><div class="fs-3 fw-bold" id="dashTotal">35</div><div class="small text-muted">Total Modules</div></div></div>
-</div>
-<div class="card border-0 shadow-sm"><div class="card-header bg-white fw-bold text-dark">Recently Completed</div>
-<ul class="list-group list-group-flush" id="completedModulesList"></ul></div>
-</div>
-
-<div id="certificatesScreen" class="d-none">
-<h2 class="section-title text-center">My Certificates</h2>
-<div id="certList" class="list-group list-group-flush"></div>
-</div>
-
-<div id="aboutScreen" class="d-none">
-<div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
-<h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
-<p>This platform delivers MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for both large mining houses and smaller contractors who need a reliable, mobile-friendly way to induct employees and track competency.</p>
-<p class="mb-0">All assessments require a minimum 70% pass mark. Successful completion generates a downloadable PDF certificate with the learner’s name, module title, score and timestamp.</p>
-</div></div>
-
-<div id="contactScreen" class="d-none">
-<div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
-<h2 class="fw-bold mb-3">Contact Us</h2>
-<form class="contact-form" style="max-width:520px">
-<div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" required></div>
-<div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
-<div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div>
-<button type="submit" class="btn btn-primary">Send Message</button>
-</form></div></div>
-</div>
-
-<footer class="footer"><div class="container"><p class="mb-1">Act 29 Mining Training Platform • MHSA Compliant</p>
-<p class="mb-0 small">© 2025–2026 • For workplace induction and competency development</p></div></footer>
+<footer class="footer">
+  <div class="container">
+    <p class="mb-1 fw-semibold" style="color:#e2e8f0;">Act 29 Mining Training Platform • MHSA Compliant</p>
+    <p class="mb-0 small">© 2025–2026 • Workplace induction and competency development for the South African mining industry</p>
+    <p class="mb-0 small mt-1">www.miningtraining.ac.za</p>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+/* ========== DATA (unchanged functional core) ========== */
 const moduleNames = {
   handover: "Shift Handover",
   lhd: "LHD Tramming in Decline",
@@ -665,7 +1099,7 @@ const sampleQuizzes = {
     {question:"Who declares ventilation failure?", options:["Anyone","Ventilation officer or manager"], correct:1, explanation:"Only the appointed ventilation officer or mine manager may declare the emergency."},
     {question:"Can you re-enter after fan restart?", options:["Yes","Only after gas tests clear"], correct:1, explanation:"Re-entry only after full atmosphere testing and clearance by ventilation officer."},
     {question:"Primary cause of ventilation failure?", options:["Power cut","Fan mechanical failure"], correct:0, explanation:"Both are common, but procedures cover all causes including power loss."},
-    {question:"SCSR duration underground?", options:["10 min","Minimum 30 min"], correct:1, explanation:"Self-contained self-rescuers provide at least 30 minutes of oxygen."},
+    {question:"SCSR duration underground?", options:["10 min","Minimum 30 min"], correct:1, explanation:"Self-contained self-rescuers provide a minimum of 30 minutes of breathable air."},
     {question:"Who monitors return air?", options:["Anyone","Ventilation department"], correct:1, explanation:"Continuous monitoring of return airways for methane and contaminants."},
     {question:"Backup ventilation system?", options:["Optional","Mandatory auxiliary fans"], correct:1, explanation:"Critical areas must have backup ventilation systems."},
     {question:"Stench gas used for?", options:["Odour control","Emergency warning"], correct:1, explanation:"Stench gas release triggers immediate evacuation."},
@@ -931,7 +1365,6 @@ function shuffleArray(arr) {
   return a;
 }
 
-/* ========== MEDIA CONTROL ========== */
 function stopAllMedia() {
   if (els.videoPlayer) els.videoPlayer.src = '';
   if (els.presentationPlayer) els.presentationPlayer.src = '';
@@ -946,7 +1379,6 @@ function closeMobileMenu() {
 }
 
 function showScreen(id) {
-  // Always stop media when leaving video or presentation screens
   if (id !== 'videoScreen') {
     if (els.videoPlayer) els.videoPlayer.src = '';
   }
@@ -1100,13 +1532,13 @@ function finishQuiz() {
   const timestamp = new Date().toLocaleString('en-ZA', {timeZone:'Africa/Johannesburg'});
   scores[currentModule] = {percentage, passed, timestamp, correct:correctAnswers, total:currentQuiz.length};
   localStorage.setItem('miningScores', JSON.stringify(scores));
-  els.resultTitle.textContent = passed ? 'Congratulations! You Passed' : 'Assessment Not Passed';
+  els.resultTitle.textContent = passed ? 'Congratulations — Competency Demonstrated' : 'Assessment Not Passed';
   els.progressBar.style.width = percentage + '%';
   els.progressBar.className = 'progress-bar ' + (passed ? 'bg-success' : 'bg-danger');
   els.scorePercent.textContent = percentage + '%';
   els.correctCount.textContent = correctAnswers + ' / ' + currentQuiz.length;
   els.timeDisplay.textContent = Math.floor(timeTaken/60) + ':' + String(timeTaken%60).padStart(2,'0');
-  els.passMessage.textContent = passed ? 'You have successfully completed this module.' : 'A minimum of 70% is required. Please review the lesson and try again.';
+  els.passMessage.textContent = passed ? 'You have successfully completed this module and may download your certificate.' : 'A minimum of 70% is required. Please review the lesson content and attempt the assessment again.';
   els.completionTimestamp.textContent = 'Completed: ' + timestamp;
   els.certificateSection.classList.toggle('d-none', !passed);
   showScreen('resultsScreen');
@@ -1134,14 +1566,15 @@ function downloadCertificate() {
   if (!jsPDF) { alert('PDF library failed to load.'); return; }
   const userName = localStorage.getItem('currentUserNameForCertificate') || 'Participant';
   const doc = new jsPDF();
-  doc.setFontSize(22); doc.setTextColor(13,110,253); doc.text('Certificate of Completion', 105, 40, {align:'center'});
+  doc.setFontSize(22); doc.setTextColor(29,78,216); doc.text('Certificate of Competency', 105, 40, {align:'center'});
   doc.setFontSize(14); doc.setTextColor(0); doc.text('This is to certify that', 105, 60, {align:'center'});
   doc.setFontSize(22); doc.setFont('helvetica','bold'); doc.text(userName.toUpperCase(), 105, 78, {align:'center'});
-  doc.setFontSize(14); doc.setFont('helvetica','normal'); doc.text('has successfully completed the module', 105, 95, {align:'center'});
-  doc.setFontSize(18); doc.setTextColor(25,135,84); doc.text(moduleNames[currentModule]||currentModule, 105, 115, {align:'center'});
+  doc.setFontSize(14); doc.setFont('helvetica','normal'); doc.text('has successfully demonstrated competency in', 105, 95, {align:'center'});
+  doc.setFontSize(18); doc.setTextColor(5,150,105); doc.text(moduleNames[currentModule]||currentModule, 105, 115, {align:'center'});
   doc.setFontSize(13); doc.setTextColor(0); doc.text(`Score: ${scores[currentModule].percentage}%`, 105, 135, {align:'center'});
   doc.setFontSize(11); doc.setTextColor(80); doc.text(`Completed on: ${scores[currentModule].timestamp}`, 105, 150, {align:'center'});
   doc.setFontSize(9); doc.setTextColor(120); doc.text('Act 29 Mining Training Platform • MHSA Compliant • Issued ' + new Date().toLocaleDateString('en-ZA'), 105, 170, {align:'center'});
+  doc.setFontSize(8); doc.text('www.miningtraining.ac.za', 105, 178, {align:'center'});
   doc.save(`Certificate_${(moduleNames[currentModule]||currentModule).replace(/\s+/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
@@ -1150,7 +1583,7 @@ function showCertificates() {
   container.innerHTML = '';
   const completed = Object.entries(scores).filter(([_,d])=>d.passed).sort((a,b)=>new Date(b[1].timestamp)-new Date(a[1].timestamp));
   if (!completed.length) {
-    container.innerHTML = `<div class="alert alert-info text-center">You haven't earned any certificates yet.<br>Complete modules to get started!</div>`;
+    container.innerHTML = `<div class="alert alert-info text-center">You have not yet earned any certificates.<br>Complete modules with a minimum 70% score to generate certificates.</div>`;
     return;
   }
   completed.forEach(([key,data]) => {
@@ -1198,13 +1631,12 @@ function backToModule(){
   loadModule(currentModule);
 }
 
-/* ========== NAV LINKS – close mobile menu after click ========== */
+/* ========== NAV LINKS ========== */
 document.querySelectorAll('.navbar-nav .nav-link[data-screen]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const screen = link.dataset.screen;
-    closeMobileMenu();           // ← immediately hide the open menu on mobile
-
+    closeMobileMenu();
     switch(screen) {
       case 'home': showHome(); break;
       case 'modules': showModulesList(); break;
@@ -1243,7 +1675,7 @@ document.querySelectorAll('[data-sort]').forEach(item => {
 });
 document.querySelector('.contact-form')?.addEventListener('submit', e => {
   e.preventDefault();
-  alert('Thank you! Your message has been received.');
+  alert('Thank you. Your message has been received and will be responded to shortly.');
   e.target.reset();
 });
 
