@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Act 29 Mining Training | MHSA Compliant Platform</title>
-<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform with admin module assignment.">
+<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform with admin controls.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -42,11 +42,9 @@ body {
 .nav-link:hover, .nav-link.active { color: var(--primary) !important; background: #dbeafe; }
 #content-area { max-width: 1240px; margin: 0 auto; padding: 1.5rem 1.1rem 3.5rem; min-height: calc(100vh - 110px); }
 
-/* Auth Screen */
 #authScreen { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; }
 .auth-card { background: #fff; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); color: var(--text-primary); }
 
-/* Cards & Modules */
 .module-card { background: #fff; border-radius: var(--radius); border: 1px solid #e2e8f0; box-shadow: var(--shadow-sm); transition: all .22s; height: 100%; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
 .module-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #93c5fd; }
 .module-card .card-top { height: 86px; background: linear-gradient(135deg, #eff6ff, #dbeafe); display: flex; align-items: center; justify-content: center; }
@@ -80,9 +78,6 @@ body {
 .result-card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 2.2rem 1.8rem; text-align: center; box-shadow: var(--shadow-md); color: var(--text-primary); }
 
 .footer { background: #0b1220; color: #94a3b8; padding: 2.4rem 1rem; margin-top: 3.5rem; text-align: center; font-size: .88rem; }
-.breadcrumb { background: transparent; padding: 0; margin-bottom: 1.15rem; font-size: .88rem; }
-.breadcrumb a { color: #93c5fd; }
-
 .admin-table th { background: #f1f5f9; font-weight: 600; font-size: .85rem; }
 .module-check { width: 18px; height: 18px; cursor: pointer; }
 
@@ -95,7 +90,6 @@ body {
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid px-3 px-lg-4">
     <a class="navbar-brand logo-title" href="#" onclick="showHome();return false;">
@@ -106,16 +100,14 @@ body {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" id="navLinks">
-        <!-- populated by JS -->
-      </ul>
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" id="navLinks"></ul>
     </div>
   </div>
 </nav>
 
 <div id="content-area">
 
-  <!-- ==================== AUTH SCREEN ==================== -->
+  <!-- AUTH -->
   <div id="authScreen">
     <div class="auth-card">
       <div class="text-center mb-4">
@@ -124,7 +116,6 @@ body {
         <p class="text-muted small mb-0">MHSA Compliant Induction & Competency</p>
       </div>
       <div id="authError" class="alert alert-danger d-none py-2"></div>
-      
       <div class="mb-3">
         <label class="form-label fw-semibold">Full Name</label>
         <input type="text" id="authName" class="form-control" placeholder="For certificates">
@@ -143,7 +134,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== HOME ==================== -->
+  <!-- HOME -->
   <div id="welcomeScreen" class="d-none">
     <div class="text-center mb-4">
       <div class="d-inline-flex align-items-center gap-2 bg-warning bg-opacity-25 text-warning px-3 py-1 rounded-pill mb-3">
@@ -156,7 +147,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== MODULES LIST ==================== -->
+  <!-- MODULES -->
   <div id="modulesContainer" class="d-none">
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
       <h2 class="section-title mb-0">My Assigned Modules</h2>
@@ -171,7 +162,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== MODULE VIEW ==================== -->
+  <!-- MODULE VIEW -->
   <div id="moduleView" class="d-none">
     <h2 class="section-title text-center mb-2" id="moduleTitle"></h2>
     <p class="text-center text-white-50 mb-4">Complete the lesson and assessment to demonstrate competency</p>
@@ -185,17 +176,9 @@ body {
     </div>
   </div>
 
-  <!-- VIDEO / PRESENTATION / QUIZ / RESULTS (same as before) -->
   <div id="videoScreen" class="d-none">
     <div class="ratio ratio-16x9 mb-3" style="border:2px solid rgba(29,78,216,.45);border-radius:12px;overflow:hidden;">
       <iframe id="videoPlayer" src="" allowfullscreen></iframe>
-    </div>
-    <div class="text-center"><button class="btn btn-outline-light" onclick="backToModule()">← Back</button></div>
-  </div>
-
-  <div id="presentationScreen" class="d-none">
-    <div class="ratio ratio-16x9 mb-3" style="border:2px solid rgba(29,78,216,.45);border-radius:12px;overflow:hidden;">
-      <iframe id="presentationPlayer" src="" allowfullscreen></iframe>
     </div>
     <div class="text-center"><button class="btn btn-outline-light" onclick="backToModule()">← Back</button></div>
   </div>
@@ -223,7 +206,7 @@ body {
       <p id="completionTimestamp" class="text-muted small mb-4"></p>
       <div id="certificateSection" class="border border-success rounded-3 p-4 d-none">
         <h5 class="text-success mb-2"><i class="bi bi-award me-2"></i>Certificate Ready</h5>
-        <button onclick="downloadCertificate()" class="btn btn-success btn-lg"><i class="bi bi-download me-2"></i>Download PDF</button>
+        <button onclick="downloadCertificate()" class="btn btn-success btn-lg"><i class="bi bi-download me-2"></i>Download Professional Certificate</button>
       </div>
       <div class="mt-4">
         <button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry</button>
@@ -232,7 +215,7 @@ body {
     </div>
   </div>
 
-  <!-- ==================== DASHBOARD ==================== -->
+  <!-- DASHBOARD -->
   <div id="dashboardScreen" class="d-none">
     <h2 class="section-title text-center">My Dashboard</h2>
     <div class="row g-3 mb-4">
@@ -246,15 +229,15 @@ body {
     </div>
   </div>
 
-  <!-- ==================== CERTIFICATES ==================== -->
+  <!-- CERTIFICATES -->
   <div id="certificatesScreen" class="d-none">
     <h2 class="section-title text-center">My Certificates</h2>
     <div id="certList" class="list-group list-group-flush"></div>
   </div>
 
-  <!-- ==================== ADMIN PANEL ==================== -->
+  <!-- ADMIN PANEL -->
   <div id="adminScreen" class="d-none">
-    <h2 class="section-title text-center mb-4">Admin Panel – User & Module Management</h2>
+    <h2 class="section-title text-center mb-4">Admin Panel</h2>
     
     <div class="card border-0 mb-4">
       <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
@@ -269,8 +252,8 @@ body {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Assigned Modules</th>
-                <th>Actions</th>
+                <th>Modules</th>
+                <th style="min-width:280px">Actions</th>
               </tr>
             </thead>
             <tbody id="adminUsersTable"></tbody>
@@ -279,10 +262,10 @@ body {
       </div>
     </div>
 
-    <!-- Module Assignment Modal (inline) -->
-    <div id="assignModal" class="card border-0 d-none">
+    <!-- Assign Modules -->
+    <div id="assignModal" class="card border-0 d-none mb-4">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-        <span>Assign Modules to: <strong id="assignUserName"></strong></span>
+        <span>Assign Modules → <strong id="assignUserName"></strong></span>
         <button class="btn btn-sm btn-light" onclick="closeAssignModal()">Close</button>
       </div>
       <div class="card-body">
@@ -292,28 +275,39 @@ body {
         </div>
       </div>
     </div>
+
+    <!-- View User Progress -->
+    <div id="progressModal" class="card border-0 d-none">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        <span>Progress for: <strong id="progressUserName"></strong></span>
+        <button class="btn btn-sm btn-light" onclick="closeProgressModal()">Close</button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Completed</th>
+              </tr>
+            </thead>
+            <tbody id="progressTableBody"></tbody>
+          </table>
+        </div>
+        <p id="progressEmpty" class="text-muted text-center d-none">No progress recorded yet.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- ABOUT / CONTACT (simplified) -->
+  <!-- ABOUT -->
   <div id="aboutScreen" class="d-none">
     <div class="card border-0 p-4 p-md-5 text-dark">
       <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
-      <p>This platform delivers MHSA-aligned competency modules with role-based module assignment. Admins control which modules each user can access. All assessments require 70% to pass and generate audit-ready certificates.</p>
+      <p>This platform delivers MHSA-aligned competency modules with role-based module assignment and full admin oversight. Admins control which modules each user can access and can view detailed progress records. All assessments require 70% to pass and generate professional audit-ready certificates.</p>
     </div>
   </div>
-
-  <div id="contactScreen" class="d-none">
-    <div class="card border-0 p-4 p-md-5 text-dark">
-      <h2 class="fw-bold mb-3">Contact</h2>
-      <form class="contact-form" style="max-width:480px" onsubmit="event.preventDefault();alert('Message received.');this.reset();">
-        <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
-        <div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div>
-        <button type="submit" class="btn btn-primary">Send</button>
-      </form>
-    </div>
-  </div>
-
 </div>
 
 <footer class="footer">
@@ -324,12 +318,11 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="module">
-  // ========== FIREBASE INIT (YOUR CONFIG) ==========
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
            onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
   import { getFirestore, doc, setDoc, getDoc, collection, getDocs, updateDoc,
-           serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+           serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAHEqek56zhgzhixoGHr17wFa52h9-F2f8",
@@ -345,7 +338,7 @@ body {
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // ========== MODULE DATA (same as original) ==========
+  // ========== MODULE DATA ==========
   const moduleNames = {
     handover: "Shift Handover", lhd: "LHD Tramming in Decline", drill: "Face Drilling (Jumbo)",
     support: "Install Mesh & Bolts", vent: "Ventilation", rockfall: "Major Rock Fall Event",
@@ -378,7 +371,6 @@ body {
     employee_rights:"bi-hand-thumbs-up", exleave:"bi-person-walking", hirac:"bi-exclamation-triangle"
   };
 
-  // Minimal sample quizzes (you can expand later)
   const sampleQuizzes = {};
   Object.keys(moduleNames).forEach(key => {
     sampleQuizzes[key] = { name: moduleNames[key].toUpperCase(), q: [
@@ -390,11 +382,12 @@ body {
 
   // ========== STATE ==========
   let currentUser = null;
-  let userProfile = null;          // {role, assignedModules, fullName...}
+  let userProfile = null;
   let scores = {};
   let currentModule = null;
   let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
-  let assigningToUid = null;       // for admin modal
+  let assigningToUid = null;
+  let viewingProgressUid = null;
 
   // ========== AUTH ==========
   onAuthStateChanged(auth, async (user) => {
@@ -428,7 +421,6 @@ body {
     }
 
     try {
-      // Check if this is the first user → make them admin
       const usersSnap = await getDocs(collection(db, "users"));
       const isFirstUser = usersSnap.empty;
 
@@ -439,7 +431,7 @@ body {
         fullName: name,
         email: email,
         role: isFirstUser ? "admin" : "user",
-        assignedModules: isFirstUser ? Object.keys(moduleNames) : [], // admin gets all
+        assignedModules: isFirstUser ? Object.keys(moduleNames) : [],
         createdAt: serverTimestamp(),
         lastLogin: serverTimestamp()
       });
@@ -467,12 +459,10 @@ body {
     const snap = await getDoc(doc(db, "users", uid));
     if (snap.exists()) {
       userProfile = snap.data();
-      // update lastLogin
       await updateDoc(doc(db, "users", uid), { lastLogin: serverTimestamp() });
     } else {
       userProfile = { role: "user", assignedModules: [], fullName: currentUser.displayName || "" };
     }
-    // Pre-fill name field
     const nameInput = document.getElementById('userFullName');
     if (nameInput) nameInput.value = userProfile.fullName || currentUser.displayName || "";
   }
@@ -482,22 +472,21 @@ body {
     try {
       const snap = await getDocs(collection(db, "progress", uid, "modules"));
       snap.forEach(d => { scores[d.id] = d.data(); });
-    } catch (e) { console.warn("Progress load:", e); }
+    } catch (e) { console.warn(e); }
     updateProgress();
   }
 
   async function saveProgress(moduleKey, data) {
     if (!currentUser) return;
     await setDoc(doc(db, "progress", currentUser.uid, "modules", moduleKey), {
-      ...data,
-      updatedAt: serverTimestamp()
+      ...data, updatedAt: serverTimestamp()
     }, { merge: true });
   }
 
-  // ========== NAVIGATION ==========
+  // ========== NAV ==========
   function buildNav() {
     const isAdmin = userProfile?.role === "admin";
-    const links = `
+    document.getElementById('navLinks').innerHTML = `
       <li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
@@ -506,18 +495,17 @@ body {
       <li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
       <li class="nav-item"><a class="nav-link" href="#" id="btnLogout">Logout</a></li>
     `;
-    document.getElementById('navLinks').innerHTML = links;
 
     document.querySelectorAll('[data-screen]').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
-        const screen = link.dataset.screen;
-        if (screen === "home") showHome();
-        else if (screen === "modules") showModulesList();
-        else if (screen === "dashboard") showDashboard();
-        else if (screen === "certificates") showCertificates();
-        else if (screen === "admin") showAdmin();
-        else if (screen === "about") showScreen("aboutScreen");
+        const s = link.dataset.screen;
+        if (s === "home") showHome();
+        else if (s === "modules") showModulesList();
+        else if (s === "dashboard") showDashboard();
+        else if (s === "certificates") showCertificates();
+        else if (s === "admin") showAdmin();
+        else if (s === "about") showScreen("aboutScreen");
       });
     });
 
@@ -528,8 +516,8 @@ body {
   }
 
   function hideAllScreens() {
-    ["welcomeScreen","modulesContainer","moduleView","videoScreen","presentationScreen",
-     "quizScreen","resultsScreen","dashboardScreen","certificatesScreen","adminScreen","aboutScreen","contactScreen"]
+    ["welcomeScreen","modulesContainer","moduleView","videoScreen","quizScreen",
+     "resultsScreen","dashboardScreen","certificatesScreen","adminScreen","aboutScreen"]
       .forEach(id => document.getElementById(id)?.classList.add("d-none"));
   }
 
@@ -542,7 +530,7 @@ body {
   function showHome() { showScreen("welcomeScreen"); }
   function showDashboard() { renderCompletedModules(); showScreen("dashboardScreen"); }
 
-  // ========== MODULES (filtered by assignment) ==========
+  // ========== MODULES ==========
   function getVisibleModules() {
     if (userProfile?.role === "admin") return Object.keys(moduleNames);
     return userProfile?.assignedModules || [];
@@ -591,12 +579,9 @@ body {
     showScreen("modulesContainer");
   }
 
-  document.getElementById("searchInput")?.addEventListener("input", e => {
-    renderModules(e.target.value.trim());
-  });
+  document.getElementById("searchInput")?.addEventListener("input", e => renderModules(e.target.value.trim()));
 
   function loadModule(key) {
-    // Security: only allow if assigned or admin
     if (userProfile?.role !== "admin" && !(userProfile?.assignedModules||[]).includes(key)) {
       alert("You do not have access to this module.");
       return;
@@ -606,9 +591,8 @@ body {
     showScreen("moduleView");
   }
 
-  // ========== QUIZ & CERTIFICATE (same logic, now saves to Firestore) ==========
+  // ========== QUIZ ==========
   document.getElementById("watchVideo")?.addEventListener("click", () => {
-    // For demo we just show a placeholder – replace with real video URLs later
     document.getElementById("videoPlayer").src = "https://www.youtube.com/embed/lMEErpFhzxg?rel=0";
     showScreen("videoScreen");
   });
@@ -651,8 +635,7 @@ body {
   }
 
   function selectAnswer(selected, correct, explanation) {
-    const buttons = document.querySelectorAll(".quiz-option");
-    buttons.forEach((btn, i) => {
+    document.querySelectorAll(".quiz-option").forEach((btn, i) => {
       btn.disabled = true;
       if (i === correct) btn.classList.add("btn-success");
       else if (i === selected) btn.classList.add("btn-danger");
@@ -690,8 +673,6 @@ body {
   function updateProgress() {
     const visible = getVisibleModules();
     const done = Object.keys(scores).filter(k => visible.includes(k)).length;
-    const passed = Object.values(scores).filter(v => v?.passed && visible.includes(Object.keys(scores).find(k => scores[k] === v))).length;
-    // simpler count
     const passedCount = Object.entries(scores).filter(([k,v]) => v.passed && visible.includes(k)).length;
     const rate = done ? Math.round((passedCount / done) * 100) : 0;
 
@@ -739,34 +720,115 @@ body {
     showScreen("certificatesScreen");
   }
 
+  // ========== PROFESSIONAL CERTIFICATE ==========
   window.downloadCertificate = function() {
     if (!currentModule || !scores[currentModule]) return;
     const { jsPDF } = window.jspdf;
     const userName = localStorage.getItem("currentUserNameForCertificate") || userProfile?.fullName || "Participant";
-    const doc = new jsPDF();
-    doc.setFontSize(22); doc.setTextColor(29,78,216); doc.text("Certificate of Competency", 105, 40, {align:"center"});
-    doc.setFontSize(14); doc.setTextColor(0); doc.text("This is to certify that", 105, 60, {align:"center"});
-    doc.setFontSize(20); doc.setFont("helvetica","bold"); doc.text(userName.toUpperCase(), 105, 78, {align:"center"});
-    doc.setFontSize(14); doc.setFont("helvetica","normal"); doc.text("has successfully demonstrated competency in", 105, 95, {align:"center"});
-    doc.setFontSize(16); doc.setTextColor(5,150,105); doc.text(moduleNames[currentModule], 105, 115, {align:"center"});
-    doc.setFontSize(13); doc.setTextColor(0); doc.text(`Score: ${scores[currentModule].percentage}%`, 105, 135, {align:"center"});
-    doc.setFontSize(11); doc.setTextColor(80); doc.text(`Completed: ${scores[currentModule].timestamp}`, 105, 150, {align:"center"});
-    doc.setFontSize(9); doc.setTextColor(120); doc.text("Act 29 Mining Training • MHSA Compliant • miningtraining.ac.za", 105, 170, {align:"center"});
-    doc.save(`Certificate_${moduleNames[currentModule].replace(/\s+/g,"_")}.pdf`);
+    const modName = moduleNames[currentModule];
+    const score = scores[currentModule].percentage;
+    const dateStr = scores[currentModule].timestamp;
+
+    const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+    const pageW = 297;
+    const pageH = 210;
+
+    // Outer border
+    doc.setDrawColor(29, 78, 216);
+    doc.setLineWidth(1.5);
+    doc.rect(8, 8, pageW - 16, pageH - 16);
+
+    // Inner decorative border
+    doc.setDrawColor(245, 158, 11);
+    doc.setLineWidth(0.6);
+    doc.rect(12, 12, pageW - 24, pageH - 24);
+
+    // Top accent bar
+    doc.setFillColor(29, 78, 216);
+    doc.rect(12, 12, pageW - 24, 18, "F");
+
+    // Title
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("ACT 29 MINING TRAINING PLATFORM", pageW / 2, 24, { align: "center" });
+
+    // Main heading
+    doc.setTextColor(29, 78, 216);
+    doc.setFontSize(28);
+    doc.text("CERTIFICATE OF COMPETENCY", pageW / 2, 48, { align: "center" });
+
+    // Subtitle
+    doc.setTextColor(80, 80, 80);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text("This is to certify that", pageW / 2, 62, { align: "center" });
+
+    // Recipient name
+    doc.setTextColor(15, 23, 42);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(24);
+    doc.text(userName.toUpperCase(), pageW / 2, 78, { align: "center" });
+
+    // Line under name
+    doc.setDrawColor(245, 158, 11);
+    doc.setLineWidth(0.8);
+    doc.line(pageW / 2 - 60, 82, pageW / 2 + 60, 82);
+
+    // Body text
+    doc.setTextColor(60, 60, 60);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text("has successfully demonstrated competency in the module", pageW / 2, 95, { align: "center" });
+
+    // Module name
+    doc.setTextColor(5, 150, 105);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text(modName, pageW / 2, 108, { align: "center" });
+
+    // Score & date
+    doc.setTextColor(40, 40, 40);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Score achieved: ${score}%   |   Date of completion: ${dateStr}`, pageW / 2, 122, { align: "center" });
+
+    // MHSA statement
+    doc.setFontSize(10);
+    doc.setTextColor(80, 80, 80);
+    doc.text("This certificate confirms successful completion of MHSA-aligned competency training", pageW / 2, 138, { align: "center" });
+    doc.text("in accordance with the Mine Health and Safety Act 29 of 1996.", pageW / 2, 145, { align: "center" });
+
+    // Footer bar
+    doc.setFillColor(15, 23, 42);
+    doc.rect(12, pageH - 30, pageW - 24, 18, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(9);
+    doc.text("Act 29 Mining Training  •  MHSA Compliant  •  Zero Harm  •  www.miningtraining.ac.za", pageW / 2, pageH - 19, { align: "center" });
+
+    // Certificate ID (simple)
+    const certId = "A29-" + Date.now().toString().slice(-8);
+    doc.setFontSize(8);
+    doc.text("Certificate ID: " + certId, pageW / 2, pageH - 12, { align: "center" });
+
+    doc.save(`Certificate_${modName.replace(/\s+/g, "_")}_${userName.replace(/\s+/g, "_")}.pdf`);
   };
 
   window.downloadSpecificCertificate = function(key) {
-    const orig = currentModule; currentModule = key; downloadCertificate(); currentModule = orig;
+    const orig = currentModule;
+    currentModule = key;
+    downloadCertificate();
+    currentModule = orig;
   };
 
   function restartQuiz() { startQuiz(); }
   function backToModule() {
     document.getElementById("videoPlayer").src = "";
-    document.getElementById("presentationPlayer").src = "";
     loadModule(currentModule);
   }
 
-  // ========== ADMIN FUNCTIONS ==========
+  // ========== ADMIN ==========
   async function showAdmin() {
     if (userProfile?.role !== "admin") { alert("Admin access only"); return; }
     await loadAllUsers();
@@ -780,22 +842,34 @@ body {
     tbody.innerHTML = "";
     snap.forEach(d => {
       const u = d.data();
+      const isSelf = d.id === currentUser.uid;
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${u.fullName || "—"}</td>
         <td>${u.email}</td>
         <td><span class="badge ${u.role==='admin'?'bg-warning text-dark':'bg-secondary'}">${u.role}</span></td>
-        <td>${(u.assignedModules||[]).length} modules</td>
+        <td>${(u.assignedModules||[]).length}</td>
         <td>
-          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${u.fullName||u.email}')">Assign</button>
+          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Assign</button>
+          <button class="btn btn-sm btn-outline-info me-1" onclick="openProgressModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Progress</button>
+          ${!isSelf ? `<button class="btn btn-sm ${u.role==='admin'?'btn-outline-danger':'btn-outline-success'}" onclick="toggleRole('${d.id}','${u.role}')">${u.role==='admin'?'Demote':'Promote'}</button>` : '<span class="text-muted small">You</span>'}
         </td>`;
       tbody.appendChild(tr);
     });
   };
 
+  window.toggleRole = async function(uid, currentRole) {
+    const newRole = currentRole === "admin" ? "user" : "admin";
+    if (!confirm(`Change this user to ${newRole}?`)) return;
+    await updateDoc(doc(db, "users", uid), { role: newRole });
+    alert(`User is now ${newRole}.`);
+    loadAllUsers();
+  };
+
   window.openAssignModal = async function(uid, name) {
     assigningToUid = uid;
     document.getElementById("assignUserName").textContent = name;
+    document.getElementById("progressModal").classList.add("d-none");
     const userSnap = await getDoc(doc(db, "users", uid));
     const assigned = userSnap.data()?.assignedModules || [];
 
@@ -821,15 +895,53 @@ body {
 
   window.saveModuleAssignment = async function() {
     if (!assigningToUid) return;
-    const checks = document.querySelectorAll(".module-check:checked");
-    const selected = Array.from(checks).map(c => c.value);
+    const selected = Array.from(document.querySelectorAll(".module-check:checked")).map(c => c.value);
     await updateDoc(doc(db, "users", assigningToUid), { assignedModules: selected });
     alert("Modules updated successfully.");
     closeAssignModal();
     loadAllUsers();
   };
 
-  // Make some functions global for onclick
+  // View User Progress
+  window.openProgressModal = async function(uid, name) {
+    viewingProgressUid = uid;
+    document.getElementById("progressUserName").textContent = name;
+    document.getElementById("assignModal").classList.add("d-none");
+    document.getElementById("progressModal").classList.remove("d-none");
+
+    const tbody = document.getElementById("progressTableBody");
+    const emptyMsg = document.getElementById("progressEmpty");
+    tbody.innerHTML = "";
+    emptyMsg.classList.add("d-none");
+
+    try {
+      const snap = await getDocs(collection(db, "progress", uid, "modules"));
+      if (snap.empty) {
+        emptyMsg.classList.remove("d-none");
+        return;
+      }
+      snap.forEach(d => {
+        const data = d.data();
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${moduleNames[d.id] || d.id}</td>
+          <td>${data.percentage}%</td>
+          <td><span class="badge ${data.passed?'bg-success':'bg-danger'}">${data.passed?'Passed':'Failed'}</span></td>
+          <td class="small">${data.timestamp || "—"}</td>`;
+        tbody.appendChild(tr);
+      });
+    } catch (e) {
+      emptyMsg.textContent = "Could not load progress.";
+      emptyMsg.classList.remove("d-none");
+    }
+  };
+
+  window.closeProgressModal = function() {
+    document.getElementById("progressModal").classList.add("d-none");
+    viewingProgressUid = null;
+  };
+
+  // Global helpers
   window.showHome = showHome;
   window.showModulesList = showModulesList;
   window.showDashboard = showDashboard;
