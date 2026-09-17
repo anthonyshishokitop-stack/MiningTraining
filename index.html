@@ -4,26 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Act 29 Mining Training | MHSA Compliant Platform</title>
-<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform with admin controls.">
+<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform with admin controls, audit-ready certificates and Zero Harm training.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <style>
 :root {
   --bg-deep: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-card: #ffffff;
+  --bg-card-soft: rgba(255,255,255,0.97);
   --primary: #1d4ed8;
   --primary-hover: #1e40af;
+  --primary-soft: #dbeafe;
   --accent: #f59e0b;
+  --accent-dark: #d97706;
   --success: #059669;
   --danger: #dc2626;
   --text-primary: #0f172a;
   --text-muted: #64748b;
+  --border: rgba(29,78,216,0.18);
   --radius: 12px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
   --shadow-lg: 0 12px 32px rgba(15,23,42,0.18);
 }
@@ -32,58 +37,99 @@ body {
   background-color: var(--bg-deep);
   background-image: linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.95) 100%), url('bg-miners.png');
   background-position: center; background-size: cover; background-attachment: fixed;
-  min-height: 100vh; font-family: 'Inter', system-ui, sans-serif;
-  padding-top: 68px; color: #f8fafc; line-height: 1.55; font-size: 15.5px;
+  min-height: 100vh; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding-top: 68px; color: #f8fafc; line-height: 1.55; font-size: 15.5px; -webkit-font-smoothing: antialiased;
 }
-.navbar { background: #fff !important; box-shadow: 0 2px 12px rgba(15,23,42,0.12); height: 68px; }
-.logo-title { font-weight: 800; color: var(--primary); font-size: 1.28rem; display: flex; align-items: center; gap: .4rem; }
-.logo-sub { font-size: .68rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; display: block; margin-top: -2px; }
-.nav-link { font-weight: 500; color: #334155 !important; padding: .5rem .9rem !important; border-radius: 8px; font-size: .92rem; }
-.nav-link:hover, .nav-link.active { color: var(--primary) !important; background: #dbeafe; }
+.navbar { background: #fff !important; box-shadow: 0 2px 12px rgba(15,23,42,0.12); height: 68px; border-bottom: 1px solid #e2e8f0; }
+.logo-title { font-weight: 800; color: var(--primary); font-size: 1.28rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: .4rem; }
+.logo-sub { font-size: .68rem; font-weight: 600; color: var(--text-muted); letter-spacing: .04em; text-transform: uppercase; display: block; margin-top: -2px; }
+.nav-link { font-weight: 500; color: #334155 !important; padding: .5rem .9rem !important; border-radius: 8px; font-size: .92rem; transition: all .18s ease; }
+.nav-link:hover, .nav-link.active { color: var(--primary) !important; background: var(--primary-soft); }
 #content-area { max-width: 1240px; margin: 0 auto; padding: 1.5rem 1.1rem 3.5rem; min-height: calc(100vh - 110px); }
 
 #authScreen { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; }
 .auth-card { background: #fff; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); color: var(--text-primary); }
 
-.module-card { background: #fff; border-radius: var(--radius); border: 1px solid #e2e8f0; box-shadow: var(--shadow-sm); transition: all .22s; height: 100%; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
+.welcome-hero {
+  background: linear-gradient(145deg, rgba(30,41,59,0.92), rgba(15,23,42,0.95));
+  border: 1px solid rgba(148,163,184,0.12); border-radius: 18px; padding: 3.2rem 2.2rem;
+  color: #f8fafc; text-align: center; margin-bottom: 2.25rem; box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+}
+.welcome-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(29,78,216,0.18), transparent 55%); pointer-events: none; }
+.welcome-hero h1 { font-weight: 800; font-size: clamp(1.85rem, 4.8vw, 2.65rem); margin-bottom: .6rem; color: #f8fafc; letter-spacing: -0.03em; position: relative; }
+.welcome-hero .lead { font-size: 1.1rem; color: #cbd5e1; font-weight: 500; margin-bottom: .35rem; }
+.welcome-hero .sub { color: #94a3b8; font-size: .95rem; margin-bottom: 1.75rem; }
+.zero-harm-badge { display: inline-flex; align-items: center; gap: .4rem; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.35); color: #fbbf24; font-weight: 600; font-size: .82rem; padding: .35rem .9rem; border-radius: 999px; margin-bottom: 1.25rem; letter-spacing: .02em; }
+.trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.75rem; }
+.trust-badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; font-size: .78rem; font-weight: 600; padding: .35rem .85rem; border-radius: 999px; }
+
+.modules-header { background: linear-gradient(135deg, #1e3a8a, #1d4ed8); color: #fff; padding: 1.85rem 1.5rem; border-radius: 16px; margin-bottom: 1.75rem; text-align: center; box-shadow: var(--shadow-md); }
+.modules-header h2 { font-weight: 800; font-size: 1.55rem; letter-spacing: -0.02em; margin-bottom: .35rem; }
+.stat-badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28); color: #fff; border-radius: 999px; padding: .42rem 1rem; font-size: .88rem; font-weight: 500; }
+
+.module-card { background: var(--bg-card); border-radius: var(--radius); border: 1px solid #e2e8f0; box-shadow: var(--shadow-sm); transition: all .22s ease; height: 100%; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
 .module-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #93c5fd; }
 .module-card .card-top { height: 86px; background: linear-gradient(135deg, #eff6ff, #dbeafe); display: flex; align-items: center; justify-content: center; }
 .module-card.advanced .card-top { background: linear-gradient(135deg, #fff7ed, #ffedd5); }
 .module-card .card-top i { font-size: 2.1rem; color: #1d4ed8; }
 .module-card.advanced .card-top i { color: #c2410c; }
 .module-card .card-body { padding: 1.1rem 1.2rem 1.3rem; flex: 1; display: flex; flex-direction: column; color: var(--text-primary); }
-.module-name { font-weight: 700; font-size: 1.02rem; margin-bottom: .3rem; }
-.module-meta { font-size: .78rem; color: var(--text-muted); margin-bottom: .7rem; }
+.module-name { font-weight: 700; font-size: 1.02rem; margin-bottom: .3rem; line-height: 1.35; letter-spacing: -0.01em; }
+.module-meta { font-size: .78rem; color: var(--text-muted); margin-bottom: .7rem; font-weight: 500; }
 .progress { height: 6px; border-radius: 99px; background: #e2e8f0; }
 .progress-bar { background: var(--primary); border-radius: 99px; }
-.progress-text { font-size: .76rem; color: var(--text-muted); margin-top: .35rem; display: flex; justify-content: space-between; }
+.progress-text { font-size: .76rem; color: var(--text-muted); margin-top: .35rem; display: flex; justify-content: space-between; font-weight: 500; }
 
-.action-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.85rem 1.4rem; text-align: center; transition: all .22s; cursor: pointer; height: 100%; color: var(--text-primary); box-shadow: var(--shadow-sm); }
+.action-card { background: var(--bg-card); border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.85rem 1.4rem; text-align: center; transition: all .22s ease; cursor: pointer; height: 100%; color: var(--text-primary); box-shadow: var(--shadow-sm); }
 .action-card:hover { border-color: #93c5fd; box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .action-card i { font-size: 2.5rem; margin-bottom: .65rem; }
 
-.btn-primary { background: var(--primary); border-color: var(--primary); font-weight: 600; border-radius: 10px; }
+.btn-primary { background: var(--primary); border-color: var(--primary); font-weight: 600; border-radius: 10px; padding: .6rem 1.35rem; letter-spacing: -0.01em; }
 .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
-.btn-accent { background: var(--accent); border-color: var(--accent); color: #1c1917; font-weight: 700; border-radius: 10px; }
+.btn-accent { background: var(--accent); border-color: var(--accent); color: #1c1917; font-weight: 700; border-radius: 10px; padding: .6rem 1.35rem; }
+.btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
 .btn-outline-primary { color: var(--primary); border-color: var(--primary); border-radius: 10px; font-weight: 600; }
-.btn-outline-primary:hover { background: var(--primary); color: #fff; }
+.btn-outline-primary:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-outline-light { border-radius: 10px; font-weight: 600; }
 
-.section-title { font-weight: 800; font-size: 1.45rem; margin-bottom: 1.25rem; color: #f8fafc; }
-.card { background: rgba(255,255,255,.97); color: var(--text-primary); border-radius: var(--radius); border: 1px solid #e2e8f0; }
-.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center; box-shadow: var(--shadow-sm); }
-.stat-card .value { font-size: 1.75rem; font-weight: 800; }
-.stat-card .label { font-size: .8rem; color: var(--text-muted); }
+.learning-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; color: var(--text-primary); transition: border-color .15s; }
+.learning-item:hover { border-color: #93c5fd; background: #f8fafc; }
+.learning-item .title { font-weight: 600; color: var(--primary); font-size: .98rem; }
+.badge-type { font-size: .72rem; padding: .28em .7em; border-radius: 999px; font-weight: 600; }
+.badge-lesson { background: #d1fae5; color: #065f46; }
 
-.quiz-option { border-radius: 10px !important; padding: .9rem 1.1rem !important; text-align: left !important; font-weight: 500; }
+.quiz-option { border-radius: 10px !important; padding: .9rem 1.1rem !important; text-align: left !important; font-weight: 500; border-width: 1.5px !important; font-size: .95rem; }
 .result-card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 2.2rem 1.8rem; text-align: center; box-shadow: var(--shadow-md); color: var(--text-primary); }
 
-.footer { background: #0b1220; color: #94a3b8; padding: 2.4rem 1rem; margin-top: 3.5rem; text-align: center; font-size: .88rem; }
+.card { background: var(--bg-card-soft); color: var(--text-primary); border-radius: var(--radius); border: 1px solid #e2e8f0; }
+.section-title { font-weight: 800; font-size: 1.45rem; margin-bottom: 1.25rem; color: #f8fafc; letter-spacing: -0.02em; }
+.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center; box-shadow: var(--shadow-sm); height: 100%; }
+.stat-card .value { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.stat-card .label { font-size: .8rem; color: var(--text-muted); font-weight: 500; margin-top: .25rem; }
+
+.ratio.ratio-16x9 { border: 2px solid rgba(29,78,216,0.45); box-shadow: var(--shadow-lg); border-radius: 12px; background: #000; overflow: hidden; }
+#videoPlayer, #presentationPlayer { border: none; width: 100%; height: 100%; display: block; }
+
+.footer { background: #0b1220; color: #94a3b8; padding: 2.4rem 1rem; margin-top: 3.5rem; text-align: center; font-size: .88rem; border-top: 1px solid rgba(148,163,184,0.08); }
+.breadcrumb { background: transparent; padding: 0; margin-bottom: 1.15rem; font-size: .88rem; }
+.breadcrumb a { color: #93c5fd; }
+.breadcrumb-item.active { color: #cbd5e1; }
 .admin-table th { background: #f1f5f9; font-weight: 600; font-size: .85rem; }
 .module-check { width: 18px; height: 18px; cursor: pointer; }
+.resources-card .card-header { background: linear-gradient(135deg, #1e3a8a, #1d4ed8); border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0; }
 
+@media (max-width: 991.98px) {
+  .navbar-collapse { background: #fff; border-radius: 0 0 12px 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.14); padding: .7rem 1rem 1.1rem; }
+  .navbar-nav .nav-link { padding: .7rem 1rem !important; border-radius: 8px; margin-bottom: 2px; }
+}
 @media (max-width: 767.98px) {
   body { padding-top: 60px; }
   #content-area { padding: 1.1rem .8rem 2.8rem; }
+  .welcome-hero { padding: 2.2rem 1.3rem; border-radius: 14px; }
+  .modules-header { padding: 1.4rem 1.1rem; }
+  .module-card .card-top { height: 76px; }
+  .learning-item { flex-direction: column; align-items: flex-start; gap: .7rem; }
+  .learning-item .actions { width: 100%; display: flex; justify-content: flex-end; }
   .logo-sub { display: none; }
 }
 </style>
@@ -106,6 +152,9 @@ body {
 </nav>
 
 <div id="content-area">
+  <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
+    <ol class="breadcrumb" id="breadcrumbItems"></ol>
+  </nav>
 
   <!-- AUTH -->
   <div id="authScreen">
@@ -136,25 +185,41 @@ body {
 
   <!-- HOME -->
   <div id="welcomeScreen" class="d-none">
-    <div class="text-center mb-4">
-      <div class="d-inline-flex align-items-center gap-2 bg-warning bg-opacity-25 text-warning px-3 py-1 rounded-pill mb-3">
-        <i class="bi bi-shield-exclamation"></i> Zero Harm Commitment
-      </div>
-      <h1 class="fw-bold mb-2" style="font-size:clamp(1.8rem,4.5vw,2.5rem);">Mining Induction & Competency Platform</h1>
-      <p class="text-white-50 mb-4">MHSA Act 29 of 1996 Compliant • Structured Workplace Safety Training</p>
+    <div class="welcome-hero">
+      <div class="zero-harm-badge"><i class="bi bi-shield-exclamation"></i> Zero Harm Commitment</div>
+      <h1>Mining Induction &amp; Competency Platform</h1>
+      <p class="lead">MHSA Act 29 of 1996 Compliant • Structured Workplace Safety Training</p>
+      <p class="sub">Enterprise-grade e-learning for mining houses and contractors. Audit-ready certificates, competency tracking and Section 10 alignment.</p>
       <button class="btn btn-accent btn-lg px-4 me-2" onclick="showModulesList()"><i class="bi bi-grid-3x3-gap me-2"></i>My Modules</button>
-      <button class="btn btn-outline-light btn-lg px-4" onclick="showDashboard()"><i class="bi bi-speedometer2 me-2"></i>Dashboard</button>
+      <button class="btn btn-outline-light btn-lg px-4" onclick="showDashboard()"><i class="bi bi-speedometer2 me-2"></i>My Dashboard</button>
+      <div class="trust-row">
+        <span class="trust-badge"><i class="bi bi-check2-circle me-1"></i> MHSA Aligned</span>
+        <span class="trust-badge"><i class="bi bi-building me-1"></i> DMPR Referenced</span>
+        <span class="trust-badge"><i class="bi bi-file-earmark-lock me-1"></i> Audit-Ready Records</span>
+        <span class="trust-badge"><i class="bi bi-phone me-1"></i> Mobile First</span>
+      </div>
     </div>
   </div>
 
   <!-- MODULES -->
   <div id="modulesContainer" class="d-none">
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-      <h2 class="section-title mb-0">My Assigned Modules</h2>
-      <input type="search" class="form-control form-control-sm" id="searchInput" placeholder="Search modules…" style="max-width:220px;border-radius:999px;">
+    <div class="modules-header">
+      <h2>My Assigned Modules</h2>
+      <p class="mb-3 opacity-90" style="font-size:0.95rem;">Critical safety and operational modules • Minimum 70% pass mark</p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <div class="dropdown">
+          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="basic">Core</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li>
+          </ul>
+        </div>
+        <input type="search" class="form-control form-control-sm" id="searchInput" placeholder="Search modules…" style="max-width:220px;border-radius:999px;border:none;">
+      </div>
     </div>
     <div id="moduleGrid" class="row g-3 g-md-4"></div>
-    <div class="card mt-4 border-0">
+    <div class="card mt-4 border-0 shadow-sm">
       <div class="card-body text-center py-3 text-dark">
         <strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">0</span>
         &nbsp;•&nbsp; <strong>Pass rate:</strong> <span id="overallPass">0%</span>
@@ -165,52 +230,135 @@ body {
   <!-- MODULE VIEW -->
   <div id="moduleView" class="d-none">
     <h2 class="section-title text-center mb-2" id="moduleTitle"></h2>
-    <p class="text-center text-white-50 mb-4">Complete the lesson and assessment to demonstrate competency</p>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Complete the lesson and assessment to demonstrate competency and generate your certificate</p>
     <div class="mb-4 text-center">
-      <label class="form-label fw-semibold text-white">Full Name (on certificate)</label>
-      <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" style="max-width:420px;background:rgba(255,255,255,.97);border-radius:10px;">
+      <label for="userFullName" class="form-label fw-semibold text-white">Full Name (appears on certificate)</label>
+      <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" placeholder="Enter your full legal name" style="max-width:420px;background:rgba(255,255,255,0.97);border-radius:10px;">
     </div>
-    <div class="row g-3 justify-content-center mb-4">
-      <div class="col-md-5"><div class="action-card" id="watchVideo"><i class="bi bi-play-circle-fill text-primary"></i><h5 class="fw-bold mb-1">Watch Lesson</h5><p class="text-muted small mb-0">Training content</p></div></div>
-      <div class="col-md-5"><div class="action-card" id="startQuiz"><i class="bi bi-check2-circle text-success"></i><h5 class="fw-bold mb-1">Take Assessment</h5><p class="text-muted small mb-0">70% pass mark</p></div></div>
+    <div class="row g-3 g-md-4 justify-content-center mb-4">
+      <div class="col-md-5">
+        <div class="action-card" id="watchVideo">
+          <i class="bi bi-play-circle-fill text-primary"></i>
+          <h5 class="fw-bold mb-1">Watch / Review Lesson</h5>
+          <p class="text-muted small mb-0">Training content and key safety controls</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="action-card" id="startQuiz">
+          <i class="bi bi-check2-circle text-success"></i>
+          <h5 class="fw-bold mb-1">Take Assessment</h5>
+          <p class="text-muted small mb-0">Demonstrate knowledge (70% pass mark)</p>
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 shadow-sm">
+      <div class="card-body p-3 p-md-4">
+        <h5 class="fw-bold mb-3 text-dark">Learning Path</h5>
+        <div id="learningPath"></div>
+      </div>
     </div>
   </div>
 
   <div id="videoScreen" class="d-none">
-    <div class="ratio ratio-16x9 mb-3" style="border:2px solid rgba(29,78,216,.45);border-radius:12px;overflow:hidden;">
-      <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+    <div class="ratio ratio-16x9 mb-3">
+      <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
-    <div class="text-center"><button class="btn btn-outline-light" onclick="backToModule()">← Back</button></div>
+    <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
+  </div>
+
+  <div id="presentationScreen" class="d-none">
+    <div class="ratio ratio-16x9 mb-3">
+      <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
   </div>
 
   <div id="quizScreen" class="d-none">
-    <div class="card border-0 shadow-sm rounded-4"><div class="card-body p-3 p-md-5">
-      <h4 class="text-center mb-4 fw-bold text-dark" id="questionText"></h4>
-      <div id="optionsContainer" class="row g-2"></div>
-      <div id="feedback" class="mt-4 text-center fw-semibold fs-5"></div>
-      <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
-    </div></div>
-    <div class="text-center mt-3"><button class="btn btn-outline-light" onclick="backToModule()">Exit</button></div>
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-3 p-md-5">
+        <h4 class="text-center mb-4 fw-bold text-dark" id="questionText"></h4>
+        <div id="optionsContainer" class="row g-2 g-md-3"></div>
+        <div id="feedback" class="mt-4 text-center fw-semibold fs-5"></div>
+        <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
+      </div>
+    </div>
+    <div class="text-center mt-3"><button class="btn btn-outline-light" onclick="backToModule()">Exit Assessment</button></div>
   </div>
 
   <div id="resultsScreen" class="d-none">
     <div class="result-card">
       <h2 id="resultTitle" class="display-6 fw-bold mb-3"></h2>
-      <div class="progress mb-4 mx-auto" style="height:14px;max-width:320px"><div id="progressBar" class="progress-bar"></div></div>
+      <div class="progress mb-4 mx-auto" style="height:14px;max-width:320px">
+        <div id="progressBar" class="progress-bar" style="width:0%"></div>
+      </div>
       <div class="row g-3 mb-4 justify-content-center">
-        <div class="col-4"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-primary" id="scorePercent">0%</div><small class="text-muted">Score</small></div></div>
-        <div class="col-4"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-success" id="correctCount">0</div><small class="text-muted">Correct</small></div></div>
-        <div class="col-4"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold" id="timeDisplay">0:00</div><small class="text-muted">Time</small></div></div>
+        <div class="col-4 col-md-3"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-primary" id="scorePercent">0%</div><small class="text-muted">Score</small></div></div>
+        <div class="col-4 col-md-3"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-success" id="correctCount">0</div><small class="text-muted">Correct</small></div></div>
+        <div class="col-4 col-md-3"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold" id="timeDisplay">0:00</div><small class="text-muted">Time</small></div></div>
       </div>
       <p id="passMessage" class="lead fw-semibold mb-2"></p>
       <p id="completionTimestamp" class="text-muted small mb-4"></p>
-      <div id="certificateSection" class="border border-success rounded-3 p-4 d-none">
+      <div id="certificateSection" class="border border-success rounded-3 p-4 bg-success-subtle d-none">
         <h5 class="text-success mb-2"><i class="bi bi-award me-2"></i>Certificate Ready</h5>
-        <button onclick="downloadCertificate()" class="btn btn-success btn-lg"><i class="bi bi-download me-2"></i>Download Professional Certificate</button>
+        <p class="mb-3">You have successfully demonstrated competency in this module.</p>
+        <button onclick="downloadCertificate()" class="btn btn-success btn-lg"><i class="bi bi-download me-2"></i>Download Certificate (PDF)</button>
       </div>
       <div class="mt-4">
-        <button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry</button>
+        <button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry Assessment</button>
         <button class="btn btn-primary" onclick="showModulesList()">Back to Modules</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTIONS -->
+  <div id="descriptionsScreen" class="d-none">
+    <h2 class="section-title text-center">Module Descriptions</h2>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Authoritative summaries aligned to MHSA requirements and operational practice</p>
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-3 p-md-4">
+        <div id="moduleAccordion" class="accordion accordion-flush"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div id="resourcesScreen" class="d-none">
+    <h2 class="section-title text-center">Official Resources</h2>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Authoritative DMPR / Mine Health and Safety Inspectorate guidelines</p>
+    <div class="card border-0 shadow-sm rounded-4 mb-4 resources-card">
+      <div class="card-header text-white py-3">
+        <h5 class="mb-0"><i class="bi bi-shield-check me-2"></i>DMPR / MHSA Resource Centre</h5>
+      </div>
+      <div class="card-body text-dark">
+        <p class="small text-muted mb-3">These documents form the regulatory backbone of the training content. Always refer to the latest published versions on the official DMPR site.</p>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h6 class="text-primary fw-bold">Core Legislation</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/Services/Mine-Health-and-Safety/Resource-Centre" target="_blank" rel="noopener">DMPR Resource Centre (MHSA &amp; Regulations)</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Mine Health and Safety Resources (full list)</a></li>
+            </ul>
+            <h6 class="text-primary fw-bold mt-3">Rock Fall / Ground Control</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=InIIhwTLKPw%3d&portalid=0" target="_blank" rel="noopener">Combat Rock Fall and Rock Burst (Tabular Metalliferous)</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=r3DGewu_TBU%3d&portalid=0" target="_blank" rel="noopener">Combat Roof Fall Accidents (Underground Coal)</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h6 class="text-primary fw-bold">Mobile Machinery &amp; Traffic</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf" target="_blank" rel="noopener">Road and Rail Safety Management Guideline (2025)</a></li>
+            </ul>
+            <h6 class="text-primary fw-bold mt-3">Emergency, Fire &amp; Rights</h6>
+            <ul class="list-unstyled small">
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=EROfYUsImbg%3d&portalid=0" target="_blank" rel="noopener">Right to Refuse Dangerous Work &amp; Leave Dangerous Working Places</a></li>
+              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=acRrQ_c4URY%3d&portalid=0" target="_blank" rel="noopener">Emergency Preparedness and Response</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="small mt-3 mb-0"><strong>Source:</strong> <a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">DMPR Mine Health and Safety Resources</a></p>
       </div>
     </div>
   </div>
@@ -224,7 +372,8 @@ body {
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-primary" id="dashCertificates">0</div><div class="label">Certificates</div></div></div>
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value" id="dashTotal">0</div><div class="label">Assigned</div></div></div>
     </div>
-    <div class="card border-0"><div class="card-header bg-white fw-bold">Recently Completed</div>
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white fw-bold text-dark">Recently Completed</div>
       <ul class="list-group list-group-flush" id="completedModulesList"></ul>
     </div>
   </div>
@@ -238,7 +387,6 @@ body {
   <!-- ADMIN PANEL -->
   <div id="adminScreen" class="d-none">
     <h2 class="section-title text-center mb-4">Admin Panel</h2>
-    
     <div class="card border-0 mb-4">
       <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
         <span>All Users</span>
@@ -248,21 +396,13 @@ body {
         <div class="table-responsive">
           <table class="table table-hover mb-0 admin-table">
             <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Modules</th>
-                <th style="min-width:280px">Actions</th>
-              </tr>
+              <tr><th>Name</th><th>Email</th><th>Role</th><th>Modules</th><th style="min-width:280px">Actions</th></tr>
             </thead>
             <tbody id="adminUsersTable"></tbody>
           </table>
         </div>
       </div>
     </div>
-
-    <!-- Assign Modules -->
     <div id="assignModal" class="card border-0 d-none mb-4">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <span>Assign Modules → <strong id="assignUserName"></strong></span>
@@ -270,13 +410,9 @@ body {
       </div>
       <div class="card-body">
         <div class="row g-2" id="assignModuleList"></div>
-        <div class="mt-3 text-end">
-          <button class="btn btn-primary" onclick="saveModuleAssignment()">Save Assignments</button>
-        </div>
+        <div class="mt-3 text-end"><button class="btn btn-primary" onclick="saveModuleAssignment()">Save Assignments</button></div>
       </div>
     </div>
-
-    <!-- View User Progress -->
     <div id="progressModal" class="card border-0 d-none">
       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
         <span>Progress for: <strong id="progressUserName"></strong></span>
@@ -285,14 +421,7 @@ body {
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-sm table-hover">
-            <thead>
-              <tr>
-                <th>Module</th>
-                <th>Score</th>
-                <th>Status</th>
-                <th>Completed</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Module</th><th>Score</th><th>Status</th><th>Completed</th></tr></thead>
             <tbody id="progressTableBody"></tbody>
           </table>
         </div>
@@ -303,20 +432,38 @@ body {
 
   <!-- ABOUT -->
   <div id="aboutScreen" class="d-none">
-    <div class="card border-0 p-4 p-md-5 text-dark">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
       <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
-      <p>This platform delivers MHSA-aligned competency modules with role-based module assignment and full admin oversight. Admins control which modules each user can access and can view detailed progress records. All assessments require 70% to pass and generate professional audit-ready certificates.</p>
+      <p class="mb-3">This platform delivers structured, MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for mining houses and contractors that require a reliable, mobile-friendly method to induct employees, demonstrate competency and maintain audit-ready records.</p>
+      <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require a minimum 70% pass mark. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
+      <p class="mb-0"><strong>Zero Harm</strong> is the guiding principle. Admins control which modules each user can access and can view detailed progress records.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contactScreen" class="d-none">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
+      <h2 class="fw-bold mb-3">Contact</h2>
+      <p class="text-muted mb-4">For deployment enquiries, enterprise licensing or technical support, please complete the form below.</p>
+      <form class="contact-form" style="max-width:520px">
+        <div class="mb-3"><label class="form-label fw-semibold">Name</label><input type="text" class="form-control" required style="border-radius:8px;"></div>
+        <div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control" required style="border-radius:8px;"></div>
+        <div class="mb-3"><label class="form-label fw-semibold">Message</label><textarea class="form-control" rows="4" required style="border-radius:8px;"></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
     </div>
   </div>
 </div>
 
 <footer class="footer">
-  <p class="mb-1 fw-semibold" style="color:#e2e8f0;">Act 29 Mining Training Platform • MHSA Compliant</p>
-  <p class="mb-0 small">© 2025–2026 • www.miningtraining.ac.za</p>
+  <div class="container">
+    <p class="mb-1 fw-semibold" style="color:#e2e8f0;">Act 29 Mining Training Platform • MHSA Compliant</p>
+    <p class="mb-0 small">© 2025–2026 • Workplace induction and competency development for the South African mining industry</p>
+    <p class="mb-0 small mt-1">www.miningtraining.ac.za</p>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
@@ -371,13 +518,141 @@ body {
     employee_rights:"bi-hand-thumbs-up", exleave:"bi-person-walking", hirac:"bi-exclamation-triangle"
   };
 
-  const sampleQuizzes = {};
+  const videos = {
+    handover: "https://www.youtube.com/embed/uqbDOIaEyHs", lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
+    drill: "https://www.youtube.com/embed/rALo7h9pCwg", support: "https://www.youtube.com/embed/CJ80Gbmes88",
+    vent: "https://www.youtube.com/embed/scULNpKA3ZU", rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
+    traffic: "https://www.youtube.com/embed/bugO7N1AN0s", reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
+    shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc", raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
+    lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s", civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
+    conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY", compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
+    pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM", steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
+    electrical: "https://www.youtube.com/embed/TMT6f3tZQSk", mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
+    seismicity: "https://www.youtube.com/embed/geun1k07NkM", blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
+    evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w", fire: "https://www.youtube.com/embed/x414lRd1aak",
+    tmm: "https://www.youtube.com/embed/BYzg3G8gQYY", winders: "https://www.youtube.com/embed/HkE7m1cdvBU",
+    induction_protocol: "https://www.youtube.com/embed/lMEErpFhzxg", company_intro: "https://www.youtube.com/embed/lMEErpFhzxg",
+    vision_mission: "https://www.youtube.com/embed/lMEErpFhzxg", emergency_response: "https://www.youtube.com/embed/3aLWlDY_G9w",
+    assembly_points: "https://www.youtube.com/embed/3aLWlDY_G9w", fire_first_aid: "https://www.youtube.com/embed/x414lRd1aak",
+    life_saving_rules: "https://www.youtube.com/embed/lMEErpFhzxg", ppe: "https://www.youtube.com/embed/lMEErpFhzxg",
+    employee_rights: "https://www.youtube.com/embed/lMEErpFhzxg", exleave: "https://www.youtube.com/embed/lMEErpFhzxg",
+    hirac: "https://www.youtube.com/embed/lMEErpFhzxg"
+  };
+
+  const presentations = {
+    civil_structural: "https://docs.google.com/presentation/d/e/2PACX-1vSkAO1aLSv1JpoWN8J5WEWs-M_38HhGEuc44tUvd-znI6suToh0dsK1sEZ8uzQrBg/pubembed?start=false&loop=false&delayms=3000",
+    conveyor_monorail: "https://docs.google.com/presentation/d/e/2PACX-1vStkMHybEjouk3QlhWZkFBBys-NnovwAI71_2UZASN5p2P0KuASEi7Kt94EAEgkTA/pubembed?start=false&loop=false&delayms=3000",
+    compressed_air: "https://docs.google.com/presentation/d/e/2PACX-1vTGKK8B3ffFolrPBsohiPHguiKTjN8Sd9CsE-t0DZh-ivEfl1_Sedp49yxyY5NivA/pubembed?start=false&loop=false&delayms=3000",
+    steam_pressure: "https://docs.google.com/presentation/d/e/2PACX-1vQeaQTYpC_Lfy5wxnhRKVIbqCLdkFikKZkbbsTvLVfBoe_LbvlAqxPLwgDGFv3xnw/pubembed?start=false&loop=false&delayms=3000",
+    fire: "https://docs.google.com/presentation/d/e/2PACX-1vRjdIry8OtJBD2wte-xOUCLFgU6g-Pdf4cwcJwiQHOhmeoshnM9z56uDeKpVLMwQA/pubembed?start=false&loop=false&delayms=3000"
+  };
+
+  const moduleDescriptions = {
+    handover: "Shift handover and pre-use checks are critical under MHSA to ensure continuity of safe operations. All incoming and outgoing crew must attend. Key elements include Section 23 fitness declarations, defect logging, early examination of workplaces, and transfer of critical hazard information.",
+    lhd: "LHD operations in declines require strict adherence to exclusion zones (minimum 2 m), speed limits (typically 15 km/h), low bucket carry height, mandatory horn signals before reversing, and seatbelt use. Only competent certificate holders may operate.",
+    drill: "Jumbo (face) drilling requires competent operators, continuous water flush for dust suppression, hearing and respiratory protection, and face examination for misfires before charging.",
+    support: "Permanent support (mesh, bolts, cables, shotcrete) may only be installed by competent crews according to rock-engineer-approved standards. Never stand under unsupported ground.",
+    vent: "Main ventilation failure requires immediate evacuation using SCSRs to refuge bays or surface. Only the ventilation officer or manager may declare the emergency.",
+    rockfall: "Major rock-fall events prioritise life safety and headcount. Areas must be barricaded and assessed by a rock engineer before entry.",
+    traffic: "Single-lane traffic management uses one-way circuits, designated passing bays, speed limits, and mandatory two-way communication.",
+    reentry: "Unsafe re-entry after blasting is prevented by mandatory waiting periods for fume dispersal, multi-gas testing, and authorisation only by the competent shift boss.",
+    shaft_sinking: "Vertical shaft sinking is regulated under MHSA Chapter 8 Reg 8.13. Safety systems include overwind/underspeed protection and competency certification.",
+    raise_drill: "Raise boring requires secure machine anchoring, laser-guided pilot holes, continuous cuttings removal, and exclusion zones.",
+    lifting_operations: "Lifting operations fall under MHSA Chapter 8 Reg 8.5. Daily pre-use checks, statutory examinations, competent lift plans and clear SWL markings are required.",
+    civil_structural: "Civil and structural integrity of mine infrastructure requires engineer-approved designs, quality control and periodic inspections.",
+    conveyor_monorail: "Conveyor belts and monorails require proper guarding, emergency pull-cords along the full length, and automatic fire detection/suppression.",
+    compressed_air: "Compressed air systems require interlocked compressors, pressure relief valves, statutory vessel examinations and whip restraints on hoses.",
+    pump_fluid: "Pump and fluid handling systems require auto-level controls with flood alarms and lock-out procedures. Critical for preventing inundation.",
+    steam_pressure: "Steam generation and pressure vessels require dual safety valves, low-water cut-offs and statutory examinations.",
+    electrical: "Underground electrical systems must use flameproof enclosures or intrinsically safe circuits in gassy areas.",
+    mhsa: "The Mine Health and Safety Act 29 of 1996 is South Africa’s primary legal framework for zero-harm mining. Employees have the right to refuse dangerous work.",
+    seismicity: "Seismicity and rockburst management uses real-time seismic networks, energy-absorbing support and controlled re-entry.",
+    blasting: "Blasting and explosives handling require optimised patterns, secure storage, certified blasters and post-blast inspections.",
+    evacuation: "Emergency evacuation relies on stench-gas alerts, marked self-escape routes, SCSRs and stocked refuge chambers.",
+    fire: "Fire prevention includes fuel-source controls, hot-work permits, heat/smoke sensors and fixed suppression systems.",
+    tmm: "Trackless Mobile Machinery requires operator competency certification, Level 9 collision avoidance in high-risk areas and site-specific Codes of Practice.",
+    winders: "Winding plant is governed by MHSA Chapter 8 Reg 8.13. Requirements include overwind protection, dual brakes and rope NDT.",
+    induction_protocol: "Mandatory site induction covering house rules, expected behaviour, cell phone policy and critical life-saving information.",
+    company_intro: "Overview of the organisation, its operations, structure and how new or returning employees fit into the broader mining house.",
+    vision_mission: "The organisation’s vision, mission statement and core values that guide safe and responsible mining behaviour.",
+    emergency_response: "Site-specific emergency response strategy, alarm types, roles and immediate actions required when an emergency is declared.",
+    assembly_points: "Location and use of designated assembly points and emergency exits that every person on site must know.",
+    fire_first_aid: "Location, identification and basic use of fire-fighting equipment and first-aid stations across the workplace.",
+    life_saving_rules: "Non-negotiable critical rules that, if violated, can result in serious injury or fatality. Compliance is mandatory.",
+    ppe: "Mandatory personal protective equipment for different areas and tasks, including correct use, care and replacement.",
+    employee_rights: "Key rights and duties under the Mine Health and Safety Act 29 of 1996, including the right to refuse dangerous work.",
+    exleave: "Mandatory induction for employees returning from leave. Covers emergency protocols, assembly points and critical safety reminders.",
+    hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) Refresher: Systematic process used to identify hazards, assess risk and implement controls before work starts."
+  };
+
+  // Rich quizzes from index(104) for key modules; fallback for others
+  const sampleQuizzes = {
+    handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
+      {question:"Who must attend shift handover?", options:["Only shift boss","All incoming and outgoing crew"], correct:1, explanation:"All incoming and outgoing crew must attend to ensure full transfer of critical information."},
+      {question:"What must be signed before work starts?", options:["Nothing","Section 23 declaration"], correct:1, explanation:"The Section 23 declaration confirms that workers are fit for duty."},
+      {question:"Red tag on equipment means?", options:["Minor fault","Do not operate — locked out"], correct:1, explanation:"A red tag indicates the equipment has been locked out and must not be operated."},
+      {question:"What gas is checked with methanometer?", options:["Oxygen","Methane"], correct:1, explanation:"A methanometer detects methane (CH₄), the primary explosive gas."},
+      {question:"Who signs Early Warning Device log?", options:["Anyone","Only shift boss"], correct:1, explanation:"Only the shift boss has the authority to verify and sign the log."},
+      {question:"Can you work without cap lamp?", options:["Yes","Never"], correct:1, explanation:"A cap lamp is mandatory primary lighting and a legal requirement."},
+      {question:"Refuge bay must contain?", options:["Water only","SCSRs, water, first aid, phone"], correct:1, explanation:"Refuge bays must be stocked with SCSRs, water, first aid and communication."},
+      {question:"Who declares workplace safe?", options:["Any miner","Shift boss after inspection"], correct:1, explanation:"The shift boss is legally responsible for declaring the workplace safe."},
+      {question:"What is a TARP?", options:["Tool","Trigger Action Response Plan"], correct:1, explanation:"TARP defines measurable triggers and required actions for escalating risks."},
+      {question:"Can you start work with unsigned logbook?", options:["Yes","Never"], correct:1, explanation:"An unsigned logbook means statutory inspections are incomplete."}
+    ]},
+    lhd: {name:"LHD OPERATIONS", q: [
+      {question:"Minimum clearance from moving LHD?", options:["1 metre","2 metres from any part"], correct:1, explanation:"A minimum 2-metre exclusion zone protects pedestrians."},
+      {question:"Maximum speed in decline?", options:["25 km/h","15 km/h"], correct:1, explanation:"Speed is limited to 15 km/h in declines to maintain braking control."},
+      {question:"Bucket height when loaded?", options:["On ground","Max 400mm off ground"], correct:1, explanation:"Loaded bucket must be carried low to maintain stability."},
+      {question:"Before reversing you must?", options:["Just look","Horn 3 times + check mirrors"], correct:1, explanation:"Three distinct horn blasts warn personnel before reversing."},
+      {question:"Can you ride in LHD bucket?", options:["Yes","Never"], correct:1, explanation:"Riding in the bucket is prohibited."},
+      {question:"Who may operate LHD?", options:["Anyone trained","Only competent certificate holder"], correct:1, explanation:"Only persons holding a valid competency certificate may operate an LHD."},
+      {question:"Seatbelt in LHD cab?", options:["Optional","Mandatory at all times"], correct:1, explanation:"Seatbelts are mandatory to prevent ejection."},
+      {question:"Fire on LHD — first action?", options:["Drive out","Activate suppression system"], correct:1, explanation:"Immediate activation of the onboard fire suppression system is the primary response."},
+      {question:"Can you leave LHD running unattended?", options:["Yes","Never"], correct:1, explanation:"Equipment must never be left running and unattended."},
+      {question:"Who performs daily LHD inspection?", options:["Maintenance","Operator"], correct:1, explanation:"The operator is responsible for pre-shift inspection."}
+    ]},
+    mhsa: {name:"MHSA 1996", q: [
+      {question:"The Mine Health and Safety Act is?", options:["Act 50 of 1991","Act 29 of 1996"], correct:1, explanation:"MHSA is Act 29 of 1996."},
+      {question:"Employees have the right to?", options:["Ignore procedures","Refuse dangerous work and leave a dangerous workplace"], correct:1, explanation:"These rights are protected under Section 23 of MHSA."},
+      {question:"Who is ultimately responsible for safety?", options:["Only the safety officer","Yourself and every co-worker"], correct:1, explanation:"Everyone has a duty of care."},
+      {question:"Minimum pass mark for competency assessments?", options:["50%","70%"], correct:1, explanation:"70% is the standard pass mark."}
+    ]},
+    hirac: {name:"HIRAC REFRESHER", q: [
+      {question:"What does HIRAC stand for?", options:["Hazard Identification, Risk Assessment and Control","Health Inspection, Risk Analysis and Compliance"], correct:0, explanation:"HIRAC is the systematic process of identifying hazards, assessing risk and implementing controls."},
+      {question:"When should a HIRAC be performed?", options:["Only after an incident","Before starting any task that has potential hazards"], correct:1, explanation:"HIRAC must be done before work starts so controls can be put in place."},
+      {question:"The preferred hierarchy of control starts with:", options:["PPE","Elimination"], correct:1, explanation:"Elimination of the hazard is the most effective control."},
+      {question:"Who is responsible for participating in HIRAC?", options:["Only the safety officer","Every member of the work team"], correct:1, explanation:"Everyone involved in the task should participate."},
+      {question:"A residual risk is:", options:["The risk before any controls","The risk that remains after controls are applied"], correct:1, explanation:"Residual risk is what remains after controls have been implemented."}
+    ]},
+    induction_protocol: {name:"INDUCTION PROTOCOL", q: [
+      {question:"During induction, cell phones should be?", options:["On silent","Switched off"], correct:1, explanation:"Cell phones must be switched off so they do not distract the facilitator."},
+      {question:"If you have a question you should?", options:["Shout it out","Put your hand in the air"], correct:1, explanation:"Raise your hand so the facilitator can address the question."},
+      {question:"This induction contains information that could?", options:["Only help with production","Save your life"], correct:1, explanation:"The induction contains critical safety information that could save your life."},
+      {question:"Assembly points and emergency exits must be known by?", options:["Only supervisors","Every person on site"], correct:1, explanation:"Every person must know the location of assembly points and emergency exits."}
+    ]},
+    employee_rights: {name:"EMPLOYEE RIGHTS & DUTIES", q: [
+      {question:"Under MHSA employees have the right to?", options:["Ignore procedures","Refuse to do dangerous work and leave a dangerous workplace"], correct:1, explanation:"These rights are protected under the Mine Health and Safety Act 29 of 1996."},
+      {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker"], correct:1, explanation:"Everyone has a duty of care for their own safety and the safety of others."}
+    ]},
+    tmm: {name:"TMM", q: [
+      {question:"Level 9 collision avoidance means?", options:["Warning only","Full automatic intervention (braking) without operator input"], correct:1, explanation:"Level 9 provides automatic intervention to prevent collisions."},
+      {question:"TMM operators must hold?", options:["Any drivers licence","A valid competency certificate for the specific machine"], correct:1, explanation:"Competency certification is mandatory for TMM operation."}
+    ]},
+    evacuation: {name:"EMERGENCY EVACUATION", q: [
+      {question:"First action in an emergency is usually to?", options:["Continue working","Raise the alarm and follow the emergency procedure"], correct:1, explanation:"Raise the alarm and follow established procedures."},
+      {question:"Refuge bays must contain?", options:["Only water","SCSRs, water, first aid and communication"], correct:1, explanation:"Refuge bays are life-saving facilities and must be fully stocked."}
+    ]}
+  };
+
+  // Fallback quizzes for remaining modules
   Object.keys(moduleNames).forEach(key => {
-    sampleQuizzes[key] = { name: moduleNames[key].toUpperCase(), q: [
-      {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
-      {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark."},
-      {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care."}
-    ]};
+    if (!sampleQuizzes[key]) {
+      sampleQuizzes[key] = {name: moduleNames[key].toUpperCase(), q: [
+        {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
+        {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark."},
+        {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care."}
+      ]};
+    }
   });
 
   // ========== STATE ==========
@@ -387,7 +662,7 @@ body {
   let currentModule = null;
   let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
   let assigningToUid = null;
-  let viewingProgressUid = null;
+  let currentFilter = "all";
 
   // ========== AUTH ==========
   onAuthStateChanged(auth, async (user) => {
@@ -404,52 +679,39 @@ body {
       scores = {};
       document.getElementById('authScreen').classList.remove('d-none');
       hideAllScreens();
+      document.getElementById('navLinks').innerHTML = "";
     }
   });
 
-document.getElementById('btnRegister').addEventListener('click', async () => {
-  const name = document.getElementById('authName').value.trim();
-  const email = document.getElementById('authEmail').value.trim();
-  const password = document.getElementById('authPassword').value;
-  const errBox = document.getElementById('authError');
-  errBox.classList.add('d-none');
-
-  if (!name || !email || password.length < 6) {
-    errBox.textContent = "Please fill all fields (password min 6 characters).";
-    errBox.classList.remove('d-none');
-    return;
-  }
-
-  try {
-    // 1. Create the Auth account
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(cred.user, { displayName: name });
-
-    // 2. Create the user document (default as normal user)
-    await setDoc(doc(db, "users", cred.user.uid), {
-      fullName: name,
-      email: email,
-      role: "user",
-      assignedModules: [],
-      createdAt: serverTimestamp(),
-      lastLogin: serverTimestamp()
-    });
-
-    // 3. If this is the very first user → make them Admin automatically
-    const usersSnap = await getDocs(collection(db, "users"));
-    if (usersSnap.size === 1) {
-      await updateDoc(doc(db, "users", cred.user.uid), {
-        role: "admin",
-        assignedModules: Object.keys(moduleNames)
-      });
+  document.getElementById('btnRegister').addEventListener('click', async () => {
+    const name = document.getElementById('authName').value.trim();
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const errBox = document.getElementById('authError');
+    errBox.classList.add('d-none');
+    if (!name || !email || password.length < 6) {
+      errBox.textContent = "Please fill all fields (password min 6 characters).";
+      errBox.classList.remove('d-none');
+      return;
     }
-
-  } catch (e) {
-    console.error(e);
-    errBox.textContent = e.message;
-    errBox.classList.remove('d-none');
-  }
-});
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+      await setDoc(doc(db, "users", cred.user.uid), {
+        fullName: name, email: email, role: "user", assignedModules: [],
+        createdAt: serverTimestamp(), lastLogin: serverTimestamp()
+      });
+      const usersSnap = await getDocs(collection(db, "users"));
+      if (usersSnap.size === 1) {
+        await updateDoc(doc(db, "users", cred.user.uid), {
+          role: "admin", assignedModules: Object.keys(moduleNames)
+        });
+      }
+    } catch (e) {
+      errBox.textContent = e.message;
+      errBox.classList.remove('d-none');
+    }
+  });
 
   document.getElementById('btnLogin').addEventListener('click', async () => {
     const email = document.getElementById('authEmail').value.trim();
@@ -466,42 +728,29 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
 
   // ========== PROFILE & PROGRESS ==========
   async function loadUserProfile(uid) {
-    // FORCE this specific user to be Admin
     const FORCE_ADMIN_UID = "R3XykFY4bcOznpapSOtIbDepBkU2";
-
     if (uid === FORCE_ADMIN_UID) {
       userProfile = {
         fullName: currentUser.displayName || "Admin User",
         email: currentUser.email || "",
         role: "admin",
-        assignedModules: Object.keys(moduleNames),
-        createdAt: null,
-        lastLogin: null
+        assignedModules: Object.keys(moduleNames)
       };
-      // Also try to update Firestore (will succeed once rules are fixed)
       try {
         await setDoc(doc(db, "users", uid), {
-          fullName: userProfile.fullName,
-          email: userProfile.email,
-          role: "admin",
-          assignedModules: Object.keys(moduleNames),
-          lastLogin: serverTimestamp()
+          fullName: userProfile.fullName, email: userProfile.email, role: "admin",
+          assignedModules: Object.keys(moduleNames), lastLogin: serverTimestamp()
         }, { merge: true });
-      } catch (e) {
-        console.warn("Could not write admin profile to Firestore (rules issue):", e.message);
-      }
+      } catch (e) { console.warn("Could not write admin profile:", e.message); }
     } else {
       const snap = await getDoc(doc(db, "users", uid));
       if (snap.exists()) {
         userProfile = snap.data();
-        try {
-          await updateDoc(doc(db, "users", uid), { lastLogin: serverTimestamp() });
-        } catch (e) { /* ignore */ }
+        try { await updateDoc(doc(db, "users", uid), { lastLogin: serverTimestamp() }); } catch (e) {}
       } else {
         userProfile = { role: "user", assignedModules: [], fullName: currentUser.displayName || "" };
       }
     }
-
     const nameInput = document.getElementById('userFullName');
     if (nameInput) nameInput.value = userProfile.fullName || currentUser.displayName || "";
   }
@@ -528,42 +777,73 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     document.getElementById('navLinks').innerHTML = `
       <li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="descriptions">Descriptions</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="resources">Resources</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
       ${isAdmin ? '<li class="nav-item"><a class="nav-link text-warning fw-semibold" href="#" data-screen="admin"><i class="bi bi-gear me-1"></i>Admin</a></li>' : ''}
       <li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="contact">Contact</a></li>
       <li class="nav-item"><a class="nav-link" href="#" id="btnLogout">Logout</a></li>
     `;
-
     document.querySelectorAll('[data-screen]').forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
+        closeMobileMenu();
         const s = link.dataset.screen;
         if (s === "home") showHome();
         else if (s === "modules") showModulesList();
+        else if (s === "descriptions") showDescriptions();
+        else if (s === "resources") showScreen("resourcesScreen");
         else if (s === "dashboard") showDashboard();
         else if (s === "certificates") showCertificates();
         else if (s === "admin") showAdmin();
         else if (s === "about") showScreen("aboutScreen");
+        else if (s === "contact") showScreen("contactScreen");
       });
     });
-
     document.getElementById('btnLogout')?.addEventListener('click', async e => {
       e.preventDefault();
       await signOut(auth);
     });
   }
 
+  function closeMobileMenu() {
+    const collapseEl = document.getElementById('navbarContent');
+    if (collapseEl && collapseEl.classList.contains('show')) {
+      const bsCollapse = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle: false});
+      bsCollapse.hide();
+    }
+  }
+
   function hideAllScreens() {
-    ["welcomeScreen","modulesContainer","moduleView","videoScreen","quizScreen",
-     "resultsScreen","dashboardScreen","certificatesScreen","adminScreen","aboutScreen"]
+    ["welcomeScreen","modulesContainer","moduleView","videoScreen","presentationScreen","quizScreen",
+     "resultsScreen","dashboardScreen","certificatesScreen","adminScreen","aboutScreen","descriptionsScreen","resourcesScreen","contactScreen"]
       .forEach(id => document.getElementById(id)?.classList.add("d-none"));
   }
 
   function showScreen(id) {
+    if (id !== 'videoScreen') document.getElementById('videoPlayer').src = '';
+    if (id !== 'presentationScreen') document.getElementById('presentationPlayer').src = '';
     hideAllScreens();
     document.getElementById(id)?.classList.remove("d-none");
+    updateBreadcrumb(id);
     window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  function updateBreadcrumb(screen) {
+    const map = {modulesContainer:'Modules', moduleView: moduleNames[currentModule]||'Module', videoScreen:'Lesson', presentationScreen:'Presentation', quizScreen:'Assessment', resultsScreen:'Results', descriptionsScreen:'Descriptions', resourcesScreen:'Resources', dashboardScreen:'Dashboard', certificatesScreen:'Certificates', aboutScreen:'About', contactScreen:'Contact', adminScreen:'Admin'};
+    const nav = document.getElementById('breadcrumbNav');
+    const items = document.getElementById('breadcrumbItems');
+    if (!map[screen] || screen === 'welcomeScreen') { nav.classList.add('d-none'); return; }
+    nav.classList.remove('d-none');
+    let html = '<li class="breadcrumb-item"><a href="#" onclick="showHome();return false;">Home</a></li>';
+    if (['moduleView','videoScreen','presentationScreen','quizScreen','resultsScreen'].includes(screen)) {
+      html += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList();return false;">Modules</a></li>';
+      if (screen !== 'moduleView') html += `<li class="breadcrumb-item"><a href="#" onclick="loadModule('${currentModule}');return false;">${moduleNames[currentModule]||'Module'}</a></li>`;
+    }
+    html += `<li class="breadcrumb-item active">${map[screen]}</li>`;
+    items.innerHTML = html;
   }
 
   function showHome() { showScreen("welcomeScreen"); }
@@ -579,15 +859,16 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     const grid = document.getElementById("moduleGrid");
     grid.innerHTML = "";
     const visible = getVisibleModules();
-
     if (visible.length === 0) {
       grid.innerHTML = `<div class="col-12"><div class="alert alert-info text-center">No modules have been assigned to you yet. Please contact your administrator.</div></div>`;
+      updateProgress();
       return;
     }
-
     visible.forEach(key => {
       const name = moduleNames[key];
       if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
+      if (currentFilter === "basic" && advancedModules.includes(key)) return;
+      if (currentFilter === "advanced" && !advancedModules.includes(key)) return;
       const score = scores[key];
       const pct = score ? score.percentage : 0;
       const card = document.createElement("div");
@@ -619,6 +900,14 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
   }
 
   document.getElementById("searchInput")?.addEventListener("input", e => renderModules(e.target.value.trim()));
+  document.querySelectorAll('[data-filter]').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      currentFilter = item.dataset.filter;
+      document.getElementById('filterLabel').textContent = 'Filter: ' + item.textContent;
+      renderModules(document.getElementById("searchInput")?.value.trim() || "");
+    });
+  });
 
   function loadModule(key) {
     if (userProfile?.role !== "admin" && !(userProfile?.assignedModules||[]).includes(key)) {
@@ -627,23 +916,48 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     }
     currentModule = key;
     document.getElementById("moduleTitle").textContent = moduleNames[key];
+    const hasPresentation = presentations[key];
+    let path = "";
+    if (hasPresentation) {
+      path += `<div class="learning-item"><div><div class="title">${moduleNames[key]} – Presentation</div><small class="text-muted">Slides / visual content</small></div>
+        <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Presentation</span>
+        <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button></div></div>`;
+    }
+    path += `<div class="learning-item"><div><div class="title">${moduleNames[key]} – Video Lesson</div><small class="text-muted">Training video</small></div>
+      <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
+      <button class="btn btn-sm btn-outline-primary" onclick="startVideo()">Watch →</button></div></div>`;
+    document.getElementById("learningPath").innerHTML = path;
     showScreen("moduleView");
   }
 
-  // ========== QUIZ ==========
-  document.getElementById("watchVideo")?.addEventListener("click", () => {
-    document.getElementById("videoPlayer").src = "https://www.youtube.com/embed/lMEErpFhzxg?rel=0";
-    showScreen("videoScreen");
-  });
+  window.openPresentation = function(key) {
+    const player = document.getElementById("presentationPlayer");
+    player.src = "";
+    const url = presentations[key] || presentations.fire;
+    setTimeout(() => { player.src = url; }, 80);
+    showScreen("presentationScreen");
+  };
 
+  // ========== VIDEO / QUIZ ==========
+  document.getElementById("watchVideo")?.addEventListener("click", startVideo);
   document.getElementById("startQuiz")?.addEventListener("click", startQuiz);
   document.getElementById("nextBtn")?.addEventListener("click", () => { questionIndex++; showQuestion(); });
+
+  function startVideo() {
+    const player = document.getElementById("videoPlayer");
+    player.src = "";
+    const base = videos[currentModule] || videos.mhsa;
+    const params = "rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1";
+    setTimeout(() => {
+      player.src = base + (base.includes("?") ? "&" : "?") + params;
+    }, 50);
+    showScreen("videoScreen");
+  }
 
   function startQuiz() {
     const name = document.getElementById("userFullName").value.trim();
     if (!name) { alert("Please enter your full name for the certificate."); return; }
     localStorage.setItem("currentUserNameForCertificate", name);
-
     currentQuiz = [...(sampleQuizzes[currentModule]?.q || [])].sort(() => Math.random() - 0.5);
     questionIndex = 0; correctAnswers = 0; quizStartTime = Date.now();
     showQuestion();
@@ -655,14 +969,11 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     const feedback = document.getElementById("feedback");
     const nextBtn = document.getElementById("nextBtn");
     container.innerHTML = ""; feedback.innerHTML = ""; nextBtn.classList.add("d-none");
-
     if (questionIndex >= currentQuiz.length) { finishQuiz(); return; }
-
     const q = currentQuiz[questionIndex];
     const correctText = q.options[q.correct];
     const shuffled = [...q.options].sort(() => Math.random() - 0.5);
     const newCorrect = shuffled.indexOf(correctText);
-
     document.getElementById("questionText").textContent = q.question;
     shuffled.forEach((opt, i) => {
       const div = document.createElement("div");
@@ -691,11 +1002,9 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     const percentage = currentQuiz.length ? Math.round((correctAnswers / currentQuiz.length) * 100) : 0;
     const passed = percentage >= 70;
     const timestamp = new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"});
-
     const data = { percentage, passed, timestamp, correct: correctAnswers, total: currentQuiz.length };
     scores[currentModule] = data;
     await saveProgress(currentModule, data);
-
     document.getElementById("resultTitle").textContent = passed ? "Competency Demonstrated" : "Assessment Not Passed";
     document.getElementById("progressBar").style.width = percentage + "%";
     document.getElementById("progressBar").className = "progress-bar " + (passed ? "bg-success" : "bg-danger");
@@ -714,7 +1023,6 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     const done = Object.keys(scores).filter(k => visible.includes(k)).length;
     const passedCount = Object.entries(scores).filter(([k,v]) => v.passed && visible.includes(k)).length;
     const rate = done ? Math.round((passedCount / done) * 100) : 0;
-
     document.getElementById("completedCount").textContent = done;
     document.getElementById("totalModules").textContent = visible.length;
     document.getElementById("overallPass").textContent = rate + "%";
@@ -759,7 +1067,23 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     showScreen("certificatesScreen");
   }
 
-  // ========== PROFESSIONAL CERTIFICATE ==========
+  function showDescriptions() {
+    const accordion = document.getElementById("moduleAccordion");
+    accordion.innerHTML = "";
+    const visible = getVisibleModules();
+    visible.forEach((key, i) => {
+      const name = moduleNames[key];
+      const desc = moduleDescriptions[key] || "Description not available.";
+      const item = document.createElement("div");
+      item.className = "accordion-item";
+      item.innerHTML = `<h2 class="accordion-header"><button class="accordion-button ${i?'collapsed':''}" type="button" data-bs-toggle="collapse" data-bs-target="#desc${i}">${name}</button></h2>
+        <div id="desc${i}" class="accordion-collapse collapse ${i?'':'show'}" data-bs-parent="#moduleAccordion"><div class="accordion-body">${desc}</div></div>`;
+      accordion.appendChild(item);
+    });
+    showScreen("descriptionsScreen");
+  }
+
+  // ========== CERTIFICATE (professional landscape design from 105) ==========
   window.downloadCertificate = function() {
     if (!currentModule || !scores[currentModule]) return;
     const { jsPDF } = window.jspdf;
@@ -767,90 +1091,34 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     const modName = moduleNames[currentModule];
     const score = scores[currentModule].percentage;
     const dateStr = scores[currentModule].timestamp;
-
     const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-    const pageW = 297;
-    const pageH = 210;
-
-    // Outer border
-    doc.setDrawColor(29, 78, 216);
-    doc.setLineWidth(1.5);
-    doc.rect(8, 8, pageW - 16, pageH - 16);
-
-    // Inner decorative border
-    doc.setDrawColor(245, 158, 11);
-    doc.setLineWidth(0.6);
-    doc.rect(12, 12, pageW - 24, pageH - 24);
-
-    // Top accent bar
-    doc.setFillColor(29, 78, 216);
-    doc.rect(12, 12, pageW - 24, 18, "F");
-
-    // Title
-    doc.setTextColor(255, 255, 255);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
+    const pageW = 297, pageH = 210;
+    doc.setDrawColor(29, 78, 216); doc.setLineWidth(1.5); doc.rect(8, 8, pageW - 16, pageH - 16);
+    doc.setDrawColor(245, 158, 11); doc.setLineWidth(0.6); doc.rect(12, 12, pageW - 24, pageH - 24);
+    doc.setFillColor(29, 78, 216); doc.rect(12, 12, pageW - 24, 18, "F");
+    doc.setTextColor(255, 255, 255); doc.setFont("helvetica", "bold"); doc.setFontSize(16);
     doc.text("ACT 29 MINING TRAINING PLATFORM", pageW / 2, 24, { align: "center" });
-
-    // Main heading
-    doc.setTextColor(29, 78, 216);
-    doc.setFontSize(28);
+    doc.setTextColor(29, 78, 216); doc.setFontSize(28);
     doc.text("CERTIFICATE OF COMPETENCY", pageW / 2, 48, { align: "center" });
-
-    // Subtitle
-    doc.setTextColor(80, 80, 80);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
+    doc.setTextColor(80, 80, 80); doc.setFont("helvetica", "normal"); doc.setFontSize(12);
     doc.text("This is to certify that", pageW / 2, 62, { align: "center" });
-
-    // Recipient name
-    doc.setTextColor(15, 23, 42);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(24);
+    doc.setTextColor(15, 23, 42); doc.setFont("helvetica", "bold"); doc.setFontSize(24);
     doc.text(userName.toUpperCase(), pageW / 2, 78, { align: "center" });
-
-    // Line under name
-    doc.setDrawColor(245, 158, 11);
-    doc.setLineWidth(0.8);
-    doc.line(pageW / 2 - 60, 82, pageW / 2 + 60, 82);
-
-    // Body text
-    doc.setTextColor(60, 60, 60);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
+    doc.setDrawColor(245, 158, 11); doc.setLineWidth(0.8); doc.line(pageW / 2 - 60, 82, pageW / 2 + 60, 82);
+    doc.setTextColor(60, 60, 60); doc.setFont("helvetica", "normal"); doc.setFontSize(12);
     doc.text("has successfully demonstrated competency in the module", pageW / 2, 95, { align: "center" });
-
-    // Module name
-    doc.setTextColor(5, 150, 105);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
+    doc.setTextColor(5, 150, 105); doc.setFont("helvetica", "bold"); doc.setFontSize(16);
     doc.text(modName, pageW / 2, 108, { align: "center" });
-
-    // Score & date
-    doc.setTextColor(40, 40, 40);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
+    doc.setTextColor(40, 40, 40); doc.setFont("helvetica", "normal"); doc.setFontSize(12);
     doc.text(`Score achieved: ${score}%   |   Date of completion: ${dateStr}`, pageW / 2, 122, { align: "center" });
-
-    // MHSA statement
-    doc.setFontSize(10);
-    doc.setTextColor(80, 80, 80);
+    doc.setFontSize(10); doc.setTextColor(80, 80, 80);
     doc.text("This certificate confirms successful completion of MHSA-aligned competency training", pageW / 2, 138, { align: "center" });
     doc.text("in accordance with the Mine Health and Safety Act 29 of 1996.", pageW / 2, 145, { align: "center" });
-
-    // Footer bar
-    doc.setFillColor(15, 23, 42);
-    doc.rect(12, pageH - 30, pageW - 24, 18, "F");
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(9);
+    doc.setFillColor(15, 23, 42); doc.rect(12, pageH - 30, pageW - 24, 18, "F");
+    doc.setTextColor(255, 255, 255); doc.setFontSize(9);
     doc.text("Act 29 Mining Training  •  MHSA Compliant  •  Zero Harm  •  www.miningtraining.ac.za", pageW / 2, pageH - 19, { align: "center" });
-
-    // Certificate ID (simple)
     const certId = "A29-" + Date.now().toString().slice(-8);
-    doc.setFontSize(8);
-    doc.text("Certificate ID: " + certId, pageW / 2, pageH - 12, { align: "center" });
-
+    doc.setFontSize(8); doc.text("Certificate ID: " + certId, pageW / 2, pageH - 12, { align: "center" });
     doc.save(`Certificate_${modName.replace(/\s+/g, "_")}_${userName.replace(/\s+/g, "_")}.pdf`);
   };
 
@@ -864,6 +1132,7 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
   function restartQuiz() { startQuiz(); }
   function backToModule() {
     document.getElementById("videoPlayer").src = "";
+    document.getElementById("presentationPlayer").src = "";
     loadModule(currentModule);
   }
 
@@ -911,7 +1180,6 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     document.getElementById("progressModal").classList.add("d-none");
     const userSnap = await getDoc(doc(db, "users", uid));
     const assigned = userSnap.data()?.assignedModules || [];
-
     const list = document.getElementById("assignModuleList");
     list.innerHTML = "";
     Object.entries(moduleNames).forEach(([key, name]) => {
@@ -941,24 +1209,17 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
     loadAllUsers();
   };
 
-  // View User Progress
   window.openProgressModal = async function(uid, name) {
-    viewingProgressUid = uid;
     document.getElementById("progressUserName").textContent = name;
     document.getElementById("assignModal").classList.add("d-none");
     document.getElementById("progressModal").classList.remove("d-none");
-
     const tbody = document.getElementById("progressTableBody");
     const emptyMsg = document.getElementById("progressEmpty");
     tbody.innerHTML = "";
     emptyMsg.classList.add("d-none");
-
     try {
       const snap = await getDocs(collection(db, "progress", uid, "modules"));
-      if (snap.empty) {
-        emptyMsg.classList.remove("d-none");
-        return;
-      }
+      if (snap.empty) { emptyMsg.classList.remove("d-none"); return; }
       snap.forEach(d => {
         const data = d.data();
         const tr = document.createElement("tr");
@@ -977,8 +1238,13 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
 
   window.closeProgressModal = function() {
     document.getElementById("progressModal").classList.add("d-none");
-    viewingProgressUid = null;
   };
+
+  document.querySelector('.contact-form')?.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you. Your message has been received and will be responded to shortly.');
+    e.target.reset();
+  });
 
   // Global helpers
   window.showHome = showHome;
@@ -986,6 +1252,8 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
   window.showDashboard = showDashboard;
   window.backToModule = backToModule;
   window.restartQuiz = restartQuiz;
+  window.loadModule = loadModule;
+  window.startVideo = startVideo;
 </script>
 </body>
 </html>
