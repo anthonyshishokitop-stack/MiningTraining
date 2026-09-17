@@ -407,39 +407,49 @@ body {
     }
   });
 
-  document.getElementById('btnRegister').addEventListener('click', async () => {
-    const name = document.getElementById('authName').value.trim();
-    const email = document.getElementById('authEmail').value.trim();
-    const password = document.getElementById('authPassword').value;
-    const errBox = document.getElementById('authError');
-    errBox.classList.add('d-none');
+document.getElementById('btnRegister').addEventListener('click', async () => {
+  const name = document.getElementById('authName').value.trim();
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const errBox = document.getElementById('authError');
+  errBox.classList.add('d-none');
 
-    if (!name || !email || password.length < 6) {
-      errBox.textContent = "Please fill all fields (password min 6 characters).";
-      errBox.classList.remove('d-none');
-      return;
-    }
+  if (!name || !email || password.length < 6) {
+    errBox.textContent = "Please fill all fields (password min 6 characters).";
+    errBox.classList.remove('d-none');
+    return;
+  }
 
-    try {
-      const usersSnap = await getDocs(collection(db, "users"));
-      const isFirstUser = usersSnap.empty;
+  try {
+    // 1. Create the Auth account
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(cred.user, { displayName: name });
 
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(cred.user, { displayName: name });
+    // 2. Create the user document (default as normal user)
+    await setDoc(doc(db, "users", cred.user.uid), {
+      fullName: name,
+      email: email,
+      role: "user",
+      assignedModules: [],
+      createdAt: serverTimestamp(),
+      lastLogin: serverTimestamp()
+    });
 
-      await setDoc(doc(db, "users", cred.user.uid), {
-        fullName: name,
-        email: email,
-        role: isFirstUser ? "admin" : "user",
-        assignedModules: isFirstUser ? Object.keys(moduleNames) : [],
-        createdAt: serverTimestamp(),
-        lastLogin: serverTimestamp()
+    // 3. If this is the very first user → make them Admin automatically
+    const usersSnap = await getDocs(collection(db, "users"));
+    if (usersSnap.size === 1) {
+      await updateDoc(doc(db, "users", cred.user.uid), {
+        role: "admin",
+        assignedModules: Object.keys(moduleNames)
       });
-    } catch (e) {
-      errBox.textContent = e.message;
-      errBox.classList.remove('d-none');
     }
-  });
+
+  } catch (e) {
+    console.error(e);
+    errBox.textContent = e.message;
+    errBox.classList.remove('d-none');
+  }
+});
 
   document.getElementById('btnLogin').addEventListener('click', async () => {
     const email = document.getElementById('authEmail').value.trim();
