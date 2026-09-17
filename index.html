@@ -191,9 +191,24 @@ body {
   height: 100%;
   display: block;
 }
-/* Smooth screen transitions */
-#content-area > div {
-  transition: opacity 0.2s ease;
+/* Mobile navbar – clean collapse */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: #fff;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    padding: 0.75rem 1rem 1rem;
+    margin-top: 0;
+  }
+  .navbar-nav .nav-link {
+    padding: 0.7rem 1rem !important;
+    border-radius: 8px;
+    margin-bottom: 2px;
+  }
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:active {
+    background: #e9f1ff;
+  }
 }
 @media (max-width: 767.98px) {
   body { padding-top: 56px; }
@@ -210,18 +225,23 @@ body {
 <nav class="navbar navbar-expand-lg fixed-top">
 <div class="container-fluid px-3 px-lg-4">
 <a class="navbar-brand logo-title" href="#" onclick="showHome();return false;"><i class="bi bi-shield-check me-1"></i> Act 29 Mining</a>
-<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"><span class="navbar-toggler-icon"></span></button>
+<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 <div class="collapse navbar-collapse" id="navbarContent">
 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-<li class="nav-item"><a class="nav-link" href="#" onclick="showHome();return false;">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showModulesList();return false;">Modules</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showDescriptions();return false;">Descriptions</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showResources();return false;">Resources</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showDashboard();return false;">Dashboard</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showCertificates();return false;">Certificates</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showAbout();return false;">About</a></li>
-<li class="nav-item"><a class="nav-link" href="#" onclick="showContact();return false;">Contact</a></li>
-</ul></div></div></nav>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="descriptions">Descriptions</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="resources">Resources</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
+<li class="nav-item"><a class="nav-link" href="#" data-screen="contact">Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
 
 <div id="content-area">
 <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none"><ol class="breadcrumb" id="breadcrumbItems"></ol></nav>
@@ -232,12 +252,6 @@ body {
 <p class="lead mb-2">MHSA Compliant • Workplace Safety Induction & Competency</p>
 <p class="mb-4 opacity-90">Professional e-learning for mining companies and contractors</p>
 <button class="btn btn-primary btn-lg px-4" onclick="showModulesList()"><i class="bi bi-grid-3x3-gap me-2"></i>View All Modules</button>
-</div>
-<div class="row g-3 g-md-4 mb-4">
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary" id="homeModuleCount">35</div><div class="small text-muted">Competency Modules</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary">70%</div><div class="small text-muted">Pass Mark</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary">PDF</div><div class="small text-muted">Certificates</div></div></div>
-<div class="col-6 col-md-3"><div class="card border-0 shadow-sm h-100 text-center p-3"><div class="fs-2 fw-bold text-primary">MHSA</div><div class="small text-muted">Aligned</div></div></div>
 </div>
 </div>
 
@@ -919,13 +933,15 @@ function shuffleArray(arr) {
 
 /* ========== MEDIA CONTROL ========== */
 function stopAllMedia() {
-  // Immediately stop YouTube video (kills audio)
-  if (els.videoPlayer) {
-    els.videoPlayer.src = '';
-  }
-  // Clear presentation so previous slide does not flash
-  if (els.presentationPlayer) {
-    els.presentationPlayer.src = '';
+  if (els.videoPlayer) els.videoPlayer.src = '';
+  if (els.presentationPlayer) els.presentationPlayer.src = '';
+}
+
+function closeMobileMenu() {
+  const collapseEl = document.getElementById('navbarContent');
+  if (collapseEl && collapseEl.classList.contains('show')) {
+    const bsCollapse = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle: false});
+    bsCollapse.hide();
   }
 }
 
@@ -973,7 +989,6 @@ function updateProgress() {
   document.getElementById('dashPassRate').textContent = rate + '%';
   document.getElementById('dashCertificates').textContent = passed;
   document.getElementById('dashTotal').textContent = total;
-  document.getElementById('homeModuleCount').textContent = total;
 }
 
 function renderModules(filter='all', term='') {
@@ -1009,31 +1024,19 @@ function loadModule(key) {
 }
 
 function openPresentation(key) {
-  // Clear previous presentation first to avoid flash of old content
   els.presentationPlayer.src = '';
-  
   const url = presentations[key] || presentations.mhsa || "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000";
-  
-  // Small delay ensures the previous iframe is fully unloaded before loading the new one
-  setTimeout(() => {
-    els.presentationPlayer.src = url;
-  }, 80);
-  
+  setTimeout(() => { els.presentationPlayer.src = url; }, 80);
   showScreen('presentationScreen');
 }
 
 function startVideo() {
-  // Clear any previous video first
   els.videoPlayer.src = '';
-  
   const base = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
-  // Clean parameters – reduce branding, hide annotations, enable sound when user presses play
   const params = "rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1&disablekb=0&cc_load_policy=0";
-  
   setTimeout(() => {
     els.videoPlayer.src = base + (base.includes("?") ? "&" : "?") + params;
   }, 50);
-  
   showScreen("videoScreen");
 }
 
@@ -1178,10 +1181,7 @@ function showDescriptions() {
   showScreen('descriptionsScreen');
 }
 
-function showResources() {
-  showScreen('resourcesScreen');
-}
-
+function showResources() { showScreen('resourcesScreen'); }
 function restartQuiz(){ startQuiz(); }
 function showHome(){ showScreen('welcomeScreen'); }
 function showModulesList(){
@@ -1194,9 +1194,29 @@ function showAbout(){ showScreen('aboutScreen'); }
 function showContact(){ showScreen('contactScreen'); }
 
 function backToModule(){
-  stopAllMedia();          // ← forces immediate stop of video audio + clears presentation
+  stopAllMedia();
   loadModule(currentModule);
 }
+
+/* ========== NAV LINKS – close mobile menu after click ========== */
+document.querySelectorAll('.navbar-nav .nav-link[data-screen]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const screen = link.dataset.screen;
+    closeMobileMenu();           // ← immediately hide the open menu on mobile
+
+    switch(screen) {
+      case 'home': showHome(); break;
+      case 'modules': showModulesList(); break;
+      case 'descriptions': showDescriptions(); break;
+      case 'resources': showResources(); break;
+      case 'dashboard': showDashboard(); break;
+      case 'certificates': showCertificates(); break;
+      case 'about': showAbout(); break;
+      case 'contact': showContact(); break;
+    }
+  });
+});
 
 document.getElementById('watchVideo')?.addEventListener('click', startVideo);
 document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
