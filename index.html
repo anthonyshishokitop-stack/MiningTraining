@@ -466,13 +466,42 @@ document.getElementById('btnRegister').addEventListener('click', async () => {
 
   // ========== PROFILE & PROGRESS ==========
   async function loadUserProfile(uid) {
-    const snap = await getDoc(doc(db, "users", uid));
-    if (snap.exists()) {
-      userProfile = snap.data();
-      await updateDoc(doc(db, "users", uid), { lastLogin: serverTimestamp() });
+    // FORCE this specific user to be Admin
+    const FORCE_ADMIN_UID = "R3XykFY4bcOznpapSOtIbDepBkU2";
+
+    if (uid === FORCE_ADMIN_UID) {
+      userProfile = {
+        fullName: currentUser.displayName || "Admin User",
+        email: currentUser.email || "",
+        role: "admin",
+        assignedModules: Object.keys(moduleNames),
+        createdAt: null,
+        lastLogin: null
+      };
+      // Also try to update Firestore (will succeed once rules are fixed)
+      try {
+        await setDoc(doc(db, "users", uid), {
+          fullName: userProfile.fullName,
+          email: userProfile.email,
+          role: "admin",
+          assignedModules: Object.keys(moduleNames),
+          lastLogin: serverTimestamp()
+        }, { merge: true });
+      } catch (e) {
+        console.warn("Could not write admin profile to Firestore (rules issue):", e.message);
+      }
     } else {
-      userProfile = { role: "user", assignedModules: [], fullName: currentUser.displayName || "" };
+      const snap = await getDoc(doc(db, "users", uid));
+      if (snap.exists()) {
+        userProfile = snap.data();
+        try {
+          await updateDoc(doc(db, "users", uid), { lastLogin: serverTimestamp() });
+        } catch (e) { /* ignore */ }
+      } else {
+        userProfile = { role: "user", assignedModules: [], fullName: currentUser.displayName || "" };
+      }
     }
+
     const nameInput = document.getElementById('userFullName');
     if (nameInput) nameInput.value = userProfile.fullName || currentUser.displayName || "";
   }
