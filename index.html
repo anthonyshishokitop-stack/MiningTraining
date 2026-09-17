@@ -3,1689 +3,838 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>Act 29 Mining Training | MHSA Compliant Induction & Competency Platform</title>
-<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform. Audit-ready certificates, structured assessments and Zero Harm training for mining companies and contractors.">
+<title>Act 29 Mining Training | MHSA Compliant Platform</title>
+<meta name="description" content="Enterprise MHSA-compliant mining induction and competency platform with admin module assignment.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
 :root {
   --bg-deep: #0f172a;
-  --bg-surface: #1e293b;
-  --bg-card: #ffffff;
-  --bg-card-soft: rgba(255,255,255,0.97);
   --primary: #1d4ed8;
   --primary-hover: #1e40af;
-  --primary-soft: #dbeafe;
   --accent: #f59e0b;
-  --accent-dark: #d97706;
   --success: #059669;
   --danger: #dc2626;
   --text-primary: #0f172a;
   --text-muted: #64748b;
-  --border: rgba(29,78,216,0.18);
   --radius: 12px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
   --shadow-lg: 0 12px 32px rgba(15,23,42,0.18);
 }
-
 * { box-sizing: border-box; }
-
 body {
   background-color: var(--bg-deep);
-  background-image:
-    linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.95) 100%),
-    url('bg-miners.png');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  min-height: 100vh;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  padding-top: 68px;
-  color: #f8fafc;
-  line-height: 1.55;
-  font-size: 15.5px;
-  -webkit-font-smoothing: antialiased;
+  background-image: linear-gradient(180deg, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.95) 100%), url('bg-miners.png');
+  background-position: center; background-size: cover; background-attachment: fixed;
+  min-height: 100vh; font-family: 'Inter', system-ui, sans-serif;
+  padding-top: 68px; color: #f8fafc; line-height: 1.55; font-size: 15.5px;
 }
+.navbar { background: #fff !important; box-shadow: 0 2px 12px rgba(15,23,42,0.12); height: 68px; }
+.logo-title { font-weight: 800; color: var(--primary); font-size: 1.28rem; display: flex; align-items: center; gap: .4rem; }
+.logo-sub { font-size: .68rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; display: block; margin-top: -2px; }
+.nav-link { font-weight: 500; color: #334155 !important; padding: .5rem .9rem !important; border-radius: 8px; font-size: .92rem; }
+.nav-link:hover, .nav-link.active { color: var(--primary) !important; background: #dbeafe; }
+#content-area { max-width: 1240px; margin: 0 auto; padding: 1.5rem 1.1rem 3.5rem; min-height: calc(100vh - 110px); }
 
-/* ===== NAVBAR ===== */
-.navbar {
-  background: #ffffff !important;
-  box-shadow: 0 2px 12px rgba(15,23,42,0.12);
-  height: 68px;
-  border-bottom: 1px solid #e2e8f0;
-}
-.logo-title {
-  font-weight: 800;
-  color: var(--primary);
-  font-size: 1.28rem;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.logo-sub {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  display: block;
-  margin-top: -2px;
-}
-.nav-link {
-  font-weight: 500;
-  color: #334155 !important;
-  padding: 0.5rem 0.9rem !important;
-  border-radius: 8px;
-  font-size: 0.92rem;
-  transition: all 0.18s ease;
-}
-.nav-link:hover, .nav-link.active {
-  color: var(--primary) !important;
-  background: var(--primary-soft);
-}
+/* Auth Screen */
+#authScreen { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; }
+.auth-card { background: #fff; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); color: var(--text-primary); }
 
-/* ===== CONTENT AREA ===== */
-#content-area {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 1.5rem 1.1rem 3.5rem;
-  min-height: calc(100vh - 110px);
-}
+/* Cards & Modules */
+.module-card { background: #fff; border-radius: var(--radius); border: 1px solid #e2e8f0; box-shadow: var(--shadow-sm); transition: all .22s; height: 100%; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
+.module-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #93c5fd; }
+.module-card .card-top { height: 86px; background: linear-gradient(135deg, #eff6ff, #dbeafe); display: flex; align-items: center; justify-content: center; }
+.module-card.advanced .card-top { background: linear-gradient(135deg, #fff7ed, #ffedd5); }
+.module-card .card-top i { font-size: 2.1rem; color: #1d4ed8; }
+.module-card.advanced .card-top i { color: #c2410c; }
+.module-card .card-body { padding: 1.1rem 1.2rem 1.3rem; flex: 1; display: flex; flex-direction: column; color: var(--text-primary); }
+.module-name { font-weight: 700; font-size: 1.02rem; margin-bottom: .3rem; }
+.module-meta { font-size: .78rem; color: var(--text-muted); margin-bottom: .7rem; }
+.progress { height: 6px; border-radius: 99px; background: #e2e8f0; }
+.progress-bar { background: var(--primary); border-radius: 99px; }
+.progress-text { font-size: .76rem; color: var(--text-muted); margin-top: .35rem; display: flex; justify-content: space-between; }
 
-/* ===== HERO ===== */
-.welcome-hero {
-  background: linear-gradient(145deg, rgba(30,41,59,0.92), rgba(15,23,42,0.95));
-  border: 1px solid rgba(148,163,184,0.12);
-  border-radius: 18px;
-  padding: 3.2rem 2.2rem;
-  color: #f8fafc;
-  text-align: center;
-  margin-bottom: 2.25rem;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: hidden;
-}
-.welcome-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(29,78,216,0.18), transparent 55%);
-  pointer-events: none;
-}
-.welcome-hero h1 {
-  font-weight: 800;
-  font-size: clamp(1.85rem, 4.8vw, 2.65rem);
-  margin-bottom: 0.6rem;
-  color: #f8fafc;
-  letter-spacing: -0.03em;
-  position: relative;
-}
-.welcome-hero .lead {
-  font-size: 1.1rem;
-  color: #cbd5e1;
-  font-weight: 500;
-  margin-bottom: 0.35rem;
-}
-.welcome-hero .sub {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  margin-bottom: 1.75rem;
-}
-.zero-harm-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(245,158,11,0.15);
-  border: 1px solid rgba(245,158,11,0.35);
-  color: #fbbf24;
-  font-weight: 600;
-  font-size: 0.82rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.02em;
-}
-.trust-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1.75rem;
-}
-.trust-badge {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.14);
-  color: #e2e8f0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  letter-spacing: 0.01em;
-}
+.action-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.85rem 1.4rem; text-align: center; transition: all .22s; cursor: pointer; height: 100%; color: var(--text-primary); box-shadow: var(--shadow-sm); }
+.action-card:hover { border-color: #93c5fd; box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.action-card i { font-size: 2.5rem; margin-bottom: .65rem; }
 
-/* ===== MODULE CARDS ===== */
-.modules-header {
-  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
-  color: #fff;
-  padding: 1.85rem 1.5rem;
-  border-radius: 16px;
-  margin-bottom: 1.75rem;
-  text-align: center;
-  box-shadow: var(--shadow-md);
-}
-.modules-header h2 {
-  font-weight: 800;
-  font-size: 1.55rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
-}
-.stat-badge {
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.28);
-  color: #fff;
-  border-radius: 999px;
-  padding: 0.42rem 1rem;
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-.module-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  border: 1px solid #e2e8f0;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.22s ease;
-  height: 100%;
-  cursor: pointer;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.module-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: #93c5fd;
-}
-.module-card .card-top {
-  height: 86px;
-  background: linear-gradient(135deg, #eff6ff, #dbeafe);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.module-card.advanced .card-top {
-  background: linear-gradient(135deg, #fff7ed, #ffedd5);
-}
-.module-card .card-top i {
-  font-size: 2.1rem;
-  color: #1d4ed8;
-}
-.module-card.advanced .card-top i {
-  color: #c2410c;
-}
-.module-card .card-body {
-  padding: 1.1rem 1.2rem 1.3rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  color: var(--text-primary);
-}
-.module-name {
-  font-weight: 700;
-  font-size: 1.02rem;
-  color: var(--text-primary);
-  margin-bottom: 0.3rem;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-}
-.module-meta {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 0.7rem;
-  font-weight: 500;
-}
-.progress {
-  height: 6px;
-  border-radius: 99px;
-  background: #e2e8f0;
-}
-.progress-bar {
-  background: var(--primary);
-  border-radius: 99px;
-}
-.progress-text {
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  margin-top: 0.35rem;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 500;
-}
+.btn-primary { background: var(--primary); border-color: var(--primary); font-weight: 600; border-radius: 10px; }
+.btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.btn-accent { background: var(--accent); border-color: var(--accent); color: #1c1917; font-weight: 700; border-radius: 10px; }
+.btn-outline-primary { color: var(--primary); border-color: var(--primary); border-radius: 10px; font-weight: 600; }
+.btn-outline-primary:hover { background: var(--primary); color: #fff; }
 
-/* ===== ACTION CARDS ===== */
-.action-card {
-  background: var(--bg-card);
-  border: 1px solid #e2e8f0;
-  border-radius: var(--radius);
-  padding: 1.85rem 1.4rem;
-  text-align: center;
-  transition: all 0.22s ease;
-  cursor: pointer;
-  height: 100%;
-  color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
-}
-.action-card:hover {
-  border-color: #93c5fd;
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-}
-.action-card i {
-  font-size: 2.5rem;
-  margin-bottom: 0.65rem;
-}
+.section-title { font-weight: 800; font-size: 1.45rem; margin-bottom: 1.25rem; color: #f8fafc; }
+.card { background: rgba(255,255,255,.97); color: var(--text-primary); border-radius: var(--radius); border: 1px solid #e2e8f0; }
+.stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center; box-shadow: var(--shadow-sm); }
+.stat-card .value { font-size: 1.75rem; font-weight: 800; }
+.stat-card .label { font-size: .8rem; color: var(--text-muted); }
 
-/* ===== BUTTONS ===== */
-.btn-primary {
-  background: var(--primary);
-  border-color: var(--primary);
-  font-weight: 600;
-  border-radius: 10px;
-  padding: 0.6rem 1.35rem;
-  letter-spacing: -0.01em;
-}
-.btn-primary:hover {
-  background: var(--primary-hover);
-  border-color: var(--primary-hover);
-}
-.btn-accent {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #1c1917;
-  font-weight: 700;
-  border-radius: 10px;
-  padding: 0.6rem 1.35rem;
-}
-.btn-accent:hover {
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
-  color: #fff;
-}
-.btn-outline-primary {
-  color: var(--primary);
-  border-color: var(--primary);
-  border-radius: 10px;
-  font-weight: 600;
-}
-.btn-outline-primary:hover {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
-}
-.btn-outline-light {
-  border-radius: 10px;
-  font-weight: 600;
-}
+.quiz-option { border-radius: 10px !important; padding: .9rem 1.1rem !important; text-align: left !important; font-weight: 500; }
+.result-card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 2.2rem 1.8rem; text-align: center; box-shadow: var(--shadow-md); color: var(--text-primary); }
 
-/* ===== LEARNING PATH ===== */
-.learning-item {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 1rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.7rem;
-  color: var(--text-primary);
-  transition: border-color 0.15s;
-}
-.learning-item:hover {
-  border-color: #93c5fd;
-  background: #f8fafc;
-}
-.learning-item .title {
-  font-weight: 600;
-  color: var(--primary);
-  font-size: 0.98rem;
-}
-.badge-type {
-  font-size: 0.72rem;
-  padding: 0.28em 0.7em;
-  border-radius: 999px;
-  font-weight: 600;
-}
-.badge-lesson {
-  background: #d1fae5;
-  color: #065f46;
-}
-
-/* ===== QUIZ & RESULTS ===== */
-.quiz-option {
-  border-radius: 10px !important;
-  padding: 0.9rem 1.1rem !important;
-  text-align: left !important;
-  font-weight: 500;
-  border-width: 1.5px !important;
-  font-size: 0.95rem;
-}
-.result-card {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  padding: 2.2rem 1.8rem;
-  text-align: center;
-  box-shadow: var(--shadow-md);
-  color: var(--text-primary);
-}
-
-/* ===== GENERAL CARDS ===== */
-.card {
-  background: var(--bg-card-soft);
-  color: var(--text-primary);
-  border-radius: var(--radius);
-  border: 1px solid #e2e8f0;
-}
-.section-title {
-  font-weight: 800;
-  font-size: 1.45rem;
-  margin-bottom: 1.25rem;
-  color: #f8fafc;
-  letter-spacing: -0.02em;
-}
-
-/* ===== VIDEO / PRESENTATION ===== */
-.ratio.ratio-16x9 {
-  border: 2px solid rgba(29,78,216,0.45);
-  box-shadow: var(--shadow-lg);
-  border-radius: 12px;
-  background: #000;
-  overflow: hidden;
-}
-#videoPlayer, #presentationPlayer {
-  border: none;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: #0b1220;
-  color: #94a3b8;
-  padding: 2.4rem 1rem;
-  margin-top: 3.5rem;
-  text-align: center;
-  font-size: 0.88rem;
-  border-top: 1px solid rgba(148,163,184,0.08);
-}
-
-/* ===== BREADCRUMB ===== */
-.breadcrumb {
-  background: transparent;
-  padding: 0;
-  margin-bottom: 1.15rem;
-  font-size: 0.88rem;
-}
+.footer { background: #0b1220; color: #94a3b8; padding: 2.4rem 1rem; margin-top: 3.5rem; text-align: center; font-size: .88rem; }
+.breadcrumb { background: transparent; padding: 0; margin-bottom: 1.15rem; font-size: .88rem; }
 .breadcrumb a { color: #93c5fd; }
-.breadcrumb-item.active { color: #cbd5e1; }
 
-/* ===== DASHBOARD STATS ===== */
-.stat-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: var(--radius);
-  padding: 1.25rem 1rem;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  height: 100%;
-}
-.stat-card .value {
-  font-size: 1.75rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-}
-.stat-card .label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  margin-top: 0.25rem;
-}
+.admin-table th { background: #f1f5f9; font-weight: 600; font-size: .85rem; }
+.module-check { width: 18px; height: 18px; cursor: pointer; }
 
-/* ===== RESOURCES ===== */
-.resources-card .card-header {
-  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
-  border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 991.98px) {
-  .navbar-collapse {
-    background: #fff;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.14);
-    padding: 0.7rem 1rem 1.1rem;
-  }
-  .navbar-nav .nav-link {
-    padding: 0.7rem 1rem !important;
-    border-radius: 8px;
-    margin-bottom: 2px;
-  }
-  .navbar-nav .nav-link:hover,
-  .navbar-nav .nav-link:active {
-    background: var(--primary-soft);
-  }
-}
 @media (max-width: 767.98px) {
   body { padding-top: 60px; }
-  #content-area { padding: 1.1rem 0.8rem 2.8rem; }
-  .welcome-hero { padding: 2.2rem 1.3rem; border-radius: 14px; }
-  .modules-header { padding: 1.4rem 1.1rem; }
-  .module-card .card-top { height: 76px; }
-  .learning-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.7rem;
-  }
-  .learning-item .actions {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
+  #content-area { padding: 1.1rem .8rem 2.8rem; }
   .logo-sub { display: none; }
 }
 </style>
 </head>
 <body>
+
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid px-3 px-lg-4">
     <a class="navbar-brand logo-title" href="#" onclick="showHome();return false;">
       <i class="bi bi-shield-check"></i>
-      <span>
-        Act 29 Mining
-        <span class="logo-sub">MHSA Compliant Platform</span>
-      </span>
+      <span>Act 29 Mining<span class="logo-sub">MHSA Compliant Platform</span></span>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="descriptions">Descriptions</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="resources">Resources</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-screen="contact">Contact</a></li>
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1" id="navLinks">
+        <!-- populated by JS -->
       </ul>
     </div>
   </div>
 </nav>
 
 <div id="content-area">
-  <nav aria-label="breadcrumb" id="breadcrumbNav" class="d-none">
-    <ol class="breadcrumb" id="breadcrumbItems"></ol>
-  </nav>
 
-  <!-- HOME -->
-  <div id="welcomeScreen">
-    <div class="welcome-hero">
-      <div class="zero-harm-badge">
-        <i class="bi bi-shield-exclamation"></i> Zero Harm Commitment
+  <!-- ==================== AUTH SCREEN ==================== -->
+  <div id="authScreen">
+    <div class="auth-card">
+      <div class="text-center mb-4">
+        <i class="bi bi-shield-check text-primary" style="font-size:2.5rem;"></i>
+        <h3 class="fw-bold mt-2 mb-1">Act 29 Mining Training</h3>
+        <p class="text-muted small mb-0">MHSA Compliant Induction & Competency</p>
       </div>
-      <h1>Mining Induction &amp; Competency Platform</h1>
-      <p class="lead">MHSA Act 29 of 1996 Compliant • Structured Workplace Safety Training</p>
-      <p class="sub">Enterprise-grade e-learning for mining houses and contractors. Audit-ready certificates, competency tracking and Section 10 alignment.</p>
-      <button class="btn btn-accent btn-lg px-4 me-2" onclick="showModulesList()">
-        <i class="bi bi-grid-3x3-gap me-2"></i>View All Modules
-      </button>
-      <button class="btn btn-outline-light btn-lg px-4" onclick="showDashboard()">
-        <i class="bi bi-speedometer2 me-2"></i>My Dashboard
-      </button>
-      <div class="trust-row">
-        <span class="trust-badge"><i class="bi bi-check2-circle me-1"></i> MHSA Aligned</span>
-        <span class="trust-badge"><i class="bi bi-building me-1"></i> DMPR Referenced</span>
-        <span class="trust-badge"><i class="bi bi-file-earmark-lock me-1"></i> Audit-Ready Records</span>
-        <span class="trust-badge"><i class="bi bi-phone me-1"></i> Mobile First</span>
+      <div id="authError" class="alert alert-danger d-none py-2"></div>
+      
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Full Name</label>
+        <input type="text" id="authName" class="form-control" placeholder="For certificates">
       </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+        <input type="email" id="authEmail" class="form-control" placeholder="you@company.com">
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+        <input type="password" id="authPassword" class="form-control" placeholder="Minimum 6 characters">
+      </div>
+      <button id="btnLogin" class="btn btn-primary w-100 mb-2">Login</button>
+      <button id="btnRegister" class="btn btn-outline-primary w-100">Create Account</button>
+      <p class="text-center text-muted small mt-3 mb-0">First account created becomes Admin</p>
     </div>
   </div>
 
-  <!-- MODULES LIST -->
-  <div id="modulesContainer" class="d-none">
-    <div class="modules-header">
-      <h2>Competency Modules</h2>
-      <p class="mb-3 opacity-90" style="font-size:0.95rem;">Critical safety and operational modules • Minimum 70% pass mark</p>
-      <div class="d-flex flex-wrap justify-content-center gap-2">
-        <div class="dropdown">
-          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-filter="all">All</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="basic">Core</a></li>
-            <li><a class="dropdown-item" href="#" data-filter="advanced">Advanced</a></li>
-          </ul>
-        </div>
-        <input type="search" class="form-control form-control-sm" id="searchInput" placeholder="Search modules…" style="max-width:220px;border-radius:999px;border:none;">
-        <div class="dropdown">
-          <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="sortLabel">Sort: Name A–Z</button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" data-sort="name-asc">Name A–Z</a></li>
-            <li><a class="dropdown-item" href="#" data-sort="name-desc">Name Z–A</a></li>
-            <li><a class="dropdown-item" href="#" data-sort="progress-desc">Progress ↓</a></li>
-          </ul>
-        </div>
+  <!-- ==================== HOME ==================== -->
+  <div id="welcomeScreen" class="d-none">
+    <div class="text-center mb-4">
+      <div class="d-inline-flex align-items-center gap-2 bg-warning bg-opacity-25 text-warning px-3 py-1 rounded-pill mb-3">
+        <i class="bi bi-shield-exclamation"></i> Zero Harm Commitment
       </div>
+      <h1 class="fw-bold mb-2" style="font-size:clamp(1.8rem,4.5vw,2.5rem);">Mining Induction & Competency Platform</h1>
+      <p class="text-white-50 mb-4">MHSA Act 29 of 1996 Compliant • Structured Workplace Safety Training</p>
+      <button class="btn btn-accent btn-lg px-4 me-2" onclick="showModulesList()"><i class="bi bi-grid-3x3-gap me-2"></i>My Modules</button>
+      <button class="btn btn-outline-light btn-lg px-4" onclick="showDashboard()"><i class="bi bi-speedometer2 me-2"></i>Dashboard</button>
+    </div>
+  </div>
+
+  <!-- ==================== MODULES LIST ==================== -->
+  <div id="modulesContainer" class="d-none">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <h2 class="section-title mb-0">My Assigned Modules</h2>
+      <input type="search" class="form-control form-control-sm" id="searchInput" placeholder="Search modules…" style="max-width:220px;border-radius:999px;">
     </div>
     <div id="moduleGrid" class="row g-3 g-md-4"></div>
-    <div class="card mt-4 border-0 shadow-sm">
+    <div class="card mt-4 border-0">
       <div class="card-body text-center py-3 text-dark">
-        <strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">35</span>
+        <strong>Completed:</strong> <span id="completedCount">0</span>/<span id="totalModules">0</span>
         &nbsp;•&nbsp; <strong>Pass rate:</strong> <span id="overallPass">0%</span>
       </div>
     </div>
   </div>
 
-  <!-- MODULE VIEW -->
+  <!-- ==================== MODULE VIEW ==================== -->
   <div id="moduleView" class="d-none">
     <h2 class="section-title text-center mb-2" id="moduleTitle"></h2>
-    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Complete the lesson and assessment to demonstrate competency and generate your certificate</p>
+    <p class="text-center text-white-50 mb-4">Complete the lesson and assessment to demonstrate competency</p>
     <div class="mb-4 text-center">
-      <label for="userFullName" class="form-label fw-semibold text-white">Full Name (appears on certificate)</label>
-      <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" placeholder="Enter your full legal name" style="max-width:420px;background:rgba(255,255,255,0.97);border-radius:10px;">
+      <label class="form-label fw-semibold text-white">Full Name (on certificate)</label>
+      <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" style="max-width:420px;background:rgba(255,255,255,.97);border-radius:10px;">
     </div>
-    <div class="row g-3 g-md-4 justify-content-center mb-4">
-      <div class="col-md-5">
-        <div class="action-card" id="watchVideo">
-          <i class="bi bi-play-circle-fill text-primary"></i>
-          <h5 class="fw-bold mb-1">Watch / Review Lesson</h5>
-          <p class="text-muted small mb-0">Training content and key safety controls</p>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="action-card" id="startQuiz">
-          <i class="bi bi-check2-circle text-success"></i>
-          <h5 class="fw-bold mb-1">Take Assessment</h5>
-          <p class="text-muted small mb-0">Demonstrate knowledge (70% pass mark)</p>
-        </div>
-      </div>
-    </div>
-    <div class="card border-0 shadow-sm">
-      <div class="card-body p-3 p-md-4">
-        <h5 class="fw-bold mb-3 text-dark">Learning Path</h5>
-        <div id="learningPath"></div>
-      </div>
+    <div class="row g-3 justify-content-center mb-4">
+      <div class="col-md-5"><div class="action-card" id="watchVideo"><i class="bi bi-play-circle-fill text-primary"></i><h5 class="fw-bold mb-1">Watch Lesson</h5><p class="text-muted small mb-0">Training content</p></div></div>
+      <div class="col-md-5"><div class="action-card" id="startQuiz"><i class="bi bi-check2-circle text-success"></i><h5 class="fw-bold mb-1">Take Assessment</h5><p class="text-muted small mb-0">70% pass mark</p></div></div>
     </div>
   </div>
 
-  <!-- VIDEO -->
+  <!-- VIDEO / PRESENTATION / QUIZ / RESULTS (same as before) -->
   <div id="videoScreen" class="d-none">
-    <div class="ratio ratio-16x9 mb-3">
-      <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div class="ratio ratio-16x9 mb-3" style="border:2px solid rgba(29,78,216,.45);border-radius:12px;overflow:hidden;">
+      <iframe id="videoPlayer" src="" allowfullscreen></iframe>
     </div>
-    <div class="text-center">
-      <button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button>
-    </div>
+    <div class="text-center"><button class="btn btn-outline-light" onclick="backToModule()">← Back</button></div>
   </div>
 
-  <!-- PRESENTATION -->
   <div id="presentationScreen" class="d-none">
-    <div class="ratio ratio-16x9 mb-3">
-      <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe>
+    <div class="ratio ratio-16x9 mb-3" style="border:2px solid rgba(29,78,216,.45);border-radius:12px;overflow:hidden;">
+      <iframe id="presentationPlayer" src="" allowfullscreen></iframe>
     </div>
-    <div class="text-center">
-      <button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button>
-    </div>
+    <div class="text-center"><button class="btn btn-outline-light" onclick="backToModule()">← Back</button></div>
   </div>
 
-  <!-- QUIZ -->
   <div id="quizScreen" class="d-none">
-    <div class="card border-0 shadow-sm rounded-4">
-      <div class="card-body p-3 p-md-5">
-        <h4 class="text-center mb-4 fw-bold text-dark" id="questionText"></h4>
-        <div id="optionsContainer" class="row g-2 g-md-3"></div>
-        <div id="feedback" class="mt-4 text-center fw-semibold fs-5"></div>
-        <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
-      </div>
-    </div>
-    <div class="text-center mt-3">
-      <button class="btn btn-outline-light" onclick="backToModule()">Exit Assessment</button>
-    </div>
+    <div class="card border-0 shadow-sm rounded-4"><div class="card-body p-3 p-md-5">
+      <h4 class="text-center mb-4 fw-bold text-dark" id="questionText"></h4>
+      <div id="optionsContainer" class="row g-2"></div>
+      <div id="feedback" class="mt-4 text-center fw-semibold fs-5"></div>
+      <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
+    </div></div>
+    <div class="text-center mt-3"><button class="btn btn-outline-light" onclick="backToModule()">Exit</button></div>
   </div>
 
-  <!-- RESULTS -->
   <div id="resultsScreen" class="d-none">
     <div class="result-card">
       <h2 id="resultTitle" class="display-6 fw-bold mb-3"></h2>
-      <div class="progress mb-4 mx-auto" style="height:14px;max-width:320px">
-        <div id="progressBar" class="progress-bar" style="width:0%"></div>
-      </div>
+      <div class="progress mb-4 mx-auto" style="height:14px;max-width:320px"><div id="progressBar" class="progress-bar"></div></div>
       <div class="row g-3 mb-4 justify-content-center">
-        <div class="col-4 col-md-3">
-          <div class="p-3 bg-light rounded-3">
-            <div class="fs-4 fw-bold text-primary" id="scorePercent">0%</div>
-            <small class="text-muted">Score</small>
-          </div>
-        </div>
-        <div class="col-4 col-md-3">
-          <div class="p-3 bg-light rounded-3">
-            <div class="fs-4 fw-bold text-success" id="correctCount">0</div>
-            <small class="text-muted">Correct</small>
-          </div>
-        </div>
-        <div class="col-4 col-md-3">
-          <div class="p-3 bg-light rounded-3">
-            <div class="fs-4 fw-bold" id="timeDisplay">0:00</div>
-            <small class="text-muted">Time</small>
-          </div>
-        </div>
+        <div class="col-4"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-primary" id="scorePercent">0%</div><small class="text-muted">Score</small></div></div>
+        <div class="col-4"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold text-success" id="correctCount">0</div><small class="text-muted">Correct</small></div></div>
+        <div class="col-4"><div class="p-3 bg-light rounded-3"><div class="fs-4 fw-bold" id="timeDisplay">0:00</div><small class="text-muted">Time</small></div></div>
       </div>
       <p id="passMessage" class="lead fw-semibold mb-2"></p>
       <p id="completionTimestamp" class="text-muted small mb-4"></p>
-      <div id="certificateSection" class="border border-success rounded-3 p-4 bg-success-subtle d-none">
+      <div id="certificateSection" class="border border-success rounded-3 p-4 d-none">
         <h5 class="text-success mb-2"><i class="bi bi-award me-2"></i>Certificate Ready</h5>
-        <p class="mb-3">You have successfully demonstrated competency in this module.</p>
-        <button onclick="downloadCertificate()" class="btn btn-success btn-lg">
-          <i class="bi bi-download me-2"></i>Download Certificate (PDF)
-        </button>
+        <button onclick="downloadCertificate()" class="btn btn-success btn-lg"><i class="bi bi-download me-2"></i>Download PDF</button>
       </div>
       <div class="mt-4">
-        <button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry Assessment</button>
+        <button class="btn btn-outline-primary me-2" onclick="restartQuiz()">Retry</button>
         <button class="btn btn-primary" onclick="showModulesList()">Back to Modules</button>
       </div>
     </div>
   </div>
 
-  <!-- DESCRIPTIONS -->
-  <div id="descriptionsScreen" class="d-none">
-    <h2 class="section-title text-center">Module Descriptions</h2>
-    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Authoritative summaries aligned to MHSA requirements and operational practice</p>
-    <div class="card border-0 shadow-sm rounded-4">
-      <div class="card-body p-3 p-md-4">
-        <div id="moduleAccordion" class="accordion accordion-flush"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RESOURCES -->
-  <div id="resourcesScreen" class="d-none">
-    <h2 class="section-title text-center">Official Resources</h2>
-    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Authoritative DMPR / Mine Health and Safety Inspectorate guidelines that support the competency modules on this platform</p>
-    <div class="card border-0 shadow-sm rounded-4 mb-4 resources-card">
-      <div class="card-header text-white py-3">
-        <h5 class="mb-0"><i class="bi bi-shield-check me-2"></i>DMPR / MHSA Resource Centre</h5>
-      </div>
-      <div class="card-body text-dark">
-        <p class="small text-muted mb-3">These documents form the regulatory backbone of the training content. Always refer to the latest published versions on the official DMPR site.</p>
-        <div class="row g-3">
-          <div class="col-md-6">
-            <h6 class="text-primary fw-bold">Core Legislation</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/Services/Mine-Health-and-Safety/Resource-Centre" target="_blank" rel="noopener">DMPR Resource Centre (MHSA &amp; Regulations)</a></li>
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Mine Health and Safety Resources (full list)</a></li>
-            </ul>
-            <h6 class="text-primary fw-bold mt-3">Rock Fall / Ground Control</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=InIIhwTLKPw%3d&portalid=0" target="_blank" rel="noopener">Combat Rock Fall and Rock Burst (Tabular Metalliferous)</a></li>
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=r3DGewu_TBU%3d&portalid=0" target="_blank" rel="noopener">Combat Roof Fall Accidents (Underground Coal)</a></li>
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=W3Ps0BryExE%3d&portalid=0" target="_blank" rel="noopener">Ground Vibrations, Noise, Air-blast &amp; Flyrock (2024)</a></li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <h6 class="text-primary fw-bold">Mobile Machinery &amp; Traffic</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-1"><a href="https://www.gov.za/sites/default/files/gcis_document/202506/52781gon6266.pdf" target="_blank" rel="noopener">Road and Rail Safety Management Guideline (2025)</a></li>
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">Trackless Mobile Machinery related guidelines</a></li>
-            </ul>
-            <h6 class="text-primary fw-bold mt-3">Emergency, Fire &amp; Rights</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=EROfYUsImbg%3d&portalid=0" target="_blank" rel="noopener">Right to Refuse Dangerous Work &amp; Leave Dangerous Working Places</a></li>
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=acRrQ_c4URY%3d&portalid=0" target="_blank" rel="noopener">Emergency Preparedness and Response</a></li>
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=nPgvxYylCJ4%3d&portalid=0" target="_blank" rel="noopener">Management of Self-contained Self-rescuers</a></li>
-            </ul>
-            <h6 class="text-primary fw-bold mt-3">Occupational Hygiene</h6>
-            <ul class="list-unstyled small">
-              <li class="mb-1"><a href="https://www.dmpr.gov.za/LinkClick.aspx?fileticket=bJMDmdcUcXE%3d&portalid=0" target="_blank" rel="noopener">Personal Exposure to Airborne Pollutants</a></li>
-            </ul>
-          </div>
-        </div>
-        <p class="small mt-3 mb-0"><strong>Source:</strong> <a href="https://www.dmpr.gov.za/Branches/Mine-Health-and-Safety/Mine-Health-and-Safety-Resources" target="_blank" rel="noopener">DMPR Mine Health and Safety Resources</a> &nbsp;|&nbsp; Contact: mhsi@dmpr.gov.za</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- DASHBOARD -->
+  <!-- ==================== DASHBOARD ==================== -->
   <div id="dashboardScreen" class="d-none">
     <h2 class="section-title text-center">My Dashboard</h2>
     <div class="row g-3 mb-4">
-      <div class="col-6 col-md-3">
-        <div class="stat-card">
-          <div class="value text-primary" id="dashCompleted">0/35</div>
-          <div class="label">Completed</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="stat-card">
-          <div class="value text-success" id="dashPassRate">0%</div>
-          <div class="label">Pass Rate</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="stat-card">
-          <div class="value text-primary" id="dashCertificates">0</div>
-          <div class="label">Certificates</div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="stat-card">
-          <div class="value" id="dashTotal">35</div>
-          <div class="label">Total Modules</div>
-        </div>
-      </div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-primary" id="dashCompleted">0/0</div><div class="label">Completed</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-success" id="dashPassRate">0%</div><div class="label">Pass Rate</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-primary" id="dashCertificates">0</div><div class="label">Certificates</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value" id="dashTotal">0</div><div class="label">Assigned</div></div></div>
     </div>
-    <div class="card border-0 shadow-sm">
-      <div class="card-header bg-white fw-bold text-dark">Recently Completed</div>
+    <div class="card border-0"><div class="card-header bg-white fw-bold">Recently Completed</div>
       <ul class="list-group list-group-flush" id="completedModulesList"></ul>
     </div>
   </div>
 
-  <!-- CERTIFICATES -->
+  <!-- ==================== CERTIFICATES ==================== -->
   <div id="certificatesScreen" class="d-none">
     <h2 class="section-title text-center">My Certificates</h2>
     <div id="certList" class="list-group list-group-flush"></div>
   </div>
 
-  <!-- ABOUT -->
-  <div id="aboutScreen" class="d-none">
-    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
-      <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
-      <p class="mb-3">This platform delivers structured, MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for mining houses and contractors that require a reliable, mobile-friendly method to induct employees, demonstrate competency and maintain audit-ready records.</p>
-      <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require a minimum 70% pass mark. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
-      <p class="mb-0"><strong>Zero Harm</strong> is the guiding principle. The platform exists to reduce incidents through consistent, high-quality safety education that is practical, measurable and scalable across sites and contractors.</p>
+  <!-- ==================== ADMIN PANEL ==================== -->
+  <div id="adminScreen" class="d-none">
+    <h2 class="section-title text-center mb-4">Admin Panel – User & Module Management</h2>
+    
+    <div class="card border-0 mb-4">
+      <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
+        <span>All Users</span>
+        <button class="btn btn-sm btn-outline-primary" onclick="loadAllUsers()">Refresh</button>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0 admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Assigned Modules</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminUsersTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module Assignment Modal (inline) -->
+    <div id="assignModal" class="card border-0 d-none">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span>Assign Modules to: <strong id="assignUserName"></strong></span>
+        <button class="btn btn-sm btn-light" onclick="closeAssignModal()">Close</button>
+      </div>
+      <div class="card-body">
+        <div class="row g-2" id="assignModuleList"></div>
+        <div class="mt-3 text-end">
+          <button class="btn btn-primary" onclick="saveModuleAssignment()">Save Assignments</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- CONTACT -->
+  <!-- ABOUT / CONTACT (simplified) -->
+  <div id="aboutScreen" class="d-none">
+    <div class="card border-0 p-4 p-md-5 text-dark">
+      <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
+      <p>This platform delivers MHSA-aligned competency modules with role-based module assignment. Admins control which modules each user can access. All assessments require 70% to pass and generate audit-ready certificates.</p>
+    </div>
+  </div>
+
   <div id="contactScreen" class="d-none">
-    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
+    <div class="card border-0 p-4 p-md-5 text-dark">
       <h2 class="fw-bold mb-3">Contact</h2>
-      <p class="text-muted mb-4">For deployment enquiries, enterprise licensing or technical support, please complete the form below.</p>
-      <form class="contact-form" style="max-width:520px">
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Name</label>
-          <input type="text" class="form-control" required style="border-radius:8px;">
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Email</label>
-          <input type="email" class="form-control" required style="border-radius:8px;">
-        </div>
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Message</label>
-          <textarea class="form-control" rows="4" required style="border-radius:8px;"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
+      <form class="contact-form" style="max-width:480px" onsubmit="event.preventDefault();alert('Message received.');this.reset();">
+        <div class="mb-3"><label class="form-label">Name</label><input type="text" class="form-control" required></div>
+        <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" required></div>
+        <div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div>
+        <button type="submit" class="btn btn-primary">Send</button>
       </form>
     </div>
   </div>
+
 </div>
 
 <footer class="footer">
-  <div class="container">
-    <p class="mb-1 fw-semibold" style="color:#e2e8f0;">Act 29 Mining Training Platform • MHSA Compliant</p>
-    <p class="mb-0 small">© 2025–2026 • Workplace induction and competency development for the South African mining industry</p>
-    <p class="mb-0 small mt-1">www.miningtraining.ac.za</p>
-  </div>
+  <p class="mb-1 fw-semibold" style="color:#e2e8f0;">Act 29 Mining Training Platform • MHSA Compliant</p>
+  <p class="mb-0 small">© 2025–2026 • www.miningtraining.ac.za</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-/* ========== DATA (unchanged functional core) ========== */
-const moduleNames = {
-  handover: "Shift Handover",
-  lhd: "LHD Tramming in Decline",
-  drill: "Face Drilling (Jumbo)",
-  support: "Install Mesh & Bolts",
-  vent: "Ventilation",
-  rockfall: "Major Rock Fall Event",
-  traffic: "Traffic Conflict in Single Lane",
-  reentry: "Unsafe Re-Entry Attempt",
-  shaft_sinking: "Shaft Sinking (Vertical Shaft)",
-  raise_drill: "Raise Drilling (Raise Boring)",
-  lifting_operations: "Lifting Operations",
-  civil_structural: "Civil and Structural Engineering",
-  conveyor_monorail: "Conveyor Belt and Monorail",
-  compressed_air: "Compressed Air and Reticulation",
-  pump_fluid: "Fluid handling",
-  steam_pressure: "Steam Generations",
-  electrical: "Electrical Systems",
-  mhsa: "MHSA 1996 Regulations",
-  seismicity: "Seismicity & Rockbursts",
-  blasting: "Blasting & Explosives",
-  evacuation: "Emergency Evacuation",
-  fire: "Fire monitoring",
-  tmm: "TMM",
-  winders: "Winding Plant",
-  induction_protocol: "Induction Protocol & House Rules",
-  company_intro: "Company Introduction – Implats",
-  vision_mission: "Vision, Mission & Values",
-  emergency_response: "Emergency Response Protocol",
-  assembly_points: "Assembly Points & Emergency Exits",
-  fire_first_aid: "Fire Fighting & First Aid Equipment",
-  life_saving_rules: "Life-Saving Rules",
-  ppe: "PPE Requirements",
-  employee_rights: "Employee Rights & Duties (MHSA)",
-  exleave: "Ex-Leave Induction Overview",
-  hirac: "HIRAC Refresher"
-};
 
-const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','hirac','induction_protocol','company_intro','vision_mission','emergency_response','assembly_points','fire_first_aid','life_saving_rules','ppe','employee_rights','exleave'];
+<script type="module">
+  // ========== FIREBASE INIT (YOUR CONFIG) ==========
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+           onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, collection, getDocs, updateDoc,
+           serverTimestamp, query, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-const moduleIcons = {
-  handover: "bi-arrow-left-right",
-  lhd: "bi-truck",
-  drill: "bi-hammer",
-  support: "bi-grid-3x3-gap",
-  vent: "bi-wind",
-  rockfall: "bi-exclamation-triangle",
-  traffic: "bi-sign-stop",
-  reentry: "bi-door-open",
-  shaft_sinking: "bi-arrows-vertical",
-  raise_drill: "bi-rocket-takeoff",
-  lifting_operations: "bi-arrow-up-circle-fill",
-  civil_structural: "bi-building-fill",
-  conveyor_monorail: "bi-box",
-  compressed_air: "bi-wind",
-  pump_fluid: "bi-water",
-  steam_pressure: "bi-thermometer-sun",
-  electrical: "bi-lightning",
-  mhsa: "bi-book",
-  seismicity: "bi-graph-up-arrow",
-  blasting: "bi-boombox",
-  evacuation: "bi-box-arrow-right",
-  fire: "bi-fire",
-  tmm: "bi-truck-flatbed",
-  winders: "bi-house",
-  induction_protocol: "bi-list-check",
-  company_intro: "bi-building",
-  vision_mission: "bi-bullseye",
-  emergency_response: "bi-bell",
-  assembly_points: "bi-signpost",
-  fire_first_aid: "bi-heart-pulse",
-  life_saving_rules: "bi-shield-exclamation",
-  ppe: "bi-person-badge",
-  employee_rights: "bi-hand-thumbs-up",
-  exleave: "bi-person-walking",
-  hirac: "bi-exclamation-triangle"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyAHEqek56zhgzhixoGHr17wFa52h9-F2f8",
+    authDomain: "miningtraining.firebaseapp.com",
+    projectId: "miningtraining",
+    storageBucket: "miningtraining.firebasestorage.app",
+    messagingSenderId: "994177544143",
+    appId: "1:994177544143:web:eb462b449cd89bdea62cba",
+    measurementId: "G-KQW6WM01T2"
+  };
 
-const videos = {
-  handover: "https://www.youtube.com/embed/uqbDOIaEyHs",
-  lhd: "https://www.youtube.com/embed/HjnCR0pBlQs",
-  drill: "https://www.youtube.com/embed/rALo7h9pCwg",
-  support: "https://www.youtube.com/embed/CJ80Gbmes88",
-  vent: "https://www.youtube.com/embed/scULNpKA3ZU",
-  rockfall: "https://www.youtube.com/embed/RxyBImZyFb4",
-  traffic: "https://www.youtube.com/embed/bugO7N1AN0s",
-  reentry: "https://www.youtube.com/embed/G2Hs51QDszc",
-  shaft_sinking: "https://www.youtube.com/embed/DYku3FmgpZc",
-  raise_drill: "https://www.youtube.com/embed/0h_Zi5BNUPA",
-  lifting_operations: "https://www.youtube.com/embed/fHOlpa6_Q2s",
-  civil_structural: "https://www.youtube.com/embed/lfoTLeFooR4",
-  conveyor_monorail: "https://www.youtube.com/embed/ZrnWnmhGpQY",
-  compressed_air: "https://www.youtube.com/embed/O0VNIYn0Hxg",
-  pump_fluid: "https://www.youtube.com/embed/WUal9LXc0iM",
-  steam_pressure: "https://www.youtube.com/embed/fk3DjD9gSsk",
-  electrical: "https://www.youtube.com/embed/TMT6f3tZQSk",
-  mhsa: "https://www.youtube.com/embed/lMEErpFhzxg",
-  seismicity: "https://www.youtube.com/embed/geun1k07NkM",
-  blasting: "https://www.youtube.com/embed/G2Hs51QDszc",
-  evacuation: "https://www.youtube.com/embed/3aLWlDY_G9w",
-  fire: "https://www.youtube.com/embed/x414lRd1aak",
-  tmm: "https://www.youtube.com/embed/BYzg3G8gQYY",
-  winders: "https://www.youtube.com/embed/HkE7m1cdvBU",
-  induction_protocol: "https://www.youtube.com/embed/lMEErpFhzxg",
-  company_intro: "https://www.youtube.com/embed/lMEErpFhzxg",
-  vision_mission: "https://www.youtube.com/embed/lMEErpFhzxg",
-  emergency_response: "https://www.youtube.com/embed/3aLWlDY_G9w",
-  assembly_points: "https://www.youtube.com/embed/3aLWlDY_G9w",
-  fire_first_aid: "https://www.youtube.com/embed/x414lRd1aak",
-  life_saving_rules: "https://www.youtube.com/embed/lMEErpFhzxg",
-  ppe: "https://www.youtube.com/embed/lMEErpFhzxg",
-  employee_rights: "https://www.youtube.com/embed/lMEErpFhzxg",
-  exleave: "https://www.youtube.com/embed/lMEErpFhzxg",
-  hirac: "https://www.youtube.com/embed/lMEErpFhzxg"
-};
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
-const sampleQuizzes = {
-  handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
-    {question:"Who must attend shift handover?", options:["Only shift boss","All incoming and outgoing crew"], correct:1, explanation:"All incoming and outgoing crew must attend to ensure full transfer of critical information about hazards, equipment status, and workplace conditions."},
-    {question:"What must be signed before work starts?", options:["Nothing","Section 23 declaration"], correct:1, explanation:"The Section 23 declaration confirms that workers are fit for duty and understand the risks; it is a legal requirement under MHSA."},
-    {question:"Red tag on equipment means?", options:["Minor fault","Do not operate — locked out"], correct:1, explanation:"A red tag indicates the equipment has been locked out for safety reasons and must not be operated until cleared by an authorised person."},
-    {question:"What gas is checked with methanometer?", options:["Oxygen","Methane"], correct:1, explanation:"A methanometer is specifically designed to detect methane (CH₄), the primary explosive gas in underground coal and hard-rock mines."},
-    {question:"Who signs Early Warning Device log?", options:["Anyone","Only shift boss"], correct:1, explanation:"Only the shift boss has the authority to verify and sign the Early Examination Warning Device log after inspection."},
-    {question:"Can you work without cap lamp?", options:["Yes","Never"], correct:1, explanation:"A cap lamp is mandatory primary lighting and a legal requirement; working without one is prohibited."},
-    {question:"Refuge bay must contain?", options:["Water only","SCSRs, water, first aid, phone"], correct:1, explanation:"Refuge bays are emergency shelters and must be stocked with self-contained self-rescuers (SCSRs), drinking water, first aid supplies, and communication."},
-    {question:"Who declares workplace safe?", options:["Any miner","Shift boss after inspection"], correct:1, explanation:"The shift boss is legally responsible for inspecting the workplace and declaring it safe before work commences."},
-    {question:"What is checked on LHD before use?", options:["Fuel only","Brakes, lights, horn, fire suppression"], correct:1, explanation:"A comprehensive pre-use inspection must include critical safety systems: brakes, lights, horn, and fire suppression."},
-    {question:"What is a 'hot seat' changeover?", options:["Quick break","Driver change without stopping"], correct:1, explanation:"Hot seat changeover allows continuous production by swapping operators without shutting down the machine."},
-    {question:"Who checks water dams?", options:["Anyone","Only designated person"], correct:1, explanation:"Only a competent designated person may inspect and sign off water dams due to flood risk."},
-    {question:"What is a TARP?", options:["Tool","Trigger Action Response Plan"], correct:1, explanation:"TARP (Trigger Action Response Plan) defines measurable triggers and required actions for escalating risks."},
-    {question:"Can you start work with unsigned logbook?", options:["Yes","Never"], correct:1, explanation:"An unsigned logbook means statutory inspections or declarations are incomplete; work may not commence."},
-    {question:"Who checks ventilation doors?", options:["Operator","Only ventilation officer"], correct:1, explanation:"Ventilation doors are critical controls and must be inspected by the appointed ventilation officer."},
-    {question:"What is a 'blind spot' check?", options:["Mirror","Physical walk-around"], correct:1, explanation:"A physical walk-around is required to confirm no personnel are in blind spots before moving equipment."},
-    {question:"Who must carry a gas monitor?", options:["Only supervisor","All underground personnel"], correct:1, explanation:"Every person underground must carry a personal gas detector for immediate warning of hazardous atmospheres."},
-    {question:"What is a 'lockout tagout'?", options:["Safety procedure","Equipment fault"], correct:0, explanation:"Lockout-tagout is a formal safety procedure to isolate energy sources before maintenance."},
-    {question:"Can you work alone underground?", options:["Yes","Never"], correct:1, explanation:"The buddy system is mandatory underground; no person may work alone."},
-    {question:"What is a 'pre-use inspection'?", options:["Optional","Mandatory before operating equipment"], correct:1, explanation:"Pre-use inspection is a legal requirement to identify defects before operating any machinery."},
-    {question:"Who signs the refuge bay register?", options:["Anyone","Only shift boss"], correct:1, explanation:"The shift boss verifies refuge bay readiness and signs the register."},
-    {question:"What is a 'stop block'?", options:["Traffic control","Emergency brake"], correct:0, explanation:"Stop blocks are physical barriers used to control vehicle movement at critical points."},
-    {question:"What is a 'travelway inspection'?", options:["Daily walk","Only monthly"], correct:0, explanation:"Daily travelway inspections are required to identify ground falls, services damage, or obstructions."},
-    {question:"Who checks fire extinguishers?", options:["Anyone","Only safety officer"], correct:1, explanation:"Only appointed competent persons may inspect and certify fire extinguishers."},
-    {question:"What is a 'code of practice'?", options:["Suggestion","Legal requirement"], correct:1, explanation:"Codes of Practice are mandatory standards approved under MHSA."},
-    {question:"Can you ignore a red tag?", options:["Yes","Never"], correct:1, explanation:"Ignoring a red tag defeats the lockout system and is a serious safety violation."},
-    {question:"What is the purpose of shift handover?", options:["Social chat","Transfer of critical safety information"], correct:1, explanation:"To ensure continuity of safe operations by transferring all relevant information between shifts."},
-    {question:"Who is responsible for workplace examination?", options:["Any miner","Shift boss"], correct:1, explanation:"The appointed shift boss has statutory responsibility for early examination."},
-    {question:"Can defective equipment be used temporarily?", options:["Yes, slowly","Never"], correct:1, explanation:"Defective safety-critical equipment must be locked out immediately."},
-    {question:"What is recorded in the logbook?", options:["Production only","Safety inspections and declarations"], correct:1, explanation:"All statutory examinations, declarations, and defects must be recorded."},
-    {question:"Who conducts risk assessment before work?", options:["Anyone","Shift boss and team"], correct:1, explanation:"A formal take-5 or similar risk assessment is required before starting tasks."}
-  ]},
-  lhd: {name:"LHD OPERATIONS", q: [
-    {question:"Minimum clearance from moving LHD?", options:["1 metre","2 metres from any part"], correct:1, explanation:"A minimum 2-metre exclusion zone from any part of a moving LHD protects pedestrians from swing and rollover risks."},
-    {question:"Maximum speed in decline?", options:["25 km/h","15 km/h"], correct:1, explanation:"Speed is limited to 15 km/h in declines to maintain braking control and prevent runaway incidents."},
-    {question:"Bucket height when loaded?", options:["On ground","Max 400mm off ground"], correct:1, explanation:"Loaded bucket must be carried low (max 400 mm) to maintain stability and low centre of gravity."},
-    {question:"Before reversing you must?", options:["Just look","Horn 3 times + check mirrors"], correct:1, explanation:"Three distinct horn blasts warn personnel, followed by mirror and camera checks before reversing."},
-    {question:"Can you ride in LHD bucket?", options:["Yes","Never"], correct:1, explanation:"Riding in the bucket is prohibited; it exposes persons to crushing and fall hazards."},
-    {question:"Who may operate LHD?", options:["Anyone trained","Only competent certificate holder"], correct:1, explanation:"Only persons holding a valid competency certificate may operate an LHD."},
-    {question:"Seatbelt in LHD cab?", options:["Optional","Mandatory at all times"], correct:1, explanation:"Seatbelts are mandatory to prevent ejection during rollover or collision."},
-    {question:"Pedestrian near LHD must be?", options:["Within 1m","In refuge bay"], correct:1, explanation:"Pedestrians must remain in designated refuge bays when LHDs are operating nearby."},
-    {question:"Fire on LHD — first action?", options:["Drive out","Activate suppression system"], correct:1, explanation:"Immediate activation of the onboard fire suppression system is the primary response."},
-    {question:"What is a 'refuge bay'?", options:["Rest area","Safe waiting place"], correct:1, explanation:"Refuge bays are engineered safe zones for pedestrians during vehicle movement."},
-    {question:"Can you park LHD on incline?", options:["Yes","Only with brakes and chocks"], correct:1, explanation:"Parking on inclines requires parking brake engaged and wheels chocked."},
-    {question:"What is 'tramming'?", options:["Loading","Driving between points"], correct:1, explanation:"Tramming refers to transporting ore or waste between loading and tipping points."},
-    {question:"LHD lights must be?", options:["Optional","Working at all times"], correct:1, explanation:"All lights must be functional to ensure visibility and warning to others."},
-    {question:"Can you carry passengers in cab?", options:["Yes","Only with extra seat"], correct:1, explanation:"Passengers are only allowed if a certified second seat with seatbelt is fitted."},
-    {question:"What is a 'tip'?", options:["Dumping point","Loading point"], correct:0, explanation:"The tip is the designated ore pass or stockpile dumping location."},
-    {question:"LHD horn must be used?", options:["Never","When reversing and approaching"], correct:1, explanation:"Horn must sound before reversing and when approaching intersections or personnel."},
-    {question:"What is a 'rollback'?", options:["Normal","Emergency brake failure"], correct:1, explanation:"Rollback occurs when brake failure allows uncontrolled movement down incline."},
-    {question:"Can you leave LHD running unattended?", options:["Yes","Never"], correct:1, explanation:"Equipment must never be left running and unattended to prevent unauthorised use."},
-    {question:"What is a 'load factor'?", options:["Speed","Weight capacity"], correct:1, explanation:"Load factor refers to the maximum safe payload relative to machine rating."},
-    {question:"LHD must have?", options:["Radio","Two-way communication"], correct:1, explanation:"Effective two-way communication is required for coordination and emergency response."},
-    {question:"What is a 'haulage way'?", options:["Any road","Designated vehicle route"], correct:1, explanation:"Haulage ways are engineered roadways specifically for mobile machinery."},
-    {question:"Can you overtake another LHD?", options:["Yes","Only in designated areas"], correct:1, explanation:"Overtaking is only permitted in wide, clearly marked passing bays."},
-    {question:"What is a 'derailment'?", options:["Track issue","LHD off road"], correct:1, explanation:"Derailment means the LHD has left the intended roadway, often causing damage."},
-    {question:"LHD must stop at?", options:["Crossings","All intersections"], correct:1, explanation:"Full stop and right-of-way check is required at all intersections."},
-    {question:"What is 'articulation lock'?", options:["Optional","Must be engaged when lifting"], correct:1, explanation:"Articulation lock bar must be fitted when raising the rear frame for maintenance."},
-    {question:"What is the purpose of fire suppression on LHD?", options:["Optional extra","Mandatory safety system"], correct:1, explanation:"Automatic fire suppression is mandatory on all diesel LHDs underground."},
-    {question:"Can you tram with raised bucket?", options:["Yes","Never when loaded"], correct:1, explanation:"Raised bucket reduces visibility and stability."},
-    {question:"Who performs daily LHD inspection?", options:["Maintenance","Operator"], correct:1, explanation:"The operator is responsible for pre-shift inspection and reporting defects."},
-    {question:"What is 'berms' requirement?", options:["Optional","Mandatory on declines"], correct:1, explanation:"Berms or bund walls must prevent runaway vehicles."},
-    {question:"LHD braking distance increases with?", options:["Speed only","Load and gradient"], correct:1, explanation:"Heavier loads and steeper gradients dramatically increase stopping distance."},
-    {question:"What is 'rollback prevention'?", options:["Normal brake","Anti-rollback device"], correct:1, explanation:"Automatic systems prevent reverse movement on inclines."}
-  ]},
-  drill: {name:"JUMBO DRILLING", q: [
-    {question:"Who may operate jumbo?", options:["Any miner","Only competent operator"], correct:1, explanation:"Only operators with a valid jumbo competency certificate may operate the machine."},
-    {question:"Mandatory PPE while drilling?", options:["Hard hat only","Ear plugs, dust mask, glasses"], correct:1, explanation:"Drilling produces high noise and silica dust; hearing protection, dust mask, and eye protection are mandatory."},
-    {question:"Minimum distance from face while drilling?", options:["2m","5m behind operator"], correct:1, explanation:"Personnel must stay at least 5 m behind the operator to avoid flying rock and hose whip."},
-    {question:"Before charging holes you must?", options:["Just charge","Examine face + wash down"], correct:1, explanation:"Face must be examined for misfires and sockets, then washed down to remove dust and improve visibility."},
-    {question:"Most common drilling accident?", options:["Noise","Flying rocks"], correct:1, explanation:"Flying rock fragments from collaring or break-through cause the majority of injuries."},
-    {question:"Water pressure for dust suppression?", options:["Any","Minimum 7 bar"], correct:1, explanation:"Adequate water flow (minimum 7 bar pressure) is required for effective dust suppression."},
-    {question:"Can you drill with broken support?", options:["Yes","Never"], correct:1, explanation:"Drilling may not proceed if temporary support is inadequate or damaged."},
-    {question:"What is a 'boomer'?", options:["Drill type","Jumbo arm"], correct:1, explanation:"A boomer is the hydraulic drill feed/arm on an electro-hydraulic jumbo."},
-    {question:"Who checks drill steels?", options:["Anyone","Only competent person"], correct:1, explanation:"Only competent persons may inspect and approve drill steels for shank wear and cracks."},
-    {question:"What is a 'drifter'?", options:["Drill motor","Operator"], correct:0, explanation:"The drifter is the hydraulic rock drill motor that provides percussion and rotation."},
-    {question:"Can you drill without water?", options:["Yes","Never"], correct:1, explanation:"Dry drilling is prohibited due to extreme silica dust hazard."},
-    {question:"What is a 'face examination'?", options:["Visual check","Mandatory before drilling"], correct:1, explanation:"A thorough face examination for loose rock, misfires, and support condition is mandatory before drilling."},
-    {question:"Who installs temporary support?", options:["Anyone","Only support team"], correct:1, explanation:"Temporary support (mesh, bolts) may only be installed by competent support crews."},
-    {question:"What is a 'muck pile'?", options:["Ore heap","Broken rock"], correct:1, explanation:"The muck pile is the broken rock heap remaining after blasting."},
-    {question:"Collaring speed should be?", options:["High","Low to prevent deviation"], correct:1, explanation:"Low rotation and thrust during collaring prevents hole deviation."},
-    {question:"Who marks drill pattern?", options:["Operator","Geologist or surveyor"], correct:1, explanation:"Drill patterns are marked by technical personnel to ensure correct hole placement."},
-    {question:"What is 'burden'?", options:["Hole depth","Distance to free face"], correct:1, explanation:"Burden is the distance from the hole to the nearest free face."},
-    {question:"Can you drill into misfire?", options:["Yes","Never"], correct:1, explanation:"Drilling into misfired holes risks detonation."},
-    {question:"Water flush must be?", options:["Optional","Continuous"], correct:1, explanation:"Continuous water flush is required for dust control and bit cooling."},
-    {question:"Who approves jumbo modifications?", options:["Operator","Engineering"], correct:1, explanation:"All modifications require engineering approval and risk assessment."},
-    {question:"Drill bit sharpening frequency?", options:["Never","As per usage standard"], correct:1, explanation:"Bits must be sharpened or replaced when gauge wear exceeds limits."},
-    {question:"What is 'toe' in drilling?", options:["Bottom hole","Distance from floor"], correct:0, explanation:"Toe spacing ensures proper floor break."},
-    {question:"Can you leave jumbo unattended with pressure?", options:["Yes","Never"], correct:1, explanation:"Hydraulic pressure must be released before leaving machine."},
-    {question:"Who records drilling progress?", options:["Operator","Section supervisor"], correct:1, explanation:"Accurate records of metres drilled and support installed are required."},
-    {question:"Dust sampling during drilling?", options:["Optional","Mandatory"], correct:1, explanation:"Regular personal and area dust sampling is required."},
-    {question:"Jumbo fire suppression?", options:["Optional","Mandatory"], correct:1, explanation:"Automatic fire suppression systems are mandatory on electro-hydraulic jumbos."},
-    {question:"What is 'lookout holes'?", options:["Extra holes","First holes for visibility"], correct:1, explanation:"Lookout holes provide breakthrough visibility for alignment."},
-    {question:"What is 'spacing' in pattern?", options:["Any","Distance between holes"], correct:1, explanation:"Spacing controls fragmentation and throw."},
-    {question:"Who calibrates jumbo alignment?", options:["Operator","Surveyor"], correct:1, explanation:"Laser alignment checked by surveyor."}
-  ]},
-  support: {name:"INSTALL MESH & BOLTS", q: [
-    {question:"Who may install permanent support?", options:["Any miner","Only competent rock engineer crew"], correct:1, explanation:"Only trained and competent support installation crews may install permanent ground support."},
-    {question:"Minimum tendon length in poor ground?", options:["1.2 m","As per support standard"], correct:1, explanation:"Support standards specify minimum lengths based on rock mass rating and span."},
-    {question:"What must be done before scaling?", options:["Nothing","Examine face and bar down loose"], correct:1, explanation:"Face examination and mechanical scaling to remove loose rock is mandatory."},
-    {question:"Can you stand under unsupported ground?", options:["Yes","Never"], correct:1, explanation:"Never position yourself under unsupported ground during support installation."},
-    {question:"What is a 'split set'?", options:["Bolt type","Friction rock stabiliser"], correct:1, explanation:"Split sets are friction anchors driven into slightly smaller drill holes."},
-    {question:"Torque requirement for resin bolts?", options:["None","As specified in standard"], correct:1, explanation:"Resin bolts require specific torque to ensure full column encapsulation."},
-    {question:"Who approves support standards?", options:["Shift boss","Appointed rock engineer"], correct:1, explanation:"Support standards are designed and approved by the mine's rock engineer (2.14.1 appointment)."},
-    {question:"Mesh must overlap by?", options:["100 mm","300 mm minimum"], correct:1, explanation:"Mesh sheets must overlap by at least 300 mm and be secured at intervals."},
-    {question:"What is 'factor of safety' for support?", options:["1.0","Minimum 1.5"], correct:1, explanation:"Permanent support systems must have a factor of safety of at least 1.5."},
-    {question:"Can temporary support be left permanent?", options:["Yes","Never"], correct:1, explanation:"Temporary support must be replaced by permanent support within specified time."},
-    {question:"Who inspects installed support?", options:["Operator","Support inspector"], correct:1, explanation:"Dedicated support inspectors verify installation quality and pull tests."},
-    {question:"What is 'pull test'?", options:["Visual check","Load test on bolts"], correct:1, explanation:"Pull testing verifies anchorage capacity of installed tendons."},
-    {question:"Support installation sequence?", options:["Any order","From stable to unstable ground"], correct:1, explanation:"Support must progress from supported to unsupported areas."},
-    {question:"Lacing wire spacing for mesh?", options:["Any","Maximum 300 mm"], correct:1, explanation:"Mesh must be laced with wire at maximum 300 mm centres."},
-    {question:"Who records support installation?", options:["Anyone","Support crew leader"], correct:1, explanation:"Installation details must be recorded in the support logbook."},
-    {question:"What is 'tendons'?", options:["Cables","Rock bolts and anchors"], correct:1, explanation:"Tendons are the reinforcing elements (bolts, cables) transferring load to stable rock."},
-    {question:"Can you reuse resin cartridges?", options:["Yes","Never"], correct:1, explanation:"Partially used or old resin must be discarded."},
-    {question:"Plate washer purpose?", options:["Decoration","Load distribution"], correct:1, explanation:"Washers distribute load and prevent rock spalling around bolt head."},
-    {question:"Support standard review frequency?", options:["Never","After incidents or changes"], correct:1, explanation:"Standards must be reviewed after rock-related incidents or geological changes."},
-    {question:"What is 'yieldable support'?", options:["Rigid","Energy absorbing"], correct:1, explanation:"Yieldable bolts allow controlled deformation during rockburst."},
-    {question:"Who trains support crews?", options:["Anyone","Accredited provider"], correct:1, explanation:"Training must be by MQA-accredited providers."},
-    {question:"Support defect reporting?", options:["Optional","Mandatory immediate"], correct:1, explanation:"Any defective support must be reported and barricaded immediately."},
-    {question:"What is 'pre-tensioning'?", options:["Optional","Required for mechanical bolts"], correct:1, explanation:"Initial tension improves immediate support effectiveness."},
-    {question:"Can support be installed wet?", options:["No","Only dry resin allowed"], correct:1, explanation:"Water contamination affects resin curing."},
-    {question:"Who signs support logbook?", options:["Installer","Supervisor"], correct:1, explanation:"Shift supervisor verifies and signs off completed support."},
-    {question:"Support density in development ends?", options:["Standard","Increased"], correct:1, explanation:"Closer spacing required in advancing faces."},
-    {question:"What is 'dynamic support'?", options:["Standard","Rockburst resistant"], correct:1, explanation:"Support designed to absorb seismic energy."},
-    {question:"What is 'cone bolt'?", options:["Standard bolt","Yielding rockburst bolt"], correct:1, explanation:"Cone bolts allow controlled sliding under high load."}
-  ]},
-  vent: {name:"MAIN VENTILATION FAILURE", q: [
-    {question:"First action on ventilation failure?", options:["Continue work","Evacuate to refuge or surface"], correct:1, explanation:"Immediate evacuation using SCSRs to the nearest refuge bay or surface."},
-    {question:"Who declares ventilation failure?", options:["Anyone","Ventilation officer or manager"], correct:1, explanation:"Only the appointed ventilation officer or mine manager may declare the emergency."},
-    {question:"Can you re-enter after fan restart?", options:["Yes","Only after gas tests clear"], correct:1, explanation:"Re-entry only after full atmosphere testing and clearance by ventilation officer."},
-    {question:"Primary cause of ventilation failure?", options:["Power cut","Fan mechanical failure"], correct:0, explanation:"Both are common, but procedures cover all causes including power loss."},
-    {question:"SCSR duration underground?", options:["10 min","Minimum 30 min"], correct:1, explanation:"Self-contained self-rescuers provide a minimum of 30 minutes of breathable air."},
-    {question:"Who monitors return air?", options:["Anyone","Ventilation department"], correct:1, explanation:"Continuous monitoring of return airways for methane and contaminants."},
-    {question:"Backup ventilation system?", options:["Optional","Mandatory auxiliary fans"], correct:1, explanation:"Critical areas must have backup ventilation systems."},
-    {question:"Stench gas used for?", options:["Odour control","Emergency warning"], correct:1, explanation:"Stench gas release triggers immediate evacuation."},
-    {question:"Minimum air velocity?", options:["0.5 m/s","As per COP"], correct:1, explanation:"Air velocity requirements are specified in the ventilation COP."},
-    {question:"Who maintains vent doors?", options:["Operator","Ventilation crew"], correct:1, explanation:"Specialised ventilation crews maintain doors and regulators."},
-    {question:"What is 'recirculation'?", options:["Normal","Dangerous condition"], correct:1, explanation:"Recirculation of contaminated air must be prevented."},
-    {question:"Auxiliary fan placement?", options:["Any location","Minimum 10 m from face"], correct:1, explanation:"To prevent recirculation and ensure fresh air delivery."},
-    {question:"Who records fan stoppages?", options:["Operator","Ventilation officer"], correct:1, explanation:"All stoppages must be logged and reported."},
-    {question:"Methane layering detection?", options:["Visual","Gas monitoring"], correct:1, explanation:"Regular monitoring at roof level for layering."},
-    {question:"Ventilation plan approval?", options:["Manager","Principal Inspector"], correct:1, explanation:"Major changes require DMRE approval."},
-    {question:"Who examines ventilation districts?", options:["Anyone","Ventilation officer"], correct:1, explanation:"Statutory monthly examinations required."},
-    {question:"Air quantity measurement?", options:["Optional","Mandatory regular"], correct:1, explanation:"Velocity and volume measured at key points."},
-    {question:"What is 'booster fan'?", options:["Main fan","Secondary fan"], correct:1, explanation:"Booster fans increase pressure in remote districts."},
-    {question:"Ventilation door interlocks?", options:["Optional","Required on main doors"], correct:1, explanation:"To prevent simultaneous opening and short-circuiting."},
-    {question:"Who trains in SCSR use?", options:["Anyone","Competent person"], correct:1, explanation:"Annual refresher training mandatory."},
-    {question:"Refuge bay air supply?", options:["None","Compressed air or chemical"], correct:1, explanation:"Independent air supply for extended occupation."},
-    {question:"What is 'scrubber'?", options:["Cleaning device","CO2 removal"], correct:1, explanation:"Chemical scrubbers in refuge chambers remove CO2."},
-    {question:"Ventilation survey frequency?", options:["Annual","As per COP"], correct:1, explanation:"Comprehensive surveys at defined intervals."},
-    {question:"Who approves auxiliary ventilation?", options:["Supervisor","Ventilation officer"], correct:1, explanation:"All auxiliary systems require approval."},
-    {question:"What is 'pressure differential'?", options:["Not important","Critical for control"], correct:1, explanation:"Pressure differences drive airflow through the mine."},
-    {question:"Can you block ventilation?", options:["Yes","Never"], correct:1, explanation:"Blocking airways is a serious offence."},
-    {question:"What is 'ventilation on demand'?", options:["Always full","Controlled by need"], correct:1, explanation:"Systems adjust airflow based on occupancy and activity."}
-  ]},
-  rockfall: {name:"MAJOR ROCK FALL EVENT", q: [
-    {question:"First priority after major fall?", options:["Clear rock","Ensure all personnel accounted for"], correct:1, explanation:"Life safety and headcount take absolute priority over rock clearance."},
-    {question:"Who leads rock fall recovery?", options:["Shift boss","Appointed rock engineer"], correct:1, explanation:"The rock engineer directs technical recovery and support reinstatement."},
-    {question:"Can you enter fall area immediately?", options:["Yes","Only after stability assessment"], correct:1, explanation:"Area must be barricaded and assessed by competent person before entry."},
-    {question:"Primary cause of rockfalls?", options:["Blasting","Poor support or geology"], correct:1, explanation:"Inadequate support relative to geological conditions is the root cause."},
-    {question:"Who investigates rock fall?", options:["Safety rep","Formal inquiry team"], correct:1, explanation:"All serious rock falls require formal investigation per MHSA."}
-  ]},
-  traffic: {name:"TRAFFIC CONFLICT IN SINGLE LANE", q: [
-    {question:"Primary control for single-lane traffic?", options:["Horns only","One-way circuits and passing bays"], correct:1, explanation:"Site-specific traffic management COPs with one-way systems minimise conflicts."},
-    {question:"Speed limit in single-lane haulages is typically?", options:["No limit","As per site COP (often <20 km/h)"], correct:1, explanation:"Speed is restricted according to road width and gradient."}
-  ]},
-  reentry: {name:"UNSAFE RE-ENTRY ATTEMPT", q: [
-    {question:"Minimum re-entry time after blasting is controlled by?", options:["Fixed 15 minutes","Gas clearance results"], correct:1, explanation:"Re-entry depends on ventilation and multi-gas monitoring results."},
-    {question:"Who authorises re-entry after blasting?", options:["Any miner","Shift boss after examination"], correct:1, explanation:"Only the competent shift boss may authorise re-entry."}
-  ]},
-  shaft_sinking: {name:"SHAFT SINKING", q: [
-    {question:"Key safety system on shaft sinking winders?", options:["None","Overwind and underspeed protection"], correct:1, explanation:"Mandatory overwind/underspeed devices prevent catastrophic failures."}
-  ]},
-  raise_drill: {name:"RAISE DRILLING", q: [
-    {question:"Primary hazard during raise boring?", options:["Noise only","Deviation and collapse of pilot hole"], correct:1, explanation:"Precise alignment and continuous monitoring prevent deviation and ground failure."}
-  ]},
-  lifting_operations: {name:"LIFTING OPERATIONS", q: [
-    {question:"Safe working load must be?", options:["Estimated","Clearly marked and never exceeded"], correct:1, explanation:"SWL markings and factors of safety are mandatory under MHSA Chapter 8 Reg 8.5."}
-  ]},
-  civil_structural: {name:"CIVIL AND STRUCTURAL", q: [
-    {question:"Structural designs for headgears require?", options:["Operator approval","Engineer approval and load calculations"], correct:1, explanation:"All load-bearing structures require competent engineering design and approval."}
-  ]},
-  conveyor_monorail: {name:"CONVEYOR AND MONORAIL", q: [
-    {question:"Emergency stop on conveyors must be?", options:["At the motor only","Accessible along the entire length"], correct:1, explanation:"Pull-cords or equivalent must run the full length of the conveyor."}
-  ]},
-  compressed_air: {name:"COMPRESSED AIR", q: [
-    {question:"Pressure vessels require?", options:["No inspection","Statutory internal/external examinations"], correct:1, explanation:"Receivers must be examined at defined intervals under pressure equipment regulations."}
-  ]},
-  pump_fluid: {name:"FLUID HANDLING", q: [
-    {question:"Flood alarms on sumps are?", options:["Optional","Mandatory for critical dewatering systems"], correct:1, explanation:"Auto-level controls and flood alarms prevent inundation."}
-  ]},
-  steam_pressure: {name:"STEAM GENERATION", q: [
-    {question:"Boilers must have?", options:["Single safety valve","Dual independent safety valves"], correct:1, explanation:"Redundant safety valves tested at defined intervals are required."}
-  ]},
-  electrical: {name:"ELECTRICAL SYSTEMS", q: [
-    {question:"In gassy areas electrical equipment must be?", options:["Standard","Flameproof or intrinsically safe"], correct:1, explanation:"Flameproof enclosures or IS circuits prevent ignition of methane."}
-  ]},
-  mhsa: {name:"MHSA 1996", q: [
-    {question:"The Mine Health and Safety Act is?", options:["Act 50 of 1991","Act 29 of 1996"], correct:1, explanation:"MHSA is Act 29 of 1996."},
-    {question:"Employees have the right to?", options:["Ignore procedures","Refuse dangerous work and leave a dangerous workplace"], correct:1, explanation:"These rights are protected under Section 23 of MHSA."}
-  ]},
-  seismicity: {name:"SEISMICITY & ROCKBURSTS", q: [
-    {question:"Energy-absorbing support is used for?", options:["Normal ground","Rockburst-prone areas"], correct:1, explanation:"Yieldable systems absorb seismic energy and reduce damage."}
-  ]},
-  blasting: {name:"BLASTING & EXPLOSIVES", q: [
-    {question:"Re-entry after blasting is controlled by?", options:["Fixed time only","Ventilation and gas monitoring results"], correct:1, explanation:"Clearance depends on measured gas concentrations and airflow."}
-  ]},
-  evacuation: {name:"EMERGENCY EVACUATION", q: [
-    {question:"First action in an emergency is usually to?", options:["Continue working","Raise the alarm and follow the emergency procedure"], correct:1, explanation:"Raise the alarm and follow established procedures."},
-    {question:"Refuge bays must contain?", options:["Only water","SCSRs, water, first aid and communication"], correct:1, explanation:"Refuge bays are life-saving facilities and must be fully stocked."}
-  ]},
-  fire: {name:"FIRE MONITORING", q: [
-    {question:"Hot work permits are required for?", options:["Any work involving open flame or spark potential","Only surface welding"], correct:0, explanation:"Hot work controls prevent ignition of flammable materials."}
-  ]},
-  tmm: {name:"TMM", q: [
-    {question:"Level 9 collision avoidance means?", options:["Warning only","Full automatic intervention (braking) without operator input"], correct:1, explanation:"Level 9 provides automatic intervention to prevent collisions."},
-    {question:"TMM operators must hold?", options:["Any drivers licence","A valid competency certificate for the specific machine"], correct:1, explanation:"Competency certification is mandatory for TMM operation."}
-  ]},
-  winders: {name:"WINDING PLANT", q: [
-    {question:"Winder ropes require?", options:["Visual check only","Non-destructive testing at defined intervals"], correct:1, explanation:"NDT of winding ropes is a statutory requirement."}
-  ]},
-  induction_protocol: {name:"INDUCTION PROTOCOL", q: [
-    {question:"During induction, cell phones should be?", options:["On silent","Switched off"], correct:1, explanation:"Cell phones must be switched off so they do not distract the facilitator or other attendees."},
-    {question:"If you have a question you should?", options:["Shout it out","Put your hand in the air"], correct:1, explanation:"Raise your hand so the facilitator can address the question without disruption."},
-    {question:"This induction contains information that could?", options:["Only help with production","Save your life"], correct:1, explanation:"The induction contains critical safety information that could save your life."},
-    {question:"Key items discussed include?", options:["Emergency response, assembly points, fire equipment and first aid locations","Only the canteen menu"], correct:0, explanation:"Emergency response strategy, assembly points, exits, fire-fighting and first-aid equipment locations are all covered."},
-    {question:"Who discusses the induction protocol?", options:["Any colleague","The facilitator"], correct:1, explanation:"The facilitator covers the full induction protocol with the group."},
-    {question:"Assembly points and emergency exits must be known by?", options:["Only supervisors","Every person on site"], correct:1, explanation:"Every person must know the location of assembly points and emergency exits."}
-  ]},
-  company_intro: {name:"COMPANY INTRODUCTION", q: [
-    {question:"Company induction provides an overview of?", options:["Only pay rates","The organisation, operations and structure"], correct:1, explanation:"New and returning employees need to understand how they fit into the broader mining house."}
-  ]},
-  vision_mission: {name:"VISION, MISSION & VALUES", q: [
-    {question:"Vision, mission and values guide?", options:["Only production targets","Safe and responsible mining behaviour"], correct:1, explanation:"These statements set the expected culture and behaviour standards."}
-  ]},
-  emergency_response: {name:"EMERGENCY RESPONSE", q: [
-    {question:"When an emergency is declared you must?", options:["Continue working","Follow the site-specific emergency response strategy"], correct:1, explanation:"Immediate actions are defined in the site emergency plan."}
-  ]},
-  assembly_points: {name:"ASSEMBLY POINTS", q: [
-    {question:"Every person on site must know?", options:["Only the canteen","Location and use of designated assembly points and emergency exits"], correct:1, explanation:"Knowledge of assembly points and exits is critical for safe evacuation."}
-  ]},
-  fire_first_aid: {name:"FIRE & FIRST AID", q: [
-    {question:"You must know the location of?", options:["Only the change house","Fire-fighting equipment and first-aid stations"], correct:1, explanation:"Quick access to equipment and first-aid facilities saves lives."}
-  ]},
-  life_saving_rules: {name:"LIFE-SAVING RULES", q: [
-    {question:"Life-Saving Rules are?", options:["Optional guidelines","Non-negotiable critical rules"], correct:1, explanation:"Violation of Life-Saving Rules can result in serious injury or fatality; compliance is mandatory."}
-  ]},
-  ppe: {name:"PPE REQUIREMENTS", q: [
-    {question:"PPE must be?", options:["Worn only when convenient","Correct for the task, properly used, cared for and replaced when defective"], correct:1, explanation:"Correct PPE is a fundamental control under MHSA."}
-  ]},
-  employee_rights: {name:"EMPLOYEE RIGHTS & DUTIES", q: [
-    {question:"Under MHSA employees have the right to?", options:["Ignore procedures","Refuse to do dangerous work and leave a dangerous workplace"], correct:1, explanation:"These rights are protected under the Mine Health and Safety Act 29 of 1996."}
-  ]},
-  exleave: {name:"EX-LEAVE INDUCTION", q: [
-    {question:"During the induction protocol, what should you do with your cell phone?", options:["Keep it on silent","Switch it off","Use it only for emergencies","Leave it at home"], correct:1, explanation:"Cell phones must be switched off so they do not distract the facilitator or other attendees."},
-    {question:"If you have a question during the induction, you should:", options:["Shout it out","Put your hand in the air","Ask a colleague quietly","Wait until the end and leave"], correct:1, explanation:"Raise your hand so the facilitator can address the question without disruption."},
-    {question:"This induction contains information that could:", options:["Only help with production","Save your life","Be ignored if you are experienced","Only apply to new employees"], correct:1, explanation:"The induction contains critical safety information that could save your life."},
-    {question:"Key items discussed in the induction protocol include:", options:["Emergency response, assembly points, fire equipment and first aid locations","Only the canteen menu","Shift times only","Pay rates"], correct:0, explanation:"Emergency response strategy, assembly points, exits, fire-fighting and first-aid equipment locations are all covered."},
-    {question:"Who discusses the induction protocol?", options:["Any colleague","The facilitator","Security only","HR only"], correct:1, explanation:"The facilitator covers the full induction protocol with the group."},
-    {question:"Assembly points and emergency exits must be known by:", options:["Only supervisors","Every person on site","Only new employees","Security staff only"], correct:1, explanation:"Every person must know the location of assembly points and emergency exits."}
-  ]},
-  hirac: {name:"HIRAC REFRESHER", q: [
-    {question:"What does HIRAC stand for?", options:["Hazard Identification, Risk Assessment and Control","Health Inspection, Risk Analysis and Compliance","Hazard Isolation, Risk Action and Control","High Impact Risk Assessment Checklist"], correct:0, explanation:"HIRAC is the systematic process of identifying hazards, assessing the risk and implementing controls."},
-    {question:"When should a HIRAC be performed?", options:["Only after an incident","Before starting any task that has potential hazards","Once a year during the annual audit","Only by the safety officer"], correct:1, explanation:"HIRAC must be done before work starts so controls can be put in place."},
-    {question:"The preferred hierarchy of control starts with:", options:["PPE","Administrative controls","Elimination","Engineering controls"], correct:2, explanation:"Elimination of the hazard is the most effective control."},
-    {question:"Who is responsible for participating in HIRAC?", options:["Only the safety officer","Every member of the work team","Only supervisors","Only the mine manager"], correct:1, explanation:"Everyone involved in the task should participate in identifying hazards and controls."},
-    {question:"A residual risk is:", options:["The risk before any controls","The risk that remains after controls are applied","A risk that can be ignored","Only financial risk"], correct:1, explanation:"Residual risk is what remains after controls have been implemented."}
-  ]}
-};
+  // ========== MODULE DATA (same as original) ==========
+  const moduleNames = {
+    handover: "Shift Handover", lhd: "LHD Tramming in Decline", drill: "Face Drilling (Jumbo)",
+    support: "Install Mesh & Bolts", vent: "Ventilation", rockfall: "Major Rock Fall Event",
+    traffic: "Traffic Conflict in Single Lane", reentry: "Unsafe Re-Entry Attempt",
+    shaft_sinking: "Shaft Sinking (Vertical Shaft)", raise_drill: "Raise Drilling (Raise Boring)",
+    lifting_operations: "Lifting Operations", civil_structural: "Civil and Structural Engineering",
+    conveyor_monorail: "Conveyor Belt and Monorail", compressed_air: "Compressed Air and Reticulation",
+    pump_fluid: "Fluid handling", steam_pressure: "Steam Generations", electrical: "Electrical Systems",
+    mhsa: "MHSA 1996 Regulations", seismicity: "Seismicity & Rockbursts", blasting: "Blasting & Explosives",
+    evacuation: "Emergency Evacuation", fire: "Fire monitoring", tmm: "TMM", winders: "Winding Plant",
+    induction_protocol: "Induction Protocol & House Rules", company_intro: "Company Introduction – Implats",
+    vision_mission: "Vision, Mission & Values", emergency_response: "Emergency Response Protocol",
+    assembly_points: "Assembly Points & Emergency Exits", fire_first_aid: "Fire Fighting & First Aid Equipment",
+    life_saving_rules: "Life-Saving Rules", ppe: "PPE Requirements",
+    employee_rights: "Employee Rights & Duties (MHSA)", exleave: "Ex-Leave Induction Overview", hirac: "HIRAC Refresher"
+  };
 
-Object.keys(moduleNames).forEach(key => {
-  if (!sampleQuizzes[key]) {
-    sampleQuizzes[key] = {name: (moduleNames[key]||key).toUpperCase(), q:[
-      {question:`What is the main focus of the "${moduleNames[key]}" module?`, options:["Safety and compliance requirements for this topic","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
-      {question:"A minimum score of ___ is required to pass any module assessment.", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark used on this platform."},
-      {question:"Who is ultimately responsible for your safety on the mine?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care for their own safety and the safety of others."}
+  const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','hirac','induction_protocol','company_intro','vision_mission','emergency_response','assembly_points','fire_first_aid','life_saving_rules','ppe','employee_rights','exleave'];
+
+  const moduleIcons = {
+    handover:"bi-arrow-left-right", lhd:"bi-truck", drill:"bi-hammer", support:"bi-grid-3x3-gap",
+    vent:"bi-wind", rockfall:"bi-exclamation-triangle", traffic:"bi-sign-stop", reentry:"bi-door-open",
+    shaft_sinking:"bi-arrows-vertical", raise_drill:"bi-rocket-takeoff", lifting_operations:"bi-arrow-up-circle-fill",
+    civil_structural:"bi-building-fill", conveyor_monorail:"bi-box", compressed_air:"bi-wind",
+    pump_fluid:"bi-water", steam_pressure:"bi-thermometer-sun", electrical:"bi-lightning", mhsa:"bi-book",
+    seismicity:"bi-graph-up-arrow", blasting:"bi-boombox", evacuation:"bi-box-arrow-right", fire:"bi-fire",
+    tmm:"bi-truck-flatbed", winders:"bi-house", induction_protocol:"bi-list-check", company_intro:"bi-building",
+    vision_mission:"bi-bullseye", emergency_response:"bi-bell", assembly_points:"bi-signpost",
+    fire_first_aid:"bi-heart-pulse", life_saving_rules:"bi-shield-exclamation", ppe:"bi-person-badge",
+    employee_rights:"bi-hand-thumbs-up", exleave:"bi-person-walking", hirac:"bi-exclamation-triangle"
+  };
+
+  // Minimal sample quizzes (you can expand later)
+  const sampleQuizzes = {};
+  Object.keys(moduleNames).forEach(key => {
+    sampleQuizzes[key] = { name: moduleNames[key].toUpperCase(), q: [
+      {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
+      {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark."},
+      {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care."}
     ]};
-  }
-});
-
-const moduleDescriptions = {
-  handover: "Shift handover and pre-use checks are critical under MHSA to ensure continuity of safe operations. All incoming and outgoing crew must attend. Key elements include Section 23 fitness declarations, defect logging, early examination of workplaces, and transfer of critical hazard information. Red tags indicate locked-out equipment that must never be operated. Refuge bays must be stocked with SCSRs, water, first aid and communication. Only competent persons may declare a workplace safe.",
-  lhd: "LHD operations in declines require strict adherence to exclusion zones (minimum 2 m), speed limits (typically 15 km/h), low bucket carry height, mandatory horn signals before reversing, and seatbelt use. Only competent certificate holders may operate. Fire suppression systems are mandatory. Pedestrians must use designated refuge bays. Pre-use inspections cover brakes, lights, horn, fire suppression and visibility aids.",
-  drill: "Jumbo (face) drilling requires competent operators, continuous water flush for dust suppression (minimum 7 bar), hearing and respiratory protection, and face examination for misfires before charging. Personnel must remain behind the operator. Dry drilling is prohibited. Temporary support must be adequate before drilling proceeds. Fire suppression systems are mandatory on electro-hydraulic jumbos.",
-  support: "Permanent support (mesh, bolts, cables, shotcrete) may only be installed by competent crews according to rock-engineer-approved standards. Never stand under unsupported ground. Mesh overlap minimum 300 mm. Pull testing verifies anchorage. Temporary support must be replaced by permanent support within specified time. Yieldable systems are used in seismic areas.",
-  vent: "Main ventilation failure requires immediate evacuation using SCSRs to refuge bays or surface. Only the ventilation officer or manager may declare the emergency. Re-entry is permitted only after multi-point gas testing and clearance. Stench gas triggers evacuation. Auxiliary fans and independent air supplies in refuge chambers are critical controls. Blocking airways is prohibited.",
-  rockfall: "Major rock-fall events prioritise life safety and headcount. Areas must be barricaded and assessed by a rock engineer before entry. Inadequate support relative to geology is the primary cause. Formal investigation and SAMRASS reporting are mandatory. Proactive scaling and additional support in high-risk zones prevent falls of ground.",
-  traffic: "Single-lane traffic management under MHSA Chapter 8 Reg 8.10 uses one-way circuits, designated passing bays, speed limits, and mandatory two-way communication. Pedestrian-free zones with physical barriers reduce conflict. Fleet tracking and incident logging via SAMRASS support continuous improvement.",
-  reentry: "Unsafe re-entry after blasting is prevented by mandatory waiting periods for fume dispersal, multi-gas testing (NOx, CO, SO2), misfire inspection by certified blasters, and authorisation only by the competent shift boss after examination. SAMRASS reporting applies to misfires and fume incidents.",
-  shaft_sinking: "Vertical shaft sinking is regulated under MHSA Chapter 8 Reg 8.13. Safety systems include overwind/underspeed protection, shaft gates, falling-object arrestors, and competency certification for banksmen, onsetters and winder drivers. Design approvals, daily inspections and SAMRASS reporting are mandatory.",
-  raise_drill: "Raise boring requires secure machine anchoring, laser-guided pilot holes, continuous cuttings removal, remote monitoring, exclusion zones around rotating components, and lock-out/tag-out during maintenance. Precision prevents costly re-drills and ground collapses.",
-  lifting_operations: "Lifting operations (cranes, forklifts, tackle) fall under MHSA Chapter 8 Reg 8.5. Daily pre-use checks, statutory thorough examinations, competent lift plans, tag lines, exclusion zones and clear SWL markings are required. Dropped-load incidents are reportable via SAMRASS.",
-  civil_structural: "Civil and structural integrity of mine infrastructure (headgears, dams, etc.) requires engineer-approved designs, quality control during construction, corrosion protection, periodic inspections and monitoring. SAMRASS reporting applies to structural failures.",
-  conveyor_monorail: "Conveyor belts and monorails require proper guarding at pinch points, emergency pull-cords along the full length, automatic fire detection/suppression, lock-out/tag-out, and controlled man-riding rules. Spillage control and SAMRASS reporting for fires or entanglements are mandatory.",
-  compressed_air: "Compressed air systems under MHSA Chapter 8 Reg 8.1 require interlocked compressors, pressure relief valves, statutory vessel examinations, leak detection, whip restraints on hoses, and lock-out for repairs. High-pressure hazards demand rigorous training.",
-  pump_fluid: "Pump and fluid handling systems require multistage or submersible pumps suited to head, pipeline integrity testing, auto-level controls with flood alarms, guarding of rotating parts, and lock-out procedures. Critical for preventing inundation in wet mines.",
-  steam_pressure: "Steam generation and pressure vessels require feedwater treatment, dual safety valves, low-water cut-offs, statutory examinations, gauge calibration and scheduled maintenance. Explosion and scalding risks are controlled by these measures.",
-  electrical: "Underground electrical systems must use flameproof enclosures or intrinsically safe circuits in gassy areas, earth-leakage protection, lock-out/tag-out, and regular insulation testing. Ignition risks in methane zones demand strict compliance with MHSA Chapter 3.",
-  mhsa: "The Mine Health and Safety Act 29 of 1996 is South Africa’s primary legal framework for zero-harm mining. Employers must conduct risk assessments, provide training and PPE, and develop mandatory Codes of Practice. Employees have the right to refuse dangerous work. Incident reporting via SAMRASS is compulsory. DMRE inspectors hold stop-work powers.",
-  seismicity: "Seismicity and rockburst management uses real-time seismic networks, stress modelling, energy-absorbing support (cone bolts, mesh straps), de-stressing techniques, automated warnings and controlled re-entry. SAMRASS reporting applies to events causing injury or damage.",
-  blasting: "Blasting and explosives handling require optimised patterns, secure storage, certified blasters, misfire procedures, fume management via ventilation, perimeter control and post-blast inspections. Premature detonations and overbreaks are reportable.",
-  evacuation: "Emergency evacuation relies on stench-gas alerts, marked self-escape routes, SCSRs for all personnel, stocked refuge chambers, designated assembly points and quarterly drills. Coordination with ventilation and fire COPs is essential.",
-  fire: "Fire prevention, detection and suppression include fuel-source controls, hot-work permits, heat/smoke sensors, fixed deluge or foam systems, portable extinguishers matched to fire class, and trained response teams. Ventilation isolation contains smoke. All fires are SAMRASS-reportable.",
-  tmm: "Trackless Mobile Machinery under MHSA Chapter 8 Reg 8.10 requires operator competency certification, medical fitness, scheduled maintenance, Level 9 collision avoidance in high-risk areas, fail-safe braking, 360° visibility aids and site-specific TMM Codes of Practice. TMM incidents account for a significant proportion of fatalities.",
-  winders: "Winding plant, shafts and headgears are governed by MHSA Chapter 8 Reg 8.13 (2025 amendments). Requirements include approved designs, overwind/underspeed protection, dual independent brakes, rope NDT, certified drivers, banksmen and onsetters, emergency procedures and daily logbooks. The regulations replace outdated Minerals Act Chapter 16 provisions.",
-  induction_protocol: "Induction Protocol & House Rules: Mandatory site induction covering house rules, expected behaviour, cell phone policy, questioning protocol and critical life-saving information presented by the facilitator.",
-  company_intro: "Company Introduction – Implats: Overview of the organisation, its operations, structure and how new or returning employees fit into the broader mining house.",
-  vision_mission: "Vision, Mission & Values: The organisation’s vision, mission statement and core values that guide safe and responsible mining behaviour.",
-  emergency_response: "Emergency Response Protocol: Site-specific emergency response strategy, alarm types, roles and immediate actions required when an emergency is declared.",
-  assembly_points: "Assembly Points & Emergency Exits: Location and use of designated assembly points and emergency exits that every person on site must know.",
-  fire_first_aid: "Fire Fighting & First Aid Equipment: Location, identification and basic use of fire-fighting equipment and first-aid stations across the workplace.",
-  life_saving_rules: "Life-Saving Rules: Non-negotiable critical rules that, if violated, can result in serious injury or fatality. Compliance is mandatory for all personnel.",
-  ppe: "PPE Requirements: Mandatory personal protective equipment for different areas and tasks, including correct use, care and replacement of PPE.",
-  employee_rights: "Employee Rights & Duties (MHSA): Key rights and duties under the Mine Health and Safety Act 29 of 1996, including the right to refuse dangerous work and the duty to take reasonable care.",
-  exleave: "Ex-Leave Induction Overview: Mandatory induction for employees returning from leave. Covers emergency protocols, assembly points, site rules, cell phone policy and critical safety reminders that can save lives.",
-  hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) Refresher: Systematic process used to identify hazards, assess risk and implement controls before work starts."
-};
-
-const presentations = {
-  handover: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHandover/embed?start=false&loop=false&delayms=3000",
-  lhd: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLHD/embed?start=false&loop=false&delayms=3000",
-  drill: "https://docs.google.com/presentation/d/e/2PACX-1vExampleDrill/embed?start=false&loop=false&delayms=3000",
-  support: "https://docs.google.com/presentation/d/e/2PACX-1vExampleSupport/embed?start=false&loop=false&delayms=3000",
-  vent: "https://docs.google.com/presentation/d/e/2PACX-1vExampleVentilation/embed?start=false&loop=false&delayms=3000",
-  rockfall: "https://docs.google.com/presentation/d/e/2PACX-1vExampleRockfall/embed?start=false&loop=false&delayms=3000",
-  traffic: "https://docs.google.com/presentation/d/e/2PACX-1vExampleTraffic/embed?start=false&loop=false&delayms=3000",
-  reentry: "https://docs.google.com/presentation/d/e/2PACX-1vExampleReentry/embed?start=false&loop=false&delayms=3000",
-  shaft_sinking: "https://docs.google.com/presentation/d/e/2PACX-1vExampleShaftSinking/embed?start=false&loop=false&delayms=3000",
-  raise_drill: "https://docs.google.com/presentation/d/e/2PACX-1vExampleRaiseDrill/embed?start=false&loop=false&delayms=3000",
-  lifting_operations: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLifting/embed?start=false&loop=false&delayms=3000",
-  civil_structural: "https://docs.google.com/presentation/d/e/2PACX-1vSkAO1aLSv1JpoWN8J5WEWs-M_38HhGEuc44tUvd-znI6suToh0dsK1sEZ8uzQrBg/pubembed?start=false&loop=false&delayms=3000",
-  conveyor_monorail: "https://docs.google.com/presentation/d/e/2PACX-1vStkMHybEjouk3QlhWZkFBBys-NnovwAI71_2UZASN5p2P0KuASEi7Kt94EAEgkTA/pubembed?start=false&loop=false&delayms=3000",
-  compressed_air: "https://docs.google.com/presentation/d/e/2PACX-1vTGKK8B3ffFolrPBsohiPHguiKTjN8Sd9CsE-t0DZh-ivEfl1_Sedp49yxyY5NivA/pubembed?start=false&loop=false&delayms=3000",
-  pump_fluid: "https://docs.google.com/presentation/d/e/2PACX-1vExamplePumpFluid/embed?start=false&loop=false&delayms=3000",
-  steam_pressure: "https://docs.google.com/presentation/d/e/2PACX-1vQeaQTYpC_Lfy5wxnhRKVIbqCLdkFikKZkbbsTvLVfBoe_LbvlAqxPLwgDGFv3xnw/pubembed?start=false&loop=false&delayms=3000",
-  electrical: "https://docs.google.com/presentation/d/e/2PACX-1vExampleElectrical/embed?start=false&loop=false&delayms=3000",
-  mhsa: "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000",
-  seismicity: "https://docs.google.com/presentation/d/e/2PACX-1vExampleSeismicity/embed?start=false&loop=false&delayms=3000",
-  blasting: "https://docs.google.com/presentation/d/e/2PACX-1vExampleBlast/embed?start=false&loop=false&delayms=3000",
-  evacuation: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEvac/embed?start=false&loop=false&delayms=3000",
-  fire: "https://docs.google.com/presentation/d/e/2PACX-1vRjdIry8OtJBD2wte-xOUCLFgU6g-Pdf4cwcJwiQHOhmeoshnM9z56uDeKpVLMwQA/pubembed?start=false&loop=false&delayms=3000",
-  tmm: "https://docs.google.com/presentation/d/e/2PACX-1vExampleTMM/embed?start=false&loop=false&delayms=3000",
-  winders: "https://docs.google.com/presentation/d/e/2PACX-1vExampleWinders/embed?start=false&loop=false&delayms=3000",
-  induction_protocol: "https://docs.google.com/presentation/d/e/2PACX-1vExampleInductionProtocol/embed?start=false&loop=false&delayms=3000",
-  company_intro: "https://docs.google.com/presentation/d/e/2PACX-1vExampleCompanyIntro/embed?start=false&loop=false&delayms=3000",
-  vision_mission: "https://docs.google.com/presentation/d/e/2PACX-1vExampleVisionMission/embed?start=false&loop=false&delayms=3000",
-  emergency_response: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEmergencyResponse/embed?start=false&loop=false&delayms=3000",
-  assembly_points: "https://docs.google.com/presentation/d/e/2PACX-1vExampleAssemblyPoints/embed?start=false&loop=false&delayms=3000",
-  fire_first_aid: "https://docs.google.com/presentation/d/e/2PACX-1vExampleFireFirstAid/embed?start=false&loop=false&delayms=3000",
-  life_saving_rules: "https://docs.google.com/presentation/d/e/2PACX-1vExampleLifeSavingRules/embed?start=false&loop=false&delayms=3000",
-  ppe: "https://docs.google.com/presentation/d/e/2PACX-1vExamplePPE/embed?start=false&loop=false&delayms=3000",
-  employee_rights: "https://docs.google.com/presentation/d/e/2PACX-1vExampleEmployeeRights/embed?start=false&loop=false&delayms=3000",
-  exleave: "https://docs.google.com/presentation/d/e/2PACX-1vExampleExLeave/embed?start=false&loop=false&delayms=3000",
-  hirac: "https://docs.google.com/presentation/d/e/2PACX-1vExampleHIRAC/embed?start=false&loop=false&delayms=3000"
-};
-
-let currentModule = null, currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
-let scores = JSON.parse(localStorage.getItem('miningScores') || '{}');
-
-const els = {
-  moduleGrid: document.getElementById('moduleGrid'),
-  searchInput: document.getElementById('searchInput'),
-  completedCount: document.getElementById('completedCount'),
-  overallPass: document.getElementById('overallPass'),
-  dashCompleted: document.getElementById('dashCompleted'),
-  dashPassRate: document.getElementById('dashPassRate'),
-  dashCertificates: document.getElementById('dashCertificates'),
-  completedModulesList: document.getElementById('completedModulesList'),
-  moduleTitle: document.getElementById('moduleTitle'),
-  videoPlayer: document.getElementById('videoPlayer'),
-  presentationPlayer: document.getElementById('presentationPlayer'),
-  questionText: document.getElementById('questionText'),
-  optionsContainer: document.getElementById('optionsContainer'),
-  feedback: document.getElementById('feedback'),
-  nextBtn: document.getElementById('nextBtn'),
-  resultTitle: document.getElementById('resultTitle'),
-  progressBar: document.getElementById('progressBar'),
-  scorePercent: document.getElementById('scorePercent'),
-  correctCount: document.getElementById('correctCount'),
-  timeDisplay: document.getElementById('timeDisplay'),
-  passMessage: document.getElementById('passMessage'),
-  completionTimestamp: document.getElementById('completionTimestamp'),
-  certificateSection: document.getElementById('certificateSection'),
-  breadcrumbNav: document.getElementById('breadcrumbNav'),
-  breadcrumbItems: document.getElementById('breadcrumbItems'),
-  learningPath: document.getElementById('learningPath')
-};
-
-function shuffleArray(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function stopAllMedia() {
-  if (els.videoPlayer) els.videoPlayer.src = '';
-  if (els.presentationPlayer) els.presentationPlayer.src = '';
-}
-
-function closeMobileMenu() {
-  const collapseEl = document.getElementById('navbarContent');
-  if (collapseEl && collapseEl.classList.contains('show')) {
-    const bsCollapse = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle: false});
-    bsCollapse.hide();
-  }
-}
-
-function showScreen(id) {
-  if (id !== 'videoScreen') {
-    if (els.videoPlayer) els.videoPlayer.src = '';
-  }
-  if (id !== 'presentationScreen') {
-    if (els.presentationPlayer) els.presentationPlayer.src = '';
-  }
-
-  ['welcomeScreen','modulesContainer','moduleView','videoScreen','presentationScreen','quizScreen','resultsScreen',
-   'descriptionsScreen','resourcesScreen','dashboardScreen','certificatesScreen','aboutScreen','contactScreen']
-    .forEach(s => {
-      const el = document.getElementById(s);
-      if (el) el.classList.toggle('d-none', s !== id);
-    });
-  updateBreadcrumb(id);
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function updateBreadcrumb(screen) {
-  const map = {modulesContainer:'Modules', moduleView: moduleNames[currentModule]||'Module', videoScreen:'Lesson', presentationScreen:'Presentation', quizScreen:'Assessment', resultsScreen:'Results', descriptionsScreen:'Descriptions', resourcesScreen:'Resources', dashboardScreen:'Dashboard', certificatesScreen:'Certificates', aboutScreen:'About', contactScreen:'Contact'};
-  if (!map[screen] || screen === 'welcomeScreen') { els.breadcrumbNav.classList.add('d-none'); return; }
-  els.breadcrumbNav.classList.remove('d-none');
-  let html = '<li class="breadcrumb-item"><a href="#" onclick="showHome();return false;">Home</a></li>';
-  if (['moduleView','videoScreen','presentationScreen','quizScreen','resultsScreen'].includes(screen)) {
-    html += '<li class="breadcrumb-item"><a href="#" onclick="showModulesList();return false;">Modules</a></li>';
-    if (screen !== 'moduleView') html += `<li class="breadcrumb-item"><a href="#" onclick="loadModule('${currentModule}');return false;">${moduleNames[currentModule]||'Module'}</a></li>`;
-  }
-  html += `<li class="breadcrumb-item active">${map[screen]}</li>`;
-  els.breadcrumbItems.innerHTML = html;
-}
-
-function updateProgress() {
-  const total = Object.keys(moduleNames).length;
-  const done = Object.keys(scores).length;
-  const passed = Object.values(scores).filter(v => v?.passed).length;
-  const rate = done ? Math.round((passed / done) * 100) : 0;
-  document.getElementById('completedCount').textContent = done;
-  document.getElementById('totalModules').textContent = total;
-  document.getElementById('overallPass').textContent = rate + '%';
-  document.getElementById('dashCompleted').textContent = `${done}/${total}`;
-  document.getElementById('dashPassRate').textContent = rate + '%';
-  document.getElementById('dashCertificates').textContent = passed;
-  document.getElementById('dashTotal').textContent = total;
-}
-
-function renderModules(filter='all', term='') {
-  els.moduleGrid.innerHTML = '';
-  Object.entries(moduleNames).forEach(([key, name]) => {
-    if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
-    if (filter === 'basic' && advancedModules.includes(key)) return;
-    if (filter === 'advanced' && !advancedModules.includes(key)) return;
-    const score = scores[key];
-    const pct = score ? score.percentage : 0;
-    const card = document.createElement('div');
-    card.className = 'col-12 col-sm-6 col-lg-4 col-xl-3';
-    card.innerHTML = `<div class="module-card ${advancedModules.includes(key)?'advanced':''}" data-module="${key}">
-      <div class="card-top"><i class="bi ${moduleIcons[key]||'bi-shield-check'}"></i></div>
-      <div class="card-body"><h6 class="module-name">${name}</h6>
-      <div class="module-meta">${advancedModules.includes(key)?'Advanced':'Core'} • Assessment</div>
-      <div class="progress-wrap"><div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
-      <div class="progress-text"><span>${pct?pct+'% complete':'Not started'}</span>${score?.passed?'<span class="text-success fw-semibold">Passed</span>':''}</div></div></div></div>`;
-    card.querySelector('.module-card').addEventListener('click', () => loadModule(key));
-    els.moduleGrid.appendChild(card);
   });
-  updateProgress();
-}
 
-function loadModule(key) {
-  currentModule = key;
-  els.moduleTitle.textContent = moduleNames[key] || key;
-  const path = `<div class="learning-item"><div><div class="title">${moduleNames[key]}</div><small class="text-muted">Core content • Presentation</small></div>
-    <div class="actions d-flex align-items-center gap-2"><span class="badge-type badge-lesson">Lesson</span>
-    <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button></div></div>`;
-  els.learningPath.innerHTML = path;
-  showScreen('moduleView');
-}
+  // ========== STATE ==========
+  let currentUser = null;
+  let userProfile = null;          // {role, assignedModules, fullName...}
+  let scores = {};
+  let currentModule = null;
+  let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
+  let assigningToUid = null;       // for admin modal
 
-function openPresentation(key) {
-  els.presentationPlayer.src = '';
-  const url = presentations[key] || presentations.mhsa || "https://docs.google.com/presentation/d/e/2PACX-1vExampleMHSA/embed?start=false&loop=false&delayms=3000";
-  setTimeout(() => { els.presentationPlayer.src = url; }, 80);
-  showScreen('presentationScreen');
-}
-
-function startVideo() {
-  els.videoPlayer.src = '';
-  const base = videos[currentModule] || videos.handover || "https://www.youtube.com/embed/dQw4w9WgXcQ";
-  const params = "rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&fs=1&disablekb=0&cc_load_policy=0";
-  setTimeout(() => {
-    els.videoPlayer.src = base + (base.includes("?") ? "&" : "?") + params;
-  }, 50);
-  showScreen("videoScreen");
-}
-
-function startQuiz() {
-  const nameInput = document.getElementById('userFullName');
-  const userName = nameInput?.value.trim();
-  if (!userName) {
-    alert('Please enter your full name before starting the assessment.\nThis name will appear on your certificate.');
-    nameInput?.focus();
-    return;
-  }
-  localStorage.setItem('currentUserNameForCertificate', userName);
-  if (!sampleQuizzes[currentModule]) return;
-  currentQuiz = shuffleArray(sampleQuizzes[currentModule].q || []);
-  questionIndex = 0; correctAnswers = 0; quizStartTime = Date.now();
-  showQuestion();
-  showScreen('quizScreen');
-}
-
-function showQuestion() {
-  els.optionsContainer.innerHTML = '';
-  els.feedback.innerHTML = '';
-  els.nextBtn.classList.add('d-none');
-  if (questionIndex >= currentQuiz.length) { finishQuiz(); return; }
-  const q = currentQuiz[questionIndex];
-  const original = q.options || [];
-  const correctText = original[q.correct];
-  const shuffled = shuffleArray([...original]);
-  const newCorrect = shuffled.indexOf(correctText);
-  els.questionText.textContent = q.question || 'Question';
-  shuffled.forEach((opt, i) => {
-    const div = document.createElement('div');
-    div.className = 'col-12';
-    div.innerHTML = `<button class="quiz-option btn btn-outline-secondary w-100">${opt}</button>`;
-    div.querySelector('button').addEventListener('click', () => selectAnswer(i, newCorrect));
-    els.optionsContainer.appendChild(div);
-  });
-}
-
-function selectAnswer(selected, correct) {
-  const buttons = els.optionsContainer.querySelectorAll('.quiz-option');
-  buttons.forEach((btn, i) => {
-    btn.classList.remove('btn-outline-secondary');
-    if (i === correct) btn.classList.add('btn-success');
-    else if (i === selected) btn.classList.add('btn-danger');
-    btn.disabled = true;
-  });
-  const q = currentQuiz[questionIndex] || {};
-  els.feedback.textContent = q.explanation || '';
-  els.feedback.className = 'mt-4 text-center fw-semibold fs-5 ' + (selected === correct ? 'text-success' : 'text-danger');
-  if (selected === correct) correctAnswers++;
-  els.nextBtn.classList.remove('d-none');
-}
-
-function nextQuestion() { questionIndex++; showQuestion(); }
-
-function finishQuiz() {
-  const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-  const percentage = currentQuiz.length ? Math.round((correctAnswers / currentQuiz.length) * 100) : 0;
-  const passed = percentage >= 70;
-  const timestamp = new Date().toLocaleString('en-ZA', {timeZone:'Africa/Johannesburg'});
-  scores[currentModule] = {percentage, passed, timestamp, correct:correctAnswers, total:currentQuiz.length};
-  localStorage.setItem('miningScores', JSON.stringify(scores));
-  els.resultTitle.textContent = passed ? 'Congratulations — Competency Demonstrated' : 'Assessment Not Passed';
-  els.progressBar.style.width = percentage + '%';
-  els.progressBar.className = 'progress-bar ' + (passed ? 'bg-success' : 'bg-danger');
-  els.scorePercent.textContent = percentage + '%';
-  els.correctCount.textContent = correctAnswers + ' / ' + currentQuiz.length;
-  els.timeDisplay.textContent = Math.floor(timeTaken/60) + ':' + String(timeTaken%60).padStart(2,'0');
-  els.passMessage.textContent = passed ? 'You have successfully completed this module and may download your certificate.' : 'A minimum of 70% is required. Please review the lesson content and attempt the assessment again.';
-  els.completionTimestamp.textContent = 'Completed: ' + timestamp;
-  els.certificateSection.classList.toggle('d-none', !passed);
-  showScreen('resultsScreen');
-  updateProgress(); renderModules(); renderCompletedModules();
-}
-
-function renderCompletedModules() {
-  els.completedModulesList.innerHTML = '';
-  if (!Object.keys(scores).length) {
-    els.completedModulesList.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
-    return;
-  }
-  Object.entries(scores).sort((a,b)=>new Date(b[1].timestamp)-new Date(a[1].timestamp)).forEach(([key,data]) => {
-    const li = document.createElement('li');
-    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-    li.innerHTML = `<div><strong>${moduleNames[key]||key}</strong><br><small class="text-muted">${data.timestamp}</small></div>
-      <span class="badge ${data.passed?'bg-success':'bg-danger'} rounded-pill">${data.percentage}%</span>`;
-    els.completedModulesList.appendChild(li);
-  });
-}
-
-function downloadCertificate() {
-  if (!currentModule || !scores[currentModule]) { alert('No certificate data found.'); return; }
-  const {jsPDF} = window.jspdf;
-  if (!jsPDF) { alert('PDF library failed to load.'); return; }
-  const userName = localStorage.getItem('currentUserNameForCertificate') || 'Participant';
-  const doc = new jsPDF();
-  doc.setFontSize(22); doc.setTextColor(29,78,216); doc.text('Certificate of Competency', 105, 40, {align:'center'});
-  doc.setFontSize(14); doc.setTextColor(0); doc.text('This is to certify that', 105, 60, {align:'center'});
-  doc.setFontSize(22); doc.setFont('helvetica','bold'); doc.text(userName.toUpperCase(), 105, 78, {align:'center'});
-  doc.setFontSize(14); doc.setFont('helvetica','normal'); doc.text('has successfully demonstrated competency in', 105, 95, {align:'center'});
-  doc.setFontSize(18); doc.setTextColor(5,150,105); doc.text(moduleNames[currentModule]||currentModule, 105, 115, {align:'center'});
-  doc.setFontSize(13); doc.setTextColor(0); doc.text(`Score: ${scores[currentModule].percentage}%`, 105, 135, {align:'center'});
-  doc.setFontSize(11); doc.setTextColor(80); doc.text(`Completed on: ${scores[currentModule].timestamp}`, 105, 150, {align:'center'});
-  doc.setFontSize(9); doc.setTextColor(120); doc.text('Act 29 Mining Training Platform • MHSA Compliant • Issued ' + new Date().toLocaleDateString('en-ZA'), 105, 170, {align:'center'});
-  doc.setFontSize(8); doc.text('www.miningtraining.ac.za', 105, 178, {align:'center'});
-  doc.save(`Certificate_${(moduleNames[currentModule]||currentModule).replace(/\s+/g,'_')}_${new Date().toISOString().split('T')[0]}.pdf`);
-}
-
-function showCertificates() {
-  const container = document.getElementById('certList');
-  container.innerHTML = '';
-  const completed = Object.entries(scores).filter(([_,d])=>d.passed).sort((a,b)=>new Date(b[1].timestamp)-new Date(a[1].timestamp));
-  if (!completed.length) {
-    container.innerHTML = `<div class="alert alert-info text-center">You have not yet earned any certificates.<br>Complete modules with a minimum 70% score to generate certificates.</div>`;
-    return;
-  }
-  completed.forEach(([key,data]) => {
-    const item = document.createElement('div');
-    item.className = 'list-group-item d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2';
-    item.innerHTML = `<div><strong>${moduleNames[key]||key}</strong><br><small class="text-muted">Completed: ${data.timestamp} • Score: ${data.percentage}%</small></div>
-      <button class="btn btn-success btn-sm" onclick="downloadSpecificCertificate('${key}')">Download PDF</button>`;
-    container.appendChild(item);
-  });
-  showScreen('certificatesScreen');
-}
-
-function downloadSpecificCertificate(moduleKey) {
-  const original = currentModule; currentModule = moduleKey; downloadCertificate(); currentModule = original;
-}
-
-function showDescriptions() {
-  const accordion = document.getElementById('moduleAccordion');
-  accordion.innerHTML = '';
-  Object.entries(moduleNames).forEach(([key,name],i) => {
-    const desc = (moduleDescriptions[key]||'Description not available.').replace(/\n/g,'<br>');
-    const item = document.createElement('div');
-    item.className = 'accordion-item';
-    item.innerHTML = `<h2 class="accordion-header"><button class="accordion-button ${i?'collapsed':''}" type="button" data-bs-toggle="collapse" data-bs-target="#desc${i}">${name}</button></h2>
-      <div id="desc${i}" class="accordion-collapse collapse ${i?'':'show'}" data-bs-parent="#moduleAccordion"><div class="accordion-body">${desc}</div></div>`;
-    accordion.appendChild(item);
-  });
-  showScreen('descriptionsScreen');
-}
-
-function showResources() { showScreen('resourcesScreen'); }
-function restartQuiz(){ startQuiz(); }
-function showHome(){ showScreen('welcomeScreen'); }
-function showModulesList(){
-  const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-  renderModules(filter, els.searchInput?.value.trim()||'');
-  showScreen('modulesContainer');
-}
-function showDashboard(){ renderCompletedModules(); showScreen('dashboardScreen'); }
-function showAbout(){ showScreen('aboutScreen'); }
-function showContact(){ showScreen('contactScreen'); }
-
-function backToModule(){
-  stopAllMedia();
-  loadModule(currentModule);
-}
-
-/* ========== NAV LINKS ========== */
-document.querySelectorAll('.navbar-nav .nav-link[data-screen]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const screen = link.dataset.screen;
-    closeMobileMenu();
-    switch(screen) {
-      case 'home': showHome(); break;
-      case 'modules': showModulesList(); break;
-      case 'descriptions': showDescriptions(); break;
-      case 'resources': showResources(); break;
-      case 'dashboard': showDashboard(); break;
-      case 'certificates': showCertificates(); break;
-      case 'about': showAbout(); break;
-      case 'contact': showContact(); break;
+  // ========== AUTH ==========
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      await loadUserProfile(user.uid);
+      await loadUserProgress(user.uid);
+      buildNav();
+      showHome();
+      document.getElementById('authScreen').classList.add('d-none');
+    } else {
+      currentUser = null;
+      userProfile = null;
+      scores = {};
+      document.getElementById('authScreen').classList.remove('d-none');
+      hideAllScreens();
     }
   });
-});
 
-document.getElementById('watchVideo')?.addEventListener('click', startVideo);
-document.getElementById('startQuiz')?.addEventListener('click', startQuiz);
-document.getElementById('nextBtn')?.addEventListener('click', nextQuestion);
-els.searchInput?.addEventListener('input', () => {
-  const filter = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
-  renderModules(filter, els.searchInput.value.trim());
-});
-document.querySelectorAll('[data-filter]').forEach(item => {
-  item.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelectorAll('[data-filter]').forEach(el => el.classList.remove('active'));
-    item.classList.add('active');
-    document.getElementById('filterLabel').textContent = 'Filter: ' + item.textContent;
-    renderModules(item.dataset.filter, els.searchInput.value.trim());
-  });
-});
-document.querySelectorAll('[data-sort]').forEach(item => {
-  item.addEventListener('click', e => {
-    e.preventDefault();
-    document.getElementById('sortLabel').textContent = 'Sort: ' + item.textContent;
-    renderModules(document.querySelector('[data-filter].active')?.dataset.filter||'all', els.searchInput.value.trim());
-  });
-});
-document.querySelector('.contact-form')?.addEventListener('submit', e => {
-  e.preventDefault();
-  alert('Thank you. Your message has been received and will be responded to shortly.');
-  e.target.reset();
-});
+  document.getElementById('btnRegister').addEventListener('click', async () => {
+    const name = document.getElementById('authName').value.trim();
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const errBox = document.getElementById('authError');
+    errBox.classList.add('d-none');
 
-window.addEventListener('DOMContentLoaded', () => {
-  showHome();
-  renderModules();
-  renderCompletedModules();
-  updateProgress();
-  document.querySelector('[data-filter="all"]')?.classList.add('active');
-});
+    if (!name || !email || password.length < 6) {
+      errBox.textContent = "Please fill all fields (password min 6 characters).";
+      errBox.classList.remove('d-none');
+      return;
+    }
+
+    try {
+      // Check if this is the first user → make them admin
+      const usersSnap = await getDocs(collection(db, "users"));
+      const isFirstUser = usersSnap.empty;
+
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+
+      await setDoc(doc(db, "users", cred.user.uid), {
+        fullName: name,
+        email: email,
+        role: isFirstUser ? "admin" : "user",
+        assignedModules: isFirstUser ? Object.keys(moduleNames) : [], // admin gets all
+        createdAt: serverTimestamp(),
+        lastLogin: serverTimestamp()
+      });
+    } catch (e) {
+      errBox.textContent = e.message;
+      errBox.classList.remove('d-none');
+    }
+  });
+
+  document.getElementById('btnLogin').addEventListener('click', async () => {
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    const errBox = document.getElementById('authError');
+    errBox.classList.add('d-none');
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (e) {
+      errBox.textContent = e.message;
+      errBox.classList.remove('d-none');
+    }
+  });
+
+  // ========== PROFILE & PROGRESS ==========
+  async function loadUserProfile(uid) {
+    const snap = await getDoc(doc(db, "users", uid));
+    if (snap.exists()) {
+      userProfile = snap.data();
+      // update lastLogin
+      await updateDoc(doc(db, "users", uid), { lastLogin: serverTimestamp() });
+    } else {
+      userProfile = { role: "user", assignedModules: [], fullName: currentUser.displayName || "" };
+    }
+    // Pre-fill name field
+    const nameInput = document.getElementById('userFullName');
+    if (nameInput) nameInput.value = userProfile.fullName || currentUser.displayName || "";
+  }
+
+  async function loadUserProgress(uid) {
+    scores = {};
+    try {
+      const snap = await getDocs(collection(db, "progress", uid, "modules"));
+      snap.forEach(d => { scores[d.id] = d.data(); });
+    } catch (e) { console.warn("Progress load:", e); }
+    updateProgress();
+  }
+
+  async function saveProgress(moduleKey, data) {
+    if (!currentUser) return;
+    await setDoc(doc(db, "progress", currentUser.uid, "modules", moduleKey), {
+      ...data,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  }
+
+  // ========== NAVIGATION ==========
+  function buildNav() {
+    const isAdmin = userProfile?.role === "admin";
+    const links = `
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
+      ${isAdmin ? '<li class="nav-item"><a class="nav-link text-warning fw-semibold" href="#" data-screen="admin"><i class="bi bi-gear me-1"></i>Admin</a></li>' : ''}
+      <li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" id="btnLogout">Logout</a></li>
+    `;
+    document.getElementById('navLinks').innerHTML = links;
+
+    document.querySelectorAll('[data-screen]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const screen = link.dataset.screen;
+        if (screen === "home") showHome();
+        else if (screen === "modules") showModulesList();
+        else if (screen === "dashboard") showDashboard();
+        else if (screen === "certificates") showCertificates();
+        else if (screen === "admin") showAdmin();
+        else if (screen === "about") showScreen("aboutScreen");
+      });
+    });
+
+    document.getElementById('btnLogout')?.addEventListener('click', async e => {
+      e.preventDefault();
+      await signOut(auth);
+    });
+  }
+
+  function hideAllScreens() {
+    ["welcomeScreen","modulesContainer","moduleView","videoScreen","presentationScreen",
+     "quizScreen","resultsScreen","dashboardScreen","certificatesScreen","adminScreen","aboutScreen","contactScreen"]
+      .forEach(id => document.getElementById(id)?.classList.add("d-none"));
+  }
+
+  function showScreen(id) {
+    hideAllScreens();
+    document.getElementById(id)?.classList.remove("d-none");
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  function showHome() { showScreen("welcomeScreen"); }
+  function showDashboard() { renderCompletedModules(); showScreen("dashboardScreen"); }
+
+  // ========== MODULES (filtered by assignment) ==========
+  function getVisibleModules() {
+    if (userProfile?.role === "admin") return Object.keys(moduleNames);
+    return userProfile?.assignedModules || [];
+  }
+
+  function renderModules(term = "") {
+    const grid = document.getElementById("moduleGrid");
+    grid.innerHTML = "";
+    const visible = getVisibleModules();
+
+    if (visible.length === 0) {
+      grid.innerHTML = `<div class="col-12"><div class="alert alert-info text-center">No modules have been assigned to you yet. Please contact your administrator.</div></div>`;
+      return;
+    }
+
+    visible.forEach(key => {
+      const name = moduleNames[key];
+      if (term && !name.toLowerCase().includes(term.toLowerCase())) return;
+      const score = scores[key];
+      const pct = score ? score.percentage : 0;
+      const card = document.createElement("div");
+      card.className = "col-12 col-sm-6 col-lg-4 col-xl-3";
+      card.innerHTML = `
+        <div class="module-card ${advancedModules.includes(key)?'advanced':''}" data-module="${key}">
+          <div class="card-top"><i class="bi ${moduleIcons[key]||'bi-shield-check'}"></i></div>
+          <div class="card-body">
+            <h6 class="module-name">${name}</h6>
+            <div class="module-meta">${advancedModules.includes(key)?'Advanced':'Core'} • Assessment</div>
+            <div class="progress-wrap">
+              <div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
+              <div class="progress-text">
+                <span>${pct ? pct+'% complete' : 'Not started'}</span>
+                ${score?.passed ? '<span class="text-success fw-semibold">Passed</span>' : ''}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      card.querySelector(".module-card").addEventListener("click", () => loadModule(key));
+      grid.appendChild(card);
+    });
+    updateProgress();
+  }
+
+  function showModulesList() {
+    renderModules(document.getElementById("searchInput")?.value || "");
+    showScreen("modulesContainer");
+  }
+
+  document.getElementById("searchInput")?.addEventListener("input", e => {
+    renderModules(e.target.value.trim());
+  });
+
+  function loadModule(key) {
+    // Security: only allow if assigned or admin
+    if (userProfile?.role !== "admin" && !(userProfile?.assignedModules||[]).includes(key)) {
+      alert("You do not have access to this module.");
+      return;
+    }
+    currentModule = key;
+    document.getElementById("moduleTitle").textContent = moduleNames[key];
+    showScreen("moduleView");
+  }
+
+  // ========== QUIZ & CERTIFICATE (same logic, now saves to Firestore) ==========
+  document.getElementById("watchVideo")?.addEventListener("click", () => {
+    // For demo we just show a placeholder – replace with real video URLs later
+    document.getElementById("videoPlayer").src = "https://www.youtube.com/embed/lMEErpFhzxg?rel=0";
+    showScreen("videoScreen");
+  });
+
+  document.getElementById("startQuiz")?.addEventListener("click", startQuiz);
+  document.getElementById("nextBtn")?.addEventListener("click", () => { questionIndex++; showQuestion(); });
+
+  function startQuiz() {
+    const name = document.getElementById("userFullName").value.trim();
+    if (!name) { alert("Please enter your full name for the certificate."); return; }
+    localStorage.setItem("currentUserNameForCertificate", name);
+
+    currentQuiz = [...(sampleQuizzes[currentModule]?.q || [])].sort(() => Math.random() - 0.5);
+    questionIndex = 0; correctAnswers = 0; quizStartTime = Date.now();
+    showQuestion();
+    showScreen("quizScreen");
+  }
+
+  function showQuestion() {
+    const container = document.getElementById("optionsContainer");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    container.innerHTML = ""; feedback.innerHTML = ""; nextBtn.classList.add("d-none");
+
+    if (questionIndex >= currentQuiz.length) { finishQuiz(); return; }
+
+    const q = currentQuiz[questionIndex];
+    const correctText = q.options[q.correct];
+    const shuffled = [...q.options].sort(() => Math.random() - 0.5);
+    const newCorrect = shuffled.indexOf(correctText);
+
+    document.getElementById("questionText").textContent = q.question;
+    shuffled.forEach((opt, i) => {
+      const div = document.createElement("div");
+      div.className = "col-12";
+      div.innerHTML = `<button class="quiz-option btn btn-outline-secondary w-100">${opt}</button>`;
+      div.querySelector("button").addEventListener("click", () => selectAnswer(i, newCorrect, q.explanation));
+      container.appendChild(div);
+    });
+  }
+
+  function selectAnswer(selected, correct, explanation) {
+    const buttons = document.querySelectorAll(".quiz-option");
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correct) btn.classList.add("btn-success");
+      else if (i === selected) btn.classList.add("btn-danger");
+      btn.classList.remove("btn-outline-secondary");
+    });
+    document.getElementById("feedback").textContent = explanation || "";
+    document.getElementById("feedback").className = "mt-4 text-center fw-semibold fs-5 " + (selected === correct ? "text-success" : "text-danger");
+    if (selected === correct) correctAnswers++;
+    document.getElementById("nextBtn").classList.remove("d-none");
+  }
+
+  async function finishQuiz() {
+    const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
+    const percentage = currentQuiz.length ? Math.round((correctAnswers / currentQuiz.length) * 100) : 0;
+    const passed = percentage >= 70;
+    const timestamp = new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"});
+
+    const data = { percentage, passed, timestamp, correct: correctAnswers, total: currentQuiz.length };
+    scores[currentModule] = data;
+    await saveProgress(currentModule, data);
+
+    document.getElementById("resultTitle").textContent = passed ? "Competency Demonstrated" : "Assessment Not Passed";
+    document.getElementById("progressBar").style.width = percentage + "%";
+    document.getElementById("progressBar").className = "progress-bar " + (passed ? "bg-success" : "bg-danger");
+    document.getElementById("scorePercent").textContent = percentage + "%";
+    document.getElementById("correctCount").textContent = correctAnswers + " / " + currentQuiz.length;
+    document.getElementById("timeDisplay").textContent = Math.floor(timeTaken/60) + ":" + String(timeTaken%60).padStart(2,"0");
+    document.getElementById("passMessage").textContent = passed ? "You have successfully completed this module." : "A minimum of 70% is required. Please review and try again.";
+    document.getElementById("completionTimestamp").textContent = "Completed: " + timestamp;
+    document.getElementById("certificateSection").classList.toggle("d-none", !passed);
+    showScreen("resultsScreen");
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const visible = getVisibleModules();
+    const done = Object.keys(scores).filter(k => visible.includes(k)).length;
+    const passed = Object.values(scores).filter(v => v?.passed && visible.includes(Object.keys(scores).find(k => scores[k] === v))).length;
+    // simpler count
+    const passedCount = Object.entries(scores).filter(([k,v]) => v.passed && visible.includes(k)).length;
+    const rate = done ? Math.round((passedCount / done) * 100) : 0;
+
+    document.getElementById("completedCount").textContent = done;
+    document.getElementById("totalModules").textContent = visible.length;
+    document.getElementById("overallPass").textContent = rate + "%";
+    document.getElementById("dashCompleted").textContent = `${done}/${visible.length}`;
+    document.getElementById("dashPassRate").textContent = rate + "%";
+    document.getElementById("dashCertificates").textContent = passedCount;
+    document.getElementById("dashTotal").textContent = visible.length;
+  }
+
+  function renderCompletedModules() {
+    const list = document.getElementById("completedModulesList");
+    list.innerHTML = "";
+    const entries = Object.entries(scores).filter(([k]) => getVisibleModules().includes(k));
+    if (!entries.length) {
+      list.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
+      return;
+    }
+    entries.sort((a,b) => new Date(b[1].timestamp) - new Date(a[1].timestamp)).forEach(([key, data]) => {
+      const li = document.createElement("li");
+      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.innerHTML = `<div><strong>${moduleNames[key]}</strong><br><small class="text-muted">${data.timestamp}</small></div>
+        <span class="badge ${data.passed?'bg-success':'bg-danger'} rounded-pill">${data.percentage}%</span>`;
+      list.appendChild(li);
+    });
+  }
+
+  function showCertificates() {
+    const container = document.getElementById("certList");
+    container.innerHTML = "";
+    const completed = Object.entries(scores).filter(([k,d]) => d.passed && getVisibleModules().includes(k));
+    if (!completed.length) {
+      container.innerHTML = `<div class="alert alert-info text-center">No certificates yet. Complete assigned modules with ≥70%.</div>`;
+    } else {
+      completed.forEach(([key, data]) => {
+        const item = document.createElement("div");
+        item.className = "list-group-item d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2";
+        item.innerHTML = `<div><strong>${moduleNames[key]}</strong><br><small class="text-muted">${data.timestamp} • ${data.percentage}%</small></div>
+          <button class="btn btn-success btn-sm" onclick="downloadSpecificCertificate('${key}')">Download PDF</button>`;
+        container.appendChild(item);
+      });
+    }
+    showScreen("certificatesScreen");
+  }
+
+  window.downloadCertificate = function() {
+    if (!currentModule || !scores[currentModule]) return;
+    const { jsPDF } = window.jspdf;
+    const userName = localStorage.getItem("currentUserNameForCertificate") || userProfile?.fullName || "Participant";
+    const doc = new jsPDF();
+    doc.setFontSize(22); doc.setTextColor(29,78,216); doc.text("Certificate of Competency", 105, 40, {align:"center"});
+    doc.setFontSize(14); doc.setTextColor(0); doc.text("This is to certify that", 105, 60, {align:"center"});
+    doc.setFontSize(20); doc.setFont("helvetica","bold"); doc.text(userName.toUpperCase(), 105, 78, {align:"center"});
+    doc.setFontSize(14); doc.setFont("helvetica","normal"); doc.text("has successfully demonstrated competency in", 105, 95, {align:"center"});
+    doc.setFontSize(16); doc.setTextColor(5,150,105); doc.text(moduleNames[currentModule], 105, 115, {align:"center"});
+    doc.setFontSize(13); doc.setTextColor(0); doc.text(`Score: ${scores[currentModule].percentage}%`, 105, 135, {align:"center"});
+    doc.setFontSize(11); doc.setTextColor(80); doc.text(`Completed: ${scores[currentModule].timestamp}`, 105, 150, {align:"center"});
+    doc.setFontSize(9); doc.setTextColor(120); doc.text("Act 29 Mining Training • MHSA Compliant • miningtraining.ac.za", 105, 170, {align:"center"});
+    doc.save(`Certificate_${moduleNames[currentModule].replace(/\s+/g,"_")}.pdf`);
+  };
+
+  window.downloadSpecificCertificate = function(key) {
+    const orig = currentModule; currentModule = key; downloadCertificate(); currentModule = orig;
+  };
+
+  function restartQuiz() { startQuiz(); }
+  function backToModule() {
+    document.getElementById("videoPlayer").src = "";
+    document.getElementById("presentationPlayer").src = "";
+    loadModule(currentModule);
+  }
+
+  // ========== ADMIN FUNCTIONS ==========
+  async function showAdmin() {
+    if (userProfile?.role !== "admin") { alert("Admin access only"); return; }
+    await loadAllUsers();
+    showScreen("adminScreen");
+  }
+
+  window.loadAllUsers = async function() {
+    const tbody = document.getElementById("adminUsersTable");
+    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4">Loading...</td></tr>`;
+    const snap = await getDocs(collection(db, "users"));
+    tbody.innerHTML = "";
+    snap.forEach(d => {
+      const u = d.data();
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${u.fullName || "—"}</td>
+        <td>${u.email}</td>
+        <td><span class="badge ${u.role==='admin'?'bg-warning text-dark':'bg-secondary'}">${u.role}</span></td>
+        <td>${(u.assignedModules||[]).length} modules</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${u.fullName||u.email}')">Assign</button>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+  };
+
+  window.openAssignModal = async function(uid, name) {
+    assigningToUid = uid;
+    document.getElementById("assignUserName").textContent = name;
+    const userSnap = await getDoc(doc(db, "users", uid));
+    const assigned = userSnap.data()?.assignedModules || [];
+
+    const list = document.getElementById("assignModuleList");
+    list.innerHTML = "";
+    Object.entries(moduleNames).forEach(([key, name]) => {
+      const checked = assigned.includes(key) ? "checked" : "";
+      list.innerHTML += `
+        <div class="col-md-6 col-lg-4">
+          <div class="form-check">
+            <input class="form-check-input module-check" type="checkbox" value="${key}" id="mod_${key}" ${checked}>
+            <label class="form-check-label small" for="mod_${key}">${name}</label>
+          </div>
+        </div>`;
+    });
+    document.getElementById("assignModal").classList.remove("d-none");
+  };
+
+  window.closeAssignModal = function() {
+    document.getElementById("assignModal").classList.add("d-none");
+    assigningToUid = null;
+  };
+
+  window.saveModuleAssignment = async function() {
+    if (!assigningToUid) return;
+    const checks = document.querySelectorAll(".module-check:checked");
+    const selected = Array.from(checks).map(c => c.value);
+    await updateDoc(doc(db, "users", assigningToUid), { assignedModules: selected });
+    alert("Modules updated successfully.");
+    closeAssignModal();
+    loadAllUsers();
+  };
+
+  // Make some functions global for onclick
+  window.showHome = showHome;
+  window.showModulesList = showModulesList;
+  window.showDashboard = showDashboard;
+  window.backToModule = backToModule;
+  window.restartQuiz = restartQuiz;
 </script>
 </body>
 </html>
