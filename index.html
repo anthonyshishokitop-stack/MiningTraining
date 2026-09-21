@@ -262,15 +262,14 @@ body {
     <div class="ratio ratio-16x9 mb-3">
       <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        title="Training Video"></iframe>
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
     <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
   </div>
 
   <div id="presentationScreen" class="d-none">
     <div class="ratio ratio-16x9 mb-3">
-      <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen title="Training Presentation"></iframe>
+      <iframe id="presentationPlayer" src="" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
   </div>
@@ -459,7 +458,7 @@ body {
   <div class="container">
     <p class="mb-1 fw-semibold" style="color:#e2e8f0;">Act 29 Mining Training Platform • MHSA Compliant</p>
     <p class="mb-0 small">© 2025–2026 • Workplace induction and competency development for the South African mining industry</p>
-    <p class="mb-0 small mt-1">www.miningtraining.co.za</p>
+    <p class="mb-0 small mt-1">www.miningtraining.ac.za</p>
   </div>
 </footer>
 
@@ -574,13 +573,10 @@ body {
     ppe: "https://docs.google.com/presentation/d/e/2PACX-1vSVGlz8DX-VesQwUxIxGIupaPQVNXc_iR5yCwk9A6xVsBeNvekhH2hqhrxbPXvHVQ/pubembed?start=false&loop=false&delayms=3000",
     employee_rights: "https://docs.google.com/presentation/d/e/2PACX-1vR9M2hJjs7ZYg7eJ1IgPhwMzNEFYUp2kbeGpVn9FcpNhD3zq6dulh4VuD3rT0jXEA/pubembed?start=false&loop=false&delayms=3000",
     exleave: "https://docs.google.com/presentation/d/e/2PACX-1vRjdIry8OtJBD2wte-xOUCLFgU6g-Pdf4cwcJwiQHOhmeoshnM9z56uDeKpVLMwQA/pubembed?start=false&loop=false&delayms=3000",
-    hirac: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000"
+    hirac: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000",
   };
 
-  // Module descriptions and sampleQuizzes remain exactly as in your original (omitted here only for brevity in this response message — they are fully included in the actual file you will use).
-  // For the complete working file, keep the full moduleDescriptions and sampleQuizzes objects from your original source.
-
-  const moduleDescriptions = {
+const moduleDescriptions = {
     handover: "Shift handover is a critical MHSA-mandated process that ensures continuity of safe operations between outgoing and incoming crews. Under Section 10 and related regulations of the Mine Health and Safety Act 29 of 1996, every person must be informed of the current state of the workplace, outstanding hazards, defects and any temporary controls in place. The process includes formal attendance by all relevant personnel, verbal and written transfer of information, review of the log book, Section 23 fitness declarations, early examination of workplaces, and verification that all statutory inspections have been completed. Red-tagged equipment must be highlighted, gas readings (especially methane and oxygen deficiency) must be recorded, and the Early Warning Device / TARP status confirmed by the shift boss. Incomplete or unsigned log books render the workplace unsafe for entry. Proper handover prevents incidents caused by incomplete knowledge transfer and is a cornerstone of Zero Harm culture.",
     lhd: "Load-Haul-Dump (LHD) machines operating in declines are high-risk mobile equipment governed by MHSA Chapter 8 and site-specific Codes of Practice. Key controls include a minimum 2-metre exclusion zone around any moving part, maximum speed of 15 km/h in declines, low bucket carry height (typically ≤400 mm off the floor when loaded) to maintain stability, mandatory three-horn reverse signals, continuous use of mirrors and cameras, and compulsory seatbelt use. Only operators holding a valid competency certificate for the specific machine may drive. Daily pre-use inspections by the operator, functional fire-suppression systems, and prohibition on riding in the bucket are non-negotiable. Pedestrians must never enter the travel path of an LHD without positive communication and confirmation of stop. Collision avoidance technology (where fitted) must be operational. These rules exist because LHD-related accidents remain among the leading causes of serious injury underground.",
     drill: "Face drilling with jumbo drills requires competent, certified operators, continuous water flush for dust suppression (silica control), hearing protection, respiratory protection where required, and rigorous face examination for misfires or residual explosives before any charging activity begins. The face must be washed down, inspected under good lighting, and declared free of hazards by the competent person. Drill steels must be correctly matched, feeds and pressures controlled, and the machine securely positioned. Any unexpected ground movement or water inflow must trigger immediate withdrawal and reporting. These controls align with MHSA requirements for rock breaking and dust control and form part of the broader ground-control strategy.",
@@ -1840,17 +1836,23 @@ body {
     }
     currentModule = key;
     document.getElementById("moduleTitle").textContent = moduleNames[key];
-    // Learning path now includes both Video and Presentation
+    // Learning Path: both Video Lesson and Presentation
     let path = `
       <div class="learning-item">
-        <div><div class="title">${moduleNames[key]} – Video Lesson</div><small class="text-muted">Watch the training video</small></div>
+        <div>
+          <div class="title">${moduleNames[key]} – Video Lesson</div>
+          <small class="text-muted">Watch the training video</small>
+        </div>
         <div class="actions d-flex align-items-center gap-2">
           <span class="badge-type badge-lesson">Video</span>
           <button class="btn btn-sm btn-outline-primary" onclick="startVideo()">Play →</button>
         </div>
       </div>
       <div class="learning-item">
-        <div><div class="title">${moduleNames[key]} – Presentation</div><small class="text-muted">Slides / visual content</small></div>
+        <div>
+          <div class="title">${moduleNames[key]} – Presentation</div>
+          <small class="text-muted">Slides / visual content</small>
+        </div>
         <div class="actions d-flex align-items-center gap-2">
           <span class="badge-type badge-lesson">Presentation</span>
           <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button>
@@ -1873,7 +1875,7 @@ body {
   document.getElementById("startQuiz")?.addEventListener("click", startQuiz);
   document.getElementById("nextBtn")?.addEventListener("click", () => { questionIndex++; showQuestion(); });
 
-  // FIXED: Now correctly loads and plays the YouTube video for the current module
+  // FIXED: Properly loads and plays the YouTube video for the current module
   function startVideo() {
     if (!currentModule) return;
     const player = document.getElementById("videoPlayer");
@@ -1885,7 +1887,6 @@ body {
     }, 80);
     showScreen("videoScreen");
   }
-  window.startVideo = startVideo;
 
   function startQuiz() {
     const name = document.getElementById("userFullName").value.trim();
@@ -2016,7 +2017,7 @@ body {
     showScreen("descriptionsScreen");
   }
 
-  // ========== CERTIFICATE ==========
+  // ========== CERTIFICATE (professional landscape design from 105) ==========
   window.downloadCertificate = function() {
     if (!currentModule || !scores[currentModule]) return;
     const { jsPDF } = window.jspdf;
@@ -2049,7 +2050,7 @@ body {
     doc.text("in accordance with the Mine Health and Safety Act 29 of 1996.", pageW / 2, 145, { align: "center" });
     doc.setFillColor(15, 23, 42); doc.rect(12, pageH - 30, pageW - 24, 18, "F");
     doc.setTextColor(255, 255, 255); doc.setFontSize(9);
-    doc.text("Act 29 Mining Training  •  MHSA Compliant  •  Zero Harm  •  www.miningtraining.co.za", pageW / 2, pageH - 19, { align: "center" });
+    doc.text("Act 29 Mining Training  •  MHSA Compliant  •  Zero Harm  •  www.miningtraining.ac.za", pageW / 2, pageH - 19, { align: "center" });
     const certId = "A29-" + Date.now().toString().slice(-8);
     doc.setFontSize(8); doc.text("Certificate ID: " + certId, pageW / 2, pageH - 12, { align: "center" });
     doc.save(`Certificate_${modName.replace(/\s+/g, "_")}_${userName.replace(/\s+/g, "_")}.pdf`);
@@ -2186,6 +2187,7 @@ body {
   window.backToModule = backToModule;
   window.restartQuiz = restartQuiz;
   window.loadModule = loadModule;
+  window.startVideo = startVideo;
 </script>
 </body>
 </html>
