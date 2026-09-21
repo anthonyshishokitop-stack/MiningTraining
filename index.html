@@ -246,7 +246,7 @@ body {
         <div class="action-card" id="startQuiz">
           <i class="bi bi-check2-circle text-success"></i>
           <h5 class="fw-bold mb-1">Take Assessment</h5>
-          <p class="text-muted small mb-0">Demonstrate knowledge (70% pass mark)</p>
+          <p class="text-muted small mb-0">Demonstrate knowledge (100% required – incorrect questions only on retry)</p>
         </div>
       </div>
     </div>
@@ -420,7 +420,7 @@ body {
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-sm table-hover">
-            <thead><tr><th>Module</th><th>Score</th><th>Status</th><th>Completed</th></tr></thead>
+            <thead><tr><th>Module</th><th>Mastery</th><th>Status / Remaining</th><th>Last Attempt</th></tr></thead>
             <tbody id="progressTableBody"></tbody>
           </table>
         </div>
@@ -434,7 +434,7 @@ body {
     <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
       <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
       <p class="mb-3">This platform delivers structured, MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for mining houses and contractors that require a reliable, mobile-friendly method to induct employees, demonstrate competency and maintain audit-ready records.</p>
-      <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require a minimum 70% pass mark. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
+      <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require 100% correct answers. On retry, only previously incorrect questions are presented until full competency is achieved. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
       <p class="mb-0"><strong>Zero Harm</strong> is the guiding principle. Admins control which modules each user can access and can view detailed progress records.</p>
     </div>
   </div>
@@ -1581,6 +1581,7 @@ const moduleDescriptions = {
   let scores = {};
   let currentModule = null;
   let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
+  let currentWrongIds = []; // IDs of questions answered incorrectly in the current attempt
   let assigningToUid = null;
   let currentFilter = "all";
 
@@ -1892,8 +1893,28 @@ const moduleDescriptions = {
     const name = document.getElementById("userFullName").value.trim();
     if (!name) { alert("Please enter your full name for the certificate."); return; }
     localStorage.setItem("currentUserNameForCertificate", name);
-    currentQuiz = [...(sampleQuizzes[currentModule]?.q || [])].sort(() => Math.random() - 0.5);
-    questionIndex = 0; correctAnswers = 0; quizStartTime = Date.now();
+
+    const bank = sampleQuizzes[currentModule]?.q || [];
+    // Assign stable IDs to questions (index in original bank)
+    const bankWithIds = bank.map((q, i) => ({ ...q, _id: i }));
+
+    // If previous progress exists and not yet passed, only show remaining wrong questions
+    const prev = scores[currentModule];
+    let pool;
+    if (prev && !prev.passed && Array.isArray(prev.remainingWrongIds) && prev.remainingWrongIds.length > 0) {
+      pool = bankWithIds.filter(q => prev.remainingWrongIds.includes(q._id));
+      // Safety: if somehow empty, fall back to full bank
+      if (pool.length === 0) pool = [...bankWithIds];
+    } else {
+      // First attempt or previously passed (re-take full bank)
+      pool = [...bankWithIds];
+    }
+
+    currentQuiz = pool.sort(() => Math.random() - 0.5);
+    questionIndex = 0;
+    correctAnswers = 0;
+    currentWrongIds = [];
+    quizStartTime = Date.now();
     showQuestion();
     showScreen("quizScreen");
   }
@@ -1908,17 +1929,20 @@ const moduleDescriptions = {
     const correctText = q.options[q.correct];
     const shuffled = [...q.options].sort(() => Math.random() - 0.5);
     const newCorrect = shuffled.indexOf(correctText);
-    document.getElementById("questionText").textContent = q.question;
+    // Show progress within this attempt
+    const totalInAttempt = currentQuiz.length;
+    document.getElementById("questionText").textContent =
+      `(${questionIndex + 1}/${totalInAttempt}) ${q.question}`;
     shuffled.forEach((opt, i) => {
       const div = document.createElement("div");
       div.className = "col-12";
       div.innerHTML = `<button class="quiz-option btn btn-outline-secondary w-100">${opt}</button>`;
-      div.querySelector("button").addEventListener("click", () => selectAnswer(i, newCorrect, q.explanation));
+      div.querySelector("button").addEventListener("click", () => selectAnswer(i, newCorrect, q.explanation, q._id));
       container.appendChild(div);
     });
   }
 
-  function selectAnswer(selected, correct, explanation) {
+  function selectAnswer(selected, correct, explanation, qId) {
     document.querySelectorAll(".quiz-option").forEach((btn, i) => {
       btn.disabled = true;
       if (i === correct) btn.classList.add("btn-success");
@@ -1927,26 +1951,91 @@ const moduleDescriptions = {
     });
     document.getElementById("feedback").textContent = explanation || "";
     document.getElementById("feedback").className = "mt-4 text-center fw-semibold fs-5 " + (selected === correct ? "text-success" : "text-danger");
-    if (selected === correct) correctAnswers++;
+    if (selected === correct) {
+      correctAnswers++;
+    } else {
+      if (!currentWrongIds.includes(qId)) currentWrongIds.push(qId);
+    }
     document.getElementById("nextBtn").classList.remove("d-none");
   }
 
   async function finishQuiz() {
     const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
-    const percentage = currentQuiz.length ? Math.round((correctAnswers / currentQuiz.length) * 100) : 0;
-    const passed = percentage >= 70;
+    const bank = sampleQuizzes[currentModule]?.q || [];
+    const totalBank = bank.length;
+
+    // Merge remaining wrong set:
+    // - Start from previous remainingWrongIds (or full set of IDs if first attempt)
+    // - Remove any that were answered correctly in this attempt
+    // - Add any that were wrong in this attempt
+    const prev = scores[currentModule];
+    let remaining;
+    if (prev && Array.isArray(prev.remainingWrongIds) && !prev.passed) {
+      remaining = new Set(prev.remainingWrongIds);
+    } else {
+      // First attempt: remaining = all IDs that were wrong this round
+      remaining = new Set();
+      // For IDs that were in this quiz and answered correctly, they are mastered
+      // For IDs wrong, they stay remaining
+    }
+
+    // Questions in this attempt that were correct → remove from remaining
+    // Questions wrong → add to remaining
+    const attemptedIds = currentQuiz.map(q => q._id);
+    const wrongThisRound = new Set(currentWrongIds);
+    for (const id of attemptedIds) {
+      if (wrongThisRound.has(id)) {
+        remaining.add(id);
+      } else {
+        remaining.delete(id);
+      }
+    }
+
+    // If this was a first full attempt, also mark questions never shown? (shouldn't happen)
+    // On first attempt pool was full bank, so remaining = exactly wrongThisRound
+    if (!prev || prev.passed) {
+      remaining = new Set(currentWrongIds);
+    }
+
+    const remainingWrongIds = Array.from(remaining).sort((a,b) => a - b);
+    const mastered = totalBank - remainingWrongIds.length;
+    const percentage = totalBank ? Math.round((mastered / totalBank) * 100) : 0;
+    const passed = remainingWrongIds.length === 0; // 100% required
     const timestamp = new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"});
-    const data = { percentage, passed, timestamp, correct: correctAnswers, total: currentQuiz.length };
+    const attempts = (prev?.attempts || 0) + 1;
+
+    const data = {
+      percentage,
+      passed,
+      timestamp,
+      correct: mastered,
+      total: totalBank,
+      remainingWrongIds,
+      remainingCount: remainingWrongIds.length,
+      attempts,
+      lastAttemptCorrect: correctAnswers,
+      lastAttemptTotal: currentQuiz.length
+    };
     scores[currentModule] = data;
     await saveProgress(currentModule, data);
-    document.getElementById("resultTitle").textContent = passed ? "Competency Demonstrated" : "Assessment Not Passed";
+
+    document.getElementById("resultTitle").textContent = passed
+      ? "Competency Demonstrated (100%)"
+      : "Assessment Incomplete – Retry Required";
     document.getElementById("progressBar").style.width = percentage + "%";
     document.getElementById("progressBar").className = "progress-bar " + (passed ? "bg-success" : "bg-danger");
     document.getElementById("scorePercent").textContent = percentage + "%";
-    document.getElementById("correctCount").textContent = correctAnswers + " / " + currentQuiz.length;
+    document.getElementById("correctCount").textContent = mastered + " / " + totalBank;
     document.getElementById("timeDisplay").textContent = Math.floor(timeTaken/60) + ":" + String(timeTaken%60).padStart(2,"0");
-    document.getElementById("passMessage").textContent = passed ? "You have successfully completed this module." : "A minimum of 70% is required. Please review and try again.";
-    document.getElementById("completionTimestamp").textContent = "Completed: " + timestamp;
+
+    if (passed) {
+      document.getElementById("passMessage").textContent = "You answered every question correctly. Competency achieved.";
+    } else {
+      document.getElementById("passMessage").textContent =
+        `You still need to master ${remainingWrongIds.length} question(s). On your next attempt only those questions will be shown.`;
+    }
+    document.getElementById("completionTimestamp").textContent =
+      `Attempt ${attempts} • ${timestamp}` + (passed ? "" : ` • ${remainingWrongIds.length} remaining`);
     document.getElementById("certificateSection").classList.toggle("d-none", !passed);
     showScreen("resultsScreen");
     updateProgress();
@@ -1988,7 +2077,7 @@ const moduleDescriptions = {
     container.innerHTML = "";
     const completed = Object.entries(scores).filter(([k,d]) => d.passed && getVisibleModules().includes(k));
     if (!completed.length) {
-      container.innerHTML = `<div class="alert alert-info text-center">No certificates yet. Complete assigned modules with ≥70%.</div>`;
+      container.innerHTML = `<div class="alert alert-info text-center">No certificates yet. Complete assigned modules with 100% correct.</div>`;
     } else {
       completed.forEach(([key, data]) => {
         const item = document.createElement("div");
@@ -2157,10 +2246,13 @@ const moduleDescriptions = {
       snap.forEach(d => {
         const data = d.data();
         const tr = document.createElement("tr");
+        const rem = data.remainingCount != null ? data.remainingCount : (data.passed ? 0 : "—");
+        const att = data.attempts != null ? data.attempts : "—";
         tr.innerHTML = `
           <td>${moduleNames[d.id] || d.id}</td>
-          <td>${data.percentage}%</td>
-          <td><span class="badge ${data.passed?'bg-success':'bg-danger'}">${data.passed?'Passed':'Failed'}</span></td>
+          <td>${data.percentage}% <small class="text-muted">(${data.correct != null ? data.correct : "—"}/${data.total != null ? data.total : "—"})</small></td>
+          <td><span class="badge ${data.passed?'bg-success':'bg-warning text-dark'}">${data.passed?'Passed 100%':'In progress'}</span>
+            ${!data.passed && rem !== "—" ? `<br><small class="text-muted">${rem} question(s) remaining • ${att} attempt(s)</small>` : (data.passed ? `<br><small class="text-muted">${att} attempt(s)</small>` : "")}</td>
           <td class="small">${data.timestamp || "—"}</td>`;
         tbody.appendChild(tr);
       });
