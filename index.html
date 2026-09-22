@@ -204,7 +204,6 @@ body {
         <span class="trust-badge"><i class="bi bi-clipboard-check me-1"></i> Audit-Ready Records</span>
       </div>
     </div>
-    <!-- Notifications panel on home -->
     <div id="homeNotifications" class="d-none mb-4">
       <div class="card border-0 shadow-sm">
         <div class="card-header bg-white fw-bold text-dark d-flex justify-content-between align-items-center">
@@ -432,7 +431,6 @@ body {
     <h2 class="section-title text-center mb-4">Admin Panel</h2>
     <p class="text-center text-white-50 mb-4 small">Online adaptation of nomination → firm booking → validation → assessment → record-keeping process</p>
 
-    <!-- Quick stats -->
     <div class="row g-3 mb-4">
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-primary" id="adminUserCount">0</div><div class="label">Total Users</div></div></div>
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-success" id="adminAssignedCount">0</div><div class="label">Module Assignments</div></div></div>
@@ -440,7 +438,6 @@ body {
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value" id="adminPassedCount">0</div><div class="label">Fully Competent</div></div></div>
     </div>
 
-    <!-- Users table -->
     <div class="card border-0 mb-4">
       <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
         <span>All Users (Nomination &amp; Assignment)</span>
@@ -458,7 +455,6 @@ body {
       </div>
     </div>
 
-    <!-- Assign Modal (enhanced with notes & firm booking) -->
     <div id="assignModal" class="card border-0 d-none mb-4">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <span>Nominate / Assign Modules → <strong id="assignUserName"></strong></span>
@@ -486,7 +482,6 @@ body {
       </div>
     </div>
 
-    <!-- Progress Modal -->
     <div id="progressModal" class="card border-0 d-none mb-4">
       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
         <span>Progress / Validation for: <strong id="progressUserName"></strong></span>
@@ -510,7 +505,6 @@ body {
       </div>
     </div>
 
-    <!-- Communications / Announcements -->
     <div class="card border-0 mb-4">
       <div class="card-header bg-white fw-bold text-dark">
         <i class="bi bi-megaphone me-2 text-primary"></i>Communications &amp; Announcements
@@ -539,7 +533,6 @@ body {
       </div>
     </div>
 
-    <!-- Assignment Log (audit trail) -->
     <div class="card border-0 mb-4">
       <div class="card-header bg-white fw-bold text-dark d-flex justify-content-between align-items-center">
         <span><i class="bi bi-journal-text me-2"></i>Assignment / Nomination Log (Audit Trail)</span>
@@ -567,10 +560,11 @@ body {
     <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
       <h2 class="fw-bold mb-3">Contact</h2>
       <p class="text-muted mb-4">For deployment enquiries, enterprise licensing or technical support, please complete the form below.</p>
-      <form class="contact-form" style="max-width:520px">
-        <div class="mb-3"><label class="form-label fw-semibold">Name</label><input type="text" class="form-control" required style="border-radius:8px;"></div>
-        <div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" class="form-control" required style="border-radius:8px;"></div>
-        <div class="mb-3"><label class="form-label fw-semibold">Message</label><textarea class="form-control" rows="4" required style="border-radius:8px;"></textarea></div>
+      <form class="contact-form" action="mailto:contact@miningtraining.ac.za" method="POST" enctype="text/plain" style="max-width:520px">
+        <input type="hidden" name="activation" value="b0a8bfefe18f642e40b2114810762876">
+        <div class="mb-3"><label class="form-label fw-semibold">Name</label><input type="text" name="name" class="form-control" required style="border-radius:8px;"></div>
+        <div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" name="email" class="form-control" required style="border-radius:8px;"></div>
+        <div class="mb-3"><label class="form-label fw-semibold">Message</label><textarea name="message" class="form-control" rows="4" required style="border-radius:8px;"></textarea></div>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
     </div>
@@ -699,8 +693,6 @@ body {
     hirac: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000",
   };
 
-
-  
   const moduleDescriptions = {
     handover: "Shift handover is a critical MHSA-mandated process that ensures continuity of safe operations between outgoing and incoming crews. Under Section 10 and related regulations of the Mine Health and Safety Act 29 of 1996, every person must be informed of the current state of the workplace, outstanding hazards, defects and any temporary controls in place. The process includes formal attendance by all relevant personnel, verbal and written transfer of information, review of the log book, Section 23 fitness declarations, early examination of workplaces, and verification that all statutory inspections have been completed. Red-tagged equipment must be highlighted, gas readings (especially methane and oxygen deficiency) must be recorded, and the Early Warning Device / TARP status confirmed by the shift boss. Incomplete or unsigned log books render the workplace unsafe for entry. Proper handover prevents incidents caused by incomplete knowledge transfer and is a cornerstone of Zero Harm culture.",
     lhd: "Load-Haul-Dump (LHD) machines operating in declines are high-risk mobile equipment governed by MHSA Chapter 8 and site-specific Codes of Practice. Key controls include a minimum 2-metre exclusion zone around any moving part, maximum speed of 15 km/h in declines, low bucket carry height (typically ≤400 mm off the floor when loaded) to maintain stability, mandatory three-horn reverse signals, continuous use of mirrors and cameras, and compulsory seatbelt use. Only operators holding a valid competency certificate for the specific machine may drive. Daily pre-use inspections by the operator, functional fire-suppression systems, and prohibition on riding in the bucket are non-negotiable. Pedestrians must never enter the travel path of an LHD without positive communication and confirmation of stop. Collision avoidance technology (where fitted) must be operational. These rules exist because LHD-related accidents remain among the leading causes of serious injury underground.",
@@ -740,9 +732,9 @@ body {
   };
 
 
+
   // Rich quizzes from index(104) for key modules; fallback for others
 
-  
   const sampleQuizzes = {
     handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
       {question:"Who must attend shift handover?", options:["Only the shift boss", "All incoming and outgoing crew", "Only supervisors", "Only the safety officer"], correct:1, explanation:"All incoming and outgoing crew must attend to ensure full transfer of critical information."},
@@ -1691,11 +1683,8 @@ body {
     ]},
   };
 
-  // All modules now have >=25 questions with 4 options – residual fallback kept for safety
 
-
-
-    
+  
 
   Object.keys(moduleNames).forEach(key => {
     if (!sampleQuizzes[key]) {
@@ -1861,7 +1850,6 @@ body {
       const snap = await getDocs(q);
       snap.forEach(d => userNotifications.push({ id: d.id, ...d.data() }));
     } catch (e) {
-      // Fallback without orderBy if index missing
       try {
         const snap = await getDocs(collection(db, "notifications", uid, "items"));
         snap.forEach(d => userNotifications.push({ id: d.id, ...d.data() }));
@@ -2559,7 +2547,6 @@ body {
 
     await updateDoc(doc(db, "users", assigningToUid), { assignedModules: selected });
 
-    // Audit log entry (replaces paper nomination form capture)
     try {
       await addDoc(collection(db, "assignmentLog"), {
         userId: assigningToUid,
@@ -2575,7 +2562,6 @@ body {
       });
     } catch (e) { console.warn("Log write failed:", e); }
 
-    // Notify learner
     if (notify && selected.length > 0) {
       const modList = selected.slice(0, 5).map(k => moduleNames[k]).join(", ") + (selected.length > 5 ? ` (+${selected.length - 5} more)` : "");
       await createNotification(
@@ -2680,7 +2666,6 @@ body {
     currentProgressData = {};
   };
 
-  // Validation Report PDF (adapts SAP Validation Report step)
   window.downloadValidationReport = function() {
     if (!currentProgressUid) return;
     const { jsPDF } = window.jspdf;
@@ -2743,7 +2728,6 @@ body {
       });
     } catch (e) { console.warn(e); }
 
-    // Distribute to users
     const usersSnap = await getDocs(collection(db, "users"));
     let count = 0;
     for (const d of usersSnap.docs) {
@@ -2812,9 +2796,11 @@ body {
   };
 
   document.querySelector('.contact-form')?.addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Thank you. Your message has been received and will be responded to shortly.');
-    e.target.reset();
+    // Allow native mailto submission (action activated with provided string)
+    // Optional: keep a confirmation
+    setTimeout(() => {
+      alert('Thank you. Your message client should open. If it does not, please email contact@miningtraining.ac.za directly.');
+    }, 300);
   });
 
   // Global helpers
