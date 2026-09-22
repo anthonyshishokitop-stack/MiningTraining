@@ -235,13 +235,18 @@ body {
       <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" placeholder="Enter your full legal name" style="max-width:420px;background:rgba(255,255,255,0.97);border-radius:10px;">
     </div>
     <div class="row g-3 g-md-4 justify-content-center mb-4">
-      <div class="col-md-5">
+
+
+     <div class="col-md-5">
         <div class="action-card" id="watchVideo">
           <i class="bi bi-play-circle-fill text-primary"></i>
           <h5 class="fw-bold mb-1">Watch / Review Lesson</h5>
           <p class="text-muted small mb-0">Training content and key safety controls</p>
         </div>
       </div>
+
+
+      
       <div class="col-md-5">
         <div class="action-card" id="startQuiz">
           <i class="bi bi-check2-circle text-success"></i>
@@ -250,6 +255,7 @@ body {
         </div>
       </div>
     </div>
+    
     <div class="card border-0 shadow-sm">
       <div class="card-body p-3 p-md-4">
         <h5 class="fw-bold mb-3 text-dark">Learning Path</h5>
@@ -258,14 +264,9 @@ body {
     </div>
   </div>
 
-  <div id="videoScreen" class="d-none">
-    <div class="ratio ratio-16x9 mb-3">
-      <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"></iframe>
-    </div>
-    <div class="text-center"><button class="btn btn-outline-light btn-lg px-4" onclick="backToModule()">← Back to Module</button></div>
-  </div>
+
+
+  
 
   <div id="presentationScreen" class="d-none">
     <div class="ratio ratio-16x9 mb-3">
@@ -1569,7 +1570,7 @@ const moduleDescriptions = {
     if (!sampleQuizzes[key]) {
       sampleQuizzes[key] = {name: moduleNames[key].toUpperCase(), q: [
         {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
-        {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark."},
+        {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","100%","80%"], correct:2, explanation:"100% is the standard pass mark."},
         {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care."}
       ]};
     }
