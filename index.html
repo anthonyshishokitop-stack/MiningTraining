@@ -229,7 +229,7 @@ body {
   <!-- MODULE VIEW -->
   <div id="moduleView" class="d-none">
     <h2 class="section-title text-center mb-2" id="moduleTitle"></h2>
-    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Complete the lesson and assessment to demonstrate competency and generate your certificate</p>
+    <p class="text-center text-white-50 mb-4" style="font-size:0.95rem;">Complete the training materials, then demonstrate competency through assessment to generate your certificate</p>
     <div class="mb-4 text-center">
       <label for="userFullName" class="form-label fw-semibold text-white">Full Name (appears on certificate)</label>
       <input type="text" class="form-control form-control-lg mx-auto" id="userFullName" placeholder="Enter your full legal name" style="max-width:420px;background:rgba(255,255,255,0.97);border-radius:10px;">
@@ -238,15 +238,15 @@ body {
       <div class="col-md-5">
         <div class="action-card" id="watchVideo">
           <i class="bi bi-play-circle-fill text-primary"></i>
-          <h5 class="fw-bold mb-1">Watch / Review Lesson</h5>
-          <p class="text-muted small mb-0">Training content and key safety controls</p>
+          <h5 class="fw-bold mb-1">Watch the Training Video</h5>
+          <p class="text-muted small mb-0">Core training content and key safety controls</p>
         </div>
       </div>
       <div class="col-md-5">
-        <div class="action-card" id="startQuiz">
-          <i class="bi bi-check2-circle text-success"></i>
-          <h5 class="fw-bold mb-1">Take Assessment</h5>
-          <p class="text-muted small mb-0">Demonstrate knowledge (100% required – incorrect questions only on retry)</p>
+        <div class="action-card" id="openSlides">
+          <i class="bi bi-easel-fill text-primary"></i>
+          <h5 class="fw-bold mb-1">Slide / Visual Content</h5>
+          <p class="text-muted small mb-0">Presentation slides and visual learning material</p>
         </div>
       </div>
     </div>
@@ -254,6 +254,27 @@ body {
       <div class="card-body p-3 p-md-4">
         <h5 class="fw-bold mb-3 text-dark">Learning Path</h5>
         <div id="learningPath"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exit Assessment Modal -->
+  <div class="modal fade" id="exitQuizModal" tabindex="-1" aria-labelledby="exitQuizModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="exitQuizModalLabel"><i class="bi bi-pause-circle me-2 text-warning"></i>Exit Assessment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">You have answered <strong id="exitProgressText">0</strong> question(s) in this attempt.</p>
+          <p class="text-muted small mb-0">Choose <strong>Continue Later</strong> to save your place and resume from the same question after login. Choose <strong>Restart</strong> to discard this attempt and start the assessment from the beginning.</p>
+        </div>
+        <div class="modal-footer border-0 pt-0 flex-column flex-sm-row gap-2">
+          <button type="button" class="btn btn-outline-secondary w-100 w-sm-auto" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-warning w-100 w-sm-auto" id="btnExitRestart"><i class="bi bi-arrow-counterclockwise me-1"></i>Restart</button>
+          <button type="button" class="btn btn-primary w-100 w-sm-auto" id="btnExitContinue"><i class="bi bi-bookmark-check me-1"></i>Continue Later</button>
+        </div>
       </div>
     </div>
   </div>
@@ -283,7 +304,7 @@ body {
         <button id="nextBtn" class="btn btn-primary btn-lg w-100 mt-4 d-none">Next Question</button>
       </div>
     </div>
-    <div class="text-center mt-3"><button class="btn btn-outline-light" onclick="backToModule()">Exit Assessment</button></div>
+    <div class="text-center mt-3"><button class="btn btn-outline-light" id="btnExitAssessment" type="button">Exit Assessment</button></div>
   </div>
 
   <div id="resultsScreen" class="d-none">
@@ -420,9 +441,13 @@ body {
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-sm table-hover">
-            <thead><tr><th>Module</th><th>Mastery</th><th>Status / Remaining</th><th>Last Attempt</th></tr></thead>
+            <thead><tr><th>Module</th><th>Mastery</th><th>Status / Remaining</th><th>Last Attempt</th><th>Attempt Detail</th></tr></thead>
             <tbody id="progressTableBody"></tbody>
           </table>
+        </div>
+        <div id="attemptDetailPanel" class="mt-3 d-none">
+          <h6 class="fw-bold text-dark mb-2" id="attemptDetailTitle">Attempt history</h6>
+          <div id="attemptDetailBody" class="small text-dark"></div>
         </div>
         <p id="progressEmpty" class="text-muted text-center d-none">No progress recorded yet.</p>
       </div>
@@ -468,7 +493,7 @@ body {
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
            onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
   import { getFirestore, doc, setDoc, getDoc, collection, getDocs, updateDoc,
-           serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+           serverTimestamp, deleteField } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAHEqek56zhgzhixoGHr17wFa52h9-F2f8",
@@ -1687,9 +1712,11 @@ const moduleDescriptions = {
 
   async function saveProgress(moduleKey, data) {
     if (!currentUser) return;
-    await setDoc(doc(db, "progress", currentUser.uid, "modules", moduleKey), {
-      ...data, updatedAt: serverTimestamp()
-    }, { merge: true });
+    const payload = { ...data, updatedAt: serverTimestamp() };
+    if (payload.inProgress === null) {
+      payload.inProgress = deleteField();
+    }
+    await setDoc(doc(db, "progress", currentUser.uid, "modules", moduleKey), payload, { merge: true });
   }
 
   // ========== NAV ==========
@@ -1837,26 +1864,18 @@ const moduleDescriptions = {
     }
     currentModule = key;
     document.getElementById("moduleTitle").textContent = moduleNames[key];
-    // Learning Path: both Video Lesson and Presentation
+    // Learning Path: Assessment only (video + slides are the two cards above)
+    const prev = scores[key];
+    const hasSaved = prev && prev.inProgress && !prev.passed;
     let path = `
       <div class="learning-item">
         <div>
-          <div class="title">${moduleNames[key]} – Video Lesson</div>
-          <small class="text-muted">Watch the training video</small>
+          <div class="title">${moduleNames[key]} – Assessment</div>
+          <small class="text-muted">${hasSaved ? 'Saved progress available — resume where you left off' : 'Demonstrate knowledge (100% required; incorrect questions only on retry)'}</small>
         </div>
         <div class="actions d-flex align-items-center gap-2">
-          <span class="badge-type badge-lesson">Video</span>
-          <button class="btn btn-sm btn-outline-primary" onclick="startVideo()">Play →</button>
-        </div>
-      </div>
-      <div class="learning-item">
-        <div>
-          <div class="title">${moduleNames[key]} – Presentation</div>
-          <small class="text-muted">Slides / visual content</small>
-        </div>
-        <div class="actions d-flex align-items-center gap-2">
-          <span class="badge-type badge-lesson">Presentation</span>
-          <button class="btn btn-sm btn-outline-primary" onclick="openPresentation('${key}')">Start →</button>
+          <span class="badge-type badge-lesson">${hasSaved ? 'Resume' : 'Assessment'}</span>
+          <button class="btn btn-sm ${hasSaved ? 'btn-warning' : 'btn-outline-primary'}" onclick="startQuiz()">${hasSaved ? 'Continue →' : 'Start →'}</button>
         </div>
       </div>`;
     document.getElementById("learningPath").innerHTML = path;
@@ -1864,49 +1883,63 @@ const moduleDescriptions = {
   }
 
   window.openPresentation = function(key) {
+    const k = key || currentModule;
+    if (!k) return;
     const player = document.getElementById("presentationPlayer");
     player.src = "";
-    const url = presentations[key] || presentations.fire || Object.values(presentations)[0];
+    const url = presentations[k] || presentations.fire || Object.values(presentations)[0];
     setTimeout(() => { player.src = url; }, 80);
     showScreen("presentationScreen");
   };
 
   // ========== VIDEO / QUIZ ==========
   document.getElementById("watchVideo")?.addEventListener("click", startVideo);
-  document.getElementById("startQuiz")?.addEventListener("click", startQuiz);
+  document.getElementById("openSlides")?.addEventListener("click", () => openPresentation(currentModule));
   document.getElementById("nextBtn")?.addEventListener("click", () => { questionIndex++; showQuestion(); });
 
-  // FIXED: Properly loads and plays the YouTube video for the current module
   function startVideo() {
     if (!currentModule) return;
     const player = document.getElementById("videoPlayer");
     player.src = "";
     const url = videos[currentModule] || videos.mhsa || Object.values(videos)[0];
-    // Small delay ensures clean reload of the iframe
     setTimeout(() => {
       player.src = url + (url.includes("?") ? "&" : "?") + "rel=0&modestbranding=1";
     }, 80);
     showScreen("videoScreen");
   }
 
-  function startQuiz() {
+  function startQuiz(forceRestart = false) {
     const name = document.getElementById("userFullName").value.trim();
     if (!name) { alert("Please enter your full name for the certificate."); return; }
     localStorage.setItem("currentUserNameForCertificate", name);
 
     const bank = sampleQuizzes[currentModule]?.q || [];
-    // Assign stable IDs to questions (index in original bank)
     const bankWithIds = bank.map((q, i) => ({ ...q, _id: i }));
-
-    // If previous progress exists and not yet passed, only show remaining wrong questions
     const prev = scores[currentModule];
+
+    // Resume saved in-progress attempt if available and not forcing restart
+    if (!forceRestart && prev && prev.inProgress && Array.isArray(prev.inProgress.quizIds) && prev.inProgress.quizIds.length > 0) {
+      const idMap = Object.fromEntries(bankWithIds.map(q => [q._id, q]));
+      currentQuiz = prev.inProgress.quizIds.map(id => idMap[id]).filter(Boolean);
+      if (currentQuiz.length === 0) {
+        // Corrupted save — fall through to normal start
+      } else {
+        questionIndex = Math.min(prev.inProgress.questionIndex || 0, currentQuiz.length);
+        correctAnswers = prev.inProgress.correctAnswers || 0;
+        currentWrongIds = Array.isArray(prev.inProgress.currentWrongIds) ? [...prev.inProgress.currentWrongIds] : [];
+        quizStartTime = prev.inProgress.quizStartTime || Date.now();
+        showQuestion();
+        showScreen("quizScreen");
+        return;
+      }
+    }
+
+    // Normal start: remaining wrong questions only if not passed
     let pool;
     if (prev && !prev.passed && Array.isArray(prev.remainingWrongIds) && prev.remainingWrongIds.length > 0) {
       pool = bankWithIds.filter(q => prev.remainingWrongIds.includes(q._id));
-      // Safety: if somehow empty, fall back to full bank
       if (pool.length === 0) pool = [...bankWithIds];
     } else {
-      // First attempt or previously passed (re-take full bank)
       pool = [...bankWithIds];
     }
 
@@ -1915,6 +1948,13 @@ const moduleDescriptions = {
     correctAnswers = 0;
     currentWrongIds = [];
     quizStartTime = Date.now();
+    // Clear any previous in-progress save when starting fresh
+    if (prev && prev.inProgress) {
+      const cleared = { ...prev };
+      delete cleared.inProgress;
+      scores[currentModule] = cleared;
+      saveProgress(currentModule, { inProgress: null }).catch(() => {});
+    }
     showQuestion();
     showScreen("quizScreen");
   }
@@ -1964,23 +2004,14 @@ const moduleDescriptions = {
     const bank = sampleQuizzes[currentModule]?.q || [];
     const totalBank = bank.length;
 
-    // Merge remaining wrong set:
-    // - Start from previous remainingWrongIds (or full set of IDs if first attempt)
-    // - Remove any that were answered correctly in this attempt
-    // - Add any that were wrong in this attempt
     const prev = scores[currentModule];
     let remaining;
     if (prev && Array.isArray(prev.remainingWrongIds) && !prev.passed) {
       remaining = new Set(prev.remainingWrongIds);
     } else {
-      // First attempt: remaining = all IDs that were wrong this round
       remaining = new Set();
-      // For IDs that were in this quiz and answered correctly, they are mastered
-      // For IDs wrong, they stay remaining
     }
 
-    // Questions in this attempt that were correct → remove from remaining
-    // Questions wrong → add to remaining
     const attemptedIds = currentQuiz.map(q => q._id);
     const wrongThisRound = new Set(currentWrongIds);
     for (const id of attemptedIds) {
@@ -1991,8 +2022,6 @@ const moduleDescriptions = {
       }
     }
 
-    // If this was a first full attempt, also mark questions never shown? (shouldn't happen)
-    // On first attempt pool was full bank, so remaining = exactly wrongThisRound
     if (!prev || prev.passed) {
       remaining = new Set(currentWrongIds);
     }
@@ -2004,6 +2033,25 @@ const moduleDescriptions = {
     const timestamp = new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"});
     const attempts = (prev?.attempts || 0) + 1;
 
+    // Build failed question summaries for admin review
+    const failedQuestions = currentWrongIds.map(id => {
+      const q = bank[id];
+      return q ? { id, question: q.question, correctAnswer: q.options[q.correct] } : { id, question: `Question #${id + 1}`, correctAnswer: "—" };
+    });
+
+    const attemptRecord = {
+      attempt: attempts,
+      timestamp,
+      failedQuestionIds: [...currentWrongIds].sort((a,b) => a - b),
+      failedQuestions,
+      correctThisAttempt: correctAnswers,
+      totalThisAttempt: currentQuiz.length,
+      timeTakenSeconds: timeTaken,
+      remainingAfter: remainingWrongIds.length,
+      passed
+    };
+    const attemptHistory = Array.isArray(prev?.attemptHistory) ? [...prev.attemptHistory, attemptRecord] : [attemptRecord];
+
     const data = {
       percentage,
       passed,
@@ -2014,7 +2062,9 @@ const moduleDescriptions = {
       remainingCount: remainingWrongIds.length,
       attempts,
       lastAttemptCorrect: correctAnswers,
-      lastAttemptTotal: currentQuiz.length
+      lastAttemptTotal: currentQuiz.length,
+      attemptHistory,
+      inProgress: null
     };
     scores[currentModule] = data;
     await saveProgress(currentModule, data);
@@ -2040,6 +2090,60 @@ const moduleDescriptions = {
     showScreen("resultsScreen");
     updateProgress();
   }
+
+  // ========== EXIT ASSESSMENT (Continue / Restart) ==========
+  async function saveInProgressState() {
+    if (!currentUser || !currentModule || !currentQuiz.length) return;
+    const inProgress = {
+      quizIds: currentQuiz.map(q => q._id),
+      questionIndex,
+      correctAnswers,
+      currentWrongIds: [...currentWrongIds],
+      quizStartTime,
+      savedAt: new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"})
+    };
+    const prev = scores[currentModule] || {};
+    const data = { ...prev, inProgress };
+    scores[currentModule] = data;
+    await saveProgress(currentModule, { inProgress });
+  }
+
+  async function clearInProgressState() {
+    if (!currentUser || !currentModule) return;
+    const prev = scores[currentModule] || {};
+    const data = { ...prev };
+    delete data.inProgress;
+    scores[currentModule] = data;
+    await saveProgress(currentModule, { inProgress: null });
+  }
+
+  function openExitQuizModal() {
+    const answered = questionIndex;
+    document.getElementById("exitProgressText").textContent = String(answered);
+    const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("exitQuizModal"));
+    modal.show();
+  }
+
+  document.getElementById("btnExitAssessment")?.addEventListener("click", openExitQuizModal);
+
+  document.getElementById("btnExitContinue")?.addEventListener("click", async () => {
+    await saveInProgressState();
+    const modal = bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"));
+    modal?.hide();
+    backToModule();
+  });
+
+  document.getElementById("btnExitRestart")?.addEventListener("click", async () => {
+    await clearInProgressState();
+    const modal = bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"));
+    modal?.hide();
+    // Restart from remaining-wrong / full bank (fresh attempt)
+    currentQuiz = [];
+    questionIndex = 0;
+    correctAnswers = 0;
+    currentWrongIds = [];
+    startQuiz(true);
+  });
 
   function updateProgress() {
     const visible = getVisibleModules();
@@ -2152,7 +2256,7 @@ const moduleDescriptions = {
     currentModule = orig;
   };
 
-  function restartQuiz() { startQuiz(); }
+  function restartQuiz() { startQuiz(true); }
   function backToModule() {
     document.getElementById("videoPlayer").src = "";
     document.getElementById("presentationPlayer").src = "";
@@ -2236,6 +2340,8 @@ const moduleDescriptions = {
     document.getElementById("progressUserName").textContent = name;
     document.getElementById("assignModal").classList.add("d-none");
     document.getElementById("progressModal").classList.remove("d-none");
+    document.getElementById("attemptDetailPanel").classList.add("d-none");
+    document.getElementById("attemptDetailBody").innerHTML = "";
     const tbody = document.getElementById("progressTableBody");
     const emptyMsg = document.getElementById("progressEmpty");
     tbody.innerHTML = "";
@@ -2248,12 +2354,20 @@ const moduleDescriptions = {
         const tr = document.createElement("tr");
         const rem = data.remainingCount != null ? data.remainingCount : (data.passed ? 0 : "—");
         const att = data.attempts != null ? data.attempts : "—";
+        const hasHistory = Array.isArray(data.attemptHistory) && data.attemptHistory.length > 0;
+        const savedProg = data.inProgress ? " • Saved mid-attempt" : "";
         tr.innerHTML = `
           <td>${moduleNames[d.id] || d.id}</td>
-          <td>${data.percentage}% <small class="text-muted">(${data.correct != null ? data.correct : "—"}/${data.total != null ? data.total : "—"})</small></td>
+          <td>${data.percentage != null ? data.percentage + "%" : "—"} <small class="text-muted">(${data.correct != null ? data.correct : "—"}/${data.total != null ? data.total : "—"})</small></td>
           <td><span class="badge ${data.passed?'bg-success':'bg-warning text-dark'}">${data.passed?'Passed 100%':'In progress'}</span>
-            ${!data.passed && rem !== "—" ? `<br><small class="text-muted">${rem} question(s) remaining • ${att} attempt(s)</small>` : (data.passed ? `<br><small class="text-muted">${att} attempt(s)</small>` : "")}</td>
-          <td class="small">${data.timestamp || "—"}</td>`;
+            ${!data.passed && rem !== "—" ? `<br><small class="text-muted">${rem} question(s) remaining • ${att} attempt(s)${savedProg}</small>` : (data.passed ? `<br><small class="text-muted">${att} attempt(s)</small>` : "")}</td>
+          <td class="small">${data.timestamp || "—"}</td>
+          <td>${hasHistory ? `<button class="btn btn-sm btn-outline-info" data-module-key="${d.id}">View attempts</button>` : '<span class="text-muted small">—</span>'}</td>`;
+        if (hasHistory) {
+          tr.querySelector("button").addEventListener("click", () => {
+            showAttemptDetail(moduleNames[d.id] || d.id, data.attemptHistory);
+          });
+        }
         tbody.appendChild(tr);
       });
     } catch (e) {
@@ -2262,8 +2376,47 @@ const moduleDescriptions = {
     }
   };
 
+  function showAttemptDetail(moduleName, history) {
+    const panel = document.getElementById("attemptDetailPanel");
+    const body = document.getElementById("attemptDetailBody");
+    document.getElementById("attemptDetailTitle").textContent = `Attempt history — ${moduleName}`;
+    let html = "";
+    history.forEach((rec, idx) => {
+      const failed = Array.isArray(rec.failedQuestions) ? rec.failedQuestions : [];
+      const failedIds = Array.isArray(rec.failedQuestionIds) ? rec.failedQuestionIds : [];
+      html += `<div class="border rounded-3 p-3 mb-2 ${rec.passed ? 'border-success' : 'border-warning'}">
+        <div class="d-flex flex-wrap justify-content-between gap-2 mb-2">
+          <strong>Attempt ${rec.attempt || (idx + 1)}</strong>
+          <span class="text-muted">${rec.timestamp || "—"}</span>
+          <span class="badge ${rec.passed ? 'bg-success' : 'bg-warning text-dark'}">${rec.passed ? 'Passed' : 'Failed questions'}</span>
+        </div>
+        <div class="mb-1"><small>Correct this attempt: <strong>${rec.correctThisAttempt ?? "—"}</strong> / ${rec.totalThisAttempt ?? "—"}
+          ${rec.remainingAfter != null ? ` • Remaining after: ${rec.remainingAfter}` : ""}
+          ${rec.timeTakenSeconds != null ? ` • Time: ${Math.floor(rec.timeTakenSeconds/60)}:${String(rec.timeTakenSeconds%60).padStart(2,"0")}` : ""}</small></div>`;
+      if (failed.length > 0) {
+        html += `<div class="mt-2"><strong class="text-danger small">Questions failed before next attempt:</strong><ul class="mb-0 mt-1">`;
+        failed.forEach(fq => {
+          html += `<li class="mb-1"><span class="text-dark">${fq.question || ("Q#" + ((fq.id ?? 0) + 1))}</span>
+            <br><span class="text-muted">Correct answer: ${fq.correctAnswer || "—"}</span></li>`;
+        });
+        html += `</ul></div>`;
+      } else if (failedIds.length > 0) {
+        html += `<div class="mt-2"><strong class="text-danger small">Failed question IDs:</strong> ${failedIds.map(i => i + 1).join(", ")}</div>`;
+      } else if (rec.passed) {
+        html += `<div class="mt-1 text-success small">No failed questions — full competency achieved on this attempt.</div>`;
+      } else {
+        html += `<div class="mt-1 text-muted small">No failed-question detail recorded for this attempt.</div>`;
+      }
+      html += `</div>`;
+    });
+    body.innerHTML = html || "<p class='text-muted'>No attempt records.</p>";
+    panel.classList.remove("d-none");
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
   window.closeProgressModal = function() {
     document.getElementById("progressModal").classList.add("d-none");
+    document.getElementById("attemptDetailPanel").classList.add("d-none");
   };
 
   document.querySelector('.contact-form')?.addEventListener('submit', e => {
@@ -2280,6 +2433,8 @@ const moduleDescriptions = {
   window.restartQuiz = restartQuiz;
   window.loadModule = loadModule;
   window.startVideo = startVideo;
+  window.startQuiz = startQuiz;
+  window.openPresentation = openPresentation;
 </script>
 </body>
 </html>
