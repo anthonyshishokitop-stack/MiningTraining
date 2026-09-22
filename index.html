@@ -118,6 +118,12 @@ body {
 .module-check { width: 18px; height: 18px; cursor: pointer; }
 .resources-card .card-header { background: linear-gradient(135deg, #1e3a8a, #1d4ed8); border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0; }
 
+.notif-badge { position: absolute; top: -4px; right: -8px; background: var(--danger); color: #fff; font-size: .65rem; font-weight: 700; border-radius: 999px; padding: 2px 6px; min-width: 18px; text-align: center; }
+.notif-item { border-left: 4px solid var(--primary); background: #f8fafc; border-radius: 8px; padding: .85rem 1rem; margin-bottom: .6rem; color: var(--text-primary); }
+.notif-item.unread { border-left-color: var(--accent); background: #fffbeb; }
+.assignment-log-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin-bottom: .7rem; color: var(--text-primary); }
+.comms-preview { max-height: 120px; overflow-y: auto; font-size: .9rem; }
+
 @media (max-width: 991.98px) {
   .navbar-collapse { background: #fff; border-radius: 0 0 12px 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.14); padding: .7rem 1rem 1.1rem; }
   .navbar-nav .nav-link { padding: .7rem 1rem !important; border-radius: 8px; margin-bottom: 2px; }
@@ -188,14 +194,24 @@ body {
       <div class="zero-harm-badge"><i class="bi bi-shield-exclamation"></i> Zero Harm Commitment</div>
       <h1>Mining Induction &amp; Competency Platform</h1>
       <p class="lead">MHSA Act 29 of 1996 Compliant • Structured Workplace Safety Training</p>
-   
+      <p class="sub">Online adaptation of nomination, firm booking, assessment &amp; record-keeping processes</p>
       <button class="btn btn-accent btn-lg px-4 me-2" onclick="showModulesList()"><i class="bi bi-grid-3x3-gap me-2"></i>My Modules</button>
       <button class="btn btn-outline-light btn-lg px-4" onclick="showDashboard()"><i class="bi bi-speedometer2 me-2"></i>My Dashboard</button>
       <div class="trust-row">
         <span class="trust-badge"><i class="bi bi-check2-circle me-1"></i> MHSA Aligned</span>
         <span class="trust-badge"><i class="bi bi-building me-1"></i> DMPR Referenced</span>
-   
         <span class="trust-badge"><i class="bi bi-phone me-1"></i> Mobile First</span>
+        <span class="trust-badge"><i class="bi bi-clipboard-check me-1"></i> Audit-Ready Records</span>
+      </div>
+    </div>
+    <!-- Notifications panel on home -->
+    <div id="homeNotifications" class="d-none mb-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white fw-bold text-dark d-flex justify-content-between align-items-center">
+          <span><i class="bi bi-bell me-2 text-warning"></i>Notifications &amp; Communications</span>
+          <button class="btn btn-sm btn-outline-secondary" onclick="markAllNotificationsRead()">Mark all read</button>
+        </div>
+        <div class="card-body" id="homeNotifList"></div>
       </div>
     </div>
   </div>
@@ -204,7 +220,7 @@ body {
   <div id="modulesContainer" class="d-none">
     <div class="modules-header">
       <h2>My Assigned Modules</h2>
-      <p class="mb-3 opacity-90" style="font-size:0.95rem;">Critical safety and operational modules</p>
+      <p class="mb-3 opacity-90" style="font-size:0.95rem;">Critical safety and operational modules (nominated &amp; firmly booked by admin)</p>
       <div class="d-flex flex-wrap justify-content-center gap-2">
         <div class="dropdown">
           <button class="btn stat-badge dropdown-toggle" type="button" data-bs-toggle="dropdown" id="filterLabel">Filter: All</button>
@@ -392,9 +408,16 @@ body {
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-primary" id="dashCertificates">0</div><div class="label">Certificates</div></div></div>
       <div class="col-6 col-md-3"><div class="stat-card"><div class="value" id="dashTotal">0</div><div class="label">Assigned</div></div></div>
     </div>
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm mb-4">
       <div class="card-header bg-white fw-bold text-dark">Recently Completed</div>
       <ul class="list-group list-group-flush" id="completedModulesList"></ul>
+    </div>
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white fw-bold text-dark d-flex justify-content-between align-items-center">
+        <span>My Notifications</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="markAllNotificationsRead()">Mark all read</button>
+      </div>
+      <div class="card-body" id="dashNotifList"></div>
     </div>
   </div>
 
@@ -407,35 +430,66 @@ body {
   <!-- ADMIN PANEL -->
   <div id="adminScreen" class="d-none">
     <h2 class="section-title text-center mb-4">Admin Panel</h2>
+    <p class="text-center text-white-50 mb-4 small">Online adaptation of nomination → firm booking → validation → assessment → record-keeping process</p>
+
+    <!-- Quick stats -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-primary" id="adminUserCount">0</div><div class="label">Total Users</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-success" id="adminAssignedCount">0</div><div class="label">Module Assignments</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value text-warning" id="adminPendingCount">0</div><div class="label">In Progress</div></div></div>
+      <div class="col-6 col-md-3"><div class="stat-card"><div class="value" id="adminPassedCount">0</div><div class="label">Fully Competent</div></div></div>
+    </div>
+
+    <!-- Users table -->
     <div class="card border-0 mb-4">
       <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
-        <span>All Users</span>
+        <span>All Users (Nomination &amp; Assignment)</span>
         <button class="btn btn-sm btn-outline-primary" onclick="loadAllUsers()">Refresh</button>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive">
           <table class="table table-hover mb-0 admin-table">
             <thead>
-              <tr><th>Name</th><th>Email</th><th>Role</th><th>Modules</th><th style="min-width:280px">Actions</th></tr>
+              <tr><th>Name</th><th>Email</th><th>Role</th><th>Modules</th><th style="min-width:320px">Actions</th></tr>
             </thead>
             <tbody id="adminUsersTable"></tbody>
           </table>
         </div>
       </div>
     </div>
+
+    <!-- Assign Modal (enhanced with notes & firm booking) -->
     <div id="assignModal" class="card border-0 d-none mb-4">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-        <span>Assign Modules → <strong id="assignUserName"></strong></span>
+        <span>Nominate / Assign Modules → <strong id="assignUserName"></strong></span>
         <button class="btn btn-sm btn-light" onclick="closeAssignModal()">Close</button>
       </div>
       <div class="card-body">
+        <p class="small text-muted mb-3">This step replaces the paper Internal Course Nomination [ISO.Admin.G.001]. Select modules, add any special-needs notes or line-management comments, then confirm to firmly book the learner.</p>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Assignment / Nomination Notes (optional)</label>
+          <textarea id="assignNotes" class="form-control" rows="2" placeholder="e.g. Special needs, line manager request, scheduled completion target..."></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Notify learner of this assignment?</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="assignNotify" checked>
+            <label class="form-check-label" for="assignNotify">Send in-app notification (recommended)</label>
+          </div>
+        </div>
         <div class="row g-2" id="assignModuleList"></div>
-        <div class="mt-3 text-end"><button class="btn btn-primary" onclick="saveModuleAssignment()">Save Assignments</button></div>
+        <div class="mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <button class="btn btn-outline-secondary btn-sm" onclick="selectAllModules(true)">Select All</button>
+          <button class="btn btn-outline-secondary btn-sm" onclick="selectAllModules(false)">Clear All</button>
+          <button class="btn btn-primary ms-auto" onclick="saveModuleAssignment()"><i class="bi bi-check2-circle me-1"></i>Confirm &amp; Firmly Book</button>
+        </div>
       </div>
     </div>
-    <div id="progressModal" class="card border-0 d-none">
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="card border-0 d-none mb-4">
       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-        <span>Progress for: <strong id="progressUserName"></strong></span>
+        <span>Progress / Validation for: <strong id="progressUserName"></strong></span>
         <button class="btn btn-sm btn-light" onclick="closeProgressModal()">Close</button>
       </div>
       <div class="card-body">
@@ -450,6 +504,49 @@ body {
           <div id="attemptDetailBody" class="small text-dark"></div>
         </div>
         <p id="progressEmpty" class="text-muted text-center d-none">No progress recorded yet.</p>
+        <div class="mt-3 text-end">
+          <button class="btn btn-sm btn-outline-primary" onclick="downloadValidationReport()"><i class="bi bi-file-earmark-pdf me-1"></i>Download Validation Report (PDF)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Communications / Announcements -->
+    <div class="card border-0 mb-4">
+      <div class="card-header bg-white fw-bold text-dark">
+        <i class="bi bi-megaphone me-2 text-primary"></i>Communications &amp; Announcements
+      </div>
+      <div class="card-body">
+        <p class="small text-muted mb-3">Broadcast messages to all learners or selected users (replaces email / paper distribution of schedules and notices).</p>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Subject</label>
+          <input type="text" id="commsSubject" class="form-control" placeholder="e.g. New modules available – complete by end of month">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Message</label>
+          <textarea id="commsBody" class="form-control" rows="3" placeholder="Write the communication here..."></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Audience</label>
+          <select id="commsAudience" class="form-select">
+            <option value="all">All users</option>
+            <option value="assigned">Users with at least one assigned module</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="sendAnnouncement()"><i class="bi bi-send me-1"></i>Send Communication</button>
+        <hr class="my-4">
+        <h6 class="fw-bold text-dark">Recent Communications</h6>
+        <div id="adminCommsList" class="comms-preview"></div>
+      </div>
+    </div>
+
+    <!-- Assignment Log (audit trail) -->
+    <div class="card border-0 mb-4">
+      <div class="card-header bg-white fw-bold text-dark d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-journal-text me-2"></i>Assignment / Nomination Log (Audit Trail)</span>
+        <button class="btn btn-sm btn-outline-primary" onclick="loadAssignmentLog()">Refresh Log</button>
+      </div>
+      <div class="card-body" id="assignmentLogBody">
+        <p class="text-muted small">Loading recent nominations and firm bookings...</p>
       </div>
     </div>
   </div>
@@ -460,6 +557,7 @@ body {
       <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
       <p class="mb-3">This platform delivers structured, MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for mining houses and contractors that require a reliable, mobile-friendly method to induct employees, demonstrate competency and maintain audit-ready records.</p>
       <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require 100% correct answers. On retry, only previously incorrect questions are presented until full competency is achieved. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
+      <p class="mb-3"><strong>Online adaptation of traditional booking process:</strong> Admin nomination &amp; firm booking of modules replaces paper Internal Course Nomination forms. Progress and validation reports are available on-demand. Communications replace physical schedule distribution. Assessment, evaluation and record-keeping occur digitally with full audit trail.</p>
       <p class="mb-0"><strong>Zero Harm</strong> is the guiding principle. Admins control which modules each user can access and can view detailed progress records.</p>
     </div>
   </div>
@@ -492,8 +590,8 @@ body {
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
            onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, collection, getDocs, updateDoc,
-           serverTimestamp, deleteField } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import { getFirestore, doc, setDoc, getDoc, collection, getDocs, updateDoc, addDoc,
+           serverTimestamp, deleteField, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAHEqek56zhgzhixoGHr17wFa52h9-F2f8",
@@ -601,6 +699,48 @@ body {
     hirac: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000",
   };
 
+  const moduleDescriptions = {
+    handover: "Shift handover is a critical MHSA-mandated process that ensures continuity of safe operations between outgoing and incoming crews. Under Section 10 and related regulations of the Mine Health and Safety Act 29 of 1996, every person must be informed of the current state of the workplace, outstanding hazards, defects and any temporary controls in place. The process includes formal attendance by all relevant personnel, verbal and written transfer of information, review of the log book, Section 23 fitness declarations, early examination of workplaces, and verification that all statutory inspections have been completed. Red-tagged equipment must be highlighted, gas readings (especially methane and oxygen deficiency) must be recorded, and the Early Warning Device / TARP status confirmed by the shift boss. Incomplete or unsigned log books render the workplace unsafe for entry. Proper handover prevents incidents caused by incomplete knowledge transfer and is a cornerstone of Zero Harm culture.",
+    lhd: "Load-Haul-Dump (LHD) machines operating in declines are high-risk mobile equipment governed by MHSA Chapter 8 and site-specific Codes of Practice. Key controls include a minimum 2-metre exclusion zone around any moving part, maximum speed of 15 km/h in declines, low bucket carry height (typically ≤400 mm off the floor when loaded) to maintain stability, mandatory three-horn reverse signals, continuous use of mirrors and cameras, and compulsory seatbelt use. Only operators holding a valid competency certificate for the specific machine may drive. Daily pre-use inspections by the operator, functional fire-suppression systems, and prohibition on riding in the bucket are non-negotiable. Pedestrians must never enter the travel path of an LHD without positive communication and confirmation of stop. Collision avoidance technology (where fitted) must be operational. These rules exist because LHD-related accidents remain among the leading causes of serious injury underground.",
+    drill: "Face drilling with jumbo drills requires competent, certified operators, continuous water flush for dust suppression (silica control), hearing protection, respiratory protection where required, and rigorous face examination for misfires or residual explosives before any charging activity begins. The face must be washed down, inspected under good lighting, and declared free of hazards by the competent person. Drill steels must be correctly matched, feeds and pressures controlled, and the machine securely positioned. Any unexpected ground movement or water inflow must trigger immediate withdrawal and reporting. These controls align with MHSA requirements for rock breaking and dust control and form part of the broader ground-control strategy.",
+    support: "Permanent support installation (mesh, rock bolts, cable bolts, shotcrete or combinations thereof) may only be performed by competent crews working to rock-engineer-approved standards and quality-control procedures. No person may stand or work under unsupported ground. Temporary support must be installed before permanent support where required by the support code of practice. Bolt length, pattern, resin/grout quality, torque or tension values, and mesh overlap must meet design specifications. Visual and pull-test quality assurance is mandatory. Failure of support systems is a primary cause of falls of ground; therefore strict adherence to standards and exclusion of unauthorised persons from the area during installation is enforced.",
+    vent: "Main ventilation failure is a life-threatening emergency. The immediate response is to stop all work, don Self-Contained Self-Rescuers (SCSRs) if required, and evacuate to the nearest refuge bay or surface following the designated escape route. Only the ventilation officer or the manager (or their appointed deputy) may declare the emergency and authorise re-entry after verification that air quality, quantity and direction have been restored to safe levels. Auxiliary fans, brattices and regulators must never be interfered with by unauthorised persons. Continuous monitoring of air quality and the integrity of the main ventilation system are core MHSA obligations.",
+    rockfall: "A major rock-fall event prioritises life safety and accurate headcount above all else. The area must be immediately barricaded, access restricted, and a full accounting of all personnel completed. Only a rock engineer (or competent person authorised by the rock engineer) may assess the residual risk and authorise controlled re-entry or further support installation. Rescue efforts must follow established emergency procedures and never place additional lives at unnecessary risk. Post-event investigation, including seismic data review where applicable, informs future support and mining layout decisions.",
+    traffic: "Single-lane traffic management in declines and restricted excavations relies on one-way circuits, clearly marked passing bays, strict speed limits, mandatory two-way radio communication, and positive traffic control protocols. Vehicles must not pass oncoming traffic except at designated bays. Pedestrians have right of way only when the vehicle is stationary and the operator has acknowledged their presence. These rules prevent head-on collisions and pedestrian-vehicle interactions that have historically caused fatalities.",
+    reentry: "Unsafe re-entry after blasting is prevented by mandatory waiting periods for fume dispersal, multi-gas testing (CO, NOx, O₂, CH₄), visual inspection for misfires and ground conditions, and formal authorisation by the competent shift boss or appointed person. No person may enter a blasted area until these steps are completed and recorded. The waiting period and gas clearances are non-negotiable legal requirements under MHSA explosives and ventilation regulations.",
+    shaft_sinking: "Vertical shaft sinking is regulated under MHSA Chapter 8 Regulation 8.13 and associated codes of practice. Critical safety systems include overwind and underspeed protection, dual braking systems, shaft conveyance safety catches, stage and kibbles inspection regimes, and competency certification of all sinking personnel. Water control, temporary support, blasting procedures and emergency escape from the shaft bottom are additional high-risk elements that require continuous engineering and supervisory oversight.",
+    raise_drill: "Raise boring / raise drilling requires secure machine anchoring, laser-guided pilot-hole accuracy, continuous cuttings removal, exclusion zones around the machine and the breakthrough point, and strict control of drill-string handling. The pilot hole and subsequent reaming create unique ground-control and water-inflow risks that must be managed by competent personnel under an approved method statement.",
+    lifting_operations: "Lifting operations fall under MHSA Chapter 8 Regulation 8.5. Requirements include daily pre-use checks of cranes, hoists and lifting tackle, statutory examinations by competent persons, written lift plans for complex lifts, clear Safe Working Load (SWL) markings, exclusion of personnel from under suspended loads, and use of tag lines where necessary. Only competent banksmen and crane operators may control lifts. Any defect must result in immediate isolation of the equipment.",
+    civil_structural: "Civil and structural integrity of mine infrastructure (surface buildings, headgears, ore passes, crusher stations, conveyor gantries, water dams, etc.) requires designs approved by professional engineers, construction quality control, and periodic structural inspections by competent persons. Changes in loading, corrosion, seismic activity or water damage must be reported and assessed. Unauthorised modifications or overloading of structures are prohibited. These controls protect both surface and underground personnel and form part of the overall major hazard management plan.",
+    conveyor_monorail: "Conveyor belts and monorail systems require full-length guarding of nip points and moving parts, emergency pull-cords accessible along the entire length, automatic fire detection and suppression (especially in enclosed galleries), belt-alignment and speed monitoring, and lock-out/tag-out procedures for maintenance. Persons must never ride on conveyors or attempt to clear blockages while the belt is running. Monorail hoists must be used only within rated capacity and with proper suspension equipment.",
+    compressed_air: "Compressed air systems must incorporate interlocked compressors, pressure-relief valves, statutory examinations of pressure vessels, whip restraints on all flexible hoses, and isolation procedures before any work on the reticulation. High-pressure air can cause serious injury or death if hoses whip or fittings fail. Only competent persons may work on the system, and compressed air must never be used for cleaning clothing or directed at persons.",
+    pump_fluid: "Pump and fluid-handling systems (clear-water, dirty-water, slurry, hydraulic) require automatic level controls with high-level and flood alarms, interlocks, and strict lock-out procedures. Uncontrolled water or slurry inrushes are a recognised major hazard. Sump levels, pipeline integrity and pump condition must be monitored continuously. Isolation of energy sources before maintenance is mandatory under MHSA.",
+    steam_pressure: "Steam generation and pressure vessels are subject to the Pressure Equipment Regulations and MHSA. Dual safety valves, low-water cut-outs, water-treatment regimes, and statutory examinations by authorised inspection authorities are required. Any modification or repair must be approved and re-certified. Steam burns and vessel ruptures are high-consequence events that demand rigorous control.",
+    electrical: "Underground electrical systems in gassy or fiery mines must utilise flameproof enclosures or intrinsically safe circuits as appropriate. Trailing cables, switchgear, transformers and motors require regular inspection, earth-leakage protection, and lock-out before work. Only competent electricians may work on electrical equipment. Live work is strictly controlled and generally prohibited underground except under specific authorised conditions.",
+    mhsa: "The Mine Health and Safety Act 29 of 1996 is the primary legal framework establishing the rights and duties of employers, employees and the State in achieving Zero Harm. Key provisions include the employer’s duty to provide a safe workplace and competent supervision (Section 2–10), the employee’s right to refuse dangerous work and to leave a dangerous workplace (Section 23), the requirement for Codes of Practice, risk assessment, training and record-keeping, and the powers of inspectors. Every person on a mine has a legal duty of care for their own safety and the safety of others. Competency assessments with a minimum 70 % pass mark form part of the employer’s obligation to ensure persons are competent for the work they perform.",
+    seismicity: "Seismicity and rockburst management relies on real-time seismic monitoring networks, energy-absorbing support systems, controlled re-entry protocols after seismic events, and mining layouts designed to minimise stress concentrations. Trigger Action Response Plans (TARPs) define measurable seismic triggers and the corresponding actions (withdrawal, additional support, or temporary cessation of mining). Only authorised rock-engineering personnel may declare an area safe for re-entry after a significant event.",
+    blasting: "Blasting and explosives operations require strict compliance with MHSA explosives regulations, competent persons, approved blast designs, exclusion zones, misfire procedures and post-blast re-entry protocols. Only authorised blasters may handle explosives. Fume clearance and gas testing are mandatory before any person re-enters the blasted area.",
+    evacuation: "Emergency evacuation procedures must be known and practised by every person. Escape routes, refuge bays, assembly points and communication protocols are critical. Self-Contained Self-Rescuers must be carried and functional. Regular drills and clear signage support rapid, orderly evacuation under Zero Harm principles.",
+    fire: "Fire monitoring, detection and suppression systems protect both personnel and infrastructure. Early detection, automatic suppression in high-risk areas, trained fire teams and clear evacuation routes are essential. Hot-work permits and isolation of energy sources form part of fire prevention.",
+    tmm: "Trackless Mobile Machinery (TMM) operations require competent operators, pre-use inspections, collision avoidance where fitted, speed limits, exclusion zones and strict traffic management. Pedestrian-vehicle interactions remain a leading cause of serious incidents.",
+    winders: "Winding plant (shaft conveyances) are high-hazard systems governed by specific MHSA regulations. Overwind protection, dual braking, rope examinations, competent winding-engine drivers and emergency procedures are non-negotiable.",
+    induction_protocol: "Induction Protocol & House Rules introduce new and returning employees to site-specific rules, emergency arrangements, PPE requirements, reporting lines and Zero Harm culture. Completion is a prerequisite before unsupervised work.",
+    company_intro: "Company Introduction provides an overview of the organisation, its operations, leadership and commitment to health and safety under MHSA.",
+    vision_mission: "Vision, Mission & Values orient employees to the organisation’s strategic direction and the centrality of Zero Harm and continuous improvement.",
+    emergency_response: "Emergency Response Protocol covers alarm recognition, evacuation, refuge-bay use, communication with control rooms and the roles of emergency teams.",
+    assembly_points: "Assembly Points & Emergency Exits ensure every person knows where to go and how to reach safety during an emergency.",
+    fire_first_aid: "Fire Fighting & First Aid Equipment locations, basic use and reporting requirements form part of every employee’s induction.",
+    life_saving_rules: "Life-Saving Rules are non-negotiable behavioural controls that, if violated, can result in serious injury or fatality. They are enforced consistently across the operation.",
+    ppe: "PPE Requirements specify the mandatory personal protective equipment for each work area and task. PPE is the last line of defence in the hierarchy of controls.",
+    employee_rights: "Employee Rights & Duties under MHSA include the right to refuse dangerous work (Section 23), the duty to report hazards, and the obligation to cooperate with the employer on health and safety matters.",
+    exleave: "Ex-Leave Induction Overview refreshes employees returning from leave on current hazards, procedural changes and emergency arrangements before they resume normal duties.",
+    hirac: "HIRAC Refresher reinforces the process of Hazard Identification, Risk Assessment and Control that must be performed before every task."
+  };
+
+  // Sample quizzes (abbreviated for brevity – full question banks retained from original)
+  const sampleQuizzes = {
+
+
 const moduleDescriptions = {
     handover: "Shift handover is a critical MHSA-mandated process that ensures continuity of safe operations between outgoing and incoming crews. Under Section 10 and related regulations of the Mine Health and Safety Act 29 of 1996, every person must be informed of the current state of the workplace, outstanding hazards, defects and any temporary controls in place. The process includes formal attendance by all relevant personnel, verbal and written transfer of information, review of the log book, Section 23 fitness declarations, early examination of workplaces, and verification that all statutory inspections have been completed. Red-tagged equipment must be highlighted, gas readings (especially methane and oxygen deficiency) must be recorded, and the Early Warning Device / TARP status confirmed by the shift boss. Incomplete or unsigned log books render the workplace unsafe for entry. Proper handover prevents incidents caused by incomplete knowledge transfer and is a cornerstone of Zero Harm culture.",
     lhd: "Load-Haul-Dump (LHD) machines operating in declines are high-risk mobile equipment governed by MHSA Chapter 8 and site-specific Codes of Practice. Key controls include a minimum 2-metre exclusion zone around any moving part, maximum speed of 15 km/h in declines, low bucket carry height (typically ≤400 mm off the floor when loaded) to maintain stability, mandatory three-horn reverse signals, continuous use of mirrors and cameras, and compulsory seatbelt use. Only operators holding a valid competency certificate for the specific machine may drive. Daily pre-use inspections by the operator, functional fire-suppression systems, and prohibition on riding in the bucket are non-negotiable. Pedestrians must never enter the travel path of an LHD without positive communication and confirmation of stop. Collision avoidance technology (where fitted) must be operational. These rules exist because LHD-related accidents remain among the leading causes of serious injury underground.",
@@ -641,6 +781,8 @@ const moduleDescriptions = {
 
 
   // Rich quizzes from index(104) for key modules; fallback for others
+
+  
   const sampleQuizzes = {
     handover: {name:"SHIFT HANDOVER & PRE-CHECKS", q: [
       {question:"Who must attend shift handover?", options:["Only the shift boss", "All incoming and outgoing crew", "Only supervisors", "Only the safety officer"], correct:1, explanation:"All incoming and outgoing crew must attend to ensure full transfer of critical information."},
@@ -1590,12 +1732,39 @@ const moduleDescriptions = {
   };
 
   // All modules now have >=25 questions with 4 options – residual fallback kept for safety
+
+
+
+    
+
   Object.keys(moduleNames).forEach(key => {
     if (!sampleQuizzes[key]) {
       sampleQuizzes[key] = {name: moduleNames[key].toUpperCase(), q: [
         {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
-        {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark."},
-        {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care."}
+        {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark (platform requires 100% mastery)."},
+        {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care under MHSA."},
+        {question:"Under MHSA employees have the right to?", options:["Ignore procedures when under pressure","Refuse dangerous work and leave a dangerous workplace","Operate any machine","Bypass isolation"], correct:1, explanation:"Section 23 protects the right to refuse dangerous work."},
+        {question:"Before starting any task you should?", options:["Begin immediately to save time","Identify hazards, assess risk and ensure controls are in place (HIRAC)","Only check with a friend","Rely on memory of previous shifts"], correct:1, explanation:"HIRAC must be performed before work starts."},
+        {question:"PPE is?", options:["The first line of defence","The last line of defence in the hierarchy of controls","Optional if you are experienced","Only required for visitors"], correct:1, explanation:"PPE is the last line after elimination, substitution, engineering and administrative controls."},
+        {question:"If you see an unsafe condition you must?", options:["Ignore it if it does not affect you","Stop, make it safe if possible, and report it","Wait for the next shift","Only tell a colleague"], correct:1, explanation:"Every person has a duty to report hazards."},
+        {question:"Lock-out / tag-out is required when?", options:["Only on electrical equipment","Whenever energy sources could cause harm during work","Only during major shutdowns","Never on mobile equipment"], correct:1, explanation:"Isolation of all energy sources is required before work that could expose persons to harm."},
+        {question:"A competent person is someone who?", options:["Has worked for more than five years","Has the necessary knowledge, skill and experience and has been appointed or certified for the task","Is a supervisor","Has a driver licence"], correct:1, explanation:"Competency requires demonstrated knowledge, skill and formal recognition."},
+        {question:"Zero Harm means?", options:["No production stoppages","No harm to people, and continuous improvement toward that goal","Zero cost of safety","Zero paperwork"], correct:1, explanation:"Zero Harm is the commitment that no one is harmed at work."},
+        {question:"Refuge bays are provided so that?", options:["Workers can rest during the shift","Persons can survive and communicate during an emergency until rescue","Tools can be stored","Meetings can be held"], correct:1, explanation:"Refuge bays are life-saving facilities."},
+        {question:"Self-Contained Self-Rescuers (SCSRs) are used for?", options:["Comfort in hot areas","Emergency escape when the atmosphere becomes irrespirable","Normal work breathing","Dust suppression"], correct:1, explanation:"SCSRs provide breathable air for escape."},
+        {question:"A Code of Practice is?", options:["A suggestion","A mandatory document required by MHSA for specific major hazards","Optional guidance","Only for surface operations"], correct:1, explanation:"Codes of Practice are required for identified major hazards."},
+        {question:"If an emergency alarm sounds you should?", options:["Continue working until told otherwise","Follow the site emergency procedure immediately","Phone home first","Wait to see what others do"], correct:1, explanation:"Immediate compliance with emergency procedures is required."},
+        {question:"The hierarchy of control places elimination at?", options:["The bottom","The top (most effective)","The same level as PPE","Only for chemical hazards"], correct:1, explanation:"Elimination is the most effective control."},
+        {question:"Reporting of incidents and near-misses is important because?", options:["It increases paperwork","It allows learning and prevention of more serious events","It is only required for lost-time injuries","It is optional"], correct:1, explanation:"Reporting enables investigation and preventive action."},
+        {question:"Working under the influence of alcohol or drugs is?", options:["Acceptable if not detected","Strictly prohibited and a serious offence","Allowed on night shift","A personal choice"], correct:1, explanation:"Fitness for work includes being free of impairing substances."},
+        {question:"When in doubt about a procedure you should?", options:["Guess and proceed","Stop and ask a competent person or supervisor","Follow what the previous shift did","Ignore the doubt"], correct:1, explanation:"Stopping and clarifying prevents errors."},
+        {question:"Training and competency assessment exist to?", options:["Satisfy auditors only","Ensure persons have the knowledge and skill to work safely","Reduce the number of employees","Increase shift length"], correct:1, explanation:"Competency protects people and supports legal compliance."},
+        {question:"A near-miss should be?", options:["Ignored if no one was hurt","Reported and investigated like an incident","Kept quiet","Only reported if management asks"], correct:1, explanation:"Near-misses are free lessons that prevent future harm."},
+        {question:"The employer primary duty under MHSA is to?", options:["Maximise production","Provide a safe workplace and competent supervision","Minimise training costs","Reduce the number of safety officers"], correct:1, explanation:"Section 2 and related provisions place the duty on the employer to ensure health and safety."},
+        {question:"Employees must cooperate with the employer on safety matters because?", options:["It is optional","It is a legal duty under MHSA","Only when convenient","Only during audits"], correct:1, explanation:"Cooperation is a legal duty of every employee."},
+        {question:"If a control measure fails you should?", options:["Continue with extra care","Stop the work, make the area safe and report the failure","Replace it yourself without authority","Wait until the end of shift"], correct:1, explanation:"Failed controls require immediate action to prevent harm."},
+        {question:"Continuous improvement in safety is achieved by?", options:["Ignoring small problems","Learning from incidents, near-misses, audits and suggestions","Reducing the number of rules","Focusing only on production"], correct:1, explanation:"Learning and acting on information drives improvement."},
+        {question:"In the context of this module, the most important consideration is?", options:["Speed of completion","Safety of people and compliance with MHSA controls","Cost minimisation","Shift length"], correct:1, explanation:"Safety and legal compliance always take priority."}
       ]};
     }
   });
@@ -1606,9 +1775,12 @@ const moduleDescriptions = {
   let scores = {};
   let currentModule = null;
   let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
-  let currentWrongIds = []; // IDs of questions answered incorrectly in the current attempt
+  let currentWrongIds = [];
   let assigningToUid = null;
   let currentFilter = "all";
+  let currentProgressUid = null;
+  let currentProgressData = {};
+  let userNotifications = [];
 
   // ========== AUTH ==========
   onAuthStateChanged(auth, async (user) => {
@@ -1616,6 +1788,7 @@ const moduleDescriptions = {
       currentUser = user;
       await loadUserProfile(user.uid);
       await loadUserProgress(user.uid);
+      await loadUserNotifications(user.uid);
       buildNav();
       showHome();
       document.getElementById('authScreen').classList.add('d-none');
@@ -1623,6 +1796,7 @@ const moduleDescriptions = {
       currentUser = null;
       userProfile = null;
       scores = {};
+      userNotifications = [];
       document.getElementById('authScreen').classList.remove('d-none');
       hideAllScreens();
       document.getElementById('navLinks').innerHTML = "";
@@ -1719,15 +1893,82 @@ const moduleDescriptions = {
     await setDoc(doc(db, "progress", currentUser.uid, "modules", moduleKey), payload, { merge: true });
   }
 
+  // ========== NOTIFICATIONS ==========
+  async function loadUserNotifications(uid) {
+    userNotifications = [];
+    try {
+      const q = query(collection(db, "notifications", uid, "items"), orderBy("createdAt", "desc"), limit(30));
+      const snap = await getDocs(q);
+      snap.forEach(d => userNotifications.push({ id: d.id, ...d.data() }));
+    } catch (e) {
+      // Fallback without orderBy if index missing
+      try {
+        const snap = await getDocs(collection(db, "notifications", uid, "items"));
+        snap.forEach(d => userNotifications.push({ id: d.id, ...d.data() }));
+        userNotifications.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
+      } catch (e2) { console.warn(e2); }
+    }
+    renderNotifications();
+  }
+
+  function renderNotifications() {
+    const unread = userNotifications.filter(n => !n.read).length;
+    const homeList = document.getElementById("homeNotifList");
+    const dashList = document.getElementById("dashNotifList");
+    const homePanel = document.getElementById("homeNotifications");
+    if (!homeList) return;
+
+    if (userNotifications.length === 0) {
+      homePanel?.classList.add("d-none");
+      if (dashList) dashList.innerHTML = '<p class="text-muted small mb-0">No notifications yet.</p>';
+      return;
+    }
+    homePanel?.classList.remove("d-none");
+    const html = userNotifications.slice(0, 10).map(n => `
+      <div class="notif-item ${n.read ? '' : 'unread'}">
+        <div class="d-flex justify-content-between gap-2">
+          <strong class="small">${n.subject || 'Notification'}</strong>
+          <small class="text-muted">${n.createdAtStr || ''}</small>
+        </div>
+        <div class="small mt-1">${n.body || ''}</div>
+      </div>`).join('');
+    homeList.innerHTML = html;
+    if (dashList) dashList.innerHTML = html || '<p class="text-muted small mb-0">No notifications yet.</p>';
+  }
+
+  async function markAllNotificationsRead() {
+    if (!currentUser) return;
+    const unread = userNotifications.filter(n => !n.read);
+    for (const n of unread) {
+      try {
+        await updateDoc(doc(db, "notifications", currentUser.uid, "items", n.id), { read: true });
+        n.read = true;
+      } catch (e) {}
+    }
+    renderNotifications();
+    buildNav();
+  }
+
+  async function createNotification(uid, subject, body, type = "info") {
+    const createdAtStr = new Date().toLocaleString("en-ZA", { timeZone: "Africa/Johannesburg" });
+    try {
+      await addDoc(collection(db, "notifications", uid, "items"), {
+        subject, body, type, read: false, createdAt: serverTimestamp(), createdAtStr
+      });
+    } catch (e) { console.warn("Notification create failed:", e); }
+  }
+
   // ========== NAV ==========
   function buildNav() {
     const isAdmin = userProfile?.role === "admin";
+    const unread = userNotifications.filter(n => !n.read).length;
+    const notifBadge = unread > 0 ? `<span class="notif-badge">${unread > 9 ? '9+' : unread}</span>` : '';
     document.getElementById('navLinks').innerHTML = `
       <li class="nav-item"><a class="nav-link" href="#" data-screen="home">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="modules">Modules</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="descriptions">Descriptions</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="resources">Resources</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" data-screen="dashboard">Dashboard</a></li>
+      <li class="nav-item position-relative"><a class="nav-link" href="#" data-screen="dashboard">Dashboard ${notifBadge}</a></li>
       <li class="nav-item"><a class="nav-link" href="#" data-screen="certificates">Certificates</a></li>
       ${isAdmin ? '<li class="nav-item"><a class="nav-link text-warning fw-semibold" href="#" data-screen="admin"><i class="bi bi-gear me-1"></i>Admin</a></li>' : ''}
       <li class="nav-item"><a class="nav-link" href="#" data-screen="about">About</a></li>
@@ -1794,8 +2035,8 @@ const moduleDescriptions = {
     items.innerHTML = html;
   }
 
-  function showHome() { showScreen("welcomeScreen"); }
-  function showDashboard() { renderCompletedModules(); showScreen("dashboardScreen"); }
+  function showHome() { showScreen("welcomeScreen"); renderNotifications(); }
+  function showDashboard() { renderCompletedModules(); renderNotifications(); showScreen("dashboardScreen"); }
 
   // ========== MODULES ==========
   function getVisibleModules() {
@@ -1808,7 +2049,7 @@ const moduleDescriptions = {
     grid.innerHTML = "";
     const visible = getVisibleModules();
     if (visible.length === 0) {
-      grid.innerHTML = `<div class="col-12"><div class="alert alert-info text-center">No modules have been assigned to you yet. Please contact your administrator.</div></div>`;
+      grid.innerHTML = `<div class="col-12"><div class="alert alert-info text-center">No modules have been nominated / assigned to you yet. Please contact your administrator or training officer.</div></div>`;
       updateProgress();
       return;
     }
@@ -1859,12 +2100,11 @@ const moduleDescriptions = {
 
   function loadModule(key) {
     if (userProfile?.role !== "admin" && !(userProfile?.assignedModules||[]).includes(key)) {
-      alert("You do not have access to this module.");
+      alert("You do not have access to this module. It has not been nominated / firmly booked for you.");
       return;
     }
     currentModule = key;
     document.getElementById("moduleTitle").textContent = moduleNames[key];
-    // Learning Path: Assessment only (video + slides are the two cards above)
     const prev = scores[key];
     const hasSaved = prev && prev.inProgress && !prev.passed;
     let path = `
@@ -1917,12 +2157,11 @@ const moduleDescriptions = {
     const bankWithIds = bank.map((q, i) => ({ ...q, _id: i }));
     const prev = scores[currentModule];
 
-    // Resume saved in-progress attempt if available and not forcing restart
     if (!forceRestart && prev && prev.inProgress && Array.isArray(prev.inProgress.quizIds) && prev.inProgress.quizIds.length > 0) {
       const idMap = Object.fromEntries(bankWithIds.map(q => [q._id, q]));
       currentQuiz = prev.inProgress.quizIds.map(id => idMap[id]).filter(Boolean);
       if (currentQuiz.length === 0) {
-        // Corrupted save — fall through to normal start
+        // fall through
       } else {
         questionIndex = Math.min(prev.inProgress.questionIndex || 0, currentQuiz.length);
         correctAnswers = prev.inProgress.correctAnswers || 0;
@@ -1934,7 +2173,6 @@ const moduleDescriptions = {
       }
     }
 
-    // Normal start: remaining wrong questions only if not passed
     let pool;
     if (prev && !prev.passed && Array.isArray(prev.remainingWrongIds) && prev.remainingWrongIds.length > 0) {
       pool = bankWithIds.filter(q => prev.remainingWrongIds.includes(q._id));
@@ -1948,7 +2186,6 @@ const moduleDescriptions = {
     correctAnswers = 0;
     currentWrongIds = [];
     quizStartTime = Date.now();
-    // Clear any previous in-progress save when starting fresh
     if (prev && prev.inProgress) {
       const cleared = { ...prev };
       delete cleared.inProgress;
@@ -1969,7 +2206,6 @@ const moduleDescriptions = {
     const correctText = q.options[q.correct];
     const shuffled = [...q.options].sort(() => Math.random() - 0.5);
     const newCorrect = shuffled.indexOf(correctText);
-    // Show progress within this attempt
     const totalInAttempt = currentQuiz.length;
     document.getElementById("questionText").textContent =
       `(${questionIndex + 1}/${totalInAttempt}) ${q.question}`;
@@ -2029,11 +2265,10 @@ const moduleDescriptions = {
     const remainingWrongIds = Array.from(remaining).sort((a,b) => a - b);
     const mastered = totalBank - remainingWrongIds.length;
     const percentage = totalBank ? Math.round((mastered / totalBank) * 100) : 0;
-    const passed = remainingWrongIds.length === 0; // 100% required
+    const passed = remainingWrongIds.length === 0;
     const timestamp = new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"});
     const attempts = (prev?.attempts || 0) + 1;
 
-    // Build failed question summaries for admin review
     const failedQuestions = currentWrongIds.map(id => {
       const q = bank[id];
       return q ? { id, question: q.question, correctAnswer: q.options[q.correct] } : { id, question: `Question #${id + 1}`, correctAnswer: "—" };
@@ -2091,7 +2326,7 @@ const moduleDescriptions = {
     updateProgress();
   }
 
-  // ========== EXIT ASSESSMENT (Continue / Restart) ==========
+  // ========== EXIT ASSESSMENT ==========
   async function saveInProgressState() {
     if (!currentUser || !currentModule || !currentQuiz.length) return;
     const inProgress = {
@@ -2137,7 +2372,6 @@ const moduleDescriptions = {
     await clearInProgressState();
     const modal = bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"));
     modal?.hide();
-    // Restart from remaining-wrong / full bank (fresh attempt)
     currentQuiz = [];
     questionIndex = 0;
     correctAnswers = 0;
@@ -2210,7 +2444,7 @@ const moduleDescriptions = {
     showScreen("descriptionsScreen");
   }
 
-  // ========== CERTIFICATE (professional landscape design from 105) ==========
+  // ========== CERTIFICATE ==========
   window.downloadCertificate = function() {
     if (!currentModule || !scores[currentModule]) return;
     const { jsPDF } = window.jspdf;
@@ -2267,6 +2501,8 @@ const moduleDescriptions = {
   async function showAdmin() {
     if (userProfile?.role !== "admin") { alert("Admin access only"); return; }
     await loadAllUsers();
+    await loadAssignmentLog();
+    await loadAdminComms();
     showScreen("adminScreen");
   }
 
@@ -2275,22 +2511,43 @@ const moduleDescriptions = {
     tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4">Loading...</td></tr>`;
     const snap = await getDocs(collection(db, "users"));
     tbody.innerHTML = "";
+    let totalUsers = 0, totalAssignments = 0, pending = 0, passed = 0;
+    const progressPromises = [];
+
     snap.forEach(d => {
       const u = d.data();
+      totalUsers++;
+      const assignedCount = (u.assignedModules || []).length;
+      totalAssignments += assignedCount;
       const isSelf = d.id === currentUser.uid;
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${u.fullName || "—"}</td>
         <td>${u.email}</td>
         <td><span class="badge ${u.role==='admin'?'bg-warning text-dark':'bg-secondary'}">${u.role}</span></td>
-        <td>${(u.assignedModules||[]).length}</td>
+        <td>${assignedCount}</td>
         <td>
-          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Assign</button>
+          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Nominate / Assign</button>
           <button class="btn btn-sm btn-outline-info me-1" onclick="openProgressModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Progress</button>
           ${!isSelf ? `<button class="btn btn-sm ${u.role==='admin'?'btn-outline-danger':'btn-outline-success'}" onclick="toggleRole('${d.id}','${u.role}')">${u.role==='admin'?'Demote':'Promote'}</button>` : '<span class="text-muted small">You</span>'}
         </td>`;
       tbody.appendChild(tr);
+      progressPromises.push(
+        getDocs(collection(db, "progress", d.id, "modules")).then(psnap => {
+          psnap.forEach(pd => {
+            const data = pd.data();
+            if (data.passed) passed++;
+            else if (data.percentage > 0 || data.inProgress) pending++;
+          });
+        }).catch(() => {})
+      );
     });
+
+    await Promise.all(progressPromises);
+    document.getElementById("adminUserCount").textContent = totalUsers;
+    document.getElementById("adminAssignedCount").textContent = totalAssignments;
+    document.getElementById("adminPendingCount").textContent = pending;
+    document.getElementById("adminPassedCount").textContent = passed;
   };
 
   window.toggleRole = async function(uid, currentRole) {
@@ -2305,6 +2562,8 @@ const moduleDescriptions = {
     assigningToUid = uid;
     document.getElementById("assignUserName").textContent = name;
     document.getElementById("progressModal").classList.add("d-none");
+    document.getElementById("assignNotes").value = "";
+    document.getElementById("assignNotify").checked = true;
     const userSnap = await getDoc(doc(db, "users", uid));
     const assigned = userSnap.data()?.assignedModules || [];
     const list = document.getElementById("assignModuleList");
@@ -2327,16 +2586,55 @@ const moduleDescriptions = {
     assigningToUid = null;
   };
 
+  window.selectAllModules = function(select) {
+    document.querySelectorAll(".module-check").forEach(c => c.checked = select);
+  };
+
   window.saveModuleAssignment = async function() {
     if (!assigningToUid) return;
     const selected = Array.from(document.querySelectorAll(".module-check:checked")).map(c => c.value);
+    const notes = document.getElementById("assignNotes").value.trim();
+    const notify = document.getElementById("assignNotify").checked;
+    const timestamp = new Date().toLocaleString("en-ZA", { timeZone: "Africa/Johannesburg" });
+
     await updateDoc(doc(db, "users", assigningToUid), { assignedModules: selected });
-    alert("Modules updated successfully.");
+
+    // Audit log entry (replaces paper nomination form capture)
+    try {
+      await addDoc(collection(db, "assignmentLog"), {
+        userId: assigningToUid,
+        userName: document.getElementById("assignUserName").textContent,
+        modules: selected,
+        moduleNames: selected.map(k => moduleNames[k]),
+        notes: notes || null,
+        assignedBy: currentUser.uid,
+        assignedByName: userProfile?.fullName || currentUser.email,
+        createdAt: serverTimestamp(),
+        createdAtStr: timestamp,
+        action: "firm_booking"
+      });
+    } catch (e) { console.warn("Log write failed:", e); }
+
+    // Notify learner
+    if (notify && selected.length > 0) {
+      const modList = selected.slice(0, 5).map(k => moduleNames[k]).join(", ") + (selected.length > 5 ? ` (+${selected.length - 5} more)` : "");
+      await createNotification(
+        assigningToUid,
+        "Modules Nominated & Firmly Booked",
+        `You have been assigned the following module(s): ${modList}. Please complete the training and assessment at your earliest opportunity. ${notes ? "Notes: " + notes : ""}`,
+        "assignment"
+      );
+    }
+
+    alert("Modules nominated and firmly booked successfully." + (notify ? " Learner has been notified." : ""));
     closeAssignModal();
     loadAllUsers();
+    loadAssignmentLog();
   };
 
   window.openProgressModal = async function(uid, name) {
+    currentProgressUid = uid;
+    currentProgressData = {};
     document.getElementById("progressUserName").textContent = name;
     document.getElementById("assignModal").classList.add("d-none");
     document.getElementById("progressModal").classList.remove("d-none");
@@ -2351,6 +2649,7 @@ const moduleDescriptions = {
       if (snap.empty) { emptyMsg.classList.remove("d-none"); return; }
       snap.forEach(d => {
         const data = d.data();
+        currentProgressData[d.id] = data;
         const tr = document.createElement("tr");
         const rem = data.remainingCount != null ? data.remainingCount : (data.passed ? 0 : "—");
         const att = data.attempts != null ? data.attempts : "—";
@@ -2417,6 +2716,139 @@ const moduleDescriptions = {
   window.closeProgressModal = function() {
     document.getElementById("progressModal").classList.add("d-none");
     document.getElementById("attemptDetailPanel").classList.add("d-none");
+    currentProgressUid = null;
+    currentProgressData = {};
+  };
+
+  // Validation Report PDF (adapts SAP Validation Report step)
+  window.downloadValidationReport = function() {
+    if (!currentProgressUid) return;
+    const { jsPDF } = window.jspdf;
+    const userName = document.getElementById("progressUserName").textContent;
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+    const pageW = 210;
+    doc.setFont("helvetica", "bold"); doc.setFontSize(14);
+    doc.text("ACT 29 MINING TRAINING – VALIDATION REPORT", pageW / 2, 18, { align: "center" });
+    doc.setFont("helvetica", "normal"); doc.setFontSize(10);
+    doc.text("MHSA-aligned competency validation (online equivalent of SAP Validation Report)", pageW / 2, 25, { align: "center" });
+    doc.setFontSize(11);
+    doc.text(`Learner: ${userName}`, 14, 38);
+    doc.text(`Generated: ${new Date().toLocaleString("en-ZA", { timeZone: "Africa/Johannesburg" })}`, 14, 44);
+    doc.text(`Generated by: ${userProfile?.fullName || currentUser?.email || "Admin"}`, 14, 50);
+
+    let y = 60;
+    doc.setFont("helvetica", "bold");
+    doc.text("Module", 14, y);
+    doc.text("Status", 90, y);
+    doc.text("Mastery", 130, y);
+    doc.text("Attempts", 165, y);
+    y += 6;
+    doc.setDrawColor(180); doc.line(14, y, 196, y); y += 6;
+    doc.setFont("helvetica", "normal");
+
+    const entries = Object.entries(currentProgressData);
+    if (entries.length === 0) {
+      doc.text("No progress recorded.", 14, y);
+    } else {
+      entries.forEach(([key, data]) => {
+        if (y > 270) { doc.addPage(); y = 20; }
+        doc.text((moduleNames[key] || key).substring(0, 40), 14, y);
+        doc.text(data.passed ? "PASSED 100%" : "IN PROGRESS", 90, y);
+        doc.text((data.percentage != null ? data.percentage + "%" : "—"), 130, y);
+        doc.text(String(data.attempts ?? "—"), 165, y);
+        y += 7;
+      });
+    }
+    y += 10;
+    doc.setFontSize(9); doc.setTextColor(80);
+    doc.text("This report supports the Training Officer / Clerk validation step and record-keeping under ISO.PROC.0003.", 14, y);
+    doc.save(`Validation_Report_${userName.replace(/\s+/g, "_")}.pdf`);
+  };
+
+  // ========== COMMUNICATIONS ==========
+  window.sendAnnouncement = async function() {
+    const subject = document.getElementById("commsSubject").value.trim();
+    const body = document.getElementById("commsBody").value.trim();
+    const audience = document.getElementById("commsAudience").value;
+    if (!subject || !body) { alert("Please enter subject and message."); return; }
+
+    const timestamp = new Date().toLocaleString("en-ZA", { timeZone: "Africa/Johannesburg" });
+    try {
+      await addDoc(collection(db, "announcements"), {
+        subject, body, audience,
+        createdBy: currentUser.uid,
+        createdByName: userProfile?.fullName || currentUser.email,
+        createdAt: serverTimestamp(),
+        createdAtStr: timestamp
+      });
+    } catch (e) { console.warn(e); }
+
+    // Distribute to users
+    const usersSnap = await getDocs(collection(db, "users"));
+    let count = 0;
+    for (const d of usersSnap.docs) {
+      const u = d.data();
+      if (audience === "assigned" && !(u.assignedModules && u.assignedModules.length > 0)) continue;
+      await createNotification(d.id, subject, body, "announcement");
+      count++;
+    }
+
+    document.getElementById("commsSubject").value = "";
+    document.getElementById("commsBody").value = "";
+    alert(`Communication sent to ${count} user(s).`);
+    loadAdminComms();
+  };
+
+  async function loadAdminComms() {
+    const container = document.getElementById("adminCommsList");
+    if (!container) return;
+    try {
+      const q = query(collection(db, "announcements"), orderBy("createdAt", "desc"), limit(10));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        container.innerHTML = '<p class="text-muted small mb-0">No communications sent yet.</p>';
+        return;
+      }
+      container.innerHTML = snap.docs.map(d => {
+        const a = d.data();
+        return `<div class="assignment-log-item mb-2">
+          <div class="d-flex justify-content-between"><strong class="small">${a.subject}</strong><small class="text-muted">${a.createdAtStr || ""}</small></div>
+          <div class="small text-muted mt-1">${(a.body || "").substring(0, 120)}${(a.body||"").length > 120 ? "…" : ""}</div>
+          <small class="text-muted">Audience: ${a.audience} • By: ${a.createdByName || "—"}</small>
+        </div>`;
+      }).join("");
+    } catch (e) {
+      container.innerHTML = '<p class="text-muted small">Unable to load communications.</p>';
+    }
+  }
+
+  // ========== ASSIGNMENT LOG ==========
+  window.loadAssignmentLog = async function() {
+    const body = document.getElementById("assignmentLogBody");
+    if (!body) return;
+    try {
+      const q = query(collection(db, "assignmentLog"), orderBy("createdAt", "desc"), limit(20));
+      const snap = await getDocs(q);
+      if (snap.empty) {
+        body.innerHTML = '<p class="text-muted small mb-0">No nomination / firm-booking records yet.</p>';
+        return;
+      }
+      body.innerHTML = snap.docs.map(d => {
+        const a = d.data();
+        const mods = (a.moduleNames || []).slice(0, 4).join(", ") + ((a.moduleNames||[]).length > 4 ? ` (+${a.moduleNames.length - 4})` : "");
+        return `<div class="assignment-log-item">
+          <div class="d-flex justify-content-between flex-wrap gap-1">
+            <strong>${a.userName || a.userId}</strong>
+            <small class="text-muted">${a.createdAtStr || ""}</small>
+          </div>
+          <div class="small mt-1"><span class="badge bg-primary">Firm Booking</span> ${mods || "—"}</div>
+          ${a.notes ? `<div class="small text-muted mt-1">Notes: ${a.notes}</div>` : ""}
+          <small class="text-muted">By: ${a.assignedByName || "—"}</small>
+        </div>`;
+      }).join("");
+    } catch (e) {
+      body.innerHTML = '<p class="text-muted small">Unable to load log (index may still be building). Try again shortly.</p>';
+    }
   };
 
   document.querySelector('.contact-form')?.addEventListener('submit', e => {
@@ -2435,6 +2867,7 @@ const moduleDescriptions = {
   window.startVideo = startVideo;
   window.startQuiz = startQuiz;
   window.openPresentation = openPresentation;
+  window.markAllNotificationsRead = markAllNotificationsRead;
 </script>
 </body>
 </html>
