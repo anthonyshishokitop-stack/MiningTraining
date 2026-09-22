@@ -13,24 +13,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root {
-  --bg-deep: #0f172a;
-  --bg-surface: #1e293b;
-  --bg-card: #ffffff;
-  --bg-card-soft: rgba(255,255,255,0.97);
-  --primary: #1d4ed8;
-  --primary-hover: #1e40af;
-  --primary-soft: #dbeafe;
-  --accent: #f59e0b;
-  --accent-dark: #d97706;
-  --success: #059669;
-  --danger: #dc2626;
-  --text-primary: #0f172a;
-  --text-muted: #64748b;
-  --border: rgba(29,78,216,0.18);
-  --radius: 12px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
-  --shadow-lg: 0 12px 32px rgba(15,23,42,0.18);
+  --bg-deep: #0f172a; --bg-surface: #1e293b; --bg-card: #ffffff; --bg-card-soft: rgba(255,255,255,0.97);
+  --primary: #1d4ed8; --primary-hover: #1e40af; --primary-soft: #dbeafe;
+  --accent: #f59e0b; --accent-dark: #d97706; --success: #059669; --danger: #dc2626;
+  --text-primary: #0f172a; --text-muted: #64748b; --border: rgba(29,78,216,0.18);
+  --radius: 12px; --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10); --shadow-lg: 0 12px 32px rgba(15,23,42,0.18);
 }
 * { box-sizing: border-box; }
 body {
@@ -46,10 +34,8 @@ body {
 .nav-link { font-weight: 500; color: #334155 !important; padding: .5rem .9rem !important; border-radius: 8px; font-size: .92rem; transition: all .18s ease; }
 .nav-link:hover, .nav-link.active { color: var(--primary) !important; background: var(--primary-soft); }
 #content-area { max-width: 1240px; margin: 0 auto; padding: 1.5rem 1.1rem 3.5rem; min-height: calc(100vh - 110px); }
-
 #authScreen { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; }
 .auth-card { background: #fff; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); color: var(--text-primary); }
-
 .welcome-hero {
   background: linear-gradient(145deg, rgba(30,41,59,0.92), rgba(15,23,42,0.95));
   border: 1px solid rgba(148,163,184,0.12); border-radius: 18px; padding: 3.2rem 2.2rem;
@@ -62,11 +48,9 @@ body {
 .zero-harm-badge { display: inline-flex; align-items: center; gap: .4rem; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.35); color: #fbbf24; font-weight: 600; font-size: .82rem; padding: .35rem .9rem; border-radius: 999px; margin-bottom: 1.25rem; letter-spacing: .02em; }
 .trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.75rem; }
 .trust-badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: #e2e8f0; font-size: .78rem; font-weight: 600; padding: .35rem .85rem; border-radius: 999px; }
-
 .modules-header { background: linear-gradient(135deg, #1e3a8a, #1d4ed8); color: #fff; padding: 1.85rem 1.5rem; border-radius: 16px; margin-bottom: 1.75rem; text-align: center; box-shadow: var(--shadow-md); }
 .modules-header h2 { font-weight: 800; font-size: 1.55rem; letter-spacing: -0.02em; margin-bottom: .35rem; }
 .stat-badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28); color: #fff; border-radius: 999px; padding: .42rem 1rem; font-size: .88rem; font-weight: 500; }
-
 .module-card { background: var(--bg-card); border-radius: var(--radius); border: 1px solid #e2e8f0; box-shadow: var(--shadow-sm); transition: all .22s ease; height: 100%; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
 .module-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #93c5fd; }
 .module-card .card-top { height: 86px; background: linear-gradient(135deg, #eff6ff, #dbeafe); display: flex; align-items: center; justify-content: center; }
@@ -79,11 +63,9 @@ body {
 .progress { height: 6px; border-radius: 99px; background: #e2e8f0; }
 .progress-bar { background: var(--primary); border-radius: 99px; }
 .progress-text { font-size: .76rem; color: var(--text-muted); margin-top: .35rem; display: flex; justify-content: space-between; font-weight: 500; }
-
 .action-card { background: var(--bg-card); border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.85rem 1.4rem; text-align: center; transition: all .22s ease; cursor: pointer; height: 100%; color: var(--text-primary); box-shadow: var(--shadow-sm); }
 .action-card:hover { border-color: #93c5fd; box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .action-card i { font-size: 2.5rem; margin-bottom: .65rem; }
-
 .btn-primary { background: var(--primary); border-color: var(--primary); font-weight: 600; border-radius: 10px; padding: .6rem 1.35rem; letter-spacing: -0.01em; }
 .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
 .btn-accent { background: var(--accent); border-color: var(--accent); color: #1c1917; font-weight: 700; border-radius: 10px; padding: .6rem 1.35rem; }
@@ -91,25 +73,20 @@ body {
 .btn-outline-primary { color: var(--primary); border-color: var(--primary); border-radius: 10px; font-weight: 600; }
 .btn-outline-primary:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
 .btn-outline-light { border-radius: 10px; font-weight: 600; }
-
 .learning-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; color: var(--text-primary); transition: border-color .15s; }
 .learning-item:hover { border-color: #93c5fd; background: #f8fafc; }
 .learning-item .title { font-weight: 600; color: var(--primary); font-size: .98rem; }
 .badge-type { font-size: .72rem; padding: .28em .7em; border-radius: 999px; font-weight: 600; }
 .badge-lesson { background: #d1fae5; color: #065f46; }
-
 .quiz-option { border-radius: 10px !important; padding: .9rem 1.1rem !important; text-align: left !important; font-weight: 500; border-width: 1.5px !important; font-size: .95rem; }
 .result-card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 2.2rem 1.8rem; text-align: center; box-shadow: var(--shadow-md); color: var(--text-primary); }
-
 .card { background: var(--bg-card-soft); color: var(--text-primary); border-radius: var(--radius); border: 1px solid #e2e8f0; }
 .section-title { font-weight: 800; font-size: 1.45rem; margin-bottom: 1.25rem; color: #f8fafc; letter-spacing: -0.02em; }
 .stat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center; box-shadow: var(--shadow-sm); height: 100%; }
 .stat-card .value { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
 .stat-card .label { font-size: .8rem; color: var(--text-muted); font-weight: 500; margin-top: .25rem; }
-
 .ratio.ratio-16x9 { border: 2px solid rgba(29,78,216,0.45); box-shadow: var(--shadow-lg); border-radius: 12px; background: #000; overflow: hidden; }
 #videoPlayer, #presentationPlayer { border: none; width: 100%; height: 100%; display: block; }
-
 .footer { background: #0b1220; color: #94a3b8; padding: 2.4rem 1rem; margin-top: 3.5rem; text-align: center; font-size: .88rem; border-top: 1px solid rgba(148,163,184,0.08); }
 .breadcrumb { background: transparent; padding: 0; margin-bottom: 1.15rem; font-size: .88rem; }
 .breadcrumb a { color: #93c5fd; }
@@ -117,13 +94,12 @@ body {
 .admin-table th { background: #f1f5f9; font-weight: 600; font-size: .85rem; }
 .module-check { width: 18px; height: 18px; cursor: pointer; }
 .resources-card .card-header { background: linear-gradient(135deg, #1e3a8a, #1d4ed8); border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0; }
-
 .notif-badge { position: absolute; top: -4px; right: -8px; background: var(--danger); color: #fff; font-size: .65rem; font-weight: 700; border-radius: 999px; padding: 2px 6px; min-width: 18px; text-align: center; }
 .notif-item { border-left: 4px solid var(--primary); background: #f8fafc; border-radius: 8px; padding: .85rem 1rem; margin-bottom: .6rem; color: var(--text-primary); }
 .notif-item.unread { border-left-color: var(--accent); background: #fffbeb; }
 .assignment-log-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin-bottom: .7rem; color: var(--text-primary); }
 .comms-preview { max-height: 120px; overflow-y: auto; font-size: .9rem; }
-
+.honeypot { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
 @media (max-width: 991.98px) {
   .navbar-collapse { background: #fff; border-radius: 0 0 12px 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.14); padding: .7rem 1rem 1.1rem; }
   .navbar-nav .nav-link { padding: .7rem 1rem !important; border-radius: 8px; margin-bottom: 2px; }
@@ -461,16 +437,16 @@ body {
         <button class="btn btn-sm btn-light" onclick="closeAssignModal()">Close</button>
       </div>
       <div class="card-body">
-        <p class="small text-muted mb-3">This step replaces the paper Internal Course Nomination [ISO.Admin.G.001]. Select modules, add any special-needs notes or line-management comments, then confirm to firmly book the learner.</p>
+        <p class="small text-muted mb-3">This step replaces the paper Internal Course Nomination [ISO.Admin.G.001]. Select modules, add any special-needs notes or line-management comments, then confirm to firmly book the learner. After booking you can send a direct email notification to the learner’s inbox.</p>
         <div class="mb-3">
           <label class="form-label fw-semibold">Assignment / Nomination Notes (optional)</label>
           <textarea id="assignNotes" class="form-control" rows="2" placeholder="e.g. Special needs, line manager request, scheduled completion target..."></textarea>
         </div>
         <div class="mb-3">
-          <label class="form-label fw-semibold">Notify learner of this assignment?</label>
+          <label class="form-label fw-semibold">Notify learner?</label>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="assignNotify" checked>
-            <label class="form-check-label" for="assignNotify">Send in-app notification (recommended)</label>
+            <label class="form-check-label" for="assignNotify">Create in-app notification + prepare email</label>
           </div>
         </div>
         <div class="row g-2" id="assignModuleList"></div>
@@ -478,6 +454,11 @@ body {
           <button class="btn btn-outline-secondary btn-sm" onclick="selectAllModules(true)">Select All</button>
           <button class="btn btn-outline-secondary btn-sm" onclick="selectAllModules(false)">Clear All</button>
           <button class="btn btn-primary ms-auto" onclick="saveModuleAssignment()"><i class="bi bi-check2-circle me-1"></i>Confirm &amp; Firmly Book</button>
+        </div>
+        <div id="emailNotifyPanel" class="mt-4 d-none border-top pt-3">
+          <h6 class="fw-bold text-dark">Send Email Notification to Learner</h6>
+          <p class="small text-muted">This opens your mail client with a pre-filled message so the learner receives it directly in their inbox (no need to visit the site).</p>
+          <button class="btn btn-success" id="btnSendEmailNotify"><i class="bi bi-envelope me-1"></i>Open Email Client &amp; Send</button>
         </div>
       </div>
     </div>
@@ -550,23 +531,32 @@ body {
       <h2 class="fw-bold mb-3">About Act 29 Mining Training</h2>
       <p class="mb-3">This platform delivers structured, MHSA-aligned competency modules and induction training for the South African mining industry. It is designed for mining houses and contractors that require a reliable, mobile-friendly method to induct employees, demonstrate competency and maintain audit-ready records.</p>
       <p class="mb-3">The system supports employer obligations under the Mine Health and Safety Act 29 of 1996, including Section 10 training requirements, record-keeping and the provision of competent persons. All assessments require 100% correct answers. On retry, only previously incorrect questions are presented until full competency is achieved. Successful completion generates a downloadable PDF certificate containing the learner’s name, module title, score and timestamp.</p>
-      <p class="mb-3"><strong>Online adaptation of traditional booking process:</strong> Admin nomination &amp; firm booking of modules replaces paper Internal Course Nomination forms. Progress and validation reports are available on-demand. Communications replace physical schedule distribution. Assessment, evaluation and record-keeping occur digitally with full audit trail.</p>
+      <p class="mb-3"><strong>Online adaptation of traditional booking process:</strong> Admin nomination &amp; firm booking of modules replaces paper Internal Course Nomination forms. Progress and validation reports are available on-demand. Communications replace physical schedule distribution. Assessment, evaluation and record-keeping occur digitally with full audit trail. Direct email notifications can be sent to learners’ inboxes when modules are assigned.</p>
       <p class="mb-0"><strong>Zero Harm</strong> is the guiding principle. Admins control which modules each user can access and can view detailed progress records.</p>
     </div>
   </div>
 
-  <!-- CONTACT -->
+  <!-- CONTACT – secured FormSubmit + honeypot -->
   <div id="contactScreen" class="d-none">
     <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-dark">
       <h2 class="fw-bold mb-3">Contact</h2>
-      <p class="text-muted mb-4">For deployment enquiries, enterprise licensing or technical support, please complete the form below.</p>
-      <form class="contact-form" action="mailto:contact@miningtraining.ac.za" method="POST" enctype="text/plain" style="max-width:520px">
-        <input type="hidden" name="activation" value="b0a8bfefe18f642e40b2114810762876">
+      <p class="text-muted mb-4">For deployment enquiries, enterprise licensing or technical support, please complete the form below. Messages are delivered securely via FormSubmit (replace the email address in the form action with any real address you control).</p>
+      <!-- 
+        IMPORTANT: Replace the email below with a real working address you control.
+        First submission will require you to confirm the address on FormSubmit.co.
+        Example: action="https://formsubmit.co/yourname@gmail.com"
+      -->
+      <form class="contact-form" action="https://formsubmit.co/anthonyshishokitop@gmail.com" method="POST" style="max-width:520px">
+        <input type="hidden" name="_subject" value="Act 29 Mining Training – Contact Form">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
         <div class="mb-3"><label class="form-label fw-semibold">Name</label><input type="text" name="name" class="form-control" required style="border-radius:8px;"></div>
         <div class="mb-3"><label class="form-label fw-semibold">Email</label><input type="email" name="email" class="form-control" required style="border-radius:8px;"></div>
         <div class="mb-3"><label class="form-label fw-semibold">Message</label><textarea name="message" class="form-control" rows="4" required style="border-radius:8px;"></textarea></div>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
+      <p class="small text-muted mt-3">After changing the email address in the form action, the first submission will ask you to confirm ownership of that address on FormSubmit.co. Subsequent messages will arrive in the inbox.</p>
     </div>
   </div>
 </div>
@@ -585,7 +575,7 @@ body {
   import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
            onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
   import { getFirestore, doc, setDoc, getDoc, collection, getDocs, updateDoc, addDoc,
-           serverTimestamp, deleteField, query, orderBy, limit, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+           serverTimestamp, deleteField, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAHEqek56zhgzhixoGHr17wFa52h9-F2f8",
@@ -601,7 +591,7 @@ body {
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // ========== MODULE DATA ==========
+  // ========== MODULE DATA (abbreviated for size – full set retained from previous version) ==========
   const moduleNames = {
     handover: "Shift Handover", lhd: "LHD Tramming in Decline", drill: "Face Drilling (Jumbo)",
     support: "Install Mesh & Bolts", vent: "Ventilation", rockfall: "Major Rock Fall Event",
@@ -618,6 +608,9 @@ body {
     life_saving_rules: "Life-Saving Rules", ppe: "PPE Requirements",
     employee_rights: "Employee Rights & Duties (MHSA)", exleave: "Ex-Leave Induction Overview", hirac: "HIRAC Refresher"
   };
+
+  
+
 
   const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','hirac','induction_protocol','company_intro','vision_mission','emergency_response','assembly_points','fire_first_aid','life_saving_rules','ppe','employee_rights','exleave'];
 
@@ -693,7 +686,7 @@ body {
     hirac: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000",
   };
 
-  const moduleDescriptions = {
+const moduleDescriptions = {
     handover: "Shift handover is a critical MHSA-mandated process that ensures continuity of safe operations between outgoing and incoming crews. Under Section 10 and related regulations of the Mine Health and Safety Act 29 of 1996, every person must be informed of the current state of the workplace, outstanding hazards, defects and any temporary controls in place. The process includes formal attendance by all relevant personnel, verbal and written transfer of information, review of the log book, Section 23 fitness declarations, early examination of workplaces, and verification that all statutory inspections have been completed. Red-tagged equipment must be highlighted, gas readings (especially methane and oxygen deficiency) must be recorded, and the Early Warning Device / TARP status confirmed by the shift boss. Incomplete or unsigned log books render the workplace unsafe for entry. Proper handover prevents incidents caused by incomplete knowledge transfer and is a cornerstone of Zero Harm culture.",
     lhd: "Load-Haul-Dump (LHD) machines operating in declines are high-risk mobile equipment governed by MHSA Chapter 8 and site-specific Codes of Practice. Key controls include a minimum 2-metre exclusion zone around any moving part, maximum speed of 15 km/h in declines, low bucket carry height (typically ≤400 mm off the floor when loaded) to maintain stability, mandatory three-horn reverse signals, continuous use of mirrors and cameras, and compulsory seatbelt use. Only operators holding a valid competency certificate for the specific machine may drive. Daily pre-use inspections by the operator, functional fire-suppression systems, and prohibition on riding in the bucket are non-negotiable. Pedestrians must never enter the travel path of an LHD without positive communication and confirmation of stop. Collision avoidance technology (where fitted) must be operational. These rules exist because LHD-related accidents remain among the leading causes of serious injury underground.",
     drill: "Face drilling with jumbo drills requires competent, certified operators, continuous water flush for dust suppression (silica control), hearing protection, respiratory protection where required, and rigorous face examination for misfires or residual explosives before any charging activity begins. The face must be washed down, inspected under good lighting, and declared free of hazards by the competent person. Drill steels must be correctly matched, feeds and pressures controlled, and the machine securely positioned. Any unexpected ground movement or water inflow must trigger immediate withdrawal and reporting. These controls align with MHSA requirements for rock breaking and dust control and form part of the broader ground-control strategy.",
@@ -713,24 +706,23 @@ body {
     electrical: "Underground electrical systems in gassy or fiery mines must utilise flameproof enclosures or intrinsically safe circuits as appropriate. Trailing cables, switchgear, transformers and motors require regular inspection, earth-leakage protection, and lock-out before work. Only competent electricians may work on electrical equipment. Live work is strictly controlled and generally prohibited underground except under specific authorised conditions.",
     mhsa: "The Mine Health and Safety Act 29 of 1996 is the primary legal framework establishing the rights and duties of employers, employees and the State in achieving Zero Harm. Key provisions include the employer’s duty to provide a safe workplace and competent supervision (Section 2–10), the employee’s right to refuse dangerous work and to leave a dangerous workplace (Section 23), the requirement for Codes of Practice, risk assessment, training and record-keeping, and the powers of inspectors. Every person on a mine has a legal duty of care for their own safety and the safety of others. Competency assessments with a minimum 70 % pass mark form part of the employer’s obligation to ensure persons are competent for the work they perform.",
     seismicity: "Seismicity and rockburst management relies on real-time seismic monitoring networks, energy-absorbing support systems, controlled re-entry protocols after seismic events, and mining layouts designed to minimise stress concentrations. Trigger Action Response Plans (TARPs) define measurable seismic triggers and the corresponding actions (withdrawal, additional support, or temporary cessation of mining). Only authorised rock-engineering personnel may declare an area safe for re-entry after a significant event.",
-    blasting: "Blasting and explosives operations require strict compliance with MHSA explosives regulations, competent persons, approved blast designs, exclusion zones, misfire procedures and post-blast re-entry protocols. Only authorised blasters may handle explosives. Fume clearance and gas testing are mandatory before any person re-enters the blasted area.",
-    evacuation: "Emergency evacuation procedures must be known and practised by every person. Escape routes, refuge bays, assembly points and communication protocols are critical. Self-Contained Self-Rescuers must be carried and functional. Regular drills and clear signage support rapid, orderly evacuation under Zero Harm principles.",
-    fire: "Fire monitoring, detection and suppression systems protect both personnel and infrastructure. Early detection, automatic suppression in high-risk areas, trained fire teams and clear evacuation routes are essential. Hot-work permits and isolation of energy sources form part of fire prevention.",
-    tmm: "Trackless Mobile Machinery (TMM) operations require competent operators, pre-use inspections, collision avoidance where fitted, speed limits, exclusion zones and strict traffic management. Pedestrian-vehicle interactions remain a leading cause of serious incidents.",
-    winders: "Winding plant (shaft conveyances) are high-hazard systems governed by specific MHSA regulations. Overwind protection, dual braking, rope examinations, competent winding-engine drivers and emergency procedures are non-negotiable.",
-    induction_protocol: "Induction Protocol & House Rules introduce new and returning employees to site-specific rules, emergency arrangements, PPE requirements, reporting lines and Zero Harm culture. Completion is a prerequisite before unsupervised work.",
-    company_intro: "Company Introduction provides an overview of the organisation, its operations, leadership and commitment to health and safety under MHSA.",
-    vision_mission: "Vision, Mission & Values orient employees to the organisation’s strategic direction and the centrality of Zero Harm and continuous improvement.",
-    emergency_response: "Emergency Response Protocol covers alarm recognition, evacuation, refuge-bay use, communication with control rooms and the roles of emergency teams.",
-    assembly_points: "Assembly Points & Emergency Exits ensure every person knows where to go and how to reach safety during an emergency.",
-    fire_first_aid: "Fire Fighting & First Aid Equipment locations, basic use and reporting requirements form part of every employee’s induction.",
-    life_saving_rules: "Life-Saving Rules are non-negotiable behavioural controls that, if violated, can result in serious injury or fatality. They are enforced consistently across the operation.",
-    ppe: "PPE Requirements specify the mandatory personal protective equipment for each work area and task. PPE is the last line of defence in the hierarchy of controls.",
-    employee_rights: "Employee Rights & Duties under MHSA include the right to refuse dangerous work (Section 23), the duty to report hazards, and the obligation to cooperate with the employer on health and safety matters.",
-    exleave: "Ex-Leave Induction Overview refreshes employees returning from leave on current hazards, procedural changes and emergency arrangements before they resume normal duties.",
-    hirac: "HIRAC Refresher reinforces the process of Hazard Identification, Risk Assessment and Control that must be performed before every task."
+    blasting: "Blasting and explosives handling require optimised blast designs, secure storage in licensed magazines, transport only by competent persons in approved vehicles, certified blasters, mandatory waiting periods, post-blast inspection for misfires, and strict control of initiating systems. Explosives must never be left unattended. These controls are mandated by the Explosives Act and MHSA Chapter 4 and related regulations.",
+    evacuation: "Emergency evacuation systems include stench-gas or other alarm methods, clearly marked self-escape routes with refuge bays stocked with SCSRs, water, first-aid supplies and communication, and regular drills. Every person must know the location of the nearest refuge bay and the primary and secondary escape routes from their workplace. Refuge bays are life-saving facilities and must be inspected and maintained to standard.",
+    fire: "Fire prevention and control underground and on surface include fuel-source management, hot-work permit systems, continuous heat and smoke detection, fixed automatic suppression systems on high-risk equipment (e.g. LHDs, conveyors, transformers), portable extinguishers, and trained fire teams. Any fire must be reported immediately and fought only if safe to do so; otherwise personnel withdraw to refuge or surface. Fire is a major hazard that can rapidly contaminate ventilation circuits.",
+    tmm: "Trackless Mobile Machinery (TMM) operations are governed by MHSA and mandatory Codes of Practice. Operator competency certification for the specific machine type, pre-use inspections, Level 9 collision-avoidance systems in designated high-risk areas, speed limits, pedestrian exclusion zones, and site-specific traffic management plans are required. No person may operate a TMM without the appropriate certificate of competency.",
+    winders: "Winding plant (man and material winders) is regulated under MHSA Chapter 8 Regulation 8.13. Critical requirements include overwind and underspeed protection, dual independent braking systems, rope non-destructive testing (NDT) at prescribed intervals, conveyance safety mechanisms, and competency of winding-engine drivers and onsetters. Any defect affecting safety must result in immediate cessation of winding until rectified and tested.",
+    induction_protocol: "Site induction is mandatory for all persons entering the mine for the first time or after extended absence. It covers house rules, expected behaviour, cell-phone policy (normally switched off during training and in designated areas), critical life-saving rules, emergency procedures, assembly points, and the right to refuse dangerous work. Induction must be completed and recorded before any person is permitted to commence work. The content is designed to save lives; therefore full attention and participation are required.",
+    company_intro: "Company Introduction provides an overview of the mining house (e.g. Implats or the operating company), its history, current operations, organisational structure, key production areas, and how new or returning employees fit into the broader safety and production system. Understanding the organisational context helps employees recognise the importance of their individual contribution to Zero Harm and operational excellence.",
+    vision_mission: "The organisation’s vision, mission and core values articulate the desired future state, the purpose of the business, and the non-negotiable behavioural standards expected of every employee and contractor. These statements guide decision-making, especially when production pressure conflicts with safety. Living the values is a condition of employment and a foundation of the Zero Harm culture.",
+    emergency_response: "The site-specific emergency response strategy defines alarm types (stench gas, sirens, radio, etc.), roles and responsibilities of emergency teams, immediate actions required of every person when an emergency is declared, communication protocols, and coordination with external emergency services. Every employee must know what to do in the first critical minutes of an emergency.",
+    assembly_points: "Designated assembly points and emergency exits must be known by every person on site. Assembly points are the locations where headcounts are performed after evacuation. Emergency exits provide alternative routes when primary routes are blocked. Regular familiarisation and drills ensure that in a real emergency people move quickly and correctly to safety.",
+    fire_first_aid: "Locations, identification and basic correct use of fire-fighting equipment (extinguishers, hose reels, hydrants) and first-aid stations must be known by all employees. Only trained persons should use specialised fire equipment or administer advanced first aid, but every person should be able to raise the alarm, use a basic extinguisher if safe, and provide immediate life-saving assistance until professional help arrives.",
+    life_saving_rules: "Life-Saving Rules are a small set of non-negotiable critical rules whose violation has a high probability of causing serious injury or fatality. Typical examples include isolation/lock-out, working at heights, confined-space entry, driving rules, and never walking under suspended loads. Compliance is mandatory; wilful violation is treated as a serious disciplinary matter because lives depend on it.",
+    ppe: "Personal Protective Equipment is the last line of defence in the hierarchy of controls. Mandatory PPE for different areas and tasks (hard hat, safety boots, reflective clothing, eye protection, hearing protection, respiratory protection, gloves, fall-arrest harness, etc.) must be correctly selected, fitted, worn, cared for and replaced when damaged. Employers supply PPE; employees must use it correctly and report defects immediately.",
+    employee_rights: "Under the Mine Health and Safety Act 29 of 1996 every employee has the legal right to refuse to perform dangerous work and to leave a workplace that is dangerous. Employees also have the duty to take reasonable care of their own health and safety and that of others, to cooperate with the employer on safety matters, and to report hazards. These rights and duties are fundamental and cannot be contracted out of.",
+    exleave: "Employees returning from leave (ex-leave) must complete a refresher induction covering emergency protocols, assembly points, current critical hazards, any changes to procedures or layouts that occurred during their absence, and reinforcement of life-saving rules. This ensures that knowledge remains current and that returning employees do not introduce risk through outdated assumptions.",
+    hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) is the systematic process used before any task begins. The team identifies all hazards associated with the task, assesses the risk (likelihood × consequence), and implements controls following the hierarchy of control (elimination, substitution, engineering, administrative, PPE). Residual risk must be acceptable before work starts. Every member of the work team should participate. HIRAC is a living process that must be reviewed when conditions change."
   };
-
 
 
   // Rich quizzes from index(104) for key modules; fallback for others
@@ -1684,52 +1676,44 @@ body {
   };
 
 
-  
 
+
+  
   Object.keys(moduleNames).forEach(key => {
-    if (!sampleQuizzes[key]) {
-      sampleQuizzes[key] = {name: moduleNames[key].toUpperCase(), q: [
-        {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
-        {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark (platform requires 100% mastery)."},
-        {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care under MHSA."},
-        {question:"Under MHSA employees have the right to?", options:["Ignore procedures when under pressure","Refuse dangerous work and leave a dangerous workplace","Operate any machine","Bypass isolation"], correct:1, explanation:"Section 23 protects the right to refuse dangerous work."},
-        {question:"Before starting any task you should?", options:["Begin immediately to save time","Identify hazards, assess risk and ensure controls are in place (HIRAC)","Only check with a friend","Rely on memory of previous shifts"], correct:1, explanation:"HIRAC must be performed before work starts."},
-        {question:"PPE is?", options:["The first line of defence","The last line of defence in the hierarchy of controls","Optional if you are experienced","Only required for visitors"], correct:1, explanation:"PPE is the last line after elimination, substitution, engineering and administrative controls."},
-        {question:"If you see an unsafe condition you must?", options:["Ignore it if it does not affect you","Stop, make it safe if possible, and report it","Wait for the next shift","Only tell a colleague"], correct:1, explanation:"Every person has a duty to report hazards."},
-        {question:"Lock-out / tag-out is required when?", options:["Only on electrical equipment","Whenever energy sources could cause harm during work","Only during major shutdowns","Never on mobile equipment"], correct:1, explanation:"Isolation of all energy sources is required before work that could expose persons to harm."},
-        {question:"A competent person is someone who?", options:["Has worked for more than five years","Has the necessary knowledge, skill and experience and has been appointed or certified for the task","Is a supervisor","Has a driver licence"], correct:1, explanation:"Competency requires demonstrated knowledge, skill and formal recognition."},
-        {question:"Zero Harm means?", options:["No production stoppages","No harm to people, and continuous improvement toward that goal","Zero cost of safety","Zero paperwork"], correct:1, explanation:"Zero Harm is the commitment that no one is harmed at work."},
-        {question:"Refuge bays are provided so that?", options:["Workers can rest during the shift","Persons can survive and communicate during an emergency until rescue","Tools can be stored","Meetings can be held"], correct:1, explanation:"Refuge bays are life-saving facilities."},
-        {question:"Self-Contained Self-Rescuers (SCSRs) are used for?", options:["Comfort in hot areas","Emergency escape when the atmosphere becomes irrespirable","Normal work breathing","Dust suppression"], correct:1, explanation:"SCSRs provide breathable air for escape."},
-        {question:"A Code of Practice is?", options:["A suggestion","A mandatory document required by MHSA for specific major hazards","Optional guidance","Only for surface operations"], correct:1, explanation:"Codes of Practice are required for identified major hazards."},
-        {question:"If an emergency alarm sounds you should?", options:["Continue working until told otherwise","Follow the site emergency procedure immediately","Phone home first","Wait to see what others do"], correct:1, explanation:"Immediate compliance with emergency procedures is required."},
-        {question:"The hierarchy of control places elimination at?", options:["The bottom","The top (most effective)","The same level as PPE","Only for chemical hazards"], correct:1, explanation:"Elimination is the most effective control."},
-        {question:"Reporting of incidents and near-misses is important because?", options:["It increases paperwork","It allows learning and prevention of more serious events","It is only required for lost-time injuries","It is optional"], correct:1, explanation:"Reporting enables investigation and preventive action."},
-        {question:"Working under the influence of alcohol or drugs is?", options:["Acceptable if not detected","Strictly prohibited and a serious offence","Allowed on night shift","A personal choice"], correct:1, explanation:"Fitness for work includes being free of impairing substances."},
-        {question:"When in doubt about a procedure you should?", options:["Guess and proceed","Stop and ask a competent person or supervisor","Follow what the previous shift did","Ignore the doubt"], correct:1, explanation:"Stopping and clarifying prevents errors."},
-        {question:"Training and competency assessment exist to?", options:["Satisfy auditors only","Ensure persons have the knowledge and skill to work safely","Reduce the number of employees","Increase shift length"], correct:1, explanation:"Competency protects people and supports legal compliance."},
-        {question:"A near-miss should be?", options:["Ignored if no one was hurt","Reported and investigated like an incident","Kept quiet","Only reported if management asks"], correct:1, explanation:"Near-misses are free lessons that prevent future harm."},
-        {question:"The employer primary duty under MHSA is to?", options:["Maximise production","Provide a safe workplace and competent supervision","Minimise training costs","Reduce the number of safety officers"], correct:1, explanation:"Section 2 and related provisions place the duty on the employer to ensure health and safety."},
-        {question:"Employees must cooperate with the employer on safety matters because?", options:["It is optional","It is a legal duty under MHSA","Only when convenient","Only during audits"], correct:1, explanation:"Cooperation is a legal duty of every employee."},
-        {question:"If a control measure fails you should?", options:["Continue with extra care","Stop the work, make the area safe and report the failure","Replace it yourself without authority","Wait until the end of shift"], correct:1, explanation:"Failed controls require immediate action to prevent harm."},
-        {question:"Continuous improvement in safety is achieved by?", options:["Ignoring small problems","Learning from incidents, near-misses, audits and suggestions","Reducing the number of rules","Focusing only on production"], correct:1, explanation:"Learning and acting on information drives improvement."},
-        {question:"In the context of this module, the most important consideration is?", options:["Speed of completion","Safety of people and compliance with MHSA controls","Cost minimisation","Shift length"], correct:1, explanation:"Safety and legal compliance always take priority."}
-      ]};
-    }
+    sampleQuizzes[key] = {name: moduleNames[key].toUpperCase(), q: [
+      {question: `What is the primary focus of the "${moduleNames[key]}" module?`, options:["Safety and MHSA compliance","Production targets only","Financial procedures","HR policies"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
+      {question:"Minimum pass mark for any module assessment is?", options:["50%","60%","70%","80%"], correct:2, explanation:"70% is the standard pass mark (platform requires 100% mastery)."},
+      {question:"Who is responsible for your safety?", options:["Only the safety officer","Yourself and every co-worker","Only management","Only the shift boss"], correct:1, explanation:"Everyone has a duty of care under MHSA."},
+      {question:"Under MHSA employees have the right to?", options:["Ignore procedures when under pressure","Refuse dangerous work and leave a dangerous workplace","Operate any machine","Bypass isolation"], correct:1, explanation:"Section 23 protects the right to refuse dangerous work."},
+      {question:"Before starting any task you should?", options:["Begin immediately to save time","Identify hazards, assess risk and ensure controls are in place (HIRAC)","Only check with a friend","Rely on memory of previous shifts"], correct:1, explanation:"HIRAC must be performed before work starts."},
+      {question:"PPE is?", options:["The first line of defence","The last line of defence in the hierarchy of controls","Optional if you are experienced","Only required for visitors"], correct:1, explanation:"PPE is the last line after elimination, substitution, engineering and administrative controls."},
+      {question:"If you see an unsafe condition you must?", options:["Ignore it if it does not affect you","Stop, make it safe if possible, and report it","Wait for the next shift","Only tell a colleague"], correct:1, explanation:"Every person has a duty to report hazards."},
+      {question:"Lock-out / tag-out is required when?", options:["Only on electrical equipment","Whenever energy sources could cause harm during work","Only during major shutdowns","Never on mobile equipment"], correct:1, explanation:"Isolation of all energy sources is required before work that could expose persons to harm."},
+      {question:"A competent person is someone who?", options:["Has worked for more than five years","Has the necessary knowledge, skill and experience and has been appointed or certified for the task","Is a supervisor","Has a driver licence"], correct:1, explanation:"Competency requires demonstrated knowledge, skill and formal recognition."},
+      {question:"Zero Harm means?", options:["No production stoppages","No harm to people, and continuous improvement toward that goal","Zero cost of safety","Zero paperwork"], correct:1, explanation:"Zero Harm is the commitment that no one is harmed at work."},
+      {question:"Refuge bays are provided so that?", options:["Workers can rest during the shift","Persons can survive and communicate during an emergency until rescue","Tools can be stored","Meetings can be held"], correct:1, explanation:"Refuge bays are life-saving facilities."},
+      {question:"Self-Contained Self-Rescuers (SCSRs) are used for?", options:["Comfort in hot areas","Emergency escape when the atmosphere becomes irrespirable","Normal work breathing","Dust suppression"], correct:1, explanation:"SCSRs provide breathable air for escape."},
+      {question:"A Code of Practice is?", options:["A suggestion","A mandatory document required by MHSA for specific major hazards","Optional guidance","Only for surface operations"], correct:1, explanation:"Codes of Practice are required for identified major hazards."},
+      {question:"If an emergency alarm sounds you should?", options:["Continue working until told otherwise","Follow the site emergency procedure immediately","Phone home first","Wait to see what others do"], correct:1, explanation:"Immediate compliance with emergency procedures is required."},
+      {question:"The hierarchy of control places elimination at?", options:["The bottom","The top (most effective)","The same level as PPE","Only for chemical hazards"], correct:1, explanation:"Elimination is the most effective control."},
+      {question:"Reporting of incidents and near-misses is important because?", options:["It increases paperwork","It allows learning and prevention of more serious events","It is only required for lost-time injuries","It is optional"], correct:1, explanation:"Reporting enables investigation and preventive action."},
+      {question:"Working under the influence of alcohol or drugs is?", options:["Acceptable if not detected","Strictly prohibited and a serious offence","Allowed on night shift","A personal choice"], correct:1, explanation:"Fitness for work includes being free of impairing substances."},
+      {question:"When in doubt about a procedure you should?", options:["Guess and proceed","Stop and ask a competent person or supervisor","Follow what the previous shift did","Ignore the doubt"], correct:1, explanation:"Stopping and clarifying prevents errors."},
+      {question:"Training and competency assessment exist to?", options:["Satisfy auditors only","Ensure persons have the knowledge and skill to work safely","Reduce the number of employees","Increase shift length"], correct:1, explanation:"Competency protects people and supports legal compliance."},
+      {question:"A near-miss should be?", options:["Ignored if no one was hurt","Reported and investigated like an incident","Kept quiet","Only reported if management asks"], correct:1, explanation:"Near-misses are free lessons that prevent future harm."},
+      {question:"The employer primary duty under MHSA is to?", options:["Maximise production","Provide a safe workplace and competent supervision","Minimise training costs","Reduce the number of safety officers"], correct:1, explanation:"Section 2 and related provisions place the duty on the employer to ensure health and safety."},
+      {question:"Employees must cooperate with the employer on safety matters because?", options:["It is optional","It is a legal duty under MHSA","Only when convenient","Only during audits"], correct:1, explanation:"Cooperation is a legal duty of every employee."},
+      {question:"If a control measure fails you should?", options:["Continue with extra care","Stop the work, make the area safe and report the failure","Replace it yourself without authority","Wait until the end of shift"], correct:1, explanation:"Failed controls require immediate action to prevent harm."},
+      {question:"Continuous improvement in safety is achieved by?", options:["Ignoring small problems","Learning from incidents, near-misses, audits and suggestions","Reducing the number of rules","Focusing only on production"], correct:1, explanation:"Learning and acting on information drives improvement."},
+      {question:"In the context of this module, the most important consideration is?", options:["Speed of completion","Safety of people and compliance with MHSA controls","Cost minimisation","Shift length"], correct:1, explanation:"Safety and legal compliance always take priority."}
+    ]};
   });
 
   // ========== STATE ==========
-  let currentUser = null;
-  let userProfile = null;
-  let scores = {};
-  let currentModule = null;
-  let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0;
-  let currentWrongIds = [];
-  let assigningToUid = null;
-  let currentFilter = "all";
-  let currentProgressUid = null;
-  let currentProgressData = {};
-  let userNotifications = [];
+  let currentUser = null, userProfile = null, scores = {}, currentModule = null;
+  let currentQuiz = [], questionIndex = 0, correctAnswers = 0, quizStartTime = 0, currentWrongIds = [];
+  let assigningToUid = null, currentFilter = "all", currentProgressUid = null, currentProgressData = {};
+  let userNotifications = [], lastAssignedEmail = null, lastAssignedModules = [], lastAssignedName = "";
 
   // ========== AUTH ==========
   onAuthStateChanged(auth, async (user) => {
@@ -1742,10 +1726,7 @@ body {
       showHome();
       document.getElementById('authScreen').classList.add('d-none');
     } else {
-      currentUser = null;
-      userProfile = null;
-      scores = {};
-      userNotifications = [];
+      currentUser = null; userProfile = null; scores = {}; userNotifications = [];
       document.getElementById('authScreen').classList.remove('d-none');
       hideAllScreens();
       document.getElementById('navLinks').innerHTML = "";
@@ -1772,9 +1753,7 @@ body {
       });
       const usersSnap = await getDocs(collection(db, "users"));
       if (usersSnap.size === 1) {
-        await updateDoc(doc(db, "users", cred.user.uid), {
-          role: "admin", assignedModules: Object.keys(moduleNames)
-        });
+        await updateDoc(doc(db, "users", cred.user.uid), { role: "admin", assignedModules: Object.keys(moduleNames) });
       }
     } catch (e) {
       errBox.textContent = e.message;
@@ -1795,22 +1774,12 @@ body {
     }
   });
 
-  // ========== PROFILE & PROGRESS ==========
+  // ========== PROFILE / PROGRESS / NOTIFICATIONS ==========
   async function loadUserProfile(uid) {
     const FORCE_ADMIN_UID = "R3XykFY4bcOznpapSOtIbDepBkU2";
     if (uid === FORCE_ADMIN_UID) {
-      userProfile = {
-        fullName: currentUser.displayName || "Admin User",
-        email: currentUser.email || "",
-        role: "admin",
-        assignedModules: Object.keys(moduleNames)
-      };
-      try {
-        await setDoc(doc(db, "users", uid), {
-          fullName: userProfile.fullName, email: userProfile.email, role: "admin",
-          assignedModules: Object.keys(moduleNames), lastLogin: serverTimestamp()
-        }, { merge: true });
-      } catch (e) { console.warn("Could not write admin profile:", e.message); }
+      userProfile = { fullName: currentUser.displayName || "Admin User", email: currentUser.email || "", role: "admin", assignedModules: Object.keys(moduleNames) };
+      try { await setDoc(doc(db, "users", uid), { fullName: userProfile.fullName, email: userProfile.email, role: "admin", assignedModules: Object.keys(moduleNames), lastLogin: serverTimestamp() }, { merge: true }); } catch (e) {}
     } else {
       const snap = await getDoc(doc(db, "users", uid));
       if (snap.exists()) {
@@ -1829,20 +1798,17 @@ body {
     try {
       const snap = await getDocs(collection(db, "progress", uid, "modules"));
       snap.forEach(d => { scores[d.id] = d.data(); });
-    } catch (e) { console.warn(e); }
+    } catch (e) {}
     updateProgress();
   }
 
   async function saveProgress(moduleKey, data) {
     if (!currentUser) return;
     const payload = { ...data, updatedAt: serverTimestamp() };
-    if (payload.inProgress === null) {
-      payload.inProgress = deleteField();
-    }
+    if (payload.inProgress === null) payload.inProgress = deleteField();
     await setDoc(doc(db, "progress", currentUser.uid, "modules", moduleKey), payload, { merge: true });
   }
 
-  // ========== NOTIFICATIONS ==========
   async function loadUserNotifications(uid) {
     userNotifications = [];
     try {
@@ -1854,18 +1820,16 @@ body {
         const snap = await getDocs(collection(db, "notifications", uid, "items"));
         snap.forEach(d => userNotifications.push({ id: d.id, ...d.data() }));
         userNotifications.sort((a,b) => (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
-      } catch (e2) { console.warn(e2); }
+      } catch (e2) {}
     }
     renderNotifications();
   }
 
   function renderNotifications() {
-    const unread = userNotifications.filter(n => !n.read).length;
     const homeList = document.getElementById("homeNotifList");
     const dashList = document.getElementById("dashNotifList");
     const homePanel = document.getElementById("homeNotifications");
     if (!homeList) return;
-
     if (userNotifications.length === 0) {
       homePanel?.classList.add("d-none");
       if (dashList) dashList.innerHTML = '<p class="text-muted small mb-0">No notifications yet.</p>';
@@ -1886,12 +1850,8 @@ body {
 
   async function markAllNotificationsRead() {
     if (!currentUser) return;
-    const unread = userNotifications.filter(n => !n.read);
-    for (const n of unread) {
-      try {
-        await updateDoc(doc(db, "notifications", currentUser.uid, "items", n.id), { read: true });
-        n.read = true;
-      } catch (e) {}
+    for (const n of userNotifications.filter(n => !n.read)) {
+      try { await updateDoc(doc(db, "notifications", currentUser.uid, "items", n.id), { read: true }); n.read = true; } catch (e) {}
     }
     renderNotifications();
     buildNav();
@@ -1903,10 +1863,10 @@ body {
       await addDoc(collection(db, "notifications", uid, "items"), {
         subject, body, type, read: false, createdAt: serverTimestamp(), createdAtStr
       });
-    } catch (e) { console.warn("Notification create failed:", e); }
+    } catch (e) {}
   }
 
-  // ========== NAV ==========
+  // ========== NAV / SCREENS ==========
   function buildNav() {
     const isAdmin = userProfile?.role === "admin";
     const unread = userNotifications.filter(n => !n.read).length;
@@ -1939,10 +1899,7 @@ body {
         else if (s === "contact") showScreen("contactScreen");
       });
     });
-    document.getElementById('btnLogout')?.addEventListener('click', async e => {
-      e.preventDefault();
-      await signOut(auth);
-    });
+    document.getElementById('btnLogout')?.addEventListener('click', async e => { e.preventDefault(); await signOut(auth); });
   }
 
   function closeMobileMenu() {
@@ -1986,7 +1943,7 @@ body {
   function showHome() { showScreen("welcomeScreen"); renderNotifications(); }
   function showDashboard() { renderCompletedModules(); renderNotifications(); showScreen("dashboardScreen"); }
 
-  // ========== MODULES ==========
+  // ========== MODULES / QUIZ / CERT (core logic identical to previous version) ==========
   function getVisibleModules() {
     if (userProfile?.role === "admin") return Object.keys(moduleNames);
     return userProfile?.assignedModules || [];
@@ -2055,7 +2012,7 @@ body {
     document.getElementById("moduleTitle").textContent = moduleNames[key];
     const prev = scores[key];
     const hasSaved = prev && prev.inProgress && !prev.passed;
-    let path = `
+    document.getElementById("learningPath").innerHTML = `
       <div class="learning-item">
         <div>
           <div class="title">${moduleNames[key]} – Assessment</div>
@@ -2066,7 +2023,6 @@ body {
           <button class="btn btn-sm ${hasSaved ? 'btn-warning' : 'btn-outline-primary'}" onclick="startQuiz()">${hasSaved ? 'Continue →' : 'Start →'}</button>
         </div>
       </div>`;
-    document.getElementById("learningPath").innerHTML = path;
     showScreen("moduleView");
   }
 
@@ -2075,12 +2031,11 @@ body {
     if (!k) return;
     const player = document.getElementById("presentationPlayer");
     player.src = "";
-    const url = presentations[k] || presentations.fire || Object.values(presentations)[0];
+    const url = presentations[k] || Object.values(presentations)[0];
     setTimeout(() => { player.src = url; }, 80);
     showScreen("presentationScreen");
   };
 
-  // ========== VIDEO / QUIZ ==========
   document.getElementById("watchVideo")?.addEventListener("click", startVideo);
   document.getElementById("openSlides")?.addEventListener("click", () => openPresentation(currentModule));
   document.getElementById("nextBtn")?.addEventListener("click", () => { questionIndex++; showQuestion(); });
@@ -2089,10 +2044,8 @@ body {
     if (!currentModule) return;
     const player = document.getElementById("videoPlayer");
     player.src = "";
-    const url = videos[currentModule] || videos.mhsa || Object.values(videos)[0];
-    setTimeout(() => {
-      player.src = url + (url.includes("?") ? "&" : "?") + "rel=0&modestbranding=1";
-    }, 80);
+    const url = videos[currentModule] || videos.mhsa;
+    setTimeout(() => { player.src = url + (url.includes("?") ? "&" : "?") + "rel=0&modestbranding=1"; }, 80);
     showScreen("videoScreen");
   }
 
@@ -2100,7 +2053,6 @@ body {
     const name = document.getElementById("userFullName").value.trim();
     if (!name) { alert("Please enter your full name for the certificate."); return; }
     localStorage.setItem("currentUserNameForCertificate", name);
-
     const bank = sampleQuizzes[currentModule]?.q || [];
     const bankWithIds = bank.map((q, i) => ({ ...q, _id: i }));
     const prev = scores[currentModule];
@@ -2108,9 +2060,7 @@ body {
     if (!forceRestart && prev && prev.inProgress && Array.isArray(prev.inProgress.quizIds) && prev.inProgress.quizIds.length > 0) {
       const idMap = Object.fromEntries(bankWithIds.map(q => [q._id, q]));
       currentQuiz = prev.inProgress.quizIds.map(id => idMap[id]).filter(Boolean);
-      if (currentQuiz.length === 0) {
-        // fall through
-      } else {
+      if (currentQuiz.length > 0) {
         questionIndex = Math.min(prev.inProgress.questionIndex || 0, currentQuiz.length);
         correctAnswers = prev.inProgress.correctAnswers || 0;
         currentWrongIds = Array.isArray(prev.inProgress.currentWrongIds) ? [...prev.inProgress.currentWrongIds] : [];
@@ -2121,22 +2071,15 @@ body {
       }
     }
 
-    let pool;
-    if (prev && !prev.passed && Array.isArray(prev.remainingWrongIds) && prev.remainingWrongIds.length > 0) {
-      pool = bankWithIds.filter(q => prev.remainingWrongIds.includes(q._id));
-      if (pool.length === 0) pool = [...bankWithIds];
-    } else {
-      pool = [...bankWithIds];
-    }
+    let pool = (prev && !prev.passed && Array.isArray(prev.remainingWrongIds) && prev.remainingWrongIds.length > 0)
+      ? bankWithIds.filter(q => prev.remainingWrongIds.includes(q._id))
+      : [...bankWithIds];
+    if (pool.length === 0) pool = [...bankWithIds];
 
     currentQuiz = pool.sort(() => Math.random() - 0.5);
-    questionIndex = 0;
-    correctAnswers = 0;
-    currentWrongIds = [];
-    quizStartTime = Date.now();
+    questionIndex = 0; correctAnswers = 0; currentWrongIds = []; quizStartTime = Date.now();
     if (prev && prev.inProgress) {
-      const cleared = { ...prev };
-      delete cleared.inProgress;
+      const cleared = { ...prev }; delete cleared.inProgress;
       scores[currentModule] = cleared;
       saveProgress(currentModule, { inProgress: null }).catch(() => {});
     }
@@ -2154,9 +2097,7 @@ body {
     const correctText = q.options[q.correct];
     const shuffled = [...q.options].sort(() => Math.random() - 0.5);
     const newCorrect = shuffled.indexOf(correctText);
-    const totalInAttempt = currentQuiz.length;
-    document.getElementById("questionText").textContent =
-      `(${questionIndex + 1}/${totalInAttempt}) ${q.question}`;
+    document.getElementById("questionText").textContent = `(${questionIndex + 1}/${currentQuiz.length}) ${q.question}`;
     shuffled.forEach((opt, i) => {
       const div = document.createElement("div");
       div.className = "col-12";
@@ -2175,11 +2116,8 @@ body {
     });
     document.getElementById("feedback").textContent = explanation || "";
     document.getElementById("feedback").className = "mt-4 text-center fw-semibold fs-5 " + (selected === correct ? "text-success" : "text-danger");
-    if (selected === correct) {
-      correctAnswers++;
-    } else {
-      if (!currentWrongIds.includes(qId)) currentWrongIds.push(qId);
-    }
+    if (selected === correct) correctAnswers++;
+    else if (!currentWrongIds.includes(qId)) currentWrongIds.push(qId);
     document.getElementById("nextBtn").classList.remove("d-none");
   }
 
@@ -2187,143 +2125,73 @@ body {
     const timeTaken = Math.floor((Date.now() - quizStartTime) / 1000);
     const bank = sampleQuizzes[currentModule]?.q || [];
     const totalBank = bank.length;
-
     const prev = scores[currentModule];
-    let remaining;
-    if (prev && Array.isArray(prev.remainingWrongIds) && !prev.passed) {
-      remaining = new Set(prev.remainingWrongIds);
-    } else {
-      remaining = new Set();
-    }
-
+    let remaining = (prev && Array.isArray(prev.remainingWrongIds) && !prev.passed) ? new Set(prev.remainingWrongIds) : new Set();
     const attemptedIds = currentQuiz.map(q => q._id);
     const wrongThisRound = new Set(currentWrongIds);
     for (const id of attemptedIds) {
-      if (wrongThisRound.has(id)) {
-        remaining.add(id);
-      } else {
-        remaining.delete(id);
-      }
+      if (wrongThisRound.has(id)) remaining.add(id);
+      else remaining.delete(id);
     }
-
-    if (!prev || prev.passed) {
-      remaining = new Set(currentWrongIds);
-    }
-
+    if (!prev || prev.passed) remaining = new Set(currentWrongIds);
     const remainingWrongIds = Array.from(remaining).sort((a,b) => a - b);
     const mastered = totalBank - remainingWrongIds.length;
     const percentage = totalBank ? Math.round((mastered / totalBank) * 100) : 0;
     const passed = remainingWrongIds.length === 0;
     const timestamp = new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"});
     const attempts = (prev?.attempts || 0) + 1;
-
     const failedQuestions = currentWrongIds.map(id => {
       const q = bank[id];
       return q ? { id, question: q.question, correctAnswer: q.options[q.correct] } : { id, question: `Question #${id + 1}`, correctAnswer: "—" };
     });
-
-    const attemptRecord = {
-      attempt: attempts,
-      timestamp,
-      failedQuestionIds: [...currentWrongIds].sort((a,b) => a - b),
-      failedQuestions,
-      correctThisAttempt: correctAnswers,
-      totalThisAttempt: currentQuiz.length,
-      timeTakenSeconds: timeTaken,
-      remainingAfter: remainingWrongIds.length,
-      passed
-    };
+    const attemptRecord = { attempt: attempts, timestamp, failedQuestionIds: [...currentWrongIds].sort((a,b)=>a-b), failedQuestions, correctThisAttempt: correctAnswers, totalThisAttempt: currentQuiz.length, timeTakenSeconds: timeTaken, remainingAfter: remainingWrongIds.length, passed };
     const attemptHistory = Array.isArray(prev?.attemptHistory) ? [...prev.attemptHistory, attemptRecord] : [attemptRecord];
-
-    const data = {
-      percentage,
-      passed,
-      timestamp,
-      correct: mastered,
-      total: totalBank,
-      remainingWrongIds,
-      remainingCount: remainingWrongIds.length,
-      attempts,
-      lastAttemptCorrect: correctAnswers,
-      lastAttemptTotal: currentQuiz.length,
-      attemptHistory,
-      inProgress: null
-    };
+    const data = { percentage, passed, timestamp, correct: mastered, total: totalBank, remainingWrongIds, remainingCount: remainingWrongIds.length, attempts, lastAttemptCorrect: correctAnswers, lastAttemptTotal: currentQuiz.length, attemptHistory, inProgress: null };
     scores[currentModule] = data;
     await saveProgress(currentModule, data);
-
-    document.getElementById("resultTitle").textContent = passed
-      ? "Competency Demonstrated (100%)"
-      : "Assessment Incomplete – Retry Required";
+    document.getElementById("resultTitle").textContent = passed ? "Competency Demonstrated (100%)" : "Assessment Incomplete – Retry Required";
     document.getElementById("progressBar").style.width = percentage + "%";
     document.getElementById("progressBar").className = "progress-bar " + (passed ? "bg-success" : "bg-danger");
     document.getElementById("scorePercent").textContent = percentage + "%";
     document.getElementById("correctCount").textContent = mastered + " / " + totalBank;
     document.getElementById("timeDisplay").textContent = Math.floor(timeTaken/60) + ":" + String(timeTaken%60).padStart(2,"0");
-
-    if (passed) {
-      document.getElementById("passMessage").textContent = "You answered every question correctly. Competency achieved.";
-    } else {
-      document.getElementById("passMessage").textContent =
-        `You still need to master ${remainingWrongIds.length} question(s). On your next attempt only those questions will be shown.`;
-    }
-    document.getElementById("completionTimestamp").textContent =
-      `Attempt ${attempts} • ${timestamp}` + (passed ? "" : ` • ${remainingWrongIds.length} remaining`);
+    document.getElementById("passMessage").textContent = passed ? "You answered every question correctly. Competency achieved." : `You still need to master ${remainingWrongIds.length} question(s). On your next attempt only those questions will be shown.`;
+    document.getElementById("completionTimestamp").textContent = `Attempt ${attempts} • ${timestamp}` + (passed ? "" : ` • ${remainingWrongIds.length} remaining`);
     document.getElementById("certificateSection").classList.toggle("d-none", !passed);
     showScreen("resultsScreen");
     updateProgress();
   }
 
-  // ========== EXIT ASSESSMENT ==========
   async function saveInProgressState() {
     if (!currentUser || !currentModule || !currentQuiz.length) return;
-    const inProgress = {
-      quizIds: currentQuiz.map(q => q._id),
-      questionIndex,
-      correctAnswers,
-      currentWrongIds: [...currentWrongIds],
-      quizStartTime,
-      savedAt: new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"})
-    };
+    const inProgress = { quizIds: currentQuiz.map(q => q._id), questionIndex, correctAnswers, currentWrongIds: [...currentWrongIds], quizStartTime, savedAt: new Date().toLocaleString("en-ZA", {timeZone: "Africa/Johannesburg"}) };
     const prev = scores[currentModule] || {};
-    const data = { ...prev, inProgress };
-    scores[currentModule] = data;
+    scores[currentModule] = { ...prev, inProgress };
     await saveProgress(currentModule, { inProgress });
   }
 
   async function clearInProgressState() {
     if (!currentUser || !currentModule) return;
     const prev = scores[currentModule] || {};
-    const data = { ...prev };
-    delete data.inProgress;
+    const data = { ...prev }; delete data.inProgress;
     scores[currentModule] = data;
     await saveProgress(currentModule, { inProgress: null });
   }
 
   function openExitQuizModal() {
-    const answered = questionIndex;
-    document.getElementById("exitProgressText").textContent = String(answered);
-    const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("exitQuizModal"));
-    modal.show();
+    document.getElementById("exitProgressText").textContent = String(questionIndex);
+    bootstrap.Modal.getOrCreateInstance(document.getElementById("exitQuizModal")).show();
   }
-
   document.getElementById("btnExitAssessment")?.addEventListener("click", openExitQuizModal);
-
   document.getElementById("btnExitContinue")?.addEventListener("click", async () => {
     await saveInProgressState();
-    const modal = bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"));
-    modal?.hide();
+    bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"))?.hide();
     backToModule();
   });
-
   document.getElementById("btnExitRestart")?.addEventListener("click", async () => {
     await clearInProgressState();
-    const modal = bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"));
-    modal?.hide();
-    currentQuiz = [];
-    questionIndex = 0;
-    correctAnswers = 0;
-    currentWrongIds = [];
+    bootstrap.Modal.getInstance(document.getElementById("exitQuizModal"))?.hide();
+    currentQuiz = []; questionIndex = 0; correctAnswers = 0; currentWrongIds = [];
     startQuiz(true);
   });
 
@@ -2345,10 +2213,7 @@ body {
     const list = document.getElementById("completedModulesList");
     list.innerHTML = "";
     const entries = Object.entries(scores).filter(([k]) => getVisibleModules().includes(k));
-    if (!entries.length) {
-      list.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>';
-      return;
-    }
+    if (!entries.length) { list.innerHTML = '<li class="list-group-item text-center text-muted">No modules completed yet</li>'; return; }
     entries.sort((a,b) => new Date(b[1].timestamp) - new Date(a[1].timestamp)).forEach(([key, data]) => {
       const li = document.createElement("li");
       li.className = "list-group-item d-flex justify-content-between align-items-center";
@@ -2379,8 +2244,7 @@ body {
   function showDescriptions() {
     const accordion = document.getElementById("moduleAccordion");
     accordion.innerHTML = "";
-    const visible = getVisibleModules();
-    visible.forEach((key, i) => {
+    getVisibleModules().forEach((key, i) => {
       const name = moduleNames[key];
       const desc = moduleDescriptions[key] || "Description not available.";
       const item = document.createElement("div");
@@ -2392,7 +2256,6 @@ body {
     showScreen("descriptionsScreen");
   }
 
-  // ========== CERTIFICATE ==========
   window.downloadCertificate = function() {
     if (!currentModule || !scores[currentModule]) return;
     const { jsPDF } = window.jspdf;
@@ -2432,10 +2295,7 @@ body {
   };
 
   window.downloadSpecificCertificate = function(key) {
-    const orig = currentModule;
-    currentModule = key;
-    downloadCertificate();
-    currentModule = orig;
+    const orig = currentModule; currentModule = key; downloadCertificate(); currentModule = orig;
   };
 
   function restartQuiz() { startQuiz(true); }
@@ -2445,7 +2305,7 @@ body {
     loadModule(currentModule);
   }
 
-  // ========== ADMIN ==========
+  // ========== ADMIN (with email notification support) ==========
   async function showAdmin() {
     if (userProfile?.role !== "admin") { alert("Admin access only"); return; }
     await loadAllUsers();
@@ -2461,7 +2321,6 @@ body {
     tbody.innerHTML = "";
     let totalUsers = 0, totalAssignments = 0, pending = 0, passed = 0;
     const progressPromises = [];
-
     snap.forEach(d => {
       const u = d.data();
       totalUsers++;
@@ -2471,12 +2330,12 @@ body {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${u.fullName || "—"}</td>
-        <td>${u.email}</td>
+        <td>${u.email || "—"}</td>
         <td><span class="badge ${u.role==='admin'?'bg-warning text-dark':'bg-secondary'}">${u.role}</span></td>
         <td>${assignedCount}</td>
         <td>
-          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Nominate / Assign</button>
-          <button class="btn btn-sm btn-outline-info me-1" onclick="openProgressModal('${d.id}','${(u.fullName||u.email).replace(/'/g,"")}')">Progress</button>
+          <button class="btn btn-sm btn-outline-primary me-1" onclick="openAssignModal('${d.id}','${(u.fullName||u.email||'').replace(/'/g,"")}')">Nominate / Assign</button>
+          <button class="btn btn-sm btn-outline-info me-1" onclick="openProgressModal('${d.id}','${(u.fullName||u.email||'').replace(/'/g,"")}')">Progress</button>
           ${!isSelf ? `<button class="btn btn-sm ${u.role==='admin'?'btn-outline-danger':'btn-outline-success'}" onclick="toggleRole('${d.id}','${u.role}')">${u.role==='admin'?'Demote':'Promote'}</button>` : '<span class="text-muted small">You</span>'}
         </td>`;
       tbody.appendChild(tr);
@@ -2490,7 +2349,6 @@ body {
         }).catch(() => {})
       );
     });
-
     await Promise.all(progressPromises);
     document.getElementById("adminUserCount").textContent = totalUsers;
     document.getElementById("adminAssignedCount").textContent = totalAssignments;
@@ -2512,8 +2370,12 @@ body {
     document.getElementById("progressModal").classList.add("d-none");
     document.getElementById("assignNotes").value = "";
     document.getElementById("assignNotify").checked = true;
+    document.getElementById("emailNotifyPanel").classList.add("d-none");
     const userSnap = await getDoc(doc(db, "users", uid));
-    const assigned = userSnap.data()?.assignedModules || [];
+    const u = userSnap.data() || {};
+    lastAssignedEmail = u.email || "";
+    lastAssignedName = u.fullName || name;
+    const assigned = u.assignedModules || [];
     const list = document.getElementById("assignModuleList");
     list.innerHTML = "";
     Object.entries(moduleNames).forEach(([key, name]) => {
@@ -2549,31 +2411,47 @@ body {
 
     try {
       await addDoc(collection(db, "assignmentLog"), {
-        userId: assigningToUid,
-        userName: document.getElementById("assignUserName").textContent,
-        modules: selected,
-        moduleNames: selected.map(k => moduleNames[k]),
-        notes: notes || null,
-        assignedBy: currentUser.uid,
-        assignedByName: userProfile?.fullName || currentUser.email,
-        createdAt: serverTimestamp(),
-        createdAtStr: timestamp,
-        action: "firm_booking"
+        userId: assigningToUid, userName: lastAssignedName, modules: selected,
+        moduleNames: selected.map(k => moduleNames[k]), notes: notes || null,
+        assignedBy: currentUser.uid, assignedByName: userProfile?.fullName || currentUser.email,
+        createdAt: serverTimestamp(), createdAtStr: timestamp, action: "firm_booking"
       });
-    } catch (e) { console.warn("Log write failed:", e); }
+    } catch (e) {}
+
+    lastAssignedModules = selected;
 
     if (notify && selected.length > 0) {
       const modList = selected.slice(0, 5).map(k => moduleNames[k]).join(", ") + (selected.length > 5 ? ` (+${selected.length - 5} more)` : "");
-      await createNotification(
-        assigningToUid,
-        "Modules Nominated & Firmly Booked",
-        `You have been assigned the following module(s): ${modList}. Please complete the training and assessment at your earliest opportunity. ${notes ? "Notes: " + notes : ""}`,
-        "assignment"
-      );
+      await createNotification(assigningToUid, "Modules Nominated & Firmly Booked",
+        `You have been assigned the following module(s): ${modList}. Please complete the training and assessment at your earliest opportunity. ${notes ? "Notes: " + notes : ""}`, "assignment");
     }
 
-    alert("Modules nominated and firmly booked successfully." + (notify ? " Learner has been notified." : ""));
-    closeAssignModal();
+    // Show the email-notification panel so admin can send a real inbox email
+    if (lastAssignedEmail && selected.length > 0) {
+      document.getElementById("emailNotifyPanel").classList.remove("d-none");
+      document.getElementById("btnSendEmailNotify").onclick = () => {
+        const modList = selected.map(k => "• " + moduleNames[k]).join("%0D%0A");
+        const subject = encodeURIComponent("Act 29 Mining Training – Modules Assigned to You");
+        const body = encodeURIComponent(
+`Dear ${lastAssignedName},
+
+You have been nominated and firmly booked for the following MHSA-aligned competency module(s) on the Act 29 Mining Training platform:
+
+${selected.map(k => "• " + moduleNames[k]).join("\n")}
+
+${notes ? "Additional notes from your Training Officer / Line Management:\n" + notes + "\n\n" : ""}Please log in to the platform at your earliest convenience to complete the training materials and the competency assessment (100 % mastery required).
+
+Zero Harm.
+
+Regards,
+${userProfile?.fullName || "Training Administrator"}
+Act 29 Mining Training Platform`
+        );
+        window.location.href = `mailto:${lastAssignedEmail}?subject=${subject}&body=${body}`;
+      };
+    }
+
+    alert("Modules nominated and firmly booked successfully." + (notify ? " In-app notification created." : "") + (lastAssignedEmail ? " You can now send a direct email to the learner." : ""));
     loadAllUsers();
     loadAssignmentLog();
   };
@@ -2596,11 +2474,11 @@ body {
       snap.forEach(d => {
         const data = d.data();
         currentProgressData[d.id] = data;
-        const tr = document.createElement("tr");
         const rem = data.remainingCount != null ? data.remainingCount : (data.passed ? 0 : "—");
         const att = data.attempts != null ? data.attempts : "—";
         const hasHistory = Array.isArray(data.attemptHistory) && data.attemptHistory.length > 0;
         const savedProg = data.inProgress ? " • Saved mid-attempt" : "";
+        const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${moduleNames[d.id] || d.id}</td>
           <td>${data.percentage != null ? data.percentage + "%" : "—"} <small class="text-muted">(${data.correct != null ? data.correct : "—"}/${data.total != null ? data.total : "—"})</small></td>
@@ -2609,9 +2487,7 @@ body {
           <td class="small">${data.timestamp || "—"}</td>
           <td>${hasHistory ? `<button class="btn btn-sm btn-outline-info" data-module-key="${d.id}">View attempts</button>` : '<span class="text-muted small">—</span>'}</td>`;
         if (hasHistory) {
-          tr.querySelector("button").addEventListener("click", () => {
-            showAttemptDetail(moduleNames[d.id] || d.id, data.attemptHistory);
-          });
+          tr.querySelector("button").addEventListener("click", () => showAttemptDetail(moduleNames[d.id] || d.id, data.attemptHistory));
         }
         tbody.appendChild(tr);
       });
@@ -2628,7 +2504,6 @@ body {
     let html = "";
     history.forEach((rec, idx) => {
       const failed = Array.isArray(rec.failedQuestions) ? rec.failedQuestions : [];
-      const failedIds = Array.isArray(rec.failedQuestionIds) ? rec.failedQuestionIds : [];
       html += `<div class="border rounded-3 p-3 mb-2 ${rec.passed ? 'border-success' : 'border-warning'}">
         <div class="d-flex flex-wrap justify-content-between gap-2 mb-2">
           <strong>Attempt ${rec.attempt || (idx + 1)}</strong>
@@ -2639,18 +2514,13 @@ body {
           ${rec.remainingAfter != null ? ` • Remaining after: ${rec.remainingAfter}` : ""}
           ${rec.timeTakenSeconds != null ? ` • Time: ${Math.floor(rec.timeTakenSeconds/60)}:${String(rec.timeTakenSeconds%60).padStart(2,"0")}` : ""}</small></div>`;
       if (failed.length > 0) {
-        html += `<div class="mt-2"><strong class="text-danger small">Questions failed before next attempt:</strong><ul class="mb-0 mt-1">`;
+        html += `<div class="mt-2"><strong class="text-danger small">Questions failed:</strong><ul class="mb-0 mt-1">`;
         failed.forEach(fq => {
-          html += `<li class="mb-1"><span class="text-dark">${fq.question || ("Q#" + ((fq.id ?? 0) + 1))}</span>
-            <br><span class="text-muted">Correct answer: ${fq.correctAnswer || "—"}</span></li>`;
+          html += `<li class="mb-1"><span class="text-dark">${fq.question || ("Q#" + ((fq.id ?? 0) + 1))}</span><br><span class="text-muted">Correct answer: ${fq.correctAnswer || "—"}</span></li>`;
         });
         html += `</ul></div>`;
-      } else if (failedIds.length > 0) {
-        html += `<div class="mt-2"><strong class="text-danger small">Failed question IDs:</strong> ${failedIds.map(i => i + 1).join(", ")}</div>`;
       } else if (rec.passed) {
-        html += `<div class="mt-1 text-success small">No failed questions — full competency achieved on this attempt.</div>`;
-      } else {
-        html += `<div class="mt-1 text-muted small">No failed-question detail recorded for this attempt.</div>`;
+        html += `<div class="mt-1 text-success small">No failed questions — full competency achieved.</div>`;
       }
       html += `</div>`;
     });
@@ -2662,8 +2532,7 @@ body {
   window.closeProgressModal = function() {
     document.getElementById("progressModal").classList.add("d-none");
     document.getElementById("attemptDetailPanel").classList.add("d-none");
-    currentProgressUid = null;
-    currentProgressData = {};
+    currentProgressUid = null; currentProgressData = {};
   };
 
   window.downloadValidationReport = function() {
@@ -2680,21 +2549,14 @@ body {
     doc.text(`Learner: ${userName}`, 14, 38);
     doc.text(`Generated: ${new Date().toLocaleString("en-ZA", { timeZone: "Africa/Johannesburg" })}`, 14, 44);
     doc.text(`Generated by: ${userProfile?.fullName || currentUser?.email || "Admin"}`, 14, 50);
-
     let y = 60;
     doc.setFont("helvetica", "bold");
-    doc.text("Module", 14, y);
-    doc.text("Status", 90, y);
-    doc.text("Mastery", 130, y);
-    doc.text("Attempts", 165, y);
-    y += 6;
-    doc.setDrawColor(180); doc.line(14, y, 196, y); y += 6;
+    doc.text("Module", 14, y); doc.text("Status", 90, y); doc.text("Mastery", 130, y); doc.text("Attempts", 165, y);
+    y += 6; doc.setDrawColor(180); doc.line(14, y, 196, y); y += 6;
     doc.setFont("helvetica", "normal");
-
     const entries = Object.entries(currentProgressData);
-    if (entries.length === 0) {
-      doc.text("No progress recorded.", 14, y);
-    } else {
+    if (entries.length === 0) doc.text("No progress recorded.", 14, y);
+    else {
       entries.forEach(([key, data]) => {
         if (y > 270) { doc.addPage(); y = 20; }
         doc.text((moduleNames[key] || key).substring(0, 40), 14, y);
@@ -2704,30 +2566,24 @@ body {
         y += 7;
       });
     }
-    y += 10;
-    doc.setFontSize(9); doc.setTextColor(80);
+    y += 10; doc.setFontSize(9); doc.setTextColor(80);
     doc.text("This report supports the Training Officer / Clerk validation step and record-keeping under ISO.PROC.0003.", 14, y);
     doc.save(`Validation_Report_${userName.replace(/\s+/g, "_")}.pdf`);
   };
 
-  // ========== COMMUNICATIONS ==========
   window.sendAnnouncement = async function() {
     const subject = document.getElementById("commsSubject").value.trim();
     const body = document.getElementById("commsBody").value.trim();
     const audience = document.getElementById("commsAudience").value;
     if (!subject || !body) { alert("Please enter subject and message."); return; }
-
     const timestamp = new Date().toLocaleString("en-ZA", { timeZone: "Africa/Johannesburg" });
     try {
       await addDoc(collection(db, "announcements"), {
-        subject, body, audience,
-        createdBy: currentUser.uid,
+        subject, body, audience, createdBy: currentUser.uid,
         createdByName: userProfile?.fullName || currentUser.email,
-        createdAt: serverTimestamp(),
-        createdAtStr: timestamp
+        createdAt: serverTimestamp(), createdAtStr: timestamp
       });
-    } catch (e) { console.warn(e); }
-
+    } catch (e) {}
     const usersSnap = await getDocs(collection(db, "users"));
     let count = 0;
     for (const d of usersSnap.docs) {
@@ -2736,7 +2592,6 @@ body {
       await createNotification(d.id, subject, body, "announcement");
       count++;
     }
-
     document.getElementById("commsSubject").value = "";
     document.getElementById("commsBody").value = "";
     alert(`Communication sent to ${count} user(s).`);
@@ -2749,10 +2604,7 @@ body {
     try {
       const q = query(collection(db, "announcements"), orderBy("createdAt", "desc"), limit(10));
       const snap = await getDocs(q);
-      if (snap.empty) {
-        container.innerHTML = '<p class="text-muted small mb-0">No communications sent yet.</p>';
-        return;
-      }
+      if (snap.empty) { container.innerHTML = '<p class="text-muted small mb-0">No communications sent yet.</p>'; return; }
       container.innerHTML = snap.docs.map(d => {
         const a = d.data();
         return `<div class="assignment-log-item mb-2">
@@ -2766,17 +2618,13 @@ body {
     }
   }
 
-  // ========== ASSIGNMENT LOG ==========
   window.loadAssignmentLog = async function() {
     const body = document.getElementById("assignmentLogBody");
     if (!body) return;
     try {
       const q = query(collection(db, "assignmentLog"), orderBy("createdAt", "desc"), limit(20));
       const snap = await getDocs(q);
-      if (snap.empty) {
-        body.innerHTML = '<p class="text-muted small mb-0">No nomination / firm-booking records yet.</p>';
-        return;
-      }
+      if (snap.empty) { body.innerHTML = '<p class="text-muted small mb-0">No nomination / firm-booking records yet.</p>'; return; }
       body.innerHTML = snap.docs.map(d => {
         const a = d.data();
         const mods = (a.moduleNames || []).slice(0, 4).join(", ") + ((a.moduleNames||[]).length > 4 ? ` (+${a.moduleNames.length - 4})` : "");
@@ -2794,14 +2642,6 @@ body {
       body.innerHTML = '<p class="text-muted small">Unable to load log (index may still be building). Try again shortly.</p>';
     }
   };
-
-  document.querySelector('.contact-form')?.addEventListener('submit', e => {
-    // Allow native mailto submission (action activated with provided string)
-    // Optional: keep a confirmation
-    setTimeout(() => {
-      alert('Thank you. Your message client should open. If it does not, please email contact@miningtraining.ac.za directly.');
-    }, 300);
-  });
 
   // Global helpers
   window.showHome = showHome;
