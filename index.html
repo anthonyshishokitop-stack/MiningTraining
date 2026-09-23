@@ -631,13 +631,14 @@ body {
     vision_mission: "Vision, Mission & Values", emergency_response: "Emergency Response Protocol",
     assembly_points: "Assembly Points & Emergency Exits", fire_first_aid: "Fire Fighting & First Aid Equipment",
     life_saving_rules: "Life-Saving Rules", ppe: "PPE Requirements",
-    employee_rights: "Employee Rights & Duties (MHSA)", exleave: "Ex-Leave Induction Overview", hirac: "HIRAC Refresher"
+    employee_rights: "Employee Rights & Duties (MHSA)", exleave: "Ex-Leave Induction Overview", 
+    hirac: "HIRAC Refresher",scba: "Breathing Apparatus (SCBA – Dräger PAS Lite)"
   };
 
   
 
 
-  const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','hirac','induction_protocol','company_intro','vision_mission','emergency_response','assembly_points','fire_first_aid','life_saving_rules','ppe','employee_rights','exleave'];
+  const advancedModules = ['seismicity','blasting','evacuation','fire','tmm','winders','hirac','scba','induction_protocol','company_intro','vision_mission','emergency_response','assembly_points','fire_first_aid','life_saving_rules','ppe','employee_rights','exleave'];
 
   const moduleIcons = {
     handover:"bi-arrow-left-right", lhd:"bi-truck", drill:"bi-hammer", support:"bi-grid-3x3-gap",
@@ -649,7 +650,7 @@ body {
     tmm:"bi-truck-flatbed", winders:"bi-house", induction_protocol:"bi-list-check", company_intro:"bi-building",
     vision_mission:"bi-bullseye", emergency_response:"bi-bell", assembly_points:"bi-signpost",
     fire_first_aid:"bi-heart-pulse", life_saving_rules:"bi-shield-exclamation", ppe:"bi-person-badge",
-    employee_rights:"bi-hand-thumbs-up", exleave:"bi-person-walking", hirac:"bi-exclamation-triangle"
+    employee_rights:"bi-hand-thumbs-up", exleave:"bi-person-walking", hirac:"bi-exclamation-triangle",scba: "bi-lungs"
   };
 
   const videos = {
@@ -687,6 +688,7 @@ body {
     ppe: "https://drive.google.com/file/d/1XGrpsXdHUdJEIUJzbMrmaESPpS-dbWU_x3EMYCkhiYg/preview",
     employee_rights: "https://www.youtube.com/embed/lMEErpFhzxg", 
     exleave: "https://www.youtube.com/embed/lMEErpFhzxg",
+    scba: "https://www.youtube.com/embed/lMEErpFhzxg",
     hirac: "https://www.youtube.com/embed/lMEErpFhzxg"
   };
 
@@ -725,6 +727,7 @@ body {
     ppe: "https://docs.google.com/presentation/d/e/2PACX-1vSVGlz8DX-VesQwUxIxGIupaPQVNXc_iR5yCwk9A6xVsBeNvekhH2hqhrxbPXvHVQ/pubembed?start=false&loop=false&delayms=3000",
     employee_rights: "https://docs.google.com/presentation/d/e/2PACX-1vR9M2hJjs7ZYg7eJ1IgPhwMzNEFYUp2kbeGpVn9FcpNhD3zq6dulh4VuD3rT0jXEA/pubembed?start=false&loop=false&delayms=3000",
     exleave: "https://docs.google.com/presentation/d/e/2PACX-1vRjdIry8OtJBD2wte-xOUCLFgU6g-Pdf4cwcJwiQHOhmeoshnM9z56uDeKpVLMwQA/pubembed?start=false&loop=false&delayms=3000",
+    scba: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000",
     hirac: "https://docs.google.com/presentation/d/e/2PACX-1vTykz04TXicfIR4VUQyVqqkXnbQRLXPLanmuH6QEYVj3-OduhTupMAc8vNE73Aywg/pubembed?start=false&loop=false&delayms=3000",
   };
 
@@ -763,7 +766,8 @@ const moduleDescriptions = {
     ppe: "Personal Protective Equipment is the last line of defence in the hierarchy of controls. Mandatory PPE for different areas and tasks (hard hat, safety boots, reflective clothing, eye protection, hearing protection, respiratory protection, gloves, fall-arrest harness, etc.) must be correctly selected, fitted, worn, cared for and replaced when damaged. Employers supply PPE; employees must use it correctly and report defects immediately.",
     employee_rights: "Under the Mine Health and Safety Act 29 of 1996 every employee has the legal right to refuse to perform dangerous work and to leave a workplace that is dangerous. Employees also have the duty to take reasonable care of their own health and safety and that of others, to cooperate with the employer on safety matters, and to report hazards. These rights and duties are fundamental and cannot be contracted out of.",
     exleave: "Employees returning from leave (ex-leave) must complete a refresher induction covering emergency protocols, assembly points, current critical hazards, any changes to procedures or layouts that occurred during their absence, and reinforcement of life-saving rules. This ensures that knowledge remains current and that returning employees do not introduce risk through outdated assumptions.",
-    hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) is the systematic process used before any task begins. The team identifies all hazards associated with the task, assesses the risk (likelihood × consequence), and implements controls following the hierarchy of control (elimination, substitution, engineering, administrative, PPE). Residual risk must be acceptable before work starts. Every member of the work team should participate. HIRAC is a living process that must be reviewed when conditions change."
+    scba: "Self-Contained Breathing Apparatus (SCBA) training focused on the Dräger PAS Lite. Covers purpose of SCBA, hazards in sulphuric acid plants (SO₂, acid mist, oxygen deficiency), main components, pre-use inspection, correct donning and doffing, operational safety, emergency procedures, cleaning, storage and maintenance. Aligns with site respiratory protection requirements and Zero Harm principles.",
+  hirac: "Hazard Identification, Risk Assessment and Control (HIRAC) is the systematic process used before any task begins. The team identifies all hazards associated with the task, assesses the risk (likelihood × consequence), and implements controls following the hierarchy of control (elimination, substitution, engineering, administrative, PPE). Residual risk must be acceptable before work starts. Every member of the work team should participate. HIRAC is a living process that must be reviewed when conditions change."
   };
 
 
@@ -1661,6 +1665,8 @@ const moduleDescriptions = {
       {question:"If a control measure fails you should?", options:["Continue with extra care", "Stop the work, make the area safe and report the failure", "Replace it yourself without authority", "Wait until the end of shift"], correct:1, explanation:"Failed controls require immediate action to prevent harm."},
       {question:"Continuous improvement in safety is achieved by?", options:["Ignoring small problems", "Learning from incidents, near-misses, audits and suggestions", "Reducing the number of rules", "Focusing only on production"], correct:1, explanation:"Learning and acting on information drives improvement."},
     ]},
+
+    
     exleave: {name:"EX-LEAVE INDUCTION OVERVIEW", q: [
       {question:"What is the primary focus of the \"Ex-Leave Induction Overview\" module?", options:["Safety and MHSA compliance", "Production targets only", "Financial procedures", "HR policies only"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
       {question:"The minimum pass mark for any competency assessment is?", options:["50%", "60%", "70%", "80%"], correct:2, explanation:"70% is the standard pass mark for competency."},
@@ -1688,6 +1694,38 @@ const moduleDescriptions = {
       {question:"If a control measure fails you should?", options:["Continue with extra care", "Stop the work, make the area safe and report the failure", "Replace it yourself without authority", "Wait until the end of shift"], correct:1, explanation:"Failed controls require immediate action to prevent harm."},
       {question:"Continuous improvement in safety is achieved by?", options:["Ignoring small problems", "Learning from incidents, near-misses, audits and suggestions", "Reducing the number of rules", "Focusing only on production"], correct:1, explanation:"Learning and acting on information drives improvement."},
     ]},
+
+
+
+    scba: {name: "BREATHING APPARATUS (SCBA – DRÄGER PAS LITE)", q: [
+    {question: "What does SCBA stand for?", options: ["Safety Controlled Breathing Apparatus", "Self-Contained Breathing Apparatus", "Secure Compressed Breathing Apparatus", "System Controlled Breathing Apparatus"], correct: 1, explanation: "SCBA = Self-Contained Breathing Apparatus."},
+    {question: "The primary purpose of SCBA is to:", options: ["Reduce noise exposure", "Protect against falls", "Supply breathable air in a hazardous atmosphere", "Measure gas concentrations"], correct: 2, explanation: "SCBA supplies clean breathable air when the atmosphere is toxic, contaminated or oxygen-deficient."},
+    {question: "Which hazard is commonly found in a sulphuric acid plant?", options: ["Carbon monoxide only", "Sulphur dioxide (SO₂)", "Nitrogen only", "Water vapour"], correct: 1, explanation: "SO₂ and SO₃, acid mist and oxygen-deficient atmospheres are typical hazards."},
+    {question: "SCBA can be used in an oxygen-deficient atmosphere.", options: ["TRUE", "FALSE"], correct: 0, explanation: "Yes – that is one of the main reasons SCBA is used."},
+    {question: "Before use, the cylinder must be:", options: ["Empty", "Half full", "Fully charged", "Removed"], correct: 2, explanation: "The cylinder must be fully charged before every use."},
+    {question: "The low-air alarm indicates that:", options: ["The equipment is defective", "The user must leave the hazardous area immediately", "The mask is damaged", "The cylinder is overfilled"], correct: 1, explanation: "When the low-air alarm sounds, exit the hazardous area at once."},
+    {question: "Which component supplies breathable air to the user on demand?", options: ["Cylinder valve", "Backplate", "Demand valve", "Waist belt"], correct: 2, explanation: "The demand valve delivers air when the wearer inhales."},
+    {question: "SCBA protects users from inhaling hazardous airborne contaminants.", options: ["TRUE", "FALSE"], correct: 0, explanation: "Correct – that is a core function of SCBA."},
+    {question: "A damaged face mask should be:", options: ["Used carefully", "Repaired by the user", "Reported and removed from service", "Ignored"], correct: 2, explanation: "Damaged equipment must be reported and taken out of service."},
+    {question: "SCBA users should always work:", options: ["Alone", "With a buddy", "Without supervision", "At night only"], correct: 1, explanation: "Buddy system is mandatory for SCBA work."},
+    {question: "Air leaks detected during inspection mean:", options: ["The unit is ready for use", "Additional air is available", "The unit must be inspected and repaired", "The unit is functional"], correct: 2, explanation: "Any leak means the set must be repaired before use."},
+    {question: "After use, the equipment should be:", options: ["Stored without cleaning", "Left in the work area", "Cleaned, inspected and stored correctly", "Dismantled completely"], correct: 2, explanation: "Clean, inspect and store in a designated clean, dry area."},
+    {question: "The cylinder pressure does not need checking before use.", options: ["TRUE", "FALSE"], correct: 1, explanation: "Pressure must always be checked before use."},
+    {question: "Straps and harnesses should be inspected before use.", options: ["TRUE", "FALSE"], correct: 0, explanation: "Yes – part of the mandatory pre-use inspection."},
+    {question: "The user should ignore the low-air warning alarm.", options: ["TRUE", "FALSE"], correct: 1, explanation: "Never ignore the low-air alarm – exit immediately."},
+    {question: "Face mask seals must be checked before entering a hazardous area.", options: ["TRUE", "FALSE"], correct: 0, explanation: "A proper seal is critical for protection."},
+    {question: "Damaged SCBA equipment may be used in emergencies.", options: ["TRUE", "FALSE"], correct: 1, explanation: "Damaged equipment must never be used."},
+    {question: "Which of these is a main component of the Dräger PAS Lite?", options: ["Air cylinder", "Pressure reducer", "Full face mask", "All of the above"], correct: 3, explanation: "All listed items are main components."},
+    {question: "What should you do when the low-air alarm activates?", options: ["Continue working carefully", "Exit the hazardous area immediately", "Switch to another cylinder while inside", "Ignore it if the gauge still shows pressure"], correct: 1, explanation: "Leave the area at once."},
+    {question: "Before donning the SCBA you must:", options: ["Open the cylinder valve first", "Perform a full pre-use inspection", "Connect the demand valve only", "Skip the gauge check"], correct: 1, explanation: "Always inspect first."},
+    {question: "The pressure gauge shows:", options: ["How long you have been wearing the set", "Remaining cylinder pressure", "Ambient temperature", "Filter condition"], correct: 1, explanation: "It indicates remaining air pressure."},
+    {question: "In a sulphuric acid plant, SCBA is needed mainly because of:", options: ["Noise", "SO₂, acid mist and possible oxygen deficiency", "Heat only", "Dust only"], correct: 1, explanation: "Toxic gases and oxygen deficiency are the key risks."},
+    {question: "After doffing the SCBA you should:", options: ["Leave it in the work area", "Close the cylinder valve and release residual pressure", "Store it still pressurised", "Remove the cylinder immediately without inspection"], correct: 1, explanation: "Close valve, release pressure, then inspect."},
+    {question: "Only authorised personnel may perform:", options: ["Donning", "Doffing", "Maintenance and repairs", "Buddy checks"], correct: 2, explanation: "Maintenance is restricted to trained authorised persons."},
+    {question: "Zero Harm principle applied to SCBA means:", options: ["Using the set only when convenient", "Never entering a hazardous atmosphere without a fully functional, inspected SCBA and a buddy", "Working alone to finish faster", "Ignoring minor leaks"], correct: 1, explanation: "Proper use of SCBA is a core Zero Harm control."}
+  ]},
+
+    
     hirac: {name:"HIRAC REFRESHER", q: [
       {question:"What is the primary focus of the \"HIRAC Refresher\" module?", options:["Safety and MHSA compliance", "Production targets only", "Financial procedures", "HR policies only"], correct:0, explanation:"All modules focus on safety and MHSA compliance."},
       {question:"The minimum pass mark for any competency assessment is?", options:["50%", "60%", "70%", "80%"], correct:2, explanation:"70% is the standard pass mark for competency."},
